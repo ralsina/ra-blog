@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-3.9.dtd">
+<!-- Project file for project ra-blog -->
+<!-- Saved: 2007-03-23, 13:03:15 -->
+<!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
+<Project version="3.9">
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <UIType>Qt4</UIType>
+  <Description>A blogging tool</Description>
+  <Version>0.1</Version>
+  <Author>Roberto Alsina</Author>
+  <Email>ralsina@kde.org</Email>
+  <Sources>
+    <Source>
+      <Name>pyds2ra.py</Name>
+    </Source>
+    <Source>
+      <Name>Ui_mainwindow.py</Name>
+    </Source>
+    <Source>
+      <Name>dbclasses.py</Name>
+    </Source>
+    <Source>
+      <Name>ra-blog.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+    <Form>
+      <Name>mainwindow.ui</Name>
+    </Form>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <MainScript>
+    <Name>ra-blog.py</Name>
+  </MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+    <VcsOptions>(dp0
+S'status'
+p1
+(lp2
+S''
+p3
+asS'log'
+p4
+(lp5
+g3
+asS'global'
+p6
+(lp7
+g3
+asS'update'
+p8
+(lp9
+g3
+asS'remove'
+p10
+(lp11
+g3
+asS'add'
+p12
+(lp13
+g3
+asS'tag'
+p14
+(lp15
+g3
+asS'export'
+p16
+(lp17
+g3
+asS'diff'
+p18
+(lp19
+g3
+asS'commit'
+p20
+(lp21
+g3
+asS'checkout'
+p22
+(lp23
+g3
+asS'history'
+p24
+(lp25
+g3
+as.</VcsOptions>
+    <VcsOtherData>(dp0
+S'standardLayout'
+p1
+I00
+s.</VcsOtherData>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+  </FiletypeAssociations>
+</Project>
