@@ -8,6 +8,17 @@ import os
 from dbclasses import *
 import datetime
 import docutils.core
+from cherrytemplate import renderTemplate
+
+templates={
+    'postRender':'''
+    <div class="postbox">
+    <h1><py-eval="post.title"></h1>
+    <py-eval="post.rendered">
+    </div>
+    '''
+}
+
 
 class PostModelItem:
     def __init__ (self,parent):
@@ -230,6 +241,8 @@ class MainWindow(QtGui.QMainWindow):
 
         self.ui.stack.setCurrentIndex(0)
         self.curPost=None
+        
+        self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
 
     def init_tree(self):
         self.ui.tree.setModel(self.model)
@@ -246,22 +259,30 @@ class MainWindow(QtGui.QMainWindow):
             self.curPost=list(Post.select(Post.q.postID==treeitem.id))[0]        
             self.ui.editor.setText(self.curPost.text)
             self.ui.editor.document().setModified(False)
-            self.ui.viewer.setHtml(self.curPost.rendered)
             self.ui.title.setText(self.curPost.title)
             self.ui.link.setText(self.curPost.link)
             self.ui.categories.setText(','.join([x.nameID for x in self.curPost.categories]))
+            self.displayPostInViewer()
             self.switchEditMode(self.ui.actionEdit_Item.isChecked())
         except AttributeError:
             pass
         
+    def displayPostInViewer(self):
+            # Fancier HTML for the user
+            post=self.curPost
+            html=renderTemplate(templates['postRender'])
+            self.ui.viewer.setHtml(html)
         
     def reRenderCurrentPost(self):
         if self.curPost:
             print "Rerendering ",self.curPost.postID
             self.curPost.text=str(self.ui.editor.document().toPlainText())
             html=docutils.core.publish_parts(self.curPost.text,writer_name='html')['body']
-            self.ui.viewer.setHtml(html)
+            
+            # Basic HTML for the DB
             self.curPost.rendered=html
+            self.displayPostInViewer()
+            
                     
     def switchEditMode(self,mode):
         if mode==1:
