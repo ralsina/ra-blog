@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-23, 13:03:15 -->
+<!-- Saved: 2007-03-25, 12:40:27 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -22,6 +22,15 @@
     </Source>
     <Source>
       <Name>ra-blog.py</Name>
+    </Source>
+    <Source>
+      <Name>macros.py</Name>
+    </Source>
+    <Source>
+      <Name>postmodel.py</Name>
+    </Source>
+    <Source>
+      <Name>advogato2ra.py</Name>
     </Source>
   </Sources>
   <Forms>
@@ -74,11 +83,11 @@ asS'export'
 p16
 (lp17
 g3
-asS'diff'
+asS'commit'
 p18
 (lp19
 g3
-asS'commit'
+asS'diff'
 p20
 (lp21
 g3
@@ -99,9 +108,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

@@ -10,18 +10,17 @@ def initDB(name):
     #Initialize sqlobject
     
     db_fname=os.path.abspath(name)
-    if os.path.exists(db_fname):
-        os.unlink(db_fname)
     
     connection_string='sqlite:'+db_fname
     connection=connectionForURI(connection_string)
     sqlhub.processConnection = connection
 
-    Post.createTable()
-    Story.createTable()
-    Categories.createTable()
-    PostCategories.createTable()
-    StoryCategories.createTable()
+    if not os.path.exists(db_fname):
+        Post.createTable()
+        Story.createTable()
+        Categories.createTable()
+        PostCategories.createTable()
+        StoryCategories.createTable()
 
 def importWeblog():
 
