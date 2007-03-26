@@ -12,6 +12,7 @@ import datetime
 import docutils.core
 from cherrytemplate import renderTemplate
 import macros
+from blog import Blog
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
@@ -45,55 +46,7 @@ class MainWindow(QtGui.QMainWindow):
         self.renderTemplate=None
 
     def renderBlog(self):
-                
-        # Render entry page with 20 latest posts
-        blog_dir=os.path.join(dest_dir,'weblog')
-        if not os.path.exists(blog_dir):
-            os.makedirs(blog_dir)
-        plist=Post.select(orderBy=Post.q.pubDate)
-        postlist=plist[-20:]
-        postlist.reverse()
-        title=blog_title
-        curDate=postlist[0].pubDate
-        body=renderTemplate(templates['blogSite'])
-        page=renderTemplate(templates['pageSite'])
-        fname=os.path.join(blog_dir,"index.html")
-        if os.path.exists(fname):
-            os.unlink(fname)
-        f=codecs.open(fname,"w","utf-8")
-        f.write(page)
-
-        # RSS feed with same posts
-        page=renderTemplate(templates['feedRSS'])
-        fname=os.path.join(blog_dir,"rss.xml")
-        if os.path.exists(fname):
-            os.unlink(fname)
-        f=codecs.open(fname,"w","utf-8")
-        f.write(page)
-        
-        # Render page for each day since beginning
-        # of time
-        oldest=plist[0].pubDate
-        newest=plist[-1].pubDate
-        
-        current=oldest.replace(hour=0,minute=0,second=0)        
-        while current<=newest:
-            next=current+datetime.timedelta(1);
-            postlist=Post.select(AND(Post.q.pubDate>=current,Post.q.pubDate<next),orderBy=Post.q.pubDate)
-            if postlist.count()>0:
-                curDate=postlist[0].pubDate
-                fname=os.path.join(blog_dir,str(current.year),"%02d"%current.month)
-                if not os.path.exists(fname):
-                    os.makedirs(fname)
-                fname=os.path.join(fname,"%02d.html"%current.day)
-                title="%s for %s"%(blog_title,str(current))
-                body=renderTemplate(templates['blogSite'])
-                page=renderTemplate(templates['pageSite'])
-                if os.path.exists(fname):
-                    os.unlink(fname)
-                f=codecs.open(fname,"w","utf-8")
-                f.write(page)
-            current=next
+        self.blog.renderBlog()
         
     def init_tree(self):
         self.ui.tree.setModel(self.model)
