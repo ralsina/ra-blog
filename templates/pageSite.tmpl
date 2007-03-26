@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
+  <title><py-eval="title"></title>
+  <py-exec="macros.addHead(macros.yahooGridsHead())">
+  <py-exec="macros.addHead(macros.yahooCalendarHead())">
+  <py-exec="macros.addHead(macros.haloscanHead())">
+  <py-exec="macros.addHead(macros.rstHead())">
+  <py-exec="macros.addHead(macros.roundedHead())">
+  <py-eval="macros.insertHead()">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/LateralOpinion">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="http://www.haloscan.com/load/ralsina"> </script>    
+</head>
+<body>
+  <div id="doc3" class="yui-t5">
+    <div id="hd"><!-- header -->
+      <img src="http://cablemodem.fibertel.com.ar/lateral/banner.png" ALT="Lateral Opinion">
+    </div>  
+
+    <div id="bd"><!-- body -->
+        <div id="yui-main"><!-- main column-->
+            <div class="yui-b">
+                <py-eval="body">
+            </div>
+        </div>
+        <div class="yui-b"><!-- sidebar -->
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.yahooCalendarWidget(curDate)">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.technoratiSearch()">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.chunk['blurb']">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.haloscanLatestComments()">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.statcounterChiclet()">
+                <br>
+                <py-eval="macros.talkrChiclet()">
+                <br>
+                <py-eval="macros.haloscanChiclet()">
+                <br>
+                <py-eval="macros.feedburnerCounter()">
+            </div>            
+        </div><!-- end of sidebar -->
+
+    <div id="ft"><!-- footer -->
+        <py-eval="macros.copyright()">
+    </div>  
+  </div><!-- end of doc -->    
+</body>
+</html>
+

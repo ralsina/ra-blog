@@ -53,7 +53,7 @@ class PostDayItem(PostModelItem):
     def __init__(self,day,parent):
         PostModelItem.__init__(self,parent)
         self.month=day
-        self.children={}
+        self.children=None
         self.startDate=datetime.datetime(parent.parent().year,parent.month,day)
         try:
             self.endDate=datetime.datetime(parent.parent().year,parent.month,day+1)
@@ -62,8 +62,8 @@ class PostDayItem(PostModelItem):
                 self.endDate=datetime.datetime(parent.parent().year,parent.month+1,1)
             except:
                 self.endDate=datetime.datetime(parent.parent().year+1,1,1)
-        self.plist=list(Post.select(AND(Post.q.pubDate>=self.startDate,
-                                   Post.q.pubDate<self.endDate)))
+        self.plist=Post.select(AND(Post.q.pubDate>=self.startDate,
+                                   Post.q.pubDate<self.endDate))
         
     def data(self,column):
         if column==0:
@@ -71,11 +71,13 @@ class PostDayItem(PostModelItem):
         return QtCore.QVariant()
         
     def childCount(self):
-        return len(self.plist)
+        if self.children:
+            return len(self.children)
+        return self.plist.count()
         
     def child(self,row):
-        if not self.children.has_key(row):
-            self.children[row]=PostItem(self.plist[row].postID,self)
+        if not self.children:
+            self.children=[PostItem(post.postID,self) for post in list(self.plist)]
         return self.children[row]
         
 class PostMonthItem(PostModelItem):

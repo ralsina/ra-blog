@@ -5,188 +5,13 @@ import codecs
 import sys
 from PyQt4 import QtGui, QtCore
 from Ui_mainwindow import Ui_MainWindow
-from sqlobject import *
 import os,sys
-from dbclasses import *
+from dbclasses import Post,Story
 from postmodel import *
 import datetime
 import docutils.core
 from cherrytemplate import renderTemplate
 import macros
-
-dest_dir=os.path.abspath("weblog")
-blog_title="Lateral Opinion"
-
-templates={
-    'postRender':u'''
-    <h1>
-    <py-if="post.link">
-        <a href='<py-eval="post.link">'><py-eval="post.title"></a>
-    </py-if>
-    <py-else>
-        <py-eval="post.title">
-    </py-else>
-    </h1>
-    <py-eval="post.rendered">
-    ''',
-    'storyRender':'''
-    <h1>
-    <py-eval="post.title">
-    </h1>
-    <py-eval="post.rendered">
-    ''',
-    
-    'storySite':u'''    
-<div class="postbox thinedge">
-  <h1><py-eval="story.title"></h1>
-  <table width="100%">
-  <tr>
-    <py-eval="macros.feedburnerBanner()">
-  </tr>
-  </table>
-  
-  <py-eval="story.rendered">
-  
-  <div class="smallbox">
-    <py-eval="macros.haloscanComments(story)">&nbsp;&bull;&nbsp;
-    <py-eval="macros.haloscanTB(story)">
-    <br>
-    <py-eval="macros.feedburnerFlare(story)">
-    <br>
-    last changed <py-eval="str(story.pubDate)">
-  </div>
-</div>
-
-''',
-    'pageSite':u'''
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
-<html> 
-<head> 
-  <title><py-eval="title"></title>
-  <py-exec="macros.addHead(macros.yahooGridsHead())">
-  <py-exec="macros.addHead(macros.yahooCalendarHead())">
-  <py-exec="macros.addHead(macros.haloscanHead())">
-  <py-exec="macros.addHead(macros.rstHead())">
-  <py-exec="macros.addHead(macros.roundedHead())">
-  <py-eval="macros.insertHead()">
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/LateralOpinion">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <script type="text/javascript" src="http://www.haloscan.com/load/ralsina"> </script>    
-</head>
-<body>
-  <div id="doc3" class="yui-t5">
-    <div id="hd"><!-- header -->
-      <img src="http://cablemodem.fibertel.com.ar/lateral/banner.png" ALT="Lateral Opinion">
-    </div>  
-
-    <div id="bd"><!-- body -->
-        <div id="yui-main"><!-- main column-->
-            <div class="yui-b">
-                <py-eval="body">
-            </div>
-        </div>
-        <div class="yui-b"><!-- sidebar -->
-            <div class="yui-g sidebox thinedge">
-                <py-eval="macros.yahooCalendarWidget(curDate)">
-            </div>
-            <div class="yui-g sidebox thinedge">
-                <py-eval="macros.technoratiSearch()">
-            </div>
-            <div class="yui-g sidebox thinedge">
-                <py-eval="macros.chunk['blurb']">
-            </div>
-            <div class="yui-g sidebox thinedge">
-                <py-eval="macros.haloscanLatestComments()">
-            </div>
-            <div class="yui-g sidebox thinedge">
-                <py-eval="macros.statcounterChiclet()">
-                <br>
-                <py-eval="macros.talkrChiclet()">
-                <br>
-                <py-eval="macros.haloscanChiclet()">
-                <br>
-                <py-eval="macros.feedburnerCounter()">
-            </div>            
-        </div><!-- end of sidebar -->
-
-    <div id="ft"><!-- footer -->
-        <py-eval="macros.copyright()">
-    </div>  
-  </div><!-- end of doc -->    
-</body>
-</html>
-    
-''',
-
-    'blogSite':u"""
-<py-for="post in postlist">
-  <div class="yui-u rounded postbox thinedge">
-    <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
-    <py-eval="str(post.pubDate)"></a>
-      <py-if="post.link">
-        <h2><a name="<py-eval="post.postID">"></a>
-            <a href="<py-eval="post.link">"><py-eval="post.title"></a></h2>
-      </py-if>
-      <py-else>
-        <h2><a name="<py-eval="post.postID">"></a>
-            <py-eval="post.title"></h2>
-      </py-else>
-      <py-eval="post.rendered">
-    <div class="footerbox">
-      <a href="<py-eval="macros.weblogPermaLink(post)">">#</a>&nbsp;&bull;&nbsp;
-      <py-eval="macros.haloscanComments(post)">&nbsp;&bull;&nbsp;
-      <py-eval="macros.haloscanTB(post)">&nbsp;&bull;&nbsp;
-      <py-eval="macros.talkrLink(post)">
-      <py-if="post.link">
-        &nbsp;&bull;&nbsp;<a class=reference href="<py-eval="post.link">">Read More</a>
-      </py-if>
-      <br>
-      <py-eval="macros.feedburnerFlare(post)">
-      <py-eval="macros.technoratiTags(post)">
-    </div>
-  </div>
-</py-for>
-""",
-
-'feedRSS': '''
-<?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"
-   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback"
-   xmlns:ent="http://www.purl.org/NET/ENT/1.0/"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-<channel>
-<title><py-eval="title"></title>
-<link><py-eval="macros.basepath"></link>
-<description><py-eval="macros.description"></description>
-<language><py-eval="macros.language"></language>
-<copyright><py-eval="macros.copyright()"></copyright>
-<lastBuildDate><py-eval="str(latest)"></lastBuildDate>
-<generator>"macros.version"</generator>
-<managingEditor>"macros.author"</managingEditor>
-<webMaster>"macros.author"</webMaster>
-<py-for="post in postlist">
-    <item>
-    <title><py-eval="post.title"></title>
-    <py-if="post.link">
-        <link><py-eval="post.link"></link>
-    </py-if>
-    <description><py-eval="post.description()"></description>
-    <guid><py-eval="post.guid()"></guid>
-    <py-eval="macros.technoratiTagsRSS(post)">
-    <py-eval="macros.entCloud(post)">
-    <pubDate><py-eval="str(post.pubDate)"></pubDate>
-    <py-eval="macros.source(post)">
-    </item>
-</py-for>
-</channel>
-</rss>
-'''
-
-}
-
-
-        
-    
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
@@ -196,10 +21,7 @@ class MainWindow(QtGui.QMainWindow):
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
         
-        db_fname=os.path.abspath('blog.db')
-        connection_string='sqlite:'+db_fname
-        connection=connectionForURI(connection_string)
-        sqlhub.processConnection = connection
+        self.blog=Blog()
         self.model=PostModel()
         
         self.ui.actionEdit_Item.setCheckable(True)
@@ -223,22 +45,7 @@ class MainWindow(QtGui.QMainWindow):
         self.renderTemplate=None
 
     def renderBlog(self):
-    
-        # Render stories
-        story_dir=os.path.join(dest_dir,'stories')        
-        if not os.path.exists(story_dir):
-            os.makedirs(story_dir)
-        for story in Story.select():
-            title=story.title
-            curDate=story.pubDate
-            body=renderTemplate(templates['storySite'],inputEncoding='utf8')
-            page=renderTemplate(templates['pageSite'])
-            fname="%s/%s.html"%(story_dir,story.postID)
-            if os.path.exists(fname):
-                os.unlink(fname)
-            f=codecs.open(fname,"w","utf-8")
-            f.write(page)
-            
+                
         # Render entry page with 20 latest posts
         blog_dir=os.path.join(dest_dir,'weblog')
         if not os.path.exists(blog_dir):
