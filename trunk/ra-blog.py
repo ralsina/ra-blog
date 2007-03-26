@@ -35,27 +35,23 @@ templates={
     </h1>
     <py-eval="post.rendered">
     ''',
+    
     'storySite':u'''    
-<div class="storybox">
+<div class="postbox thinedge">
   <h1><py-eval="story.title"></h1>
   <table width="100%">
   <tr>
-    <td align=center>
-      <a href=http://feeds.feedburner.com/LateralOpinion">
-        <img src="http://feeds.feedburner.com/LateralOpinion.gif" alt="Lateral Opinion" style="border:0">
-      </a>
-    </td>
+    <py-eval="macros.feedburnerBanner()">
   </tr>
   </table>
   
   <py-eval="story.rendered">
   
   <div class="smallbox">
-    <py-eval="story.HaloScanComments()">&nbsp;&bull;&nbsp;
-    <py-eval="story.HaloScanTB()">
+    <py-eval="macros.haloscanComments(story)">&nbsp;&bull;&nbsp;
+    <py-eval="macros.haloscanTB(story)">
     <br>
-    <script src="http://feeds.feedburner.com/~s/LateralOpinionArticles?i=<py-eval="story.myurl()">
-    type="text/javascript" charset="utf-8"></script>
+    <py-eval="macros.feedburnerFlare(story)">
     <br>
     last changed <py-eval="str(story.pubDate)">
   </div>
@@ -63,81 +59,68 @@ templates={
 
 ''',
     'pageSite':u'''
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
+<html> 
+<head> 
   <title><py-eval="title"></title>
-    <link rel="stylesheet" href="<py-eval="macros.absoluteUrl('/static/pyds.css')">" type="text/css">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/LateralOpinion">
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <script type="text/javascript" src="http://www.haloscan.com/load/ralsina"> </script>    
+  <py-exec="macros.addHead(macros.yahooGridsHead())">
+  <py-exec="macros.addHead(macros.yahooCalendarHead())">
+  <py-exec="macros.addHead(macros.haloscanHead())">
+  <py-exec="macros.addHead(macros.rstHead())">
+  <py-exec="macros.addHead(macros.roundedHead())">
+  <py-eval="macros.insertHead()">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/LateralOpinion">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="text/javascript" src="http://www.haloscan.com/load/ralsina"> </script>    
 </head>
 <body>
-
-  <div align="center" >
-    <div class="banner" style="margin-top:2em; margin-bottom:1em;">
+  <div id="doc3" class="yui-t5">
+    <div id="hd"><!-- header -->
       <img src="http://cablemodem.fibertel.com.ar/lateral/banner.png" ALT="Lateral Opinion">
-    </div>
+    </div>  
 
-    <div class="sidebar">    
-      <div align="left" class="googlebox">  
-          <ul>
-            <li>
-              <a href="http://lateral.blogsite.org">Home</a>
-            </li>
-            <li>
-              <a href="http://lateral.blogsite.org/stories/">Articles</a>
-            </li>      
-            <li>
-              <a href="http://lateral.blogsite.org/archive/">Archives</a>
-            </li>
-            <hr>
-            <li> Software
-              <ul>
-                <li>
-                  <a href="http://rascan.blogsite.org">RaSCAN</a>
-                </li>
-                <li>
-                  <a href="http://raplugins.blogsite.org">Ra-Plugins</a>
-                </li>
-                <li>
-                  <a href="http://raspf.blogsite.org">RaSPF</a>
-                </li>
-                <li>
-                  <a href="http://cherrytv.blogsite.org">CherryTV</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-      </div>
-  
-      <div align="left" class="googlebox">
-        <script type="text/javascript" src="http://embed.technorati.com/embed/tpgux8rtif.js"></script>
-      </div>
-    
-      <div class="whiteboxsmall">
-        <py-eval="macros.chunk['first']">
-        <py-eval="macros.chunk['second']">
-      </div>
-    </div>
-    </div>
-  </div>
-  <div class="content">
-    <py-eval="body">
-    <p>
-    <div class="copybox" style="margin:1em;">
-      <py-eval="macros.copyright(story.pubDate.year)">
-    </div>
-  </div>
-$macros.webbug()
-    
+    <div id="bd"><!-- body -->
+        <div id="yui-main"><!-- main column-->
+            <div class="yui-b">
+                <py-eval="body">
+            </div>
+        </div>
+        <div class="yui-b"><!-- sidebar -->
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.yahooCalendarWidget(curDate)">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.technoratiSearch()">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.chunk['blurb']">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.haloscanLatestComments()">
+            </div>
+            <div class="yui-g sidebox thinedge">
+                <py-eval="macros.statcounterChiclet()">
+                <br>
+                <py-eval="macros.talkrChiclet()">
+                <br>
+                <py-eval="macros.haloscanChiclet()">
+                <br>
+                <py-eval="macros.feedburnerCounter()">
+            </div>            
+        </div><!-- end of sidebar -->
+
+    <div id="ft"><!-- footer -->
+        <py-eval="macros.copyright()">
+    </div>  
+  </div><!-- end of doc -->    
 </body>
 </html>
     
 ''',
+
     'blogSite':u"""
 <py-for="post in postlist">
-  <div class="postbox">
+  <div class="yui-u rounded postbox thinedge">
     <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
     <py-eval="str(post.pubDate)"></a>
       <py-if="post.link">
@@ -149,21 +132,55 @@ $macros.webbug()
             <py-eval="post.title"></h2>
       </py-else>
       <py-eval="post.rendered">
-    <div class="smallbox">
+    <div class="footerbox">
       <a href="<py-eval="macros.weblogPermaLink(post)">">#</a>&nbsp;&bull;&nbsp;
-      <py-eval="post.HaloScanComments()">&nbsp;&bull;&nbsp;
-      <py-eval="post.HaloScanTB()">&nbsp;&bull;&nbsp;
-      <py-eval="post.Talkr()">
+      <py-eval="macros.haloscanComments(post)">&nbsp;&bull;&nbsp;
+      <py-eval="macros.haloscanTB(post)">&nbsp;&bull;&nbsp;
+      <py-eval="macros.talkrLink(post)">
       <py-if="post.link">
         &nbsp;&bull;&nbsp;<a class=reference href="<py-eval="post.link">">Read More</a>
       </py-if>
       <br>
-      <py-eval="post.FeedBurnerFlare()">
-      <py-eval="post.TechnoratiTags()">
+      <py-eval="macros.feedburnerFlare(post)">
+      <py-eval="macros.technoratiTags(post)">
     </div>
   </div>
 </py-for>
-"""
+""",
+
+'feedRSS': '''
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback"
+   xmlns:ent="http://www.purl.org/NET/ENT/1.0/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<channel>
+<title><py-eval="title"></title>
+<link><py-eval="macros.basepath"></link>
+<description><py-eval="macros.description"></description>
+<language><py-eval="macros.language"></language>
+<copyright><py-eval="macros.copyright()"></copyright>
+<lastBuildDate><py-eval="str(latest)"></lastBuildDate>
+<generator>"macros.version"</generator>
+<managingEditor>"macros.author"</managingEditor>
+<webMaster>"macros.author"</webMaster>
+<py-for="post in postlist">
+    <item>
+    <title><py-eval="post.title"></title>
+    <py-if="post.link">
+        <link><py-eval="post.link"></link>
+    </py-if>
+    <description><py-eval="post.description()"></description>
+    <guid><py-eval="post.guid()"></guid>
+    <py-eval="macros.technoratiTagsRSS(post)">
+    <py-eval="macros.entCloud(post)">
+    <pubDate><py-eval="str(post.pubDate)"></pubDate>
+    <py-eval="macros.source(post)">
+    </item>
+</py-for>
+</channel>
+</rss>
+'''
 
 }
 
@@ -213,6 +230,7 @@ class MainWindow(QtGui.QMainWindow):
             os.makedirs(story_dir)
         for story in Story.select():
             title=story.title
+            curDate=story.pubDate
             body=renderTemplate(templates['storySite'],inputEncoding='utf8')
             page=renderTemplate(templates['pageSite'])
             fname="%s/%s.html"%(story_dir,story.postID)
@@ -229,9 +247,18 @@ class MainWindow(QtGui.QMainWindow):
         postlist=plist[-20:]
         postlist.reverse()
         title=blog_title
+        curDate=postlist[0].pubDate
         body=renderTemplate(templates['blogSite'])
         page=renderTemplate(templates['pageSite'])
         fname=os.path.join(blog_dir,"index.html")
+        if os.path.exists(fname):
+            os.unlink(fname)
+        f=codecs.open(fname,"w","utf-8")
+        f.write(page)
+
+        # RSS feed with same posts
+        page=renderTemplate(templates['feedRSS'])
+        fname=os.path.join(blog_dir,"rss.xml")
         if os.path.exists(fname):
             os.unlink(fname)
         f=codecs.open(fname,"w","utf-8")
@@ -247,6 +274,7 @@ class MainWindow(QtGui.QMainWindow):
             next=current+datetime.timedelta(1);
             postlist=Post.select(AND(Post.q.pubDate>=current,Post.q.pubDate<next),orderBy=Post.q.pubDate)
             if postlist.count()>0:
+                curDate=postlist[0].pubDate
                 fname=os.path.join(blog_dir,str(current.year),"%02d"%current.month)
                 if not os.path.exists(fname):
                     os.makedirs(fname)
