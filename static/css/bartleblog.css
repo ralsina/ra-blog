@@ -1,0 +1,35 @@
+.postbox {
+	margin-bottom: 1em;
+	overflow: auto;
+        color: #000000;
+        padding: 1em;
+        border: solid;
+        border-width: 1px;
+        border-color:#eeeeee;
+}
+
+.thinedge {
+        border: solid;
+        border-width: 1px;
+        border-color:#eeeeee;
+}
+
+.sidebox{
+	margin-bottom: 1em;
+        padding:1em;
+}
+
+.footerbox {
+	font-size: 80%;
+        text-align: right;
+        padding: .7em;
+        margin-top: 1em;
+}
+
+.code-block{
+	margin: 2em ;
+	margin-right: 2em ;
+	font-family: "Courier New", Courier, monospace;
+        overflow: auto;
+	background-color: #eeeeee 
+}
