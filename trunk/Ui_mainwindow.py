@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/svn/mainwindow.ui'
 #
-# Created: Sat Mar 24 11:46:33 2007
+# Created: Mon Mar 26 20:02:31 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!

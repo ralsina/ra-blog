@@ -1,0 +1,20 @@
+<div class="postbox thinedge">
+  <h1><py-eval="story.title"></h1>
+  <table width="100%">
+  <tr>
+    <py-eval="macros.feedburnerBanner()">
+  </tr>
+  </table>
+  
+  <py-eval="story.rendered">
+  
+  <div class="smallbox">
+    <py-eval="macros.haloscanComments(story)">&nbsp;&bull;&nbsp;
+    <py-eval="macros.haloscanTB(story)">
+    <br>
+    <py-eval="macros.feedburnerFlare(story)">
+    <br>
+    last changed <py-eval="str(story.pubDate)">
+  </div>
+</div>
+

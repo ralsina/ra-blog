@@ -1,0 +1,28 @@
+<py-for="post in postlist">
+  <div class="yui-u rounded postbox thinedge">
+    <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
+      <py-eval="str(post.pubDate)"></a>
+      <py-if="post.link">
+        <h2><a name="<py-eval="post.postID">"></a>
+            <a href="<py-eval="post.link">"><py-eval="post.title"></a></h2>
+      </py-if>
+      <py-else>
+        <h2><a name="<py-eval="post.postID">"></a>
+            <py-eval="post.title"></h2>
+      </py-else>
+      <py-eval="post.rendered">
+    <div class="footerbox">
+      <a href="<py-eval="macros.weblogPermaLink(post)">">#</a>&nbsp;&bull;&nbsp;
+      <py-eval="macros.haloscanComments(post)">&nbsp;&bull;&nbsp;
+      <py-eval="macros.haloscanTB(post)">&nbsp;&bull;&nbsp;
+      <py-eval="macros.talkrLink(post)">
+      <py-if="post.link">
+        &nbsp;&bull;&nbsp;<a class=reference href="<py-eval="post.link">">Read More</a>
+      </py-if>
+      <br>
+      <py-eval="macros.feedburnerFlare(post)">
+      <py-eval="macros.technoratiTags(post)">
+    </div>
+  </div>
+</py-for>
+
