@@ -6,6 +6,7 @@ import datetime
 from cherrytemplate import renderTemplate
 import codecs
 import macros
+import slimmer
 
 class Blog:
     def __init__(self):
@@ -23,9 +24,9 @@ class Blog:
 
     def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None):
         # Render
-        body=renderTemplate(itemtmpl)
-        page=renderTemplate(pagetmpl)
-        
+        body=renderTemplate(self.loadTemplate(itemtmpl))
+        page=renderTemplate(self.loadTemplate(pagetmpl))
+        page=slimmer.html_slimmer(page)
         # Save
         if not os.path.exists(dname):
             os.makedirs(dname)
@@ -33,20 +34,18 @@ class Blog:
             os.unlink(fname)
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(page)
-        
+             
     def renderStoryIndex(self):
         story_dir=os.path.join(self.dest_dir,'stories')        
         fname="index.html"
         postlist=Story.select(orderBy=Story.q.pubDate)
-        storytmpl=self.loadTemplate('storyIndex')
-        pagetmpl=self.loadTemplate('pageSite')
         title="%s - Story Index"%self.blog_title
         curDate=datetime.datetime.today()
         self.renderBlogPage(
                 title,
                 curDate,
-                storytmpl,
-                pagetmpl,
+                'storyIndex',
+                'pageSite',
                 story_dir,
                 fname,
                 postlist=postlist
@@ -62,19 +61,35 @@ class Blog:
         for story in Story.select():
             title=story.title
             curDate=story.pubDate
-            storytmpl=self.loadTemplate('storySite')
-            pagetmpl=self.loadTemplate('pageSite')
             fname="%s.html"%(story.postID)
             self.renderBlogPage(
                     title,
                     curDate,
-                    storytmpl,
-                    pagetmpl,
+                    'storySite',
+                    'pageSite',
                     story_dir,
                     fname,
                     story=story
                 )
+                
     
+    def renderBlogIndex(self):
+        postlist=list(Post.select(orderBy=Post.q.pubDate)[-20:])
+        postlist.reverse()
+        curDate=postlist[0].pubDate
+        title=self.blog_title
+        dname=os.path.join(self.dest_dir,"weblog")
+        fname="index.html"
+        
+        self.renderBlogPage(
+                title,
+                curDate,
+                'blogSite',
+                'pageSite',
+                dname,
+                fname,
+                postlist=postlist
+            )
     
     def renderBlogDay(self,date):
         start=date.replace(hour=0,minute=0,second=0)
@@ -86,10 +101,6 @@ class Blog:
         postlist=list(postlist)
         postlist.reverse()
 
-        # Load required templates
-        blogtmpl=self.loadTemplate("blogSite")
-        pagetmpl=self.loadTemplate("pageSite")
-        
         # Variables used by the templates
         title=self.blog_title
         curDate=postlist[0].pubDate
@@ -99,13 +110,13 @@ class Blog:
         self.renderBlogPage(
                 title,
                 curDate,
-                blogtmpl,
-                pagetmpl,
+                'blogSite',
+                'pageSite',
                 dname,
                 fname,
                 postlist=postlist
             )
-                        
+            
     def renderBlogMonth(self,date):
         start=date.replace(day=1,hour=0,minute=0,second=0)
         end=start
@@ -121,10 +132,6 @@ class Blog:
 
         postlist=list(postlist)
         postlist.reverse()
-
-        # Load required templates
-        blogtmpl=self.loadTemplate("blogSite")
-        pagetmpl=self.loadTemplate("pageSite")
         
         # Variables used by the templates
         title=self.blog_title
@@ -135,28 +142,31 @@ class Blog:
         self.renderBlogPage(
                 title,
                 curDate,
-                blogtmpl,
-                pagetmpl,
+                'blogSite',
+                'pageSite',
                 dname,
                 fname,
                 postlist=postlist
             )
 
-        
+        for day in range(1,32):
+            try:
+                self.renderBlogDay(curDate.replace(day=day))
+            except ValueError:
+                #To avoid checking month length
+                pass
+
+    def renderBlogYear(self,year):
+        for month in range(1,13):
+            self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
+                
     def renderBlog(self):
         plist=Post.select(orderBy=Post.q.pubDate)
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
-        self.renderStories()
-        
-        for month in range(1,13):
-            for year in range(oldest.year,newest.year+1):
-                self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
-                for day in range(1,32):
-                    try:
-                        self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))
-                    except ValueError:
-                        #To avoid checking month length
-                        pass
+        self.renderStories()        
+        self.renderBlogIndex()
+        for year in range(oldest.year,newest.year+1):
+            self.renderBlogYear(year)
                 
