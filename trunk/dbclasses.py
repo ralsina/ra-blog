@@ -3,11 +3,12 @@
 import os
 from sqlobject import *
 import urllib
+from html2text import html2text
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
-    posts=RelatedJoin('Post')
-    stories=RelatedJoin('Story')
+    posts=RelatedJoin('Post',orderBy='pubDate')
+    stories=RelatedJoin('Story',orderBy='pubDate')
 
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
@@ -20,12 +21,19 @@ class Post(SQLObject):
     onHome=BoolCol()
     structured=BoolCol()
     pubDate=DateTimeCol()
-    categories=RelatedJoin('Category')
+    categories=RelatedJoin('Category',orderBy='name')
     def myurl(self):
         return u"http://lateral.blogsite.org/weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                                       self.pubDate.month,
                                                                       self.pubDate.day,
-                                                                      self.postID)    
+                                                                      self.postID)
+                                                                     
+    def teaser(self):
+        try:
+            return html2text(self.rendered)[:100]
+        except:
+            return self.text[:100]
+            
             
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)

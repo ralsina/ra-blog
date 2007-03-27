@@ -57,7 +57,6 @@ class MainWindow(QtGui.QMainWindow):
             self.reRenderCurrentPost()
         if isinstance(treeitem,PostItem):            
             self.renderTemplate='postRender'
-            print treeitem.id
             self.curPost=Post.select(Post.q.postID==treeitem.id)[0]
             self.ui.link.setText(self.curPost.link)
         elif isinstance(treeitem,StoryItem):
