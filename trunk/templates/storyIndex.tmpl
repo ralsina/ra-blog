@@ -1,0 +1,11 @@
+<py-for="post in postlist">
+  <div class="yui-u rounded postbox thinedge">
+    <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
+      <py-eval="str(post.pubDate)"></a>
+        <h2><a href="<py-eval="post.myurl()">">
+        <py-eval="post.title"></a></h2>
+        <py-eval="post.desc">
+  </div>
+</py-for>
+
+
