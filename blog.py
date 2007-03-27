@@ -22,12 +22,21 @@ class Blog:
         f=codecs.open(fname,"r","utf-8")
         return f.read()
 
-    def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None):
+    def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None,body=None):
         # Render
-        body=renderTemplate(self.loadTemplate(itemtmpl))
-        page=renderTemplate(self.loadTemplate(pagetmpl))
+        if body or body=="":
+            pass
+        else:
+            body=renderTemplate(self.loadTemplate(itemtmpl))
+            
+        if pagetmpl:
+            page=renderTemplate(self.loadTemplate(pagetmpl))
+        else:
+            page=body
         page=slimmer.html_slimmer(page)
-        # Save
+        # Save or return
+        if not fname:
+            return page
         if not os.path.exists(dname):
             os.makedirs(dname)
         if os.path.exists(fname):
@@ -159,6 +168,49 @@ class Blog:
     def renderBlogYear(self,year):
         for month in range(1,13):
             self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
+            
+        # Yearly archive page
+        start=datetime.datetime(year=year,day=1,month=1)
+        contents=""
+        for month in range(1,13):
+            start=start.replace(day=1,month=month,hour=0,minute=0,second=0)
+            end=start
+            if start.month==12:
+                end=end.replace(year=start.year+1,day=1,month=1)
+            else:
+                end=end.replace(month=start.month+1)
+                
+            postlist=Post.select(AND(Post.q.pubDate>=start,Post.q.pubDate<end),
+                                orderBy=Post.q.pubDate)
+            
+            if postlist.count()==0:
+                continue
+                
+            item=self.renderBlogPage(
+                    'Posts for month %d/%d'%(month,year),
+                    start,
+                    'blogBriefSite',
+                    'monthArchiveSite',
+                    None,
+                    None,
+                    postlist=postlist
+                )
+            contents+=item
+            
+        body=contents
+        dname=os.path.join(self.dest_dir,'weblog',str(year))
+        fname='index.html'
+        self.renderBlogPage(
+            '%s for year %d'%(self.blog_title,year),
+            datetime.datetime(year=year,day=1,month=1),
+            None,
+            'pageSite',
+            dname,
+            fname,
+            body=body
+            )
+            
+            
                 
     def renderBlog(self):
         plist=Post.select(orderBy=Post.q.pubDate)
