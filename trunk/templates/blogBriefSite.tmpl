@@ -1,0 +1,8 @@
+<ul>
+<py-for="post in postlist">
+   <li>
+        <a href="<py-eval="post.myurl()">">
+        <py-eval="post.title"></a>
+    </li>
+</py-for>
+</ul>
