@@ -29,8 +29,10 @@ class Blog:
         for story in Story.select():
             title=story.title
             curDate=story.pubDate
-            body=renderTemplate(templates['storySite'],inputEncoding='utf8')
-            page=renderTemplate(templates['pageSite'])
+            storytmpl=self.loadTemplate('storySite')
+            pagetmpl=self.loadTemplate('pageSite')
+            body=renderTemplate(storytmpl,inputEncoding='utf8')
+            page=renderTemplate(pagetmpl)
             fname="%s/%s.html"%(story_dir,story.postID)
             if os.path.exists(fname):
                 os.unlink(fname)
@@ -112,6 +114,8 @@ class Blog:
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
+        self.renderStories()
+        
         for month in range(1,13):
             for year in range(oldest.year,newest.year+1):
                 self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
