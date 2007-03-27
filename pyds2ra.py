@@ -27,8 +27,13 @@ def importWeblog():
             structured=p.structured,
             pubDate=datetime.datetime.fromtimestamp(p.pubtime)
             )
-        for cat in p.categories:            
-            c=Category(post=post.id,name=cat.name)
+        for cat in p.categories:
+            cs=Category.select(Category.q.name==cat.name)
+            if cs.count():
+                c=cs[0]
+            else:
+                c=Category(name=cat.name)
+            post.addCategory(c)
             
 def importStories():
     # Initialize metakit
