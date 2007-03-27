@@ -40,34 +40,6 @@ def rstHead():
     '<link rel="stylesheet" type="text/css" href="%s">'%absoluteUrl('static/css/bartleblog.css'),
     '<link rel="stylesheet" type="text/css" href="%s">'%absoluteUrl('static/css/silvercity.css')
     ]
-
-def roundedHead():
-    return [
-    '<script type="text/JavaScript" src="%s"></script>'%absoluteUrl('static/js/rounded_corners.js'),
-    '''
-     
- <script type="text/JavaScript"> 
-
-   function round_all()
-   {
-     settings = {
-       tl: { radius: 20 },
-       tr: { radius: 20 },
-       bl: { radius: 20 },
-       br: { radius: 20 },
-       antiAlias: true,
-       autoPad: false
-     } 
-
-     var cornersObj1 = new curvyCorners(settings, "postbox");
-     var cornersObj2 = new curvyCorners(settings, "sidebox");
-     cornersObj1.applyCornersToAll();
-     cornersObj2.applyCornersToAll();
-   }
-    YAHOO.util.Event.addListener(window, "load", round_all) 
- </script>
-    '''
-    ]
     
 #################################################################################
 ### General Macros
