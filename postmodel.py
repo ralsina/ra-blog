@@ -111,12 +111,20 @@ class PostYearItem(PostModelItem):
         self.year=year
         plist=list(Post.select(AND(Post.q.pubDate>=datetime.datetime(self.year,1,1),
                                    Post.q.pubDate<datetime.datetime(self.year+1,1,1))))
-        months=[]
+        self.months=[]
         for p in plist:
-            if not p.pubDate.month in months:
-                months.append(p.pubDate.month)
-        months.sort()
-        self.children=[PostMonthItem(x,self) for x in months]
+            if not p.pubDate.month in self.months:
+                self.months.append(p.pubDate.month)
+        self.months.sort()
+        self.children=None
+
+    def child(self,row):
+        if not self.children:
+            self.children=[PostMonthItem(x,self) for x in self.months]
+        return self.chidren[row]
+        
+    def childCount(self):
+        return len(self.months)
         
     def data(self,column):
         if column==0:
