@@ -8,13 +8,11 @@
   
   <py-eval="story.rendered">
   
-  <div class="smallbox">
+  <div class="footerbox">
     <py-eval="macros.haloscanComments(story)">&nbsp;&bull;&nbsp;
     <py-eval="macros.haloscanTB(story)">
-    <br>
-    <py-eval="macros.feedburnerFlare(story)">
-    <br>
-    last changed <py-eval="str(story.pubDate)">
+    <py-eval="macros.feedburnerFlare(story)"><br>
+    Posted: <py-eval="str(story.pubDate)">
   </div>
 </div>
 

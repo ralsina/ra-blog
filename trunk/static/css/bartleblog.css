@@ -33,3 +33,11 @@
         overflow: auto;
 	background-color: #eeeeee 
 }
+
+/* These are for compatibilty with PyDS for my blog.
+   You could delete them if you don't need it */
+   
+.whiteboxsmall{
+  font-size: 80%;
+  text-align: left; 
+}
