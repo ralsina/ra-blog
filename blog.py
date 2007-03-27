@@ -33,7 +33,7 @@ class Blog:
             page=renderTemplate(self.loadTemplate(pagetmpl))
         else:
             page=body
-        page=slimmer.html_slimmer(page)
+        #page=slimmer.html_slimmer(page)
         # Save or return
         if not fname:
             return page
@@ -59,8 +59,7 @@ class Blog:
                 fname,
                 postlist=postlist
             )
-        
-        
+                
     def renderStories(self):
     
         self.renderStoryIndex()
@@ -210,13 +209,29 @@ class Blog:
             body=body
             )
             
+    def renderBlogArchive(self,start,end):
+        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ]))
+        
+        dname=os.path.join(self.dest_dir,'weblog')
+        fname='archive.html'
+        
+        self.renderBlogPage(
+            '%s Archives'%(self.blog_title),
+            datetime.datetime.today(),
+            None,
+            'pageSite',
+            dname,
+            fname,
+            body=body
+            )
+        
             
-                
     def renderBlog(self):
         plist=Post.select(orderBy=Post.q.pubDate)
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
+        self.renderBlogArchive(oldest.year,newest.year)
         self.renderStories()        
         self.renderBlogIndex()
         for year in range(oldest.year,newest.year+1):
