@@ -5,8 +5,9 @@ from sqlobject import *
 import urllib
 
 class Category(SQLObject):
-    name=UnicodeCol()
-    post=ForeignKey('Post')
+    name=UnicodeCol(alternateID=True)
+    posts=RelatedJoin('Post')
+    stories=RelatedJoin('Story')
 
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
@@ -19,7 +20,7 @@ class Post(SQLObject):
     onHome=BoolCol()
     structured=BoolCol()
     pubDate=DateTimeCol()
-    categories=MultipleJoin('Category')
+    categories=RelatedJoin('Category')
     def myurl(self):
         return u"http://lateral.blogsite.org/weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                                       self.pubDate.month,
@@ -36,6 +37,7 @@ class Story(SQLObject):
     structured=BoolCol()
     draft=BoolCol()
     quiet=BoolCol()
+    categories=RelatedJoin('Category')
     def myurl(self):
         return "http://lateral.blogsite.org/stories/%s.html"%self.postID
 
