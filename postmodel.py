@@ -36,53 +36,23 @@ class PostModelItem:
         return self.children[row]
 
 class PostItem(PostModelItem):
-    def __init__(self,id,parent):
+    def __init__(self,post,parent):
         PostModelItem.__init__(self,parent)
-        self.id=id        
-        self.title=None
+        self.id=post.postID
+        self.day=post.pubDate.day
+        self.title=post.title
         
     def rowCount():
         return 0
         
     def data(self,column):
         if column==0:
-            return QtCore.QVariant(str(self.id))
+            return QtCore.QVariant(str(self.day))
         elif column==1:
-            if not self.title:
-                self.title=Post.select(Post.q.postID==self.id)[0].title
             return QtCore.QVariant(str(self.title))
+        elif column==2:
+            return QtCore.QVariant(str(self.id))
         return QtCore.QVariant()
-    
-class PostDayItem(PostModelItem):
-    def __init__(self,day,parent):
-        PostModelItem.__init__(self,parent)
-        self.month=day
-        self.children=None
-        self.startDate=datetime.datetime(parent.parent().year,parent.month,day)
-        try:
-            self.endDate=datetime.datetime(parent.parent().year,parent.month,day+1)
-        except:
-            try:
-                self.endDate=datetime.datetime(parent.parent().year,parent.month+1,1)
-            except:
-                self.endDate=datetime.datetime(parent.parent().year+1,1,1)
-        self.plist=Post.select(AND(Post.q.pubDate>=self.startDate,
-                                   Post.q.pubDate<self.endDate))
-        
-    def data(self,column):
-        if column==0:
-            return QtCore.QVariant(str(self.month))
-        return QtCore.QVariant()
-        
-    def childCount(self):
-        if self.children:
-            return len(self.children)
-        return self.plist.count()
-        
-    def child(self,row):
-        if not self.children:
-            self.children=[PostItem(post.postID,self) for post in list(self.plist)]
-        return self.children[row]
         
 class PostMonthItem(PostModelItem):
     def __init__(self,month,parent):
@@ -94,19 +64,23 @@ class PostMonthItem(PostModelItem):
             self.endDate=datetime.datetime(parent.year+1,1,1)
         else:
             self.endDate=datetime.datetime(parent.year,month+1,1)
-        plist=list(Post.select(AND(Post.q.pubDate>=self.startDate,
-                                   Post.q.pubDate<self.endDate)))
-                                   
-        for p in plist:
-            if not p.pubDate.day in days:
-                days.append(p.pubDate.day)
-        days.sort()
-        self.children=[PostDayItem(x,self) for x in days]
-        
+        self.plist=Post.select(AND(Post.q.pubDate>=self.startDate,
+                                   Post.q.pubDate<self.endDate),orderBy=Post.q.pubDate)
+        self.count=self.plist.count()
+        self.children=None
+                
     def data(self,column):
         if column==0:
             return QtCore.QVariant(str(self.month))
         return QtCore.QVariant()
+        
+    def childCount(self):
+        return self.count
+        
+    def child(self,row):
+        if not self.children:
+            self.children=[PostItem(x,self) for x in self.plist]
+        return self.children[row]
         
         
 class PostYearItem(PostModelItem):
