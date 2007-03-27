@@ -18,6 +18,7 @@ feedburnerName="LateralOpinion"
 feedburnerStoriesName="LateralOpinionStories"
 haloscanUser="ralsina"
 talkrFeedID="15734"
+addthisUser="ralsina"
 
 #################################################################################
 ### <head> manipulation
@@ -58,8 +59,10 @@ def roundedHead():
        autoPad: false
      } 
 
-     var cornersObj = new curvyCorners(settings, "rounded");
-     cornersObj.applyCornersToAll();
+     var cornersObj1 = new curvyCorners(settings, "postbox");
+     var cornersObj2 = new curvyCorners(settings, "sidebox");
+     cornersObj1.applyCornersToAll();
+     cornersObj2.applyCornersToAll();
    }
     YAHOO.util.Event.addListener(window, "load", round_all) 
  </script>
@@ -84,6 +87,22 @@ def copyright():
     earliest=Post.select(orderBy=Post.q.pubDate)[0].pubDate
     return u"&copy; %d-%d %s"%(earliest.year,datetime.date.today().year,author)
 
+#################################################################################
+### Morgle Macros
+#################################################################################
+    
+#################################################################################
+### AddThis Macros
+#################################################################################
+
+def addthisButton():
+    return '''
+<!-- AddThis Bookmark Button BEGIN -->
+<div>
+<a href="http://www.addthis.com/bookmark.php" onclick="window.open('http://www.addthis.com/bookmark.php?wt=nw&pub=%s&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'addthis', 'scrollbars=yes,menubar=no,width=620,height=520,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100'); return false;" title="Bookmark using any bookmark manager!" target="_blank"><img src="http://s3.addthis.com/button1-bm.gif" width="125" height="16" border="0" alt="AddThis Social Bookmark Button" /></a></div>
+<!-- AddThis Bookmark Button END -->'''%addthisUser
+
+    
 #################################################################################
 ### Technorati Macros
 #################################################################################
