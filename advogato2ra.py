@@ -48,23 +48,14 @@ def importAdv():
             )
 
 def fixLinks(text):
-         sp1=re.compile("(<person>|</person>)")
+         sp1=re.compile('(href="/)')
          l=sp1.split(text)
          for i in range(0,len(l)):
-            if l[i].lower()=='<person>':
-                l[i]="<a href='http://advogato.org/person/%s'>"%l[i+1]
-            elif l[i].lower()=='</person>':
-                l[i]="</a>"
+            if l[i].lower()=='href="/':
+                l[i]='href="http://advogato.org/'
          text=''.join(l)
 
-         sp1=re.compile("(<project>|</project>|<proj>|</proj>)")
-         l=sp1.split(text)
-         for i in range(0,len(l)):
-            if l[i].lower() in ['<project>','<proj>']:
-                l[i]="<a href='http://advogato.org/proj/%s'>"%l[i+1]
-            elif l[i].lower() in ['</project>','</proj>']:
-                l[i]="</a>"
-         return ''.join(l)
+         return text
          
 initDB('blog.db')
 importAdv()
