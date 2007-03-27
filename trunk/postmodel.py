@@ -40,12 +40,16 @@ class PostItem(PostModelItem):
         PostModelItem.__init__(self,parent)
         self.id=id        
         self.title=None
+        
+    def rowCount():
+        return 0
+        
     def data(self,column):
         if column==0:
             return QtCore.QVariant(str(self.id))
         elif column==1:
             if not self.title:
-                self.title=list(Post.select(Post.q.postID==self.id))[0].title
+                self.title=Post.select(Post.q.postID==self.id)[0].title
             return QtCore.QVariant(str(self.title))
         return QtCore.QVariant()
     
