@@ -121,7 +121,7 @@ class PostYearItem(PostModelItem):
     def child(self,row):
         if not self.children:
             self.children=[PostMonthItem(x,self) for x in self.months]
-        return self.chidren[row]
+        return self.children[row]
         
     def childCount(self):
         return len(self.months)
@@ -134,14 +134,27 @@ class PostYearItem(PostModelItem):
 class PostByDateItem(PostModelItem):
     def __init__(self,parent):
         PostModelItem.__init__(self,parent)
-        plist=list(Post.select())
-        self.children=[]
+        plist=Post.select(orderBy=Post.q.pubDate)
+        y1=plist[0].pubDate.replace(day=1,month=1)
+        y2=plist[-1].pubDate
+        y2=y2.replace(year=y2.year+1,day=1,month=1)
+        self.children=None
         self.years=[]
-        for p in plist:
-            if not p.pubDate.year in self.years:
-                self.children.append(PostYearItem(p.pubDate.year,self))
-                self.years.append(p.pubDate.year)
+        for yy in xrange(y1.year,y2.year):
+            yb=y1.replace(year=yy)
+            ye=y1.replace(year=yy+1)
+            if Post.select(AND(Post.q.pubDate>=yb,Post.q.pubDate<ye)).count():
+                self.years.append(yy)                
+        self.years.sort()
                     
+    def childCount(self):
+        return len(self.years)
+        
+    def child(self,row):
+        if not self.children:
+            self.children=[PostYearItem(x,self) for x in self.years]
+        return self.children[row]
+        
     def data(self,column):
         if column==0:
             return QtCore.QVariant("Posts by Date")
