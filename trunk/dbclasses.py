@@ -4,7 +4,7 @@ from sqlobject import *
 import urllib
 
 class Categories(SQLObject):
-    name=UnicodeCol()
+    name=UnicodeCol(alternateID=True)
     
 class PostCategories(SQLObject):
     postID=ForeignKey('Post')
@@ -15,7 +15,7 @@ class StoryCategories(SQLObject):
     name=ForeignKey('Categories')
 
 class Post(SQLObject):
-    postID=UnicodeCol()
+    postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
     link=UnicodeCol()
     source=UnicodeCol()
@@ -33,7 +33,7 @@ class Post(SQLObject):
                                                                       self.postID)
             
 class Story(SQLObject):
-    postID=UnicodeCol()
+    postID=UnicodeCol(alternateID=True)
     pubDate=DateTimeCol()
     title=UnicodeCol()
     desc=UnicodeCol()
