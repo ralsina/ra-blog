@@ -34,11 +34,31 @@ class Blog:
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(page)
         
+    def renderStoryIndex(self):
+        story_dir=os.path.join(self.dest_dir,'stories')        
+        fname="index.html"
+        postlist=Story.select(orderBy=Story.q.pubDate)
+        storytmpl=self.loadTemplate('storyIndex')
+        pagetmpl=self.loadTemplate('pageSite')
+        title="%s - Story Index"%self.blog_title
+        curDate=datetime.datetime.today()
+        self.renderBlogPage(
+                title,
+                curDate,
+                storytmpl,
+                pagetmpl,
+                story_dir,
+                fname,
+                postlist=postlist
+            )
+        
+        
     def renderStories(self):
+    
+        self.renderStoryIndex()
+    
         # Render stories
         story_dir=os.path.join(self.dest_dir,'stories')        
-        if not os.path.exists(story_dir):
-            os.makedirs(story_dir)
         for story in Story.select():
             title=story.title
             curDate=story.pubDate
