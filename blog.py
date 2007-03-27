@@ -71,6 +71,7 @@ class Blog:
         </ul>
         </div>'''
         catnames=[ x.name for x in Category.select() ]
+        catnames.sort()
         body=body%(title,''.join(['<li><a href="%s">%s</a></li>'%(macros.absoluteUrl('weblog/categories/'+x),x) for x in catnames]))
         curDate=datetime.datetime.today()
         self.renderBlogPage(
