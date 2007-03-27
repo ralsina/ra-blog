@@ -66,7 +66,7 @@ class MainWindow(QtGui.QMainWindow):
         else:
             #Maybe clear the views?
             return
-        self.ui.categories.setText(','.join([x.nameID for x in self.curPost.categories]))
+        self.ui.categories.setText(','.join([x.name for x in self.curPost.categories]))
         self.ui.editor.setText(self.curPost.text)
         self.ui.editor.document().setModified(False)
         self.ui.title.setText(self.curPost.title)

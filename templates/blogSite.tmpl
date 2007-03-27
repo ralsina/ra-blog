@@ -19,10 +19,9 @@
         <py-if="post.link">
           &nbsp;&bull;&nbsp;<a class=reference href="<py-eval="post.link">">Read More</a>
         </py-if>
-        <br>
+        <py-eval="macros.addthisButton()">
         <py-eval="macros.feedburnerFlare(post)">
         <py-eval="macros.technoratiTags(post)">
-        <py-eval="macros.addthisButton()">
     </div>
   </div>
 </py-for>

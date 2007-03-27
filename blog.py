@@ -10,10 +10,7 @@ import slimmer
 
 class Blog:
     def __init__(self):
-        db_fname=os.path.abspath('blog.db')
-        connection_string='sqlite:'+db_fname
-        connection=connectionForURI(connection_string)
-        sqlhub.processConnection = connection
+        initDB('blog.db')
         self.dest_dir=os.path.abspath("weblog")
         self.blog_title="Lateral Opinion"
         
@@ -43,7 +40,28 @@ class Blog:
             os.unlink(fname)
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(page)
-             
+
+    def renderCategory(self,cat):
+        title='Posts in %s about %s'%(self.blog_title,cat)
+        dname=os.path.join(self.dest_dir,'categories')
+        if '/' in cat or '\\' in cat or '.' in cat:
+            return
+        fname=cat+'.html'
+        
+        
+    def renderCategories(self):
+        # There must be a way to make sqlobject do this
+        cats=[]
+        for cat in Categories.select():
+            if cat.lower() in cats:
+                continue
+            cats.append(cat.lower())
+            
+        # And now render each category
+        
+        for cat in cats:
+            self.renderCategory(cat)
+        
     def renderStoryIndex(self):
         story_dir=os.path.join(self.dest_dir,'stories')        
         fname="index.html"
