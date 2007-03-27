@@ -6,22 +6,6 @@ from dbclasses import *
 import sqlobject
 import re
 
-def initDB(name):
-    #Initialize sqlobject
-    
-    db_fname=os.path.abspath(name)
-    
-    connection_string='sqlite:'+db_fname
-    connection=connectionForURI(connection_string)
-    sqlhub.processConnection = connection
-
-    if not os.path.exists(db_fname):
-        Post.createTable()
-        Story.createTable()
-        Categories.createTable()
-        PostCategories.createTable()
-        StoryCategories.createTable()
-
 def importAdv():
     username=sys.argv[1]
     password=sys.argv[2]

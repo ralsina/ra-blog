@@ -6,24 +6,8 @@ import metakit,os,datetime,time
 from dbclasses import *
 import sys        
 
-def initDB(name):
-    #Initialize sqlobject
-    
-    db_fname=os.path.abspath(name)
-    
-    connection_string='sqlite:'+db_fname
-    connection=connectionForURI(connection_string)
-    sqlhub.processConnection = connection
-
-    if not os.path.exists(db_fname):
-        Post.createTable()
-        Story.createTable()
-        Categories.createTable()
-        PostCategories.createTable()
-        StoryCategories.createTable()
 
 def importWeblog():
-
     # Initialize metakit
     
     mdb=metakit.storage(os.path.expanduser("~/.PyDS/var/weblog.data"),0)
@@ -44,7 +28,7 @@ def importWeblog():
             pubDate=datetime.datetime.fromtimestamp(p.pubtime)
             )
         for cat in p.categories:            
-            c=PostCategories(postID=post.id,name=cat.name)
+            c=Category(post=post.id,name=cat.name)
             
 def importStories():
     # Initialize metakit
