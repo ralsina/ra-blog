@@ -31,8 +31,7 @@ class Post(SQLObject):
                                                                       self.pubDate.month,
                                                                       self.pubDate.day,
                                                                       self.postID)
-        
-    
+            
 class Story(SQLObject):
     postID=UnicodeCol()
     pubDate=DateTimeCol()

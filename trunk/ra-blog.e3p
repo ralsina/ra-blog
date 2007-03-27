@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-26, 21:06:16 -->
+<!-- Saved: 2007-03-26, 21:39:49 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -51,6 +51,10 @@
     </Other>
     <Other>
       <Name>templates</Name>
+    </Other>
+    <Other>
+      <Dir>templates</Dir>
+      <Name>storyIndex.tmpl</Name>
     </Other>
   </Others>
   <MainScript>
