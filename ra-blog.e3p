@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-27, 12:16:19 -->
+<!-- Saved: 2007-03-27, 19:22:54 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -52,14 +52,6 @@
     <Other>
       <Name>templates</Name>
     </Other>
-    <Other>
-      <Dir>templates</Dir>
-      <Name>monthArchiveSite.tmpl</Name>
-    </Other>
-    <Other>
-      <Dir>templates</Dir>
-      <Name>blogBriefSite.tmpl</Name>
-    </Other>
   </Others>
   <MainScript>
     <Name>ra-blog.py</Name>
@@ -100,11 +92,11 @@ asS'export'
 p16
 (lp17
 g3
-asS'commit'
+asS'diff'
 p18
 (lp19
 g3
-asS'diff'
+asS'commit'
 p20
 (lp21
 g3
@@ -125,9 +117,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

@@ -87,7 +87,7 @@ def technoratiSearch():
     '''
 
 def technoratiTags(post):
-    tags=['<a href="http://technorati.com/tag/%s">%s</a>'%(x.nameID,x.nameID) for x in post.categories]
+    tags=['<a href="http://technorati.com/tag/%s">%s</a>'%(x.name,x.name) for x in post.categories]
     if tags:
         return u"Topics: "+", ".join(tags)
     return u""

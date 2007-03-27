@@ -19,7 +19,7 @@ class Blog:
         f=codecs.open(fname,"r","utf-8")
         return f.read()
 
-    def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None,body=None):
+    def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None,body=None,bodytitle=None):
         # Render
         if body or body=="":
             pass
@@ -42,24 +42,50 @@ class Blog:
         f.write(page)
 
     def renderCategory(self,cat):
-        title='Posts in %s about %s'%(self.blog_title,cat)
+        title='Posts in %s about %s'%(self.blog_title,cat.name)
         dname=os.path.join(self.dest_dir,'categories')
-        if '/' in cat or '\\' in cat or '.' in cat:
-            return
-        fname=cat+'.html'
+        fname=cat.name+'.html'
+        postlist=cat.posts
+        curDate=datetime.datetime.today()
+        self.renderBlogPage(
+                title,
+                curDate,
+                'blogBriefSite',
+                'pageSite',
+                dname,
+                fname,
+                postlist=postlist,
+                bodytitle=title
+            )
         
+        
+        
+    def renderCategoryIndex(self):    
+        title='%s posts by topic'%self.blog_title
+        dname=os.path.join(self.dest_dir,'categories')
+        fname='index.html'
+        body='''
+        <div class="postbox"><h2>%s</h2>
+        <ul>
+          %s
+        </ul>
+        </div>'''
+        catnames=[ x.name for x in Category.select() ]
+        body=body%(title,''.join(['<li><a href="%s">%s</a></li>'%(macros.absoluteUrl('weblog/categories/'+x),x) for x in catnames]))
+        curDate=datetime.datetime.today()
+        self.renderBlogPage(
+                title,
+                curDate,
+                None,
+                'pageSite',
+                dname,
+                fname,
+                body=body,
+            )
         
     def renderCategories(self):
-        # There must be a way to make sqlobject do this
-        cats=[]
-        for cat in Categories.select():
-            if cat.lower() in cats:
-                continue
-            cats.append(cat.lower())
-            
-        # And now render each category
-        
-        for cat in cats:
+        self.renderCategoryIndex()
+        for cat in Category.select():
             self.renderCategory(cat)
         
     def renderStoryIndex(self):
@@ -249,6 +275,7 @@ class Blog:
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
+        self.renderCategories()
         self.renderBlogArchive(oldest.year,newest.year)
         self.renderStories()        
         self.renderBlogIndex()
