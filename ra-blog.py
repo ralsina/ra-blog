@@ -75,7 +75,7 @@ class MainWindow(QtGui.QMainWindow):
     def displayPostInViewer(self):
             # Fancier HTML for the user
             post=self.curPost
-            html=renderTemplate(templates[self.renderTemplate])
+            html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))
             self.ui.viewer.setHtml(html)
         
     def reRenderCurrentPost(self):

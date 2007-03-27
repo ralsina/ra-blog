@@ -21,6 +21,19 @@ class Blog:
         f=codecs.open(fname,"r","utf-8")
         return f.read()
 
+    def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None):
+        # Render
+        body=renderTemplate(itemtmpl)
+        page=renderTemplate(pagetmpl)
+        
+        # Save
+        if not os.path.exists(dname):
+            os.makedirs(dname)
+        if os.path.exists(fname):
+            os.unlink(fname)
+        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
+        f.write(page)
+        
     def renderStories(self):
         # Render stories
         story_dir=os.path.join(self.dest_dir,'stories')        
@@ -31,13 +44,17 @@ class Blog:
             curDate=story.pubDate
             storytmpl=self.loadTemplate('storySite')
             pagetmpl=self.loadTemplate('pageSite')
-            body=renderTemplate(storytmpl,inputEncoding='utf8')
-            page=renderTemplate(pagetmpl)
-            fname="%s/%s.html"%(story_dir,story.postID)
-            if os.path.exists(fname):
-                os.unlink(fname)
-            f=codecs.open(fname,"w","utf-8")
-            f.write(page)
+            fname="%s.html"%(story.postID)
+            self.renderBlogPage(
+                    title,
+                    curDate,
+                    storytmpl,
+                    pagetmpl,
+                    story_dir,
+                    fname,
+                    story=story
+                )
+    
     
     def renderBlogDay(self,date):
         start=date.replace(hour=0,minute=0,second=0)
@@ -47,6 +64,7 @@ class Blog:
             return
 
         postlist=list(postlist)
+        postlist.reverse()
 
         # Load required templates
         blogtmpl=self.loadTemplate("blogSite")
@@ -55,21 +73,19 @@ class Blog:
         # Variables used by the templates
         title=self.blog_title
         curDate=postlist[0].pubDate
-            
-        # Render
-        body=renderTemplate(blogtmpl)
-        page=renderTemplate(pagetmpl)
-        
-        # Save
         dname=os.path.join(self.dest_dir,"weblog/%d/%02d"%(date.year,date.month))
-        if not os.path.exists(dname):
-            os.makedirs(dname)
-        fname=os.path.join(dname,"%02d.html"%(date.day))
-        if os.path.exists(fname):
-            os.unlink(fname)
-        f=codecs.open(fname,"w","utf-8")
-        f.write(page)
-            
+        fname="%02d.html"%(date.day)
+        
+        self.renderBlogPage(
+                title,
+                curDate,
+                blogtmpl,
+                pagetmpl,
+                dname,
+                fname,
+                postlist=postlist
+            )
+                        
     def renderBlogMonth(self,date):
         start=date.replace(day=1,hour=0,minute=0,second=0)
         end=start
@@ -93,20 +109,18 @@ class Blog:
         # Variables used by the templates
         title=self.blog_title
         curDate=postlist[0].pubDate
-            
-        # Render
-        body=renderTemplate(blogtmpl)
-        page=renderTemplate(pagetmpl)
-        
-        # Save
         dname=os.path.join(self.dest_dir,"weblog/%d/%02d"%(date.year,date.month))
-        if not os.path.exists(dname):
-            os.makedirs(dname)
-        fname=os.path.join(dname,"index.html")
-        if os.path.exists(fname):
-            os.unlink(fname)
-        f=codecs.open(fname,"w","utf-8")
-        f.write(page)
+        fname="index.html"
+            
+        self.renderBlogPage(
+                title,
+                curDate,
+                blogtmpl,
+                pagetmpl,
+                dname,
+                fname,
+                postlist=postlist
+            )
 
         
     def renderBlog(self):
