@@ -40,6 +40,15 @@ class Blog:
             os.unlink(fname)
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(page)
+        
+    def renderRSS(self,title,curDate,dname,fname,postlist):
+        rss=renderTemplate(self.loadTemplate('feedRSS'))
+        if not os.path.exists(dname):
+            os.makedirs(dname)
+        if os.path.exists(fname):
+            os.unlink(fname)
+        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
+        f.write(rss)
 
     def renderCategory(self,cat):
         title='Posts in %s about %s'%(self.blog_title,cat.name)
@@ -127,20 +136,18 @@ class Blog:
                 
     
     def renderBlogIndex(self):
-        postlist=list(Post.select(orderBy=Post.q.pubDate)[-20:])
-        postlist.reverse()
+        postlist=list(Post.select(orderBy=-Post.q.pubDate)[:20])
         curDate=postlist[0].pubDate
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
-        fname="index.html"
-        
+        self.renderRSS(title,curDate,dname,'rss.xml',postlist)
         self.renderBlogPage(
                 title,
                 curDate,
                 'blogSite',
                 'pageSite',
                 dname,
-                fname,
+                'index.html',
                 postlist=postlist
             )
     

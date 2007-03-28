@@ -11,7 +11,8 @@ head=[]
 
 blogName="Lateral Opinion"
 basepath=u"http://lateral.blogsite.org/"
-author=u"Roberto Alsina <ralsina@kde.org>"
+author=u"Roberto Alsina"
+author_email=u"ralsina@kde.org"
 description=u"Roberto Alsina's blog"
 language="en"
 version="Bartleblog 0.0"
@@ -56,9 +57,11 @@ def getUrlForDay(date):
 def absoluteUrl(path):
     return basepath+path
 
-def copyright():
+def copyright(rss=False):
     earliest=Post.select(orderBy=Post.q.pubDate)[0].pubDate
-    return u"&copy; %d-%d %s"%(earliest.year,datetime.date.today().year,author)
+    if rss:
+        return u"Copyright %d-%d %s"%(earliest.year,datetime.date.today().year,author)
+    return u"&copy; %d-%d %s <%s>"%(earliest.year,datetime.date.today().year,author,author_email)
 
 #################################################################################
 ### Morgle Macros

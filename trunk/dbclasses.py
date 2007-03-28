@@ -4,6 +4,7 @@ import os
 from sqlobject import *
 import urllib
 from html2text import html2text
+import cgi
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
@@ -30,9 +31,9 @@ class Post(SQLObject):
                                                                      
     def teaser(self):
         try:
-            return html2text(self.rendered)[:100]
+            return cgi.escape(html2text(self.rendered)[:100])
         except:
-            return self.text[:100]
+            return cgi.escape(self.text[:100])
             
             
 class Story(SQLObject):

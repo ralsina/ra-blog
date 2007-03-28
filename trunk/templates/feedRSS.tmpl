@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"
-   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback"
-   xmlns:ent="http://www.purl.org/NET/ENT/1.0/"
+<rss version="2.0" 
+   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/" 
+   xmlns:ent="http://www.purl.org/NET/ENT/1.0/" 
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 <channel>
 <title><py-eval="title"></title>
 <link><py-eval="macros.basepath"></link>
 <description><py-eval="macros.description"></description>
 <language><py-eval="macros.language"></language>
-<copyright><py-eval="macros.copyright()"></copyright>
-<lastBuildDate><py-eval="str(latest)"></lastBuildDate>
-<generator>"macros.version"</generator>
-<managingEditor>"macros.author"</managingEditor>
-<webMaster>"macros.author"</webMaster>
+<copyright><py-eval="macros.copyright(rss=True)"></copyright>
+<lastBuildDate><py-eval="curDate.strftime('%a, %d %b %Y %H:%M:%S +0000')"></lastBuildDate>
+<generator><py-eval="macros.version"></generator>
+<managingEditor><py-eval="macros.author_email"></managingEditor>
+<webMaster><py-eval="macros.author_email"></webMaster>
 <py-for="post in postlist">
     <item>
     <title><py-eval="post.title"></title>
     <py-if="post.link">
         <link><py-eval="post.link"></link>
     </py-if>
-    <description><py-eval="post.description()"></description>
-    <guid><py-eval="post.guid()"></guid>
-    <py-eval="macros.technoratiTagsRSS(post)">
-    <py-eval="macros.entCloud(post)">
-    <pubDate><py-eval="str(post.pubDate)"></pubDate>
-    <py-eval="macros.source(post)">
+    <description><py-eval="post.teaser()">...</description>
+    <guid><py-eval="post.myurl()"></guid>
+    <pubDate><py-eval="post.pubDate.strftime('%a, %d %b %Y %H:%M:%S +0000')"></pubDate>
     </item>
 </py-for>
 </channel>
