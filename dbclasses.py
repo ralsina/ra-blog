@@ -46,9 +46,15 @@ class Story(SQLObject):
     structured=BoolCol()
     draft=BoolCol()
     quiet=BoolCol()
+    link=None #Ok, this one is cheating
     categories=RelatedJoin('Category')
     def myurl(self):
         return "http://lateral.blogsite.org/stories/%s.html"%self.postID
+    def teaser(self):
+        try:
+            return cgi.escape(html2text(self.rendered)[:100])
+        except:
+            return cgi.escape(self.text[:100])
 
 def initDB(name):
     #Initialize sqlobject
