@@ -51,9 +51,10 @@ class Blog:
         f.write(rss)
 
     def renderCategory(self,cat):
+        catname=cat.name.lower()
         title='Posts in %s about %s'%(self.blog_title,cat.name)
         dname=os.path.join(self.dest_dir,'categories')
-        fname=cat.name+'.html'
+        fname=catname+'.html'
         postlist=cat.posts
         curDate=datetime.datetime.today()
         self.renderBlogPage(
@@ -66,8 +67,7 @@ class Blog:
                 postlist=postlist,
                 bodytitle=title
             )
-        
-        
+        self.renderRSS(title,curDate,dname,catname+'.xml',postlist)
         
     def renderCategoryIndex(self):    
         title='%s posts by topic'%self.blog_title
@@ -81,7 +81,7 @@ class Blog:
         </div>'''
         catnames=[ x.name for x in Category.select() ]
         catnames.sort()
-        body=body%(title,''.join(['<li><a href="%s">%s</a></li>'%(macros.absoluteUrl('weblog/categories/'+x),x) for x in catnames]))
+        body=body%(title,''.join(['<li><a href="%s.html">%s</a></li>'%(macros.absoluteUrl('weblog/categories/'+x.lower()),x) for x in catnames]))
         curDate=datetime.datetime.today()
         self.renderBlogPage(
                 title,
@@ -99,7 +99,7 @@ class Blog:
             self.renderCategory(cat)
         
     def renderStoryIndex(self):
-        story_dir=os.path.join(self.dest_dir,'stories')        
+        dname=os.path.join(self.dest_dir,'stories')        
         fname="index.html"
         postlist=Story.select(orderBy=Story.q.pubDate)
         title="%s - Story Index"%self.blog_title
@@ -109,10 +109,11 @@ class Blog:
                 curDate,
                 'storyIndex',
                 'pageSite',
-                story_dir,
+                dname,
                 fname,
                 postlist=postlist
             )
+        self.renderRSS(title,curDate,dname,'rss.xml',postlist)
                 
     def renderStories(self):
     
@@ -136,7 +137,7 @@ class Blog:
                 
     
     def renderBlogIndex(self):
-        postlist=list(Post.select(orderBy=-Post.q.pubDate)[:20])
+        postlist=list(Post.select(orderBy=Post.q.pubDate).reversed()[:20])
         curDate=postlist[0].pubDate
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
