@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-27, 20:34:57 -->
+<!-- Saved: 2007-03-28, 10:07:35 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -36,28 +36,7 @@
       <Name>blog.py</Name>
     </Source>
     <Source>
-      <Dir>stripogram</Dir>
       <Name>html2text.py</Name>
-    </Source>
-    <Source>
-      <Dir>stripogram</Dir>
-      <Name>html2safehtml.py</Name>
-    </Source>
-    <Source>
-      <Dir>stripogram</Dir>
-      <Name>testStripogram.py</Name>
-    </Source>
-    <Source>
-      <Dir>stripogram</Dir>
-      <Name>HTMLParser.py</Name>
-    </Source>
-    <Source>
-      <Dir>stripogram</Dir>
-      <Name>setup.py</Name>
-    </Source>
-    <Source>
-      <Dir>stripogram</Dir>
-      <Name>__init__.py</Name>
     </Source>
   </Sources>
   <Forms>

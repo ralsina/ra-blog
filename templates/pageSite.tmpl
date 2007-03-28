@@ -5,16 +5,15 @@
   <py-exec="macros.addHead(macros.yahooGridsHead())">
   <py-exec="macros.addHead(macros.yahooCalendarHead())">
   <py-exec="macros.addHead(macros.haloscanHead())">
+  <py-exec="macros.addHead(macros.feedburnerRSSHead())">
   <py-exec="macros.addHead(macros.rstHead())">
   <py-eval="macros.insertHead()">
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/LateralOpinion">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <script type="text/javascript" src="http://www.haloscan.com/load/ralsina"> </script>    
 </head>
 <body>
   <div id="doc3" class="yui-t5">
     <div id="hd" class="header"><!-- header -->
-      <img src="http://cablemodem.fibertel.com.ar/lateral/banner.png" ALT="Lateral Opinion">
+      <img src="<py-eval="macros.absoluteUrl('static/banner.png')">" ALT="Lateral Opinion">
     </div>  
 
     <div id="bd"><!-- body -->

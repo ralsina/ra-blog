@@ -10,7 +10,7 @@ head=[]
 #################################################################################
 
 blogName="Lateral Opinion"
-basepath=u"http://lateral.blogsite.org/"
+basepath=u"http://lateral.netmanagers.com.ar/"
 author=u"Roberto Alsina"
 author_email=u"ralsina@kde.org"
 description=u"Roberto Alsina's blog"
@@ -223,7 +223,7 @@ def statcounterChiclet():
 ### FeedBurner Macros
 #################################################################################
 
-def feedburnerHead():
+def feedburnerRSSHead():
     return ['<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/%s">'%feedburnerName]
     
 def feedburnerCounter():
