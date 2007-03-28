@@ -13,6 +13,7 @@ import docutils.core
 from cherrytemplate import renderTemplate
 import macros
 from blog import Blog
+from rst2html import rst2html
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
@@ -81,7 +82,7 @@ class MainWindow(QtGui.QMainWindow):
     def reRenderCurrentPost(self):
         if self.curPost:
             self.curPost.text=str(self.ui.editor.document().toPlainText())
-            html=docutils.core.publish_parts(self.curPost.text,writer_name='html')['fragment']
+            html=rst2html(self.curPost.text)
             
             # Basic HTML for the DB
             self.curPost.rendered=html
