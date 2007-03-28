@@ -32,7 +32,7 @@ def importWeblog():
             if cs.count():
                 c=cs[0]
             else:
-                c=Category(name=cat.name)
+                c=Category(name=cat.name,description='')
             post.addCategory(c)
             
 def importStories():

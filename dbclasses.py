@@ -10,6 +10,7 @@ class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
     posts=RelatedJoin('Post',orderBy='pubDate')
     stories=RelatedJoin('Story',orderBy='pubDate')
+    description=UnicodeCol()
 
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
