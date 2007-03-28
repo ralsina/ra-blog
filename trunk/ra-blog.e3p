@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-28, 10:07:35 -->
+<!-- Saved: 2007-03-28, 17:36:39 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -37,6 +37,12 @@
     </Source>
     <Source>
       <Name>html2text.py</Name>
+    </Source>
+    <Source>
+      <Name>rst2html.py</Name>
+    </Source>
+    <Source>
+      <Name>yahoomenu.py</Name>
     </Source>
   </Sources>
   <Forms>

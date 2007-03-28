@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-from dbclasses import *
+import dbclasses as db
+from sqlobject import *
+import urllib
 head=[]
 
 #################################################################################
@@ -42,7 +44,7 @@ def rstHead():
     '<link rel="stylesheet" type="text/css" href="%s">'%absoluteUrl('static/css/bartleblog.css'),
     '<link rel="stylesheet" type="text/css" href="%s">'%absoluteUrl('static/css/silvercity.css')
     ]
-    
+
 #################################################################################
 ### General Macros
 #################################################################################
@@ -58,14 +60,18 @@ def absoluteUrl(path):
     return basepath+path
 
 def copyright(rss=False):
-    earliest=Post.select(orderBy=Post.q.pubDate)[0].pubDate
+    earliest=db.Post.select(orderBy=db.Post.q.pubDate)[0].pubDate
     if rss:
         return u"Copyright %d-%d %s"%(earliest.year,datetime.date.today().year,author)
     return u"&copy; %d-%d %s <%s>"%(earliest.year,datetime.date.today().year,author,author_email)
 
 #################################################################################
-### Morgle Macros
+### Yahoo Menu Macros
 #################################################################################
+
+import yahoomenu
+
+yahooMenu=yahoomenu.factory(None)
     
 #################################################################################
 ### AddThis Macros
@@ -122,7 +128,7 @@ def yahooCalendarWidget(_date):
     else:
         nextmonth=date.replace(month=date.month+1)
     disabled = ['%d/%d/%d'%(date.month,x,date.year) for x in range(1,32)]
-    monthposts=Post.select(AND(Post.q.pubDate>=date,Post.q.pubDate<nextmonth))
+    monthposts=db.Post.select(AND(db.Post.q.pubDate>=date,db.Post.q.pubDate<nextmonth))
     selected=[]
     for post in monthposts:
         s='%d/%d/%d'%(post.pubDate.month,post.pubDate.day,post.pubDate.year)
@@ -162,7 +168,7 @@ def haloscanHead():
     return ['<script type="text/javascript" src="http://www.haloscan.com/load/%s"> </script>'%haloscanUser]
 
 def haloscanComments(post):
-    if isinstance(post,Story):
+    if isinstance(post,db.Story):
         id="STORY"+post.postID
     else:
         id=post.postID
@@ -171,7 +177,7 @@ def haloscanComments(post):
         <script type="text/javascript">postCount('%s');</script></a>'''%(id,id)
 
 def haloscanTB(post):
-    if isinstance(post,Story):
+    if isinstance(post,db.Story):
         id="STORY"+post.postID
     else:
         id=post.postID
@@ -232,7 +238,7 @@ def feedburnerCounter():
 '''
 
 def feedburnerFlare(post):
-    if isinstance(post,Story):
+    if isinstance(post,db.Story):
         n=feedburnerStoriesName
     else:
         n=feedburnerName

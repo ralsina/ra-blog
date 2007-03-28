@@ -4,6 +4,7 @@
   <title><py-eval="title"></title>
   <py-exec="macros.addHead(macros.yahooGridsHead())">
   <py-exec="macros.addHead(macros.yahooCalendarHead())">
+  <py-exec="macros.addHead(macros.yahooMenu.head())">
   <py-exec="macros.addHead(macros.haloscanHead())">
   <py-exec="macros.addHead(macros.feedburnerRSSHead())">
   <py-exec="macros.addHead(macros.rstHead())">
@@ -14,6 +15,7 @@
   <div id="doc3" class="yui-t5">
     <div id="hd" class="header"><!-- header -->
       <img src="<py-eval="macros.absoluteUrl('static/banner.png')">" ALT="Lateral Opinion">
+      <py-eval="macros.yahooMenu.menuBar()">
     </div>  
 
     <div id="bd"><!-- body -->

@@ -5,6 +5,7 @@ from sqlobject import *
 import urllib
 from html2text import html2text
 import cgi
+import macros
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
@@ -25,10 +26,10 @@ class Post(SQLObject):
     pubDate=DateTimeCol()
     categories=RelatedJoin('Category',orderBy='name')
     def myurl(self):
-        return u"http://lateral.blogsite.org/weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
+        return macros.absoluteUrl("weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                                       self.pubDate.month,
                                                                       self.pubDate.day,
-                                                                      self.postID)
+                                                                      self.postID))
                                                                      
     def teaser(self):
         try:
@@ -50,7 +51,7 @@ class Story(SQLObject):
     link=None #Ok, this one is cheating
     categories=RelatedJoin('Category')
     def myurl(self):
-        return "http://lateral.blogsite.org/stories/%s.html"%self.postID
+        return macros.absoluteUrl("stories/%s.html"%self.postID)
     def teaser(self):
         try:
             return cgi.escape(html2text(self.rendered)[:100])
