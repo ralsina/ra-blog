@@ -78,6 +78,7 @@ def linedepth(line):
 
 class YahooMenuTool:
     def __init__(self,blog):
+        self.blog=blog
     
         self.menudesc=[
             ['Home',blog.macros.absoluteUrl('weblog/index.html')],
@@ -112,7 +113,7 @@ class YahooMenuTool:
     def head(self):
         return [
             '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/reset-fonts-grids/reset-fonts-grids.css">',
-            '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/menu/assets/menu.css">',
+            '<link rel="stylesheet" type="text/css" href="%s">'%self.blog.macros.absoluteUrl('static/css/menubar.css'),
             '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
             '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/container/container_core-min.js"></script>',
             '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/menu/menu-min.js"></script>',
