@@ -94,24 +94,15 @@ class Blog:
         title='%s posts by topic'%self.blog_title
         dname=os.path.join(self.dest_dir,'categories')
         fname='index.html'
-        body='''
-        <div class="postbox"><h2>%s</h2>
-        <ul>
-          %s
-        </ul>
-        </div>'''
-        catnames=[ x.name for x in db.Category.select() ]
-        catnames.sort()
-        body=body%(title,''.join(['<li><a href="%s.html">%s</a></li>'%(self.macros.absoluteUrl('weblog/categories/'+x.lower()),x) for x in catnames]))
         curDate=datetime.datetime.today()
         self.renderBlogPage(
                 title,
                 curDate,
-                None,
+                'categorySite',
                 'pageSite',
                 dname,
                 fname,
-                body=body,
+                postlist=db.Category.select()
             )
         
     def renderCategories(self):
@@ -132,7 +123,8 @@ class Blog:
                 'pageSite',
                 dname,
                 fname,
-                postlist=postlist
+                postlist=postlist,
+                bodytitle='%s posts by topic'%self.blogName
             )
         self.renderRSS(title,curDate,dname,'rss.xml',postlist)
                 

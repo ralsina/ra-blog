@@ -9,9 +9,12 @@ import macros
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
+    description=UnicodeCol()
+    title=UnicodeCol()
     posts=RelatedJoin('Post',orderBy='pubDate')
     stories=RelatedJoin('Story',orderBy='pubDate')
-    description=UnicodeCol()
+    def myurl(self):
+        return "weblog/categories/%s.html"%(self.name.lower())
 
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
