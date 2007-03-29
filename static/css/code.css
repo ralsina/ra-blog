@@ -1,10 +1,8 @@
 div.code-block{
-	margin-left: 2em ;
-	margin-right: 2em ;
-	font-family: "Courier New", Courier, monospace;
-        overflow: auto;
-        padding: 0.5em;
-	background-color: #eeeeee 
+  margin: 1em ;
+  background-color: #eeeeee;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
 }
 .code_default
 {
