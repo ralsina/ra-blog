@@ -1,18 +1,35 @@
 # -*- coding: utf-8 -*-
 
 import os,sys
-from dbclasses import *
+import dbclasses as db
 import datetime
 from cherrytemplate import renderTemplate
 import codecs
-import macros
+from macros import Macros
 import slimmer
 
 class Blog:
+
     def __init__(self):
-        initDB('blog.db')
+        db.initDB('blog.db')
         self.dest_dir=os.path.abspath("weblog")
         self.blog_title="Lateral Opinion"
+
+        #################################################################################
+        ### Things that should be in the config file
+        #################################################################################
+        
+        self.blogName="Lateral Opinion"
+        self.basepath=u"http://lateral.netmanagers.com.ar/"
+        self.author=u"Roberto Alsina"
+        self.author_email=u"ralsina@kde.org"
+        self.description=u"Roberto Alsina's blog"
+        self.language="en"
+        self.version="Bartleblog 0.0"
+
+        Macros(self)
+        
+        
         
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
@@ -20,6 +37,8 @@ class Blog:
         return f.read()
 
     def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None,body=None,bodytitle=None):
+        macros=self.macros
+        blog=self
         # Render
         if body or body=="":
             pass
@@ -42,6 +61,8 @@ class Blog:
         f.write(page)
         
     def renderRSS(self,title,curDate,dname,fname,postlist):
+        macros=self.macros
+        blog=self
         rss=renderTemplate(self.loadTemplate('feedRSS'))
         if not os.path.exists(dname):
             os.makedirs(dname)
@@ -79,9 +100,9 @@ class Blog:
           %s
         </ul>
         </div>'''
-        catnames=[ x.name for x in Category.select() ]
+        catnames=[ x.name for x in db.Category.select() ]
         catnames.sort()
-        body=body%(title,''.join(['<li><a href="%s.html">%s</a></li>'%(macros.absoluteUrl('weblog/categories/'+x.lower()),x) for x in catnames]))
+        body=body%(title,''.join(['<li><a href="%s.html">%s</a></li>'%(self.macros.absoluteUrl('weblog/categories/'+x.lower()),x) for x in catnames]))
         curDate=datetime.datetime.today()
         self.renderBlogPage(
                 title,
@@ -95,13 +116,13 @@ class Blog:
         
     def renderCategories(self):
         self.renderCategoryIndex()
-        for cat in Category.select():
+        for cat in db.Category.select():
             self.renderCategory(cat)
         
     def renderStoryIndex(self):
         dname=os.path.join(self.dest_dir,'stories')        
         fname="index.html"
-        postlist=Story.select(orderBy=Story.q.pubDate)
+        postlist=db.Story.select(orderBy=db.Story.q.pubDate)
         title="%s - Story Index"%self.blog_title
         curDate=datetime.datetime.today()
         self.renderBlogPage(
@@ -121,7 +142,7 @@ class Blog:
     
         # Render stories
         story_dir=os.path.join(self.dest_dir,'stories')        
-        for story in Story.select():
+        for story in db.Story.select():
             title=story.title
             curDate=story.pubDate
             fname="%s.html"%(story.postID)
@@ -137,7 +158,7 @@ class Blog:
                 
     
     def renderBlogIndex(self):
-        postlist=list(Post.select(orderBy=Post.q.pubDate).reversed()[:20])
+        postlist=list(db.Post.select(orderBy=db.Post.q.pubDate).reversed()[:20])
         curDate=postlist[0].pubDate
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
@@ -155,7 +176,7 @@ class Blog:
     def renderBlogDay(self,date):
         start=date.replace(hour=0,minute=0,second=0)
         end=date+datetime.timedelta(1)
-        postlist=Post.select(AND(Post.q.pubDate>=start,Post.q.pubDate<end))
+        postlist=db.Post.select(db.AND(db.Post.q.pubDate>=start,db.Post.q.pubDate<end))
         if postlist.count()==0:
             return
 
@@ -186,8 +207,8 @@ class Blog:
         else:
             end=end.replace(month=start.month+1)
         
-        postlist=Post.select(AND(Post.q.pubDate>=start,Post.q.pubDate<end),
-                                orderBy=Post.q.pubDate)
+        postlist=db.Post.select(db.AND(db.Post.q.pubDate>=start,db.Post.q.pubDate<end),
+                                orderBy=db.Post.q.pubDate)
         if postlist.count()==0:
             return
 
@@ -232,8 +253,8 @@ class Blog:
             else:
                 end=end.replace(month=start.month+1)
                 
-            postlist=Post.select(AND(Post.q.pubDate>=start,Post.q.pubDate<end),
-                                orderBy=Post.q.pubDate)
+            postlist=db.Post.select(db.AND(db.Post.q.pubDate>=start,db.Post.q.pubDate<end),
+                                orderBy=db.Post.q.pubDate)
             
             if postlist.count()==0:
                 continue
@@ -263,7 +284,7 @@ class Blog:
             )
             
     def renderBlogArchive(self,start,end):
-        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ]))
+        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ]))
         
         dname=os.path.join(self.dest_dir,'weblog')
         fname='archive.html'
@@ -280,7 +301,7 @@ class Blog:
         
             
     def renderBlog(self):
-        plist=Post.select(orderBy=Post.q.pubDate)
+        plist=db.Post.select(orderBy=db.Post.q.pubDate)
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 

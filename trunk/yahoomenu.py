@@ -1,24 +1,21 @@
 # -*- coding: utf-8 -*-
 
-menudesc='''
-a 
-b
-c
- 1
- 2
-  x
-  y
-d
-'''
+import macros
+import dbclasses as db
 
 class menuitem:
-    def __init__(self,parent,title,depth):
+    def __init__(self,parent,data,depth):
         self.parent=parent
-        self.title=title
+        self.title=data[0].strip()
+        if data[1]:
+            self.link='<a href="%s">%s</a>'%(data[1],self.title)
+        else:
+            self.link=self.title
         self.children=[]
         self.depth=depth
         if parent:
             self.parent.children.append(self)
+        
             
     def __repr__(self):
     
@@ -42,7 +39,7 @@ class menuitem:
             if not self.children:
                 return '''
                         <li class="yuimenubaritem%s">%s</li>
-                '''%(ss,self.title)
+                '''%(ss,self.link)
                         
             return '''
                         <li class="yuimenubaritem%s"> %s
@@ -54,7 +51,7 @@ class menuitem:
                                 </div>
                             </div>
                         </li>
-            '''%(ss,self.title,self.title,'\n\n'.join([str(x) for x in self.children]))
+            '''%(ss,self.link,self.title,'\n\n'.join([str(x) for x in self.children]))
             
         elif self.depth>=2:
             if self.children:
@@ -68,10 +65,10 @@ class menuitem:
                                                 </div>
                                             </div>
                                         </li>
-                '''%(self.title,self.title,'\n\n'.join([str(x) for x in self.children]))
+                '''%(self.link,self.title,'\n\n'.join([str(x) for x in self.children]))
             return '''
                                         <li class="yuimenuitem">%s</li>
-            '''%(self.title)
+            '''%(self.link)
             
 def linedepth(line):
     c=0
@@ -81,19 +78,34 @@ def linedepth(line):
 
 class YahooMenuTool:
     def __init__(self,blog):
-        lines=menudesc.split('\n')
+    
+        self.menudesc=[
+            ['Home',blog.macros.absoluteUrl('weblog/index.html')],
+            ['Articles',blog.macros.absoluteUrl('stories/index.html')],
+            ['Archives',blog.macros.absoluteUrl('weblog/archive.html')],
+            ['Software',None],
+            [' RaSCAN','http://rascan.blogsite.org'],
+            [' Ra-Plugins','http://raplugins.blogsite.org'],
+            [' RaSPF','http://raspf.blogsite.org'],
+            [' CherryTV','http://cherrytv.blogsite.org'],
+            [' BartleBlog','categories/bartleblog.html'],
+            ['Tags',blog.macros.absoluteUrl('categories/index.html')]
+            ]
+        for tag in db.Category.select():
+            self.menudesc.append([' '+tag.name,blog.macros.absoluteUrl('categories/%s.html'%tag.name.lower())])
+
+    
         curDepth=0
-        self.root=menuitem(None,None,0)
+        self.root=menuitem(None,["menubar",None],0)
         curItem=self.root
-        for line in lines:
-            if not line:
-                continue
-            d=linedepth(line)
+        for line in self.menudesc:
+            d=linedepth(line[0])
             curItem=self.root
             for x in range(0,d):
                 curItem=curItem.children[-1]
             menuitem(curItem,line,d+1)
 
+                
     def menuBar(self):
         return str(self.root)
     
