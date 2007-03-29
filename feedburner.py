@@ -8,8 +8,11 @@ class FeedBurner:
         self.feedburnerName="LateralOpinion"
         self.feedburnerStoriesName="LateralOpinionStories"
 
+    def rssUrl(self):
+        return 'http://feeds.feedburner.com/%s'%self.feedburnerName
+        
     def rssHead(self):
-        return ['<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/%s">'%self.feedburnerName]
+        return ['<link rel="alternate" type="application/rss+xml" title="RSS" href="%s">'%self.rssUrl()]
         
     def counter(self):
         return '''
