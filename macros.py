@@ -15,6 +15,7 @@ import haloscan
 import statcounter
 import feedburner
 import talkr
+import delicious
 
 class Macros:
     def __init__ (self,blog):
@@ -31,6 +32,7 @@ class Macros:
         self.statCounter=statcounter.factory(blog)
         self.feedBurner=feedburner.factory(blog)
         self.talkr=talkr.factory(blog)
+        self.delicious=delicious.factory(blog)
 
     def absoluteUrl(self,path):
         return basepath+path
