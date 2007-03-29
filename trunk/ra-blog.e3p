@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-28, 17:36:39 -->
+<!-- Saved: 2007-03-29, 14:34:45 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -44,6 +44,33 @@
     <Source>
       <Name>yahoomenu.py</Name>
     </Source>
+    <Source>
+      <Name>addthis.py</Name>
+    </Source>
+    <Source>
+      <Name>technorati.py</Name>
+    </Source>
+    <Source>
+      <Name>yahoogrids.py</Name>
+    </Source>
+    <Source>
+      <Name>yahoocalendar.py</Name>
+    </Source>
+    <Source>
+      <Name>haloscan.py</Name>
+    </Source>
+    <Source>
+      <Name>statcounter.py</Name>
+    </Source>
+    <Source>
+      <Name>feedburner.py</Name>
+    </Source>
+    <Source>
+      <Name>talkr.py</Name>
+    </Source>
+    <Source>
+      <Name>delicious.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -60,6 +87,15 @@
     </Other>
     <Other>
       <Name>templates</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>menubar.css</Name>
+    </Other>
+    <Other>
+      <Dir>templates</Dir>
+      <Name>categorySite.tmpl</Name>
     </Other>
   </Others>
   <MainScript>
@@ -101,11 +137,11 @@ asS'export'
 p16
 (lp17
 g3
-asS'diff'
+asS'commit'
 p18
 (lp19
 g3
-asS'commit'
+asS'diff'
 p20
 (lp21
 g3
@@ -126,9 +162,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
