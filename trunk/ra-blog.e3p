@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-29, 14:34:45 -->
+<!-- Saved: 2007-03-29, 19:46:00 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -70,6 +70,9 @@
     </Source>
     <Source>
       <Name>delicious.py</Name>
+    </Source>
+    <Source>
+      <Name>flickrapi.py</Name>
     </Source>
   </Sources>
   <Forms>

@@ -1,3 +1,11 @@
+.flickr {
+    padding:4px;
+    border:1px 
+    solid #eeeeee;
+    margin: 0 auto 0 auto;
+    display: block;
+}
+
 
 .footer {
     text-align: right;
