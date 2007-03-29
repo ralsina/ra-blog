@@ -213,7 +213,7 @@ pre.address {
   font-size: 100% }
 
 pre.literal-block, pre.doctest-block {
-  margin: 2em ;
+  margin: 1em ;
   background-color: #eeeeee;
   padding: 0.5em;
   overflow: auto;

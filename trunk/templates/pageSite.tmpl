@@ -15,16 +15,19 @@
   <div id="doc3" class="yui-t5">
     <div id="hd" class="header"><!-- header -->
       <img src="<py-eval="macros.absoluteUrl('static/banner.png')">" ALT="Lateral Opinion">
-      <py-eval="macros.yahooMenu.menuBar()">
     </div>  
 
     <div id="bd"><!-- body -->
         <div id="yui-main"><!-- main column-->
             <div class="yui-b">
+                <py-eval="macros.yahooMenu.menuBar()">
                 <py-if="bodytitle">
                     <h2><py-eval="bodytitle"></h2>
                 </py-if>
                 <py-eval="body">
+                <div id="ft" class="footer"><!-- footer -->
+                    <py-eval="macros.copyright()">
+                </div>  
             </div>
         </div>
         <div class="yui-b"><!-- sidebar -->
@@ -51,9 +54,6 @@
             </div>            
         </div><!-- end of sidebar -->
 
-    <div id="ft" class="footer"><!-- footer -->
-        <py-eval="macros.copyright()">
-    </div>  
   </div><!-- end of doc -->    
 </body>
 </html>
