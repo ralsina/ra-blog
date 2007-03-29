@@ -2,17 +2,17 @@
   <h1><py-eval="story.title"></h1>
   <table width="100%">
   <tr>
-    <py-eval="macros.feedburnerBanner()">
+    <py-eval="macros.feedBurner.banner()">
   </tr>
   </table>
   
   <py-eval="story.rendered">
   
   <div class="footerbox">
-    <py-eval="macros.haloscanComments(story)">&nbsp;&bull;&nbsp;
-    <py-eval="macros.haloscanTB(story)">
-    <py-eval="macros.feedburnerFlare(story)"><br>
-    <py-eval="macros.addthisButton()">
+    <py-eval="macros.haloScan.comments(story)">&nbsp;&bull;&nbsp;
+    <py-eval="macros.haloScan.trackback(story)">
+    <py-eval="macros.feedBurner.flare(story)"><br>
+    <py-eval="macros.addThis.button()">
     Posted: <py-eval="str(story.pubDate)">
   </div>
 </div>

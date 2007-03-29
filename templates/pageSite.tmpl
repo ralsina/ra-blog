@@ -2,11 +2,11 @@
 <html> 
 <head> 
   <title><py-eval="title"></title>
-  <py-exec="macros.addHead(macros.yahooGridsHead())">
-  <py-exec="macros.addHead(macros.yahooCalendarHead())">
+  <py-exec="macros.addHead(macros.yahooGrids.head())">
+  <py-exec="macros.addHead(macros.yahooCalendar.head())">
   <py-exec="macros.addHead(macros.yahooMenu.head())">
-  <py-exec="macros.addHead(macros.haloscanHead())">
-  <py-exec="macros.addHead(macros.feedburnerRSSHead())">
+  <py-exec="macros.addHead(macros.haloScan.head())">
+  <py-exec="macros.addHead(macros.feedBurner.rssHead())">
   <py-exec="macros.addHead(macros.rstHead())">
   <py-eval="macros.insertHead()">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -29,25 +29,25 @@
         </div>
         <div class="yui-b"><!-- sidebar -->
             <div class="yui-g sidebox thinedge">
-                <py-eval="macros.yahooCalendarWidget(curDate)">
+                <py-eval="macros.yahooCalendar.widget(curDate)">
             </div>
             <div class="yui-g sidebox thinedge">
-                <py-eval="macros.technoratiSearch()">
+                <py-eval="macros.technorati.search()">
             </div>
             <div class="yui-g sidebox thinedge">
                 <py-eval="macros.chunk['blurb']">
             </div>
             <div class="yui-g sidebox thinedge">
-                <py-eval="macros.haloscanLatestComments()">
+                <py-eval="macros.haloScan.latestComments()">
             </div>
             <div class="yui-g sidebox thinedge">
-                <py-eval="macros.statcounterChiclet()">
+                <py-eval="macros.statCounter.chiclet()">
                 <br>
-                <py-eval="macros.talkrChiclet()">
+                <py-eval="macros.talkr.chiclet()">
                 <br>
-                <py-eval="macros.haloscanChiclet()">
+                <py-eval="macros.haloScan.chiclet()">
                 <br>
-                <py-eval="macros.feedburnerCounter()">
+                <py-eval="macros.feedBurner.counter()">
             </div>            
         </div><!-- end of sidebar -->
 

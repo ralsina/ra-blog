@@ -13,15 +13,15 @@
       <py-eval="post.rendered">
       <div class="footerbox">
         <a href="<py-eval="macros.weblogPermaLink(post)">">#</a>&nbsp;&bull;&nbsp;
-        <py-eval="macros.haloscanComments(post)">&nbsp;&bull;&nbsp;
-        <py-eval="macros.haloscanTB(post)">&nbsp;&bull;&nbsp;
-        <py-eval="macros.talkrLink(post)">
+        <py-eval="macros.haloScan.comments(post)">&nbsp;&bull;&nbsp;
+        <py-eval="macros.haloScan.trackback(post)">&nbsp;&bull;&nbsp;
+        <py-eval="macros.talkr.link(post)">
         <py-if="post.link">
           &nbsp;&bull;&nbsp;<a class=reference href="<py-eval="post.link">">Read More</a>
         </py-if>
-        <py-eval="macros.addthisButton()">
-        <py-eval="macros.feedburnerFlare(post)">
-        <py-eval="macros.technoratiTags(post)">
+        <py-eval="macros.addThis.button()">
+        <py-eval="macros.feedBurner.flare(post)">
+        <py-eval="macros.technorati.tags(post)">
     </div>
   </div>
 </py-for>
