@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/svn/mainwindow.ui'
 #
-# Created: Mon Mar 26 20:02:31 2007
+# Created: Fri Mar 30 08:07:43 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -57,6 +57,7 @@ class Ui_MainWindow(object):
         self.hboxlayout1.setObjectName("hboxlayout1")
 
         self.viewer = QtGui.QTextBrowser(self.page_2)
+        self.viewer.setOpenExternalLinks(True)
         self.viewer.setObjectName("viewer")
         self.hboxlayout1.addWidget(self.viewer)
         self.stack.addWidget(self.page_2)
@@ -162,7 +163,7 @@ class Ui_MainWindow(object):
         self.label_2.setBuddy(self.link)
 
         self.retranslateUi(MainWindow)
-        self.stack.setCurrentIndex(1)
+        self.stack.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
