@@ -16,7 +16,22 @@ class Category(SQLObject):
     def myurl(self):
         return "weblog/categories/%s.html"%(self.name.lower())
 
-class Post(SQLObject):
+        
+class rstObj:
+    text=''
+    html=''
+    dirty=True
+    def teaser(self):
+        try:
+            return cgi.escape(html2text(self.rendered)[:100])
+        except:
+            return cgi.escape(self.text[:100])
+    def render(self,force=False):
+        if force or self.dirty:
+            self.html=rst2html(self.text)
+    
+        
+class Post(SQLObject,rstObj):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
     link=UnicodeCol()
@@ -28,20 +43,15 @@ class Post(SQLObject):
     structured=BoolCol()
     pubDate=DateTimeCol()
     categories=RelatedJoin('Category',orderBy='name')
+    dirty=BoolCol(default=True)
     def myurl(self):
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                 self.pubDate.month,
                                                 self.pubDate.day,
                                                 self.postID)
-                                                                     
-    def teaser(self):
-        try:
-            return cgi.escape(html2text(self.rendered)[:100])
-        except:
-            return cgi.escape(self.text[:100])
             
             
-class Story(SQLObject):
+class Story(SQLObject,rstObj):
     postID=UnicodeCol(alternateID=True)
     pubDate=DateTimeCol()
     title=UnicodeCol()
@@ -53,13 +63,9 @@ class Story(SQLObject):
     quiet=BoolCol()
     link=None #Ok, this one is cheating
     categories=RelatedJoin('Category')
+    dirty=BoolCol(default=True)
     def myurl(self):
         return "stories/%s.html"%self.postID
-    def teaser(self):
-        try:
-            return cgi.escape(html2text(self.rendered)[:100])
-        except:
-            return cgi.escape(self.text[:100])
 
 def initDB(name):
     #Initialize sqlobject
