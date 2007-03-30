@@ -12,7 +12,7 @@ def flickr( name, arguments, options, content, lineno,
   
     The syntax is this::
   
-    .. image:: title
+    .. flickr:: title
     
     Where title is the title you used in flickr.
     """
