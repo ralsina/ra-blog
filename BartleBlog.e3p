@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-30, 18:23:12 -->
+<!-- Saved: 2007-03-30, 18:33:05 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -146,18 +146,23 @@
   </Sources>
   <Forms>
     <Form>
-      <Name>mainwindow.ui</Name>
-    </Form>
-    <Form>
-      <Name>flickr.ui</Name>
-    </Form>
-    <Form>
+      <Dir>ui</Dir>
       <Name>authdialog.ui</Name>
     </Form>
     <Form>
+      <Dir>ui</Dir>
+      <Name>flickr.ui</Name>
+    </Form>
+    <Form>
+      <Dir>ui</Dir>
+      <Name>mainwindow.ui</Name>
+    </Form>
+    <Form>
+      <Dir>ui</Dir>
       <Name>openomy_config.ui</Name>
     </Form>
     <Form>
+      <Dir>ui</Dir>
       <Name>main_config.ui</Name>
     </Form>
   </Forms>
