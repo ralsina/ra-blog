@@ -77,6 +77,7 @@ class Blog:
         dname=os.path.join(self.dest_dir,'categories')
         fname=catname+'.html'
         postlist=cat.posts
+        postlist.reverse
         curDate=datetime.datetime.today()
         self.renderBlogPage(
                 title,
