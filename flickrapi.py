@@ -65,6 +65,8 @@ import httplib
 import os.path
 import xml.dom.minidom
 
+from PyQt4 import QtGui
+
 ########################################################################
 # Exceptions
 ########################################################################
@@ -444,6 +446,7 @@ class FlickrAPI:
 
 	#-----------------------------------------------------------------------
 	def validateFrob(self, frob, perms, browser):
+		QtGui.QDesktopServices.openUrl (self.__getAuthURL(perms, frob))
 		os.system("%s '%s'" % (browser, self.__getAuthURL(perms, frob)))
 
 	#-----------------------------------------------------------------------

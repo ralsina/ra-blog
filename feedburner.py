@@ -5,7 +5,7 @@ import dbclasses as db
 class FeedBurner:
     def __init__(self,blog):
         self.blog=blog
-        self.feedburnerName="LateralOpinion"
+        self.feedburnerName="LOTesting"
         self.feedburnerStoriesName="LateralOpinionStories"
 
     def rssUrl(self):
