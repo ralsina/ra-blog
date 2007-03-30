@@ -3,23 +3,22 @@
 import docutils.core
 import docutils.parsers.rst
 
-import flickrapi
+import openomy
 
-def flickr( name, arguments, options, content, lineno,
+def openomydir( name, arguments, options, content, lineno,
         content_offset, block_text, state, state_machine ):
     """
-    A directive that produces a nicely styled image from flickr in HTML.
+    A directive that produces a link to a file stored in openomy.com
 
     The syntax is this::
 
-    .. flickr:: title
+    .. openomy:: filename
 
-    Where title is the title you used in flickr.
+    Where filename is the one you uploaded to openomy.com.
     """
 
-    flickrAPIKey='a4b67aa4c75657b2db3ebc2f2f43c136'
+    op=openomy.Openomy()
 
-    fapi=flickrapi.FlickrAPI(flickrAPIKey,'ab116226d50899a7')
     token = fapi.getToken(browser="firefox")
     fname=arguments[0]
     rsp = fapi.photos_search(api_key=flickrAPIKey,auth_token=token,user_id='me',text=fname)

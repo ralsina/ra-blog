@@ -165,8 +165,8 @@ def _html_slimmer(html):
     """ Optimize like XHTML but go one step further """
     # 1. optimize inline CSS
     for styletag in html_inline_css.findall(html):
-	html = html.replace(styletag, css_slimmer(styletag))
-	
+        html = html.replace(styletag, css_slimmer(styletag))
+        
     # 2. Remove excessive whitespace between tags
     html = re.sub(r'>\s+<','><', html)
     
@@ -181,24 +181,24 @@ def _html_slimmer(html):
     ew4 = excess_whitespace4 # shortcut
 
     for tag in uniqify(any_tag.findall(html)):
-	# 4a. observe exceptions
-	if tag.startswith('<!') or tag.find('</')>-1:
-	    continue
-	original = tag
-	
-	# 4b. remove excess whitespace inside the tag
-	tag= excess_whitespace2.sub('">', tag)
-	tag= excess_whitespace3.sub("'>", tag)
-	
-	for each in ew1.findall(tag)+ew6.findall(tag):
-	    tag = tag.replace(each, excess_whitespace.sub(' ',each))
-	for each in ew4.findall(tag):
-	    tag = tag.replace(each, each[0]+' '+each[1:].lstrip())
-	
-	
-	# has the tag been improved?
-	if original != tag:
-	    html = html.replace(original, tag)
+        # 4a. observe exceptions
+        if tag.startswith('<!') or tag.find('</')>-1:
+            continue
+        original = tag
+        
+        # 4b. remove excess whitespace inside the tag
+        tag= excess_whitespace2.sub('">', tag)
+        tag= excess_whitespace3.sub("'>", tag)
+        
+        for each in ew1.findall(tag)+ew6.findall(tag):
+            tag = tag.replace(each, excess_whitespace.sub(' ',each))
+        for each in ew4.findall(tag):
+            tag = tag.replace(each, each[0]+' '+each[1:].lstrip())
+        
+        
+        # has the tag been improved?
+        if original != tag:
+            html = html.replace(original, tag)
     
     
     return html.strip()

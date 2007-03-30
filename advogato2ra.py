@@ -12,12 +12,12 @@ def importAdv():
 
     server = xmlrpclib.Server("http://www.advogato.org/XMLRPC",use_datetime=True)
     cookie=server.authenticate(username,password)
-    
+
     length=server.diary.len(username)
     for i in range(0,length):
         print "%d of %d"%(i,length)
         created,updated=server.diary.getDates(username,i)
-        
+
         html=fixLinks(server.diary.get(username,i))
         p=Post(postID="ADV%d"%i,
             title="Advogato post for %s"%str(created),
@@ -32,15 +32,14 @@ def importAdv():
             )
 
 def fixLinks(text):
-         sp1=re.compile('(href="/)')
-         l=sp1.split(text)
-         for i in range(0,len(l)):
-            if l[i].lower()=='href="/':
-                l[i]='href="http://advogato.org/'
-         text=''.join(l)
+    sp1=re.compile('(href="/)')
+    l=sp1.split(text)
+    for i in range(0,len(l)):
+        if l[i].lower()=='href="/':
+            l[i]='href="http://advogato.org/'
+    text=''.join(l)
 
-         return text
-         
+    return text
+
 initDB('blog.db')
 importAdv()
-
