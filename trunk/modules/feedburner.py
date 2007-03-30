@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import dbclasses as db
+import backend.dbclasses
 
 class FeedBurner:
     def __init__(self,blog):

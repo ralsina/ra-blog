@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import os,sys
-import dbclasses as db
-import datetime
+import os,sys,datetime,codecs
+
 from cherrytemplate import renderTemplate
-import codecs
+
+import dbclasses as db
 from macros import Macros
-import slimmer
+
+import bartleblog.util.slimmer
 
 class Blog:
 

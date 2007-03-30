@@ -3,16 +3,22 @@
 
 import codecs
 import sys
-from PyQt4 import QtGui, QtCore
-from ui.Ui_mainwindow import Ui_MainWindow
-import os,sys
-from backend.dbclasses import Post,Story
-from postmodel import *
+import os
 import datetime
+
 import docutils.core
 from cherrytemplate import renderTemplate
-import macros
-from blog import Blog
+from PyQt4 import QtGui, QtCore
+
+import bartleblog.backend.dbclasses
+import bartleblog.backend.macros as macros
+from bartleblog.backend.blog import Blog
+
+from bartleblog.ui.Ui_mainwindow import Ui_MainWindow
+from bartleblog.ui.postmodel import *
+
+
+
 from rst import rst2html
 
 class MainWindow(QtGui.QMainWindow):

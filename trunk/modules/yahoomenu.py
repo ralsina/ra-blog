@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from backend import macros
-from backend import dbclasses as db
+from bartleblog.backend import macros
+from bartleblog.backend import dbclasses as db
+
+
 
 class menuitem:
     def __init__(self,parent,data,depth):
