@@ -13,7 +13,7 @@ class YahooCalendar:
         '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/calendar/calendar-min.js"></script>',
         '<script type="text/JavaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
         ]
-            
+
     def widget(self,_date):
         date=_date.replace(day=1)
         if date.month==12:
@@ -29,32 +29,31 @@ class YahooCalendar:
             if s in disabled:
                 disabled.remove(s)
         disabled=','.join(disabled)
-        
+
         return '''  <div id="cal1Container"></div>
                     <script>
                         YAHOO.namespace("blog");
                         function init() {
-                            YAHOO.blog.cal1 = 
+                            YAHOO.blog.cal1 =
                                 new YAHOO.widget.Calendar("cal1","cal1Container", {
                                     pagedate:"%d/%d"
                                     });
                             YAHOO.blog.cal1.addRenderer("%s",YAHOO.blog.cal1.renderBodyCellRestricted);
-                            
+
                             var selectedDate = function (type,args,obj) {
                                 var s1 = args[0];
                                 var s2 = s1[0];
                                 window.location=printf("%s/weblog/%%d/%%02d/%%02d.html",s2[0],s2[1],s2[2]);
-                            };                    
+                            };
                             YAHOO.blog.cal1.selectEvent.subscribe(selectedDate, YAHOO.blog.cal1, true);
-    
+
                             YAHOO.blog.cal1.render();
                         }
                         YAHOO.util.Event.addListener(window, "load", init);
                     </script>
                 '''%(date.month,date.year,disabled,self.blog.basepath)
-            
-            
-        
+
+
+
 def factory(blog):
     return YahooCalendar(blog)
-

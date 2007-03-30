@@ -4,16 +4,16 @@
 
 import metakit,os,datetime,time
 from dbclasses import *
-import sys            
+import sys
 
 def importWeblog():
     # Initialize metakit
-    
+
     mdb=metakit.storage(os.path.expanduser("~/.PyDS/var/weblog.data"),0)
     v=mdb.getas("posts[id:S,title:S,link:S,source:S,sourceurl:S,text:\
     S,rendered:S,localrendered:S,onhome:I,structured:I,pubdate:S\
     ,pubtime:F,categories[name:S]]")
-    
+
     cats=mdb.view('categories').ordered(1)
     for c in cats:
         if c.title:
@@ -21,7 +21,7 @@ def importWeblog():
         else:
             t=c.name
         c=Category(name=c.name,title=t,description=c.desc)
-    
+
     for p in v:
         post=Post(postID=p.id,
             title=unicode(p.title.decode('latin-1')),
@@ -41,15 +41,15 @@ def importWeblog():
             else:
                 c=Category(name=cat.name,description='No description available',title=cat.name)
             post.addCategory(c)
-            
+
 def importStories():
     # Initialize metakit
-    
+
     mdb=metakit.storage(os.path.expanduser("~/.PyDS/var/stories.data"),0)
     v=mdb.getas('stories[id:I,pubtime:F,title:S,desc:S,\
         text:S,rendered:S,structured:I,draft:I,\
         renderhook:S,quiet:I]')
-    
+
     for p in v:
         story=Story(postID=str(p.id),
             title=unicode(p.title.decode('latin-1')),
@@ -65,4 +65,3 @@ def importStories():
 initDB('blog.db')
 importStories()
 importWeblog()
-

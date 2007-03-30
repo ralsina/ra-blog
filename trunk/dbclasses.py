@@ -14,14 +14,14 @@ class Category(SQLObject):
     posts=RelatedJoin('Post',orderBy='pubDate')
     stories=RelatedJoin('Story',orderBy='pubDate')
     def myurl(self):
-        return "weblog/categories/%s.html"%(self.name.lower())
+        return "categories/%s.html"%(self.name.lower())
 
 def fteaser (self):
     try:
         return cgi.escape(html2text(self.rendered)[:100])
     except:
         return cgi.escape(self.text[:100])
-        
+
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
@@ -40,8 +40,8 @@ class Post(SQLObject):
                                                 self.pubDate.day,
                                                 self.postID)
     teaser=fteaser
-            
-            
+
+
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)
     pubDate=DateTimeCol()
@@ -60,7 +60,7 @@ class Story(SQLObject):
 
 def initDB(name):
     #Initialize sqlobject
-    db_fname=os.path.abspath(name)    
+    db_fname=os.path.abspath(name)
     connection_string='sqlite:'+db_fname
     connection=connectionForURI(connection_string)
     sqlhub.processConnection = connection
