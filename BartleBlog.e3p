@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-30, 20:09:47 -->
+<!-- Saved: 2007-03-30, 20:38:57 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -118,6 +118,17 @@
     <Source>
       <Name>bartleblog</Name>
     </Source>
+    <Source>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>backend</Dir>
+      <Name>bartleblog.py</Name>
+    </Source>
+    <Source>
+      <Dir>ui</Dir>
+      <Name>bartleblog.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -219,10 +230,10 @@ I1
 s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
