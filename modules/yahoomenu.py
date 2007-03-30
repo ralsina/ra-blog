@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import macros
-import dbclasses as db
+from backend import macros
+from backend import dbclasses as db
 
 class menuitem:
     def __init__(self,parent,data,depth):

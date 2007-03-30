@@ -4,9 +4,9 @@
 import codecs
 import sys
 from PyQt4 import QtGui, QtCore
-from Ui_mainwindow import Ui_MainWindow
+from ui.Ui_mainwindow import Ui_MainWindow
 import os,sys
-from dbclasses import Post,Story
+from backend.dbclasses import Post,Story
 from postmodel import *
 import datetime
 import docutils.core
