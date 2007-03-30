@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from bartleblog.backend import macros
-from bartleblog.backend import dbclasses as db
+from backend import dbclasses as db
 
 
 
