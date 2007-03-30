@@ -6,16 +6,16 @@ import dbclasses as db
 from sqlobject import *
 import urllib
 
-import yahoomenu
-import addthis
-import technorati
-import yahoogrids
-import yahoocalendar
-import haloscan
-import statcounter
-import feedburner
-import talkr
-import delicious
+import modules.yahoomenu
+import modules.addthis
+import modules.technorati
+import modules.yahoogrids
+import modules.yahoocalendar
+import modules.haloscan
+import modules.statcounter
+import modules.feedburner
+import modules.talkr
+import modules.delicious
 
 class Macros:
     def __init__ (self,blog):
@@ -23,16 +23,16 @@ class Macros:
         blog.macros=self
         self.head=[]
 
-        self.yahooMenu=yahoomenu.factory(blog)
-        self.addThis=addthis.factory(blog)
-        self.technorati=technorati.factory(blog)
-        self.yahooGrids=yahoogrids.factory(blog)
-        self.yahooCalendar=yahoocalendar.factory(blog)
-        self.haloScan=haloscan.factory(blog)
-        self.statCounter=statcounter.factory(blog)
-        self.feedBurner=feedburner.factory(blog)
-        self.talkr=talkr.factory(blog)
-        self.delicious=delicious.factory(blog)
+        self.yahooMenu=modules.yahoomenu.factory(blog)
+        self.addThis=modules.addthis.factory(blog)
+        self.technorati=modules.technorati.factory(blog)
+        self.yahooGrids=modules.yahoogrids.factory(blog)
+        self.yahooCalendar=modules.yahoocalendar.factory(blog)
+        self.haloScan=modules.haloscan.factory(blog)
+        self.statCounter=modules.statcounter.factory(blog)
+        self.feedBurner=modules.feedburner.factory(blog)
+        self.talkr=modules.talkr.factory(blog)
+        self.delicious=modules.delicious.factory(blog)
 
     def absoluteUrl(self,path):
         return basepath+path
