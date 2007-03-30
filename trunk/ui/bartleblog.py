@@ -10,8 +10,8 @@ import docutils.core
 from cherrytemplate import renderTemplate
 from PyQt4 import QtGui, QtCore
 
-import bartleblog.backend.dbclasses
-import bartleblog.backend.macros as macros
+import backend.dbclasses as db
+import backend.macros as macros
 from bartleblog.backend.blog import Blog
 
 from bartleblog.ui.Ui_mainwindow import Ui_MainWindow
