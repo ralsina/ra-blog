@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project ra-blog -->
-<!-- Saved: 2007-03-29, 19:46:00 -->
+<!-- Saved: 2007-03-30, 08:30:58 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -74,6 +74,15 @@
     <Source>
       <Name>flickrapi.py</Name>
     </Source>
+    <Source>
+      <Name>openomy.py</Name>
+    </Source>
+    <Source>
+      <Name>rstflickr.py</Name>
+    </Source>
+    <Source>
+      <Name>rstcode.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -140,11 +149,11 @@ asS'export'
 p16
 (lp17
 g3
-asS'commit'
+asS'diff'
 p18
 (lp19
 g3
-asS'diff'
+asS'commit'
 p20
 (lp21
 g3
@@ -164,10 +173,10 @@ I00
 s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

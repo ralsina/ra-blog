@@ -65,7 +65,7 @@ import httplib
 import os.path
 import xml.dom.minidom
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui,QtCore
 
 ########################################################################
 # Exceptions
@@ -446,8 +446,17 @@ class FlickrAPI:
 
 	#-----------------------------------------------------------------------
 	def validateFrob(self, frob, perms, browser):
-		QtGui.QDesktopServices.openUrl (self.__getAuthURL(perms, frob))
-		os.system("%s '%s'" % (browser, self.__getAuthURL(perms, frob)))
+		r=QtGui.QMessageBox.information(None,"BartleBlog - Flickr Support","""<b>You have asked to perform
+an operation that requires Flickr access. BartleBlog needs your authorization before it can do that.</b><p>
+Authorizing is a simple process which takes place in your web browser. When you are finished, return to this window to complete authorization and begin using BartleBlog's Flickr support.<p><p>You must be connected to the internet in order to authorize this program.<p>
+Click Yes to open the authorizatrion web page, or click No to stop using Flickr functionality.
+""",QtGui.QMessageBox.Yes,QtGui.QMessageBox.No)
+		
+		if r==QtGui.QMessageBox.Yes:
+			QtGui.QDesktopServices.openUrl (QtCore.QUrl(self.__getAuthURL(perms, frob)))
+			r=QtGui.QMessageBox.information(None,"BartleBlog - Flickr Support","""If you have authorized BartleBlog to access Flickr, click Yes. If you decided not to authorize it, click No.
+""",QtGui.QMessageBox.Yes,QtGui.QMessageBox.No)
+		#os.system("%s '%s'" % (browser, self.__getAuthURL(perms, frob)))
 
 	#-----------------------------------------------------------------------
 	def getToken(self, perms="read", browser="lynx"):
