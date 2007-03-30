@@ -3,7 +3,7 @@
 import os
 from sqlobject import *
 import urllib
-from html2text import html2text
+from util.html2text import html2text
 import cgi
 import macros
 

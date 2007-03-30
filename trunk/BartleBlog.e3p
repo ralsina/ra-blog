@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-30, 18:33:05 -->
+<!-- Saved: 2007-03-30, 19:38:56 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -12,9 +12,6 @@
   <Email>ralsina@kde.org</Email>
   <Sources>
     <Source>
-      <Name>html2text.py</Name>
-    </Source>
-    <Source>
       <Dir>rst</Dir>
       <Name>codeblock.py</Name>
     </Source>
@@ -23,38 +20,8 @@
       <Name>flickr.py</Name>
     </Source>
     <Source>
-      <Name>dbclasses.py</Name>
-    </Source>
-    <Source>
-      <Name>flickrapi.py</Name>
-    </Source>
-    <Source>
-      <Name>Ui_flickr.py</Name>
-    </Source>
-    <Source>
-      <Name>Ui_mainwindow.py</Name>
-    </Source>
-    <Source>
-      <Name>rstopenomy.py</Name>
-    </Source>
-    <Source>
-      <Name>blog.py</Name>
-    </Source>
-    <Source>
-      <Name>macros.py</Name>
-    </Source>
-    <Source>
-      <Name>postmodel.py</Name>
-    </Source>
-    <Source>
       <Dir>importers</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Name>slimmer.py</Name>
-    </Source>
-    <Source>
-      <Name>ra-blog.py</Name>
     </Source>
     <Source>
       <Dir>openomy</Dir>
@@ -142,6 +109,42 @@
     <Source>
       <Dir>importers</Dir>
       <Name>pyds.py</Name>
+    </Source>
+    <Source>
+      <Dir>rst</Dir>
+      <Name>openomy.py</Name>
+    </Source>
+    <Source>
+      <Dir>ui</Dir>
+      <Name>Ui_mainwindow.py</Name>
+    </Source>
+    <Source>
+      <Dir>ui</Dir>
+      <Name>Ui_flickr.py</Name>
+    </Source>
+    <Source>
+      <Dir>ui</Dir>
+      <Name>postmodel.py</Name>
+    </Source>
+    <Source>
+      <Dir>ui</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>backend</Dir>
+      <Name>dbclasses.py</Name>
+    </Source>
+    <Source>
+      <Dir>backend</Dir>
+      <Name>blog.py</Name>
+    </Source>
+    <Source>
+      <Dir>backend</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>backend</Dir>
+      <Name>macros.py</Name>
     </Source>
   </Sources>
   <Forms>
