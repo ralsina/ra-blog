@@ -13,7 +13,7 @@ import docutils.core
 from cherrytemplate import renderTemplate
 import macros
 from blog import Blog
-from rst2html import rst2html
+from rst import rst2html
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
