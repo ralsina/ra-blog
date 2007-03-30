@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import dbclasses as db
+import backend.dbclasses
+
 
 class YahooCalendar:
     def __init__(self,blog):

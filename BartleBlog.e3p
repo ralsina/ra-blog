@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-30, 19:38:56 -->
+<!-- Saved: 2007-03-30, 20:09:47 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -22,34 +22,6 @@
     <Source>
       <Dir>importers</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy_download.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy_fs.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy_server.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy_sync.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy_test.py</Name>
-    </Source>
-    <Source>
-      <Dir>openomy</Dir>
-      <Name>openomy_update.py</Name>
     </Source>
     <Source>
       <Dir>modules</Dir>
@@ -94,9 +66,6 @@
     <Source>
       <Dir>modules</Dir>
       <Name>yahoomenu.py</Name>
-    </Source>
-    <Source>
-      <Name>bartleblog.py</Name>
     </Source>
     <Source>
       <Dir>rst</Dir>
@@ -146,6 +115,9 @@
       <Dir>backend</Dir>
       <Name>macros.py</Name>
     </Source>
+    <Source>
+      <Name>bartleblog</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -180,9 +152,12 @@
     <Other>
       <Name>static</Name>
     </Other>
+    <Other>
+      <Name>bartleblog</Name>
+    </Other>
   </Others>
   <MainScript>
-    <Name>bartleblog.py</Name>
+    <Name>bartleblog</Name>
   </MainScript>
   <Vcs>
     <VcsType>Subversion</VcsType>
@@ -244,10 +219,10 @@ I1
 s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

@@ -5,7 +5,7 @@ from sqlobject import *
 import urllib
 from util.html2text import html2text
 import cgi
-import macros
+import backend.macros as macros
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
