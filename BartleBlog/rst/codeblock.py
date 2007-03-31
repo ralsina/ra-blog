@@ -53,3 +53,7 @@ code_block.content = 1
 
 # Simply importing this module will make the directive available.
 docutils.parsers.rst.directives.register_directive( 'code-block', code_block )
+
+if __name__ == "__main__":
+  import docutils.core
+  docutils.core.publish_cmdline(writer_name='html')
