@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
-    <height>309</height>
+    <width>539</width>
+    <height>380</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -20,15 +20,29 @@
     <number>6</number>
    </property>
    <item>
-    <widget class="QLabel" name="label" >
-     <property name="text" >
-      <string>Please enter your &lt;a href="http://www.openomy.com">openomy.com&lt;/a> account data. If you leave the password blank, you will be asked for it whenever Bartleblog first needs to access your account.</string>
-     </property>
-     <property name="wordWrap" >
+    <widget class="QTextBrowser" name="textBrowser" >
+     <property name="tabChangesFocus" >
       <bool>true</bool>
      </property>
-     <property name="margin" >
-      <number>12</number>
+     <property name="lineWrapMode" >
+      <enum>QTextEdit::WidgetWidth</enum>
+     </property>
+     <property name="html" >
+      <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Bitstream Vera Sans'; font-size:10pt; font-weight:400; font-style:normal; text-decoration:none;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:15pt; font-weight:600; text-decoration: underline;">Important Information&lt;/span>&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">To access your files in &lt;a href="http://www.openomy.com">&lt;span style=" text-decoration: underline; color:#0000ff;">openomy.com&lt;/span>&lt;/a>, BartleBlog needs to have an authorization token.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">The way to get it is using your account information.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">If you click on  "Get Token" you will be asked for your &lt;a href="http://www.openomy.com">&lt;span style=" text-decoration: underline; color:#0000ff;">openomy.com&lt;/span>&lt;/a> user name and password. BartleBlog will then obtain and save the token, and will not save the password information anywhere.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">However, the token will be saved in ~/.bartleblog.conf, and will allow BartleBlog to use your &lt;a href="http://www.openomy.com">&lt;span style=" text-decoration: underline; color:#0000ff;">openomy.com&lt;/span>&lt;/a> account. A malicious app could use that information to access your files.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">You can delete that information by clicking "Forget Token". In that case, you will be asked for your username and password whenever it is necessary and the token will &lt;span style=" font-weight:600;">not&lt;/span> be saved.&lt;/p>
+&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>&lt;/body>&lt;/html></string>
      </property>
      <property name="openExternalLinks" >
       <bool>true</bool>
@@ -36,47 +50,72 @@
     </widget>
    </item>
    <item>
-    <layout class="QGridLayout" >
+    <layout class="QHBoxLayout" >
      <property name="margin" >
-      <number>12</number>
+      <number>0</number>
      </property>
      <property name="spacing" >
       <number>6</number>
      </property>
-     <item row="0" column="1" >
-      <widget class="QLineEdit" name="lineEdit" />
-     </item>
-     <item row="1" column="1" >
-      <widget class="QLineEdit" name="lineEdit_2" />
-     </item>
-     <item row="1" column="0" >
-      <widget class="QLabel" name="label_3" >
+     <item>
+      <widget class="QLabel" name="label" >
        <property name="text" >
-        <string>Password:</string>
+        <string>Current Status:</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="0" >
-      <widget class="QLabel" name="label_2" >
+     <item>
+      <widget class="QLabel" name="status" >
        <property name="text" >
-        <string>Username:</string>
+        <string>Status goes here</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
      </property>
-     <property name="sizeHint" >
-      <size>
-       <width>20</width>
-       <height>51</height>
-      </size>
+     <property name="spacing" >
+      <number>6</number>
      </property>
-    </spacer>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="get" >
+       <property name="text" >
+        <string>Get Token</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="forget" >
+       <property name="text" >
+        <string>Forget Token</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="verify" >
+       <property name="text" >
+        <string>Verify Token</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
