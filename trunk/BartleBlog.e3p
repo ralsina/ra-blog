@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-30, 20:38:57 -->
+<!-- Saved: 2007-03-30, 22:19:26 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -12,121 +12,207 @@
   <Email>ralsina@kde.org</Email>
   <Sources>
     <Source>
-      <Dir>rst</Dir>
-      <Name>codeblock.py</Name>
-    </Source>
-    <Source>
-      <Dir>rst</Dir>
-      <Name>flickr.py</Name>
-    </Source>
-    <Source>
-      <Dir>importers</Dir>
+      <Dir>BartleBlog</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
-      <Dir>modules</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
       <Name>technorati.py</Name>
     </Source>
     <Source>
-      <Dir>modules</Dir>
-      <Name>delicious.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>feedburner.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>addthis.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>haloscan.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>talkr.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>statcounter.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>yahoogrids.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>yahoocalendar.py</Name>
-    </Source>
-    <Source>
-      <Dir>modules</Dir>
-      <Name>yahoomenu.py</Name>
-    </Source>
-    <Source>
-      <Dir>rst</Dir>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
-      <Dir>importers</Dir>
-      <Name>advogato.py</Name>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>feedburner.py</Name>
     </Source>
     <Source>
-      <Dir>importers</Dir>
-      <Name>pyds.py</Name>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>delicious.py</Name>
     </Source>
     <Source>
-      <Dir>rst</Dir>
-      <Name>openomy.py</Name>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>statcounter.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>addthis.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>haloscan.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>talkr.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>yahoogrids.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>yahoocalendar.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>yahoomenu.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>Ui_mainwindow.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>Ui_flickr.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>postmodel.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>bartleblog.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>backend</Dir>
       <Name>dbclasses.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>backend</Dir>
       <Name>blog.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>backend</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
       <Dir>backend</Dir>
       <Name>macros.py</Name>
     </Source>
     <Source>
-      <Name>bartleblog</Name>
+      <Dir>BartleBlog</Dir>
+      <Dir>importers</Dir>
+      <Name>advogato.py</Name>
     </Source>
     <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>importers</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
-      <Dir>backend</Dir>
-      <Name>bartleblog.py</Name>
+      <Dir>BartleBlog</Dir>
+      <Dir>importers</Dir>
+      <Name>pyds.py</Name>
     </Source>
     <Source>
-      <Dir>ui</Dir>
+      <Dir>BartleBlog</Dir>
+      <Dir>rst</Dir>
+      <Name>codeblock.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>rst</Dir>
+      <Name>flickr.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>rst</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>rst</Dir>
+      <Name>openomy.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Name>flickrapi.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Name>slimmer.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Name>html2text.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy_fs.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy_download.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy_server.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy_sync.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy_test.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Dir>openomy</Dir>
+      <Name>openomy_update.py</Name>
+    </Source>
+    <Source>
       <Name>bartleblog.py</Name>
     </Source>
   </Sources>
