@@ -3,7 +3,7 @@
 import docutils.core
 import docutils.parsers.rst
 
-import util.flickrapi
+import BartleBlog.util.flickrapi
 
 def flickr( name, arguments, options, content, lineno,
         content_offset, block_text, state, state_machine ):

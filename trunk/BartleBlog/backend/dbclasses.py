@@ -3,9 +3,8 @@
 import os
 from sqlobject import *
 import urllib
-from util.html2text import html2text
+from BartleBlog.util.html2text import html2text
 import cgi
-import backend.macros as macros
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)

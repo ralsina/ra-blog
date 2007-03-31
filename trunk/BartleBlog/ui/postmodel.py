@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtGui, QtCore
-from backend.dbclasses import *
+from BartleBlog.backend.dbclasses import *
 import datetime
 
 class PostModelItem:
