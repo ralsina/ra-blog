@@ -30,7 +30,7 @@
       </sizepolicy>
      </property>
      <property name="text" >
-      <string>TextLabel</string>
+      <string>The application should replace this text ;-)</string>
      </property>
     </widget>
    </item>
