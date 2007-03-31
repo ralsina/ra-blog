@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import backend.dbclasses
+import BartleBlog.backend.dbclasses as db
 
 class HaloScan:
     def __init__(self,blog):

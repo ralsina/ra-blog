@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from backend import dbclasses as db
-
+import BartleBlog.backend.dbclasses as db
 
 
 class menuitem:

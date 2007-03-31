@@ -7,7 +7,7 @@ from cherrytemplate import renderTemplate
 import dbclasses as db
 from macros import Macros
 
-import bartleblog.util.slimmer
+from BartleBlog.util import slimmer
 
 class Blog:
 

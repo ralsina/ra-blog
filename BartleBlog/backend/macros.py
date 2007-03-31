@@ -2,20 +2,20 @@
 # -*- coding: utf-8 -*-
 
 import datetime
-import dbclasses as db
 from sqlobject import *
 import urllib
 
-import modules.yahoomenu
-import modules.addthis
-import modules.technorati
-import modules.yahoogrids
-import modules.yahoocalendar
-import modules.haloscan
-import modules.statcounter
-import modules.feedburner
-import modules.talkr
-import modules.delicious
+import BartleBlog.backend.dbclasses as db
+import BartleBlog.tools.yahoomenu
+import BartleBlog.tools.addthis
+import BartleBlog.tools.technorati
+import BartleBlog.tools.yahoogrids
+import BartleBlog.tools.yahoocalendar
+import BartleBlog.tools.haloscan
+import BartleBlog.tools.statcounter
+import BartleBlog.tools.feedburner
+import BartleBlog.tools.talkr
+import BartleBlog.tools.delicious
 
 class Macros:
     def __init__ (self,blog):
@@ -23,16 +23,16 @@ class Macros:
         blog.macros=self
         self.head=[]
 
-        self.yahooMenu=modules.yahoomenu.factory(blog)
-        self.addThis=modules.addthis.factory(blog)
-        self.technorati=modules.technorati.factory(blog)
-        self.yahooGrids=modules.yahoogrids.factory(blog)
-        self.yahooCalendar=modules.yahoocalendar.factory(blog)
-        self.haloScan=modules.haloscan.factory(blog)
-        self.statCounter=modules.statcounter.factory(blog)
-        self.feedBurner=modules.feedburner.factory(blog)
-        self.talkr=modules.talkr.factory(blog)
-        self.delicious=modules.delicious.factory(blog)
+        self.yahooMenu=BartleBlog.tools.yahoomenu.factory(blog)
+        self.addThis=BartleBlog.tools.addthis.factory(blog)
+        self.technorati=BartleBlog.tools.technorati.factory(blog)
+        self.yahooGrids=BartleBlog.tools.yahoogrids.factory(blog)
+        self.yahooCalendar=BartleBlog.tools.yahoocalendar.factory(blog)
+        self.haloScan=BartleBlog.tools.haloscan.factory(blog)
+        self.statCounter=BartleBlog.tools.statcounter.factory(blog)
+        self.feedBurner=BartleBlog.tools.feedburner.factory(blog)
+        self.talkr=BartleBlog.tools.talkr.factory(blog)
+        self.delicious=BartleBlog.tools.delicious.factory(blog)
 
     def absoluteUrl(self,path):
         return basepath+path

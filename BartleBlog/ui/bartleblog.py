@@ -10,16 +10,16 @@ import docutils.core
 from cherrytemplate import renderTemplate
 from PyQt4 import QtGui, QtCore
 
-import backend.dbclasses as db
-import backend.macros as macros
-from bartleblog.backend.blog import Blog
+import BartleBlog.backend.dbclasses as db
+import BartleBlog.backend.macros as macros
+from BartleBlog.backend.blog import Blog
 
-from bartleblog.ui.Ui_mainwindow import Ui_MainWindow
-from bartleblog.ui.postmodel import *
+from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
+from BartleBlog.ui.postmodel import *
 
 
 
-from rst import rst2html
+from BartleBlog.rst import rst2html
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
