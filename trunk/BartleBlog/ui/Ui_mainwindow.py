@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Sun Apr  1 13:08:48 2007
+# Created: Sun Apr  1 13:34:25 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -120,11 +120,14 @@ class Ui_MainWindow(object):
         self.menu_Post = QtGui.QMenu(self.menubar)
         self.menu_Post.setObjectName("menu_Post")
 
+        self.menu_File = QtGui.QMenu(self.menubar)
+        self.menu_File.setObjectName("menu_File")
+
         self.menuBlog = QtGui.QMenu(self.menubar)
         self.menuBlog.setObjectName("menuBlog")
 
-        self.menu_File = QtGui.QMenu(self.menubar)
-        self.menu_File.setObjectName("menu_File")
+        self.menuSettings = QtGui.QMenu(self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -154,18 +157,25 @@ class Ui_MainWindow(object):
         self.actionNew_Post = QtGui.QAction(MainWindow)
         self.actionNew_Post.setIcon(QtGui.QIcon(":/icons/icons/filenew.png"))
         self.actionNew_Post.setObjectName("actionNew_Post")
+
+        self.actionConfigure = QtGui.QAction(MainWindow)
+        self.actionConfigure.setIcon(QtGui.QIcon(":/icons/icons/configure.png"))
+        self.actionConfigure.setObjectName("actionConfigure")
         self.menu_Post.addAction(self.actionEdit_Item)
-        self.menuBlog.addAction(self.actionRender_Blog)
         self.menu_File.addAction(self.actionNew_Post)
         self.menu_File.addSeparator()
         self.menu_File.addSeparator()
+        self.menuBlog.addAction(self.actionRender_Blog)
+        self.menuSettings.addAction(self.actionConfigure)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Post.menuAction())
+        self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuBlog.menuAction())
         self.toolBar.addAction(self.actionNew_Post)
         self.toolBar.addAction(self.actionEdit_Item)
         self.toolBar.addAction(self.actionRst)
         self.toolBar.addAction(self.actionRender_Blog)
+        self.toolBar.addAction(self.actionConfigure)
         self.label_2.setBuddy(self.link)
 
         self.retranslateUi(MainWindow)
@@ -177,12 +187,14 @@ class Ui_MainWindow(object):
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Title", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Link", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_Post.setTitle(QtGui.QApplication.translate("MainWindow", "&Post", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuSettings.setTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEdit_Item.setText(QtGui.QApplication.translate("MainWindow", "Edit Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRst.setText(QtGui.QApplication.translate("MainWindow", "Rst", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew_Post.setText(QtGui.QApplication.translate("MainWindow", "New Post", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionConfigure.setText(QtGui.QApplication.translate("MainWindow", "Configure BartleBlog", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
