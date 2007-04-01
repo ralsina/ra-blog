@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from PyQt4 import QtGui
+
 from BartleBlog.ui.Ui_main_config import Ui_Dialog
 
 class ConfigWindow(QtGui.QDialog):
