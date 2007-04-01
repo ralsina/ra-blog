@@ -16,9 +16,6 @@ from BartleBlog.backend.blog import Blog
 
 from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
 from BartleBlog.ui.postmodel import *
-
-
-
 from BartleBlog.rst import rst2html
 
 class MainWindow(QtGui.QMainWindow):
@@ -46,12 +43,21 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.renderBlog)
 
+        QtCore.QObject.connect(self.ui.actionConfigure,
+            QtCore.SIGNAL("triggered()"),
+            self.configure)
+            
+            
         self.ui.stack.setCurrentIndex(0)
         self.curPost=None
 
         self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
         self.renderTemplate=None
 
+    def configure(self):
+        cfg=ConfigWindow()
+        cfg.exec_()
+        
     def renderBlog(self):
         self.blog.renderBlog()
 

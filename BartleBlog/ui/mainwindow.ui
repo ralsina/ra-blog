@@ -155,12 +155,6 @@
     </property>
     <addaction name="actionEdit_Item" />
    </widget>
-   <widget class="QMenu" name="menuBlog" >
-    <property name="title" >
-     <string>Blog</string>
-    </property>
-    <addaction name="actionRender_Blog" />
-   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -169,8 +163,21 @@
     <addaction name="separator" />
     <addaction name="separator" />
    </widget>
+   <widget class="QMenu" name="menuBlog" >
+    <property name="title" >
+     <string>Blog</string>
+    </property>
+    <addaction name="actionRender_Blog" />
+   </widget>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>Settings</string>
+    </property>
+    <addaction name="actionConfigure" />
+   </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
+   <addaction name="menuSettings" />
    <addaction name="menuBlog" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
@@ -185,6 +192,7 @@
    <addaction name="actionEdit_Item" />
    <addaction name="actionRst" />
    <addaction name="actionRender_Blog" />
+   <addaction name="actionConfigure" />
   </widget>
   <action name="actionEdit_Item" >
    <property name="checkable" >
@@ -225,6 +233,14 @@
    </property>
    <property name="text" >
     <string>New Post</string>
+   </property>
+  </action>
+  <action name="actionConfigure" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/configure.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Configure BartleBlog</string>
    </property>
   </action>
  </widget>
