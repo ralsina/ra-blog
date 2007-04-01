@@ -15,7 +15,7 @@ import BartleBlog.backend.macros as macros
 from BartleBlog.backend.blog import Blog
 
 from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
-from BartleBLog.ui.config import ConfigWindow
+from BartleBlog.ui.config import ConfigWindow
 
 from BartleBlog.ui.postmodel import *
 from BartleBlog.rst import rst2html
