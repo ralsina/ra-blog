@@ -159,7 +159,7 @@
     <property name="title" >
      <string>&amp;File</string>
     </property>
-    <addaction name="actionNew_Post" />
+    <addaction name="actionNewPost" />
     <addaction name="separator" />
     <addaction name="separator" />
    </widget>
@@ -188,7 +188,7 @@
    <attribute name="toolBarArea" >
     <number>4</number>
    </attribute>
-   <addaction name="actionNew_Post" />
+   <addaction name="actionNewPost" />
    <addaction name="actionEdit_Item" />
    <addaction name="actionRst" />
    <addaction name="actionRender_Blog" />
@@ -227,7 +227,7 @@
     <string>Render Blog</string>
    </property>
   </action>
-  <action name="actionNew_Post" >
+  <action name="actionNewPost" >
    <property name="icon" >
     <iconset resource="icons.qrc" >:/icons/icons/filenew.png</iconset>
    </property>
