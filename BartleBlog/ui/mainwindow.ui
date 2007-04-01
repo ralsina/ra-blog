@@ -149,13 +149,6 @@
      <height>31</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File" >
-    <property name="title" >
-     <string>&amp;File</string>
-    </property>
-    <addaction name="separator" />
-    <addaction name="separator" />
-   </widget>
    <widget class="QMenu" name="menu_Post" >
     <property name="title" >
      <string>&amp;Post</string>
@@ -167,6 +160,14 @@
      <string>Blog</string>
     </property>
     <addaction name="actionRender_Blog" />
+   </widget>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionNew_Post" />
+    <addaction name="separator" />
+    <addaction name="separator" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -180,6 +181,7 @@
    <attribute name="toolBarArea" >
     <number>4</number>
    </attribute>
+   <addaction name="actionNew_Post" />
    <addaction name="actionEdit_Item" />
    <addaction name="actionRst" />
    <addaction name="actionRender_Blog" />
@@ -189,7 +191,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset>../../../../../../../../opt/kde/share/icons/crystalsvg/32x32/actions/edit.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/edit.png</iconset>
    </property>
    <property name="text" >
     <string>Edit Post</string>
@@ -203,7 +205,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset>../../../../../../../../opt/kde/share/icons/crystalsvg/32x32/actions/fonts.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/fonts.png</iconset>
    </property>
    <property name="text" >
     <string>Rst</string>
@@ -211,13 +213,23 @@
   </action>
   <action name="actionRender_Blog" >
    <property name="icon" >
-    <iconset>../../../../../../../../opt/kde/share/icons/crystalsvg/32x32/actions/up.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/up.png</iconset>
    </property>
    <property name="text" >
     <string>Render Blog</string>
    </property>
   </action>
+  <action name="actionNew_Post" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/filenew.png</iconset>
+   </property>
+   <property name="text" >
+    <string>New Post</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections/>
 </ui>

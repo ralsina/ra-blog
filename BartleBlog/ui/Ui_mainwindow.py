@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Sat Mar 31 10:17:22 2007
+# Created: Sun Apr  1 13:08:48 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -117,14 +117,14 @@ class Ui_MainWindow(object):
         self.menubar.setGeometry(QtCore.QRect(0,0,686,31))
         self.menubar.setObjectName("menubar")
 
-        self.menu_File = QtGui.QMenu(self.menubar)
-        self.menu_File.setObjectName("menu_File")
-
         self.menu_Post = QtGui.QMenu(self.menubar)
         self.menu_Post.setObjectName("menu_Post")
 
         self.menuBlog = QtGui.QMenu(self.menubar)
         self.menuBlog.setObjectName("menuBlog")
+
+        self.menu_File = QtGui.QMenu(self.menubar)
+        self.menu_File.setObjectName("menu_File")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -138,25 +138,31 @@ class Ui_MainWindow(object):
 
         self.actionEdit_Item = QtGui.QAction(MainWindow)
         self.actionEdit_Item.setCheckable(True)
-        self.actionEdit_Item.setIcon(QtGui.QIcon("../../../../../../../../opt/kde/share/icons/crystalsvg/32x32/actions/edit.png"))
+        self.actionEdit_Item.setIcon(QtGui.QIcon(":/icons/icons/edit.png"))
         self.actionEdit_Item.setObjectName("actionEdit_Item")
 
         self.actionRst = QtGui.QAction(MainWindow)
         self.actionRst.setCheckable(True)
         self.actionRst.setChecked(True)
-        self.actionRst.setIcon(QtGui.QIcon("../../../../../../../../opt/kde/share/icons/crystalsvg/32x32/actions/fonts.png"))
+        self.actionRst.setIcon(QtGui.QIcon(":/icons/icons/fonts.png"))
         self.actionRst.setObjectName("actionRst")
 
         self.actionRender_Blog = QtGui.QAction(MainWindow)
-        self.actionRender_Blog.setIcon(QtGui.QIcon("../../../../../../../../opt/kde/share/icons/crystalsvg/32x32/actions/up.png"))
+        self.actionRender_Blog.setIcon(QtGui.QIcon(":/icons/icons/up.png"))
         self.actionRender_Blog.setObjectName("actionRender_Blog")
-        self.menu_File.addSeparator()
-        self.menu_File.addSeparator()
+
+        self.actionNew_Post = QtGui.QAction(MainWindow)
+        self.actionNew_Post.setIcon(QtGui.QIcon(":/icons/icons/filenew.png"))
+        self.actionNew_Post.setObjectName("actionNew_Post")
         self.menu_Post.addAction(self.actionEdit_Item)
         self.menuBlog.addAction(self.actionRender_Blog)
+        self.menu_File.addAction(self.actionNew_Post)
+        self.menu_File.addSeparator()
+        self.menu_File.addSeparator()
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Post.menuAction())
         self.menubar.addAction(self.menuBlog.menuAction())
+        self.toolBar.addAction(self.actionNew_Post)
         self.toolBar.addAction(self.actionEdit_Item)
         self.toolBar.addAction(self.actionRst)
         self.toolBar.addAction(self.actionRender_Blog)
@@ -170,13 +176,15 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "Title", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Link", None, QtGui.QApplication.UnicodeUTF8))
-        self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_Post.setTitle(QtGui.QApplication.translate("MainWindow", "&Post", None, QtGui.QApplication.UnicodeUTF8))
         self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEdit_Item.setText(QtGui.QApplication.translate("MainWindow", "Edit Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRst.setText(QtGui.QApplication.translate("MainWindow", "Rst", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Blog", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNew_Post.setText(QtGui.QApplication.translate("MainWindow", "New Post", None, QtGui.QApplication.UnicodeUTF8))
 
+import icons_rc
 
 
 if __name__ == "__main__":
