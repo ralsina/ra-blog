@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-30, 22:19:26 -->
+<!-- Saved: 2007-03-31, 20:05:25 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -171,69 +171,52 @@
       <Name>html2text.py</Name>
     </Source>
     <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy_fs.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy_download.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy_server.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy_sync.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy_test.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>util</Dir>
-      <Dir>openomy</Dir>
-      <Name>openomy_update.py</Name>
-    </Source>
-    <Source>
       <Name>bartleblog.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_openomy_config.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_authdialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_main_config.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>backend</Dir>
+      <Name>config.py</Name>
     </Source>
   </Sources>
   <Forms>
     <Form>
-      <Dir>ui</Dir>
-      <Name>authdialog.ui</Name>
-    </Form>
-    <Form>
-      <Dir>ui</Dir>
-      <Name>flickr.ui</Name>
-    </Form>
-    <Form>
-      <Dir>ui</Dir>
-      <Name>mainwindow.ui</Name>
-    </Form>
-    <Form>
+      <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>openomy_config.ui</Name>
     </Form>
     <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>authdialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>flickr.ui</Name>
+    </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>mainwindow.ui</Name>
+    </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>main_config.ui</Name>
     </Form>
@@ -317,9 +300,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
