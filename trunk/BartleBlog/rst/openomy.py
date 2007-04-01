@@ -2,7 +2,7 @@
 
 import docutils.core
 import docutils.parsers.rst
-import os,urllib2,md5
+import os,urllib2,md5,sys
 from StringIO import StringIO
 import elementtree.ElementTree as tree
 
@@ -43,6 +43,7 @@ def createUrl(method,tok=None,**params):
                 params['confirmedToken']=tok
         k=params.keys()
         k.sort()
+        print params
         url=baseurl+'&'.join([ '%s=%s'%(key,params[key]) for key in k])
 
         sig=''.join(['%s=%s'%(key,params[key]) for key in k])+secret
@@ -61,7 +62,69 @@ def getResponse(url):
                 raise OpenomyError(int(r.attrib['code']))
         return r
 
-def openomydir( name, arguments, options, content, lineno,
+def directive_openomy_tag (name, arguments, options, content, lineno,
+        content_offset, block_text, state, state_machine ):
+    """
+    A directive that produces a table with links to all public files 
+    stored in openomy.com and tagged with a given tag.
+
+    The syntax is this::
+
+    .. openomy_tag:: tagname
+
+    Where tagname is the one you use in openomy.com.
+    """
+    tname=arguments[0]
+    
+    try:
+    
+        tok=config.getValue('openomy','token')
+        if not tok:
+            error = state_machine.reporter.error( "Please Configure the Openomy Module Before using the openomy directive.",docutils.nodes.literal_block(block_text, block_text), line=lineno )
+            return [error]
+
+        u=createUrl('Tags.GetAllTags',tok=tok)
+        resp=getResponse(u)
+
+        html=''
+        
+        for t in resp.find('tags').findall('tag'):
+            if t.text==tname:
+                u=createUrl('Tags.GetTag',tok=tok,tagID=t.attrib['id'])
+                resp=getResponse(u)
+                fids=[ f.attrib['id'] for f in resp.find('tag').find('files').findall('file')]
+                print fids
+                for fid in fids:
+                    u=createUrl('Files.GetFile',tok=tok,fileID=fid)
+                    resp=getResponse(u)
+                    f=resp.find('file')
+                    fname=f.find('filename').text
+                    pub=f.find('public')
+                    if pub.attrib['ispublic']=='1':
+                        html+='<a href="%s">%s</a>'%(pub.text,fname)
+                    else:
+                        error = state_machine.reporter.error( "The file %s is not marked as public."% fname,
+                        docutils.nodes.literal_block(block_text, block_text), line=lineno )
+                        return [error]
+                break
+
+        raw = docutils.nodes.raw('',html, format = 'html')
+        return [raw]
+    
+    except OpenomyError, e:
+        error = state_machine.reporter.error( e.error[2],
+        docutils.nodes.literal_block(block_text, block_text), line=lineno )
+        return [error]
+
+directive_openomy_tag.arguments = (1,0,0)
+directive_openomy_tag.options = {'name' : docutils.parsers.rst.directives.unchanged }
+directive_openomy_tag.content = 1
+
+# Simply importing this module will make the directive available.
+docutils.parsers.rst.directives.register_directive( 'openomy_tag', directive_openomy_tag )
+
+        
+def directive_openomy( name, arguments, options, content, lineno,
         content_offset, block_text, state, state_machine ):
     """
     A directive that produces a link to a file stored in openomy.com
@@ -105,12 +168,12 @@ def openomydir( name, arguments, options, content, lineno,
         docutils.nodes.literal_block(block_text, block_text), line=lineno )
         return [error]
 
-openomydir.arguments = (1,0,0)
-openomydir.options = {'name' : docutils.parsers.rst.directives.unchanged }
-openomydir.content = 1
+directive_openomy.arguments = (1,0,0)
+directive_openomy.options = {'name' : docutils.parsers.rst.directives.unchanged }
+directive_openomy.content = 1
 
 # Simply importing this module will make the directive available.
-docutils.parsers.rst.directives.register_directive( 'openomy', openomydir )
+docutils.parsers.rst.directives.register_directive( 'openomy', directive_openomy )
 
 if __name__ == "__main__":
   import docutils.core
