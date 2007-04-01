@@ -2,7 +2,7 @@
 import docutils.core
 
 import codeblock
-#import sourcecode
+import sourcecode
 import openomy
 import flickr
 
