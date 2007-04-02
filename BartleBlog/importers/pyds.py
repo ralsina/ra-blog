@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import metakit,os,datetime,time
-from dbclasses import *
+from BartleBlog.backend.dbclasses import *
 import sys
 
 def importWeblog():
