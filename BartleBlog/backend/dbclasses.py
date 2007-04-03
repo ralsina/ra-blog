@@ -13,6 +13,7 @@ class Category(SQLObject):
     title=UnicodeCol()
     posts=RelatedJoin('Post',orderBy='pubDate')
     stories=RelatedJoin('Story',orderBy='pubDate')
+    magicWords=UnicodeCol()
     def myurl(self):
         return "categories/%s.html"%(self.name.lower())
 
