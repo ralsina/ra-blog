@@ -38,10 +38,6 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("activated(QModelIndex)"),
             self.openItem)
 
-        QtCore.QObject.connect(self.ui.actionEdit_Item,
-            QtCore.SIGNAL("toggled(bool)"),
-            self.switchEditMode)
-
         QtCore.QObject.connect(self.ui.actionRender_Blog,
             QtCore.SIGNAL("triggered()"),
             self.renderBlog)
@@ -54,7 +50,6 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.edit)
             
-        self.ui.stack.setCurrentIndex(0)
         self.curPost=None
 
         self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
@@ -62,6 +57,7 @@ class MainWindow(QtGui.QMainWindow):
 
     def edit(self):
         self.editor=EditorWindow()
+        QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
         
     def configure(self):
@@ -72,54 +68,41 @@ class MainWindow(QtGui.QMainWindow):
         self.blog.renderBlog()
 
     def init_tree(self):
+        self.model=PostModel()
         self.ui.tree.setModel(self.model)
 
     def openItem(self,index):
         treeitem=index.internalPointer()
-        if self.ui.editor.document().isModified():
-            self.reRenderCurrentPost()
         if isinstance(treeitem,PostItem):
             self.renderTemplate='postRender'
             self.curPost=Post.select(Post.q.postID==treeitem.id)[0]
-            self.ui.link.setText(self.curPost.link)
         elif isinstance(treeitem,StoryItem):
             self.renderTemplate='storyRender'
             self.curPost=Story.select(Story.q.postID==treeitem.id)[0]
         else:
             #Maybe clear the views?
             return
-        self.ui.categories.setText(','.join([x.name for x in self.curPost.categories]))
-        self.ui.editor.setText(self.curPost.text)
-        self.ui.editor.document().setModified(False)
-        self.ui.title.setText(self.curPost.title)
         self.displayPostInViewer()
-        self.switchEditMode(self.ui.actionEdit_Item.isChecked())
 
     def displayPostInViewer(self):
             # Fancier HTML for the user
         post=self.curPost
+        
+        if post.is_dirty:
+            self.reRenderCurrentPost()
+        
         html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))
         self.ui.viewer.setHtml(html)
 
     def reRenderCurrentPost(self):
         if self.curPost:
-            self.curPost.text=str(self.ui.editor.document().toPlainText())
             html=rst2html(self.curPost.text)
 
             # Basic HTML for the DB
+            # FIXME notice RST errors
             self.curPost.rendered=html
+            self.curPost.is_dirty=False
             self.displayPostInViewer()
-
-
-    def switchEditMode(self,mode):
-        if mode==1:
-            self.ui.stack.setCurrentIndex(1)
-            self.ui.editor.setFocus()
-        else:
-            self.ui.stack.setCurrentIndex(0)
-            if self.ui.editor.document().isModified():
-                self.reRenderCurrentPost()
-            self.ui.viewer.setFocus()
 
 def main():
     app=QtGui.QApplication(sys.argv)

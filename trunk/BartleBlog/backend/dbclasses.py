@@ -4,7 +4,7 @@ import os
 from sqlobject import *
 import urllib
 from BartleBlog.util.html2text import html2text
-import cgi
+import cgi,datetime
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
@@ -24,15 +24,16 @@ def fteaser (self):
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
-    link=UnicodeCol()
-    source=UnicodeCol()
-    sourceUrl=UnicodeCol()
     text=UnicodeCol()
-    rendered=UnicodeCol()
-    onHome=BoolCol()
-    structured=BoolCol()
-    pubDate=DateTimeCol()
+    link=UnicodeCol(default=None)
+    source=UnicodeCol(default=None)
+    sourceUrl=UnicodeCol(default=None)
+    rendered=UnicodeCol(default=None)
+    onHome=BoolCol(default=True)
+    structured=BoolCol(default=True)
+    pubDate=DateTimeCol(default=datetime.datetime.now())
     categories=RelatedJoin('Category',orderBy='name')
+    is_dirty=BoolCol(default=True)
     def myurl(self):
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                 self.pubDate.month,

@@ -21,27 +21,97 @@
      <number>6</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" >
+     <layout class="QGridLayout" >
       <property name="margin" >
        <number>0</number>
       </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item>
-       <widget class="QLabel" name="label" >
+      <item row="2" column="1" >
+       <widget class="QLineEdit" name="tags" />
+      </item>
+      <item row="2" column="3" >
+       <widget class="QComboBox" name="format" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text" >
+          <string>Restructured Text</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>HTML</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="3" >
+       <widget class="QLineEdit" name="title" />
+      </item>
+      <item row="2" column="2" >
+       <widget class="QLabel" name="label_3" >
         <property name="text" >
-         <string>Title:</string>
+         <string>Format:</string>
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QLineEdit" name="Title" />
+      <item row="1" column="1" colspan="2" >
+       <widget class="QLineEdit" name="link" />
+      </item>
+      <item row="1" column="3" >
+       <widget class="QPushButton" name="pushButton" >
+        <property name="text" >
+         <string>Make &amp;Tiny</string>
+        </property>
+       </widget>
+      </item>
+      <item rowspan="3" row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="label" >
+          <property name="text" >
+           <string>Title:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4" >
+          <property name="text" >
+           <string>Link:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2" >
+          <property name="text" >
+           <string>Tags:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="QTextEdit" name="editor" />
+     <widget class="QTextEdit" name="editor" >
+      <property name="acceptRichText" >
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -52,6 +122,18 @@
    <attribute name="toolBarArea" >
     <number>4</number>
    </attribute>
+   <addaction name="actionSave" />
+   <addaction name="actionPreview" />
+   <addaction name="separator" />
+   <addaction name="actionCut" />
+   <addaction name="actionCopy" />
+   <addaction name="actionPaste" />
+   <addaction name="separator" />
+   <addaction name="actionUndo" />
+   <addaction name="actionRedo" />
+   <addaction name="separator" />
+   <addaction name="actionFlickr_Image" />
+   <addaction name="actionOpenomy_File" />
   </widget>
   <widget class="QMenuBar" name="menuBar" >
    <property name="geometry" >
@@ -62,12 +144,6 @@
      <height>31</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuPost" >
-    <property name="title" >
-     <string>Post</string>
-    </property>
-    <addaction name="actionPreview" />
-   </widget>
    <widget class="QMenu" name="menuEdit" >
     <property name="title" >
      <string>Edit</string>
@@ -84,40 +160,66 @@
     <addaction name="actionPaste" />
     <addaction name="actionUndo" />
     <addaction name="actionRedo" />
-    <addaction name="actionDelete" />
     <addaction name="actionSelect_All" />
+    <addaction name="actionDelete" />
+    <addaction name="separator" />
     <addaction name="menuInsert" />
+   </widget>
+   <widget class="QMenu" name="menuPost" >
+    <property name="title" >
+     <string>Post</string>
+    </property>
+    <addaction name="actionSave" />
+    <addaction name="actionPreview" />
    </widget>
    <addaction name="menuPost" />
    <addaction name="menuEdit" />
   </widget>
   <widget class="QStatusBar" name="statusBar" />
   <action name="actionPreview" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/xeyes.png</iconset>
+   </property>
    <property name="text" >
     <string>Preview</string>
    </property>
   </action>
   <action name="actionCut" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/editcut.png</iconset>
+   </property>
    <property name="text" >
     <string>Cut</string>
    </property>
   </action>
   <action name="actionCopy" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/editcopy.png</iconset>
+   </property>
    <property name="text" >
     <string>Copy</string>
    </property>
   </action>
   <action name="actionPaste" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/editpaste.png</iconset>
+   </property>
    <property name="text" >
     <string>Paste</string>
    </property>
   </action>
   <action name="actionUndo" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/undo.png</iconset>
+   </property>
    <property name="text" >
     <string>Undo</string>
    </property>
   </action>
   <action name="actionRedo" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/redo.png</iconset>
+   </property>
    <property name="text" >
     <string>Redo</string>
    </property>
@@ -133,16 +235,40 @@
    </property>
   </action>
   <action name="actionFlickr_Image" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/camera.png</iconset>
+   </property>
    <property name="text" >
     <string>Flickr Image</string>
    </property>
   </action>
   <action name="actionOpenomy_File" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/blockdevice.png</iconset>
+   </property>
    <property name="text" >
     <string>Openomy File</string>
    </property>
   </action>
+  <action name="actionSave" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/filesave.png</iconset>
+   </property>
+   <property name="text" >
+    <string>save</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <tabstops>
+  <tabstop>title</tabstop>
+  <tabstop>link</tabstop>
+  <tabstop>tags</tabstop>
+  <tabstop>editor</tabstop>
+  <tabstop>format</tabstop>
+  <tabstop>pushButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="icons.qrc" />
+ </resources>
  <connections/>
 </ui>
