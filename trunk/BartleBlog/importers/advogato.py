@@ -2,13 +2,11 @@
 
 import os,sys
 import xmlrpclib
-from dbclasses import *
+from BartleBlog.backend.dbclasses import *
 import sqlobject
 import re
 
-def importAdv():
-    username=sys.argv[1]
-    password=sys.argv[2]
+def importAdv(username,password):
 
     server = xmlrpclib.Server("http://www.advogato.org/XMLRPC",use_datetime=True)
     cookie=server.authenticate(username,password)
@@ -41,5 +39,7 @@ def fixLinks(text):
 
     return text
 
-initDB('blog.db')
-importAdv()
+    
+if __name__ == "__main__":    
+    initDB('blog.db')
+    importAdv(sys.argv[1],sys.argv[2])
