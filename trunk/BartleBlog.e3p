@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-04-02, 21:45:27 -->
+<!-- Saved: 2007-04-02, 21:45:55 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -217,11 +217,6 @@
       <Dir>BartleBlog</Dir>
       <Dir>util</Dir>
       <Name>openomy.py</Name>
-    </Source>
-    <Source>
-      <Dir>BartleBlog</Dir>
-      <Dir>ui</Dir>
-      <Name>cqtextbrowser.py</Name>
     </Source>
   </Sources>
   <Forms>
