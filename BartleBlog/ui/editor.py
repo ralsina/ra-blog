@@ -38,7 +38,7 @@ class EditorWindow(QtGui.QMainWindow):
         
     def savePost(self):
         if not self.post:
-            self.post=db.Post( postID="BB%s"+str(time.time()),
+            self.post=db.Post( postID="BB%s"%str(time.time()),
                             title=str(self.ui.title.text()),
                             link=str(self.ui.link.text()),
                             text=str(self.ui.editor.toPlainText()))
