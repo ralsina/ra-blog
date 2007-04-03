@@ -3,7 +3,7 @@ import docutils.core
 
 import codeblock
 import sourcecode
-import openomy
+# import openomy
 import flickr
 
 def rst2html(rst):

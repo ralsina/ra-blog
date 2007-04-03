@@ -2,65 +2,9 @@
 
 import docutils.core
 import docutils.parsers.rst
-import os,urllib2,md5,sys
-from StringIO import StringIO
-import elementtree.ElementTree as tree
+import os,sys
 
-import BartleBlog.backend.config as config
-
-appkey='1e31cb69be8d30070f7607b4f23d4f95'
-secret='39578658'
-baseurl='http://www.openomy.com/api/rest/?'
-
-errors=[
-        [0,'Invalid token','The token (either unconfirmed or confirmed) was not valid.'],
-        [1,'Invalid signature','The MD5 based signature did not match what Openomy produced.'],
-        [2,'Permissions','The application does not have enough permissions to perform the requested call.'],
-        [3,'Null Reference','One or more of the arguments was null. You\'re probably missing an argument (maybe a token or key?).'],
-        [4,'General','A general, undescribed, error occured.'],
-        [5,'Tag Name Not Valid','The name of the tag you are describing is not valid. Perhaps forbidden characters or already used?'],
-        [6,'User Not Found','The user you are requesting was not found.'],
-        [7,'File Too Large','The file you are trying to upload was too large based on the user\'s quota.'],
-        [8,'Out Of Storage','The user is out of storage space and the requested call could not be completed.'],
-        [9,'InvalidApplicationKey','The applicationKey you passed was invalid.'],
-        [10,'UnknownMethod',"The method you passed was unknown (or you didn't pass a method)."]
-]
-
-class OpenomyError(Exception):
-        def __init__(self,code):
-                self.error=errors[code]
-
-def createUrl(method,tok=None,**params):
-
-        params['method']=method
-        params['applicationKey']=appkey
-
-        if method=='Auth.AuthorizeUser':
-                pass
-        elif method=='Auth.GetConfirmedToken':
-                params['unconfirmedToken']=tok
-        else:
-                params['confirmedToken']=tok
-        k=params.keys()
-        k.sort()
-        print params
-        url=baseurl+'&'.join([ '%s=%s'%(key,params[key]) for key in k])
-
-        sig=''.join(['%s=%s'%(key,params[key]) for key in k])+secret
-        url=url+'&signature=%s'%md5.md5(sig).hexdigest()
-        return url
-
-def getResponse(url):
-        print  "Fetching: ",url
-        data=urllib2.urlopen(url).read()
-        f=StringIO(data)
-        print data
-        t=tree.parse(f)
-
-        r=t.getroot()
-        if r.tag=='error':
-                raise OpenomyError(int(r.attrib['code']))
-        return r
+from BartleBlog.util.openomy import *
 
 def directive_openomy_tag (name, arguments, options, content, lineno,
         content_offset, block_text, state, state_machine ):
@@ -77,40 +21,21 @@ def directive_openomy_tag (name, arguments, options, content, lineno,
     tname=arguments[0]
     
     try:
-    
-        tok=config.getValue('openomy','token')
-        if not tok:
-            error = state_machine.reporter.error( "Please Configure the Openomy Module Before using the openomy directive.",docutils.nodes.literal_block(block_text, block_text), line=lineno )
-            return [error]
-
-        u=createUrl('Tags.GetAllTags',tok=tok)
-        resp=getResponse(u)
-
-        html=''
+        op=Openomy()
+        tag=op.Tags_GetTag(tname)
+        html='<table class="openomy_table">'
         
-        for t in resp.find('tags').findall('tag'):
-            if t.text==tname:
-                u=createUrl('Tags.GetTag',tok=tok,tagID=t.attrib['id'])
-                resp=getResponse(u)
-                fids=[ f.attrib['id'] for f in resp.find('tag').find('files').findall('file')]
-                print fids
-                for fid in fids:
-                    u=createUrl('Files.GetFile',tok=tok,fileID=fid)
-                    resp=getResponse(u)
-                    f=resp.find('file')
-                    fname=f.find('filename').text
-                    pub=f.find('public')
-                    if pub.attrib['ispublic']=='1':
-                        html+='<a href="%s">%s</a>'%(pub.text,fname)
-                    else:
-                        error = state_machine.reporter.error( "The file %s is not marked as public."% fname,
-                        docutils.nodes.literal_block(block_text, block_text), line=lineno )
-                        return [error]
-                break
+        for file_id in tag.files:
+            print "===>",file_id
+            f=op.Files_GetFile(file_id)
+            html+='<tr><td>Download: </td><td><a href="%s">%s</a></td></tr>'%(f.url,f.filename)
+            
+        html+='</table>'
+
 
         raw = docutils.nodes.raw('',html, format = 'html')
         return [raw]
-    
+        
     except OpenomyError, e:
         error = state_machine.reporter.error( e.error[2],
         docutils.nodes.literal_block(block_text, block_text), line=lineno )
@@ -137,29 +62,21 @@ def directive_openomy( name, arguments, options, content, lineno,
     """
 
     fname=arguments[0]
-    
     try:
-    
-        tok=config.getValue('openomy','token')
-        if not tok:
-            error = state_machine.reporter.error( "Please Configure the Openomy Module Before using the openomy directive.",docutils.nodes.literal_block(block_text, block_text), line=lineno )
+        
+        op=Openomy()
+        f=op.Files_GetFile(fname)
+        if not f:
+            error = state_machine.reporter.error('No file %s in openomy.com'%fname,
+            docutils.nodes.literal_block(block_text, block_text), line=lineno )
             return [error]
 
-        u=createUrl('Files.GetAllFiles',tok=tok)
-        resp=getResponse(u)
-        for f in resp.find('files').findall('file'):
-            if f.text==fname:            
-                u=createUrl('Files.GetFile',tok=tok,fileID=f.attrib['id'])
-                resp=getResponse(u)
-                f=resp.find('file')
-                pub=f.find('public')
-                if pub.attrib['ispublic']=='1':
-                    html='<a href="%s">%s</a>'%(pub.text,fname)
-                else:
-                    error = state_machine.reporter.error( "The file %s is not marked as public."% fname,
-                    docutils.nodes.literal_block(block_text, block_text), line=lineno )
-                    return [error]
-        
+        if not f.public:
+            error = state_machine.reporter.error('The file %s is not public'%fname,
+            docutils.nodes.literal_block(block_text, block_text), line=lineno )
+            return [error]
+                
+        html='<a href="%s">%s</a>'%(f.url,f.filename)
         raw = docutils.nodes.raw('',html, format = 'html')
         return [raw]
     
