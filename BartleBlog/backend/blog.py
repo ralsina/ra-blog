@@ -50,7 +50,7 @@ class Blog:
             page=renderTemplate(self.loadTemplate(pagetmpl))
         else:
             page=body
-        #page=slimmer.html_slimmer(page)
+        page=slimmer.html_slimmer(page)
         # Save or return
         if not fname:
             return page
@@ -78,7 +78,6 @@ class Blog:
         dname=os.path.join(self.dest_dir,'categories')
         fname=catname+'.html'
         postlist=cat.posts
-        postlist.reverse
         curDate=datetime.datetime.today()
         self.renderBlogPage(
                 title,
