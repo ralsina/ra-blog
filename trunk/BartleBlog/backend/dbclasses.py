@@ -37,7 +37,7 @@ class Post(SQLObject):
     structured=BoolCol(default=True)
     pubDate=DateTimeCol(default=datetime.datetime.now())
     categories=RelatedJoin('Category',orderBy='name')
-    dirty=IntCol(default=0)
+    is_dirty=IntCol(default=0)
     def myurl(self):
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                 self.pubDate.month,
@@ -62,7 +62,7 @@ class Story(SQLObject):
         return "stories/%s.html"%self.postID
     teaser=fteaser
     link=''
-    dirty=IntCol(default=0)
+    is_dirty=IntCol(default=0)
 
 def initDB(name):
     #Initialize sqlobject
