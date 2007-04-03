@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-03-31, 20:05:25 -->
+<!-- Saved: 2007-04-02, 21:45:27 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -193,6 +193,36 @@
       <Dir>backend</Dir>
       <Name>config.py</Name>
     </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>rst</Dir>
+      <Name>sourcecode.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>config.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_rsteditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>editor.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>util</Dir>
+      <Name>openomy.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>cqtextbrowser.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -219,6 +249,11 @@
       <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>main_config.ui</Name>
+    </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>rsteditor.ui</Name>
     </Form>
   </Forms>
   <Translations>
@@ -300,9 +335,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
