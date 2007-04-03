@@ -115,26 +115,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QToolBar" name="toolBar" >
-   <property name="orientation" >
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <attribute name="toolBarArea" >
-    <number>4</number>
-   </attribute>
-   <addaction name="actionSave" />
-   <addaction name="actionPreview" />
-   <addaction name="separator" />
-   <addaction name="actionCut" />
-   <addaction name="actionCopy" />
-   <addaction name="actionPaste" />
-   <addaction name="separator" />
-   <addaction name="actionUndo" />
-   <addaction name="actionRedo" />
-   <addaction name="separator" />
-   <addaction name="actionFlickr_Image" />
-   <addaction name="actionOpenomy_File" />
-  </widget>
   <widget class="QMenuBar" name="menuBar" >
    <property name="geometry" >
     <rect>
@@ -144,6 +124,15 @@
      <height>31</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuPost" >
+    <property name="title" >
+     <string>Post</string>
+    </property>
+    <addaction name="actionSave" />
+    <addaction name="actionPreview" />
+    <addaction name="separator" />
+    <addaction name="actionClose" />
+   </widget>
    <widget class="QMenu" name="menuEdit" >
     <property name="title" >
      <string>Edit</string>
@@ -165,17 +154,30 @@
     <addaction name="separator" />
     <addaction name="menuInsert" />
    </widget>
-   <widget class="QMenu" name="menuPost" >
-    <property name="title" >
-     <string>Post</string>
-    </property>
-    <addaction name="actionSave" />
-    <addaction name="actionPreview" />
-   </widget>
    <addaction name="menuPost" />
    <addaction name="menuEdit" />
   </widget>
   <widget class="QStatusBar" name="statusBar" />
+  <widget class="QToolBar" name="toolBar" >
+   <property name="orientation" >
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <attribute name="toolBarArea" >
+    <number>4</number>
+   </attribute>
+   <addaction name="actionSave" />
+   <addaction name="actionPreview" />
+   <addaction name="separator" />
+   <addaction name="actionCut" />
+   <addaction name="actionCopy" />
+   <addaction name="actionPaste" />
+   <addaction name="separator" />
+   <addaction name="actionUndo" />
+   <addaction name="actionRedo" />
+   <addaction name="separator" />
+   <addaction name="actionFlickr_Image" />
+   <addaction name="actionOpenomy_File" />
+  </widget>
   <action name="actionPreview" >
    <property name="icon" >
     <iconset resource="icons.qrc" >:/icons/icons/xeyes.png</iconset>
@@ -256,6 +258,22 @@
    </property>
    <property name="text" >
     <string>save</string>
+   </property>
+  </action>
+  <action name="actionClose" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/fileclose.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionOpenomyTag" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/blockdevice.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Openomy Tag</string>
    </property>
   </action>
  </widget>

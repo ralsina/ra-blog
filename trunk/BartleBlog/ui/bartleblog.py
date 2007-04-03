@@ -32,8 +32,6 @@ class MainWindow(QtGui.QMainWindow):
         self.blog=Blog()
         self.model=PostModel()
 
-        self.ui.actionEdit_Item.setCheckable(True)
-
         QtCore.QObject.connect(self.ui.tree,
             QtCore.SIGNAL("activated(QModelIndex)"),
             self.openItem)
@@ -46,9 +44,13 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.configure)
             
-        QtCore.QObject.connect(self.ui.actionNewPost,
+        QtCore.QObject.connect(self.ui.actionEditPost,
             QtCore.SIGNAL("triggered()"),
             self.edit)
+
+        QtCore.QObject.connect(self.ui.actionNewPost,
+            QtCore.SIGNAL("triggered()"),
+            self.newPost)
             
         self.curPost=None
 
@@ -56,6 +58,11 @@ class MainWindow(QtGui.QMainWindow):
         self.renderTemplate=None
 
     def edit(self):
+        self.editor=EditorWindow(self.curPost)
+        QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
+        self.editor.show()
+
+    def newPost(self):
         self.editor=EditorWindow()
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
