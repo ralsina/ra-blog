@@ -21,7 +21,7 @@ class Blog:
         #################################################################################
 
         self.blogName="Lateral Opinion"
-        self.basepath=u"http://lateral.netmanagers.com.ar/"
+        self.basepath=u"http://lateral.blogsite.org/"
         self.author=u"Roberto Alsina"
         self.author_email=u"ralsina@kde.org"
         self.description=u"Roberto Alsina's blog"

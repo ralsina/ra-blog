@@ -5,7 +5,7 @@ import BartleBlog.backend.dbclasses as db
 class FeedBurner:
     def __init__(self,blog):
         self.blog=blog
-        self.feedburnerName="LOTesting"
+        self.feedburnerName="LateralOpinion"
         self.feedburnerStoriesName="LateralOpinionStories"
 
     def rssUrl(self):
