@@ -113,11 +113,13 @@ class PostByDateItem(PostModelItem):
     def __init__(self,parent):
         PostModelItem.__init__(self,parent)
         plist=Post.select(orderBy=Post.q.pubDate)
+        self.years=[]
+        self.children=None
+        if plist.count()==0:
+            return
         y1=plist[0].pubDate.replace(day=1,month=1)
         y2=plist[-1].pubDate
         y2=y2.replace(year=y2.year+1,day=1,month=1)
-        self.children=None
-        self.years=[]
         for yy in xrange(y1.year,y2.year):
             yb=y1.replace(year=yy)
             ye=y1.replace(year=yy+1)
