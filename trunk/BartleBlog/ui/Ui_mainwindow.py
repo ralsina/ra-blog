@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Tue Apr  3 12:20:44 2007
+# Created: Tue Apr  3 18:28:25 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
         MainWindow.addToolBar(self.toolBar)
 
         self.actionEditPost = QtGui.QAction(MainWindow)
-        self.actionEditPost.setCheckable(True)
+        self.actionEditPost.setCheckable(False)
         self.actionEditPost.setIcon(QtGui.QIcon(":/icons/icons/edit.png"))
         self.actionEditPost.setObjectName("actionEditPost")
 

@@ -4,6 +4,7 @@ import os
 from sqlobject import *
 import urllib
 from BartleBlog.util.html2text import html2text
+import BartleBlog.rst as rst
 import cgi,datetime
 
 class Category(SQLObject):
@@ -20,6 +21,9 @@ def fteaser (self):
         return cgi.escape(html2text(self.rendered)[:100])
     except:
         return cgi.escape(self.text[:100])
+        
+def frender (self):
+    pass
 
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)

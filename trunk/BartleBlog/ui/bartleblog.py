@@ -95,7 +95,7 @@ class MainWindow(QtGui.QMainWindow):
             # Fancier HTML for the user
         post=self.curPost
         
-        if post.is_dirty:
+        if post.dirty:
             self.reRenderCurrentPost()
         
         html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))
@@ -103,12 +103,12 @@ class MainWindow(QtGui.QMainWindow):
 
     def reRenderCurrentPost(self):
         if self.curPost:
-            html=rst2html(self.curPost.text)
+            html,code=rst2html(self.curPost.text)
 
             # Basic HTML for the DB
             # FIXME notice RST errors
             self.curPost.rendered=html
-            self.curPost.is_dirty=False
+            self.curPost.dirty=False
             self.displayPostInViewer()
 
 def main():
