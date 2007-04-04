@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Tue Apr  3 21:59:08 2007
+# Created: Tue Apr  3 23:21:14 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,27 +28,9 @@ class Ui_MainWindow(object):
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
 
-        self.gridlayout1 = QtGui.QGridLayout()
-        self.gridlayout1.setMargin(0)
-        self.gridlayout1.setSpacing(6)
-        self.gridlayout1.setObjectName("gridlayout1")
-
-        self.link = QtGui.QLineEdit(self.centralWidget)
-        self.link.setObjectName("link")
-        self.gridlayout1.addWidget(self.link,0,0,1,1)
-
-        self.tags = QtGui.QLineEdit(self.centralWidget)
-        self.tags.setObjectName("tags")
-        self.gridlayout1.addWidget(self.tags,1,0,1,1)
-
-        self.pushButton = QtGui.QPushButton(self.centralWidget)
-        self.pushButton.setObjectName("pushButton")
-        self.gridlayout1.addWidget(self.pushButton,0,1,1,1)
-
-        self.guess = QtGui.QPushButton(self.centralWidget)
-        self.guess.setObjectName("guess")
-        self.gridlayout1.addWidget(self.guess,1,1,1,1)
-        self.gridlayout.addLayout(self.gridlayout1,1,1,1,1)
+        self.title = QtGui.QLineEdit(self.centralWidget)
+        self.title.setObjectName("title")
+        self.gridlayout.addWidget(self.title,0,1,1,1)
 
         self.vboxlayout1 = QtGui.QVBoxLayout()
         self.vboxlayout1.setMargin(0)
@@ -68,9 +50,33 @@ class Ui_MainWindow(object):
         self.vboxlayout1.addWidget(self.label_2)
         self.gridlayout.addLayout(self.vboxlayout1,0,0,2,1)
 
-        self.title = QtGui.QLineEdit(self.centralWidget)
-        self.title.setObjectName("title")
-        self.gridlayout.addWidget(self.title,0,1,1,1)
+        self.gridlayout1 = QtGui.QGridLayout()
+        self.gridlayout1.setMargin(0)
+        self.gridlayout1.setSpacing(6)
+        self.gridlayout1.setObjectName("gridlayout1")
+
+        self.guess = QtGui.QPushButton(self.centralWidget)
+        self.guess.setObjectName("guess")
+        self.gridlayout1.addWidget(self.guess,1,1,1,1)
+
+        self.tags = QtGui.QPushButton(self.centralWidget)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(0))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.tags.sizePolicy().hasHeightForWidth())
+        self.tags.setSizePolicy(sizePolicy)
+        self.tags.setObjectName("tags")
+        self.gridlayout1.addWidget(self.tags,1,0,1,1)
+
+        self.pushButton = QtGui.QPushButton(self.centralWidget)
+        self.pushButton.setObjectName("pushButton")
+        self.gridlayout1.addWidget(self.pushButton,0,1,1,1)
+
+        self.link = QtGui.QLineEdit(self.centralWidget)
+        self.link.setObjectName("link")
+        self.gridlayout1.addWidget(self.link,0,0,1,1)
+        self.gridlayout.addLayout(self.gridlayout1,1,1,1,1)
         self.vboxlayout.addLayout(self.gridlayout)
 
         self.editor = QtGui.QTextEdit(self.centralWidget)
@@ -195,17 +201,16 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.title,self.link)
-        MainWindow.setTabOrder(self.link,self.tags)
-        MainWindow.setTabOrder(self.tags,self.editor)
+        MainWindow.setTabOrder(self.link,self.editor)
         MainWindow.setTabOrder(self.editor,self.pushButton)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("MainWindow", "&Make Tiny", None, QtGui.QApplication.UnicodeUTF8))
-        self.guess.setText(QtGui.QApplication.translate("MainWindow", "&Guess Tags", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("MainWindow", "&Title", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("MainWindow", "&Link:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "T&ags:", None, QtGui.QApplication.UnicodeUTF8))
+        self.guess.setText(QtGui.QApplication.translate("MainWindow", "&Guess Tags", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton.setText(QtGui.QApplication.translate("MainWindow", "&Make Tiny", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuInsert.setTitle(QtGui.QApplication.translate("MainWindow", "Insert", None, QtGui.QApplication.UnicodeUTF8))
         self.menuPost.setTitle(QtGui.QApplication.translate("MainWindow", "Post", None, QtGui.QApplication.UnicodeUTF8))

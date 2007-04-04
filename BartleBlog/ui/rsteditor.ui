@@ -28,35 +28,8 @@
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item row="1" column="1" >
-       <layout class="QGridLayout" >
-        <property name="margin" >
-         <number>0</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item row="0" column="0" >
-         <widget class="QLineEdit" name="link" />
-        </item>
-        <item row="1" column="0" >
-         <widget class="QLineEdit" name="tags" />
-        </item>
-        <item row="0" column="1" >
-         <widget class="QPushButton" name="pushButton" >
-          <property name="text" >
-           <string>&amp;Make Tiny</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="QPushButton" name="guess" >
-          <property name="text" >
-           <string>&amp;Guess Tags</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="title" />
       </item>
       <item rowspan="2" row="0" column="0" >
        <layout class="QVBoxLayout" >
@@ -98,8 +71,47 @@
         </item>
        </layout>
       </item>
-      <item row="0" column="1" >
-       <widget class="QLineEdit" name="title" />
+      <item row="1" column="1" >
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="1" column="1" >
+         <widget class="QPushButton" name="guess" >
+          <property name="text" >
+           <string>&amp;Guess Tags</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QPushButton" name="tags" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>7</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QPushButton" name="pushButton" >
+          <property name="text" >
+           <string>&amp;Make Tiny</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" >
+         <widget class="QLineEdit" name="link" />
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -293,7 +305,6 @@
  <tabstops>
   <tabstop>title</tabstop>
   <tabstop>link</tabstop>
-  <tabstop>tags</tabstop>
   <tabstop>editor</tabstop>
   <tabstop>pushButton</tabstop>
  </tabstops>

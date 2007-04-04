@@ -77,7 +77,7 @@ class Macros:
         earliest=db.Post.select(orderBy=db.Post.q.pubDate)[0].pubDate
         if rss:
             return u"Copyright %d-%d %s"%(earliest.year,datetime.date.today().year,self.blog.author)
-        return u"&copy; %d-%d %s <%s>"%(earliest.year,datetime.date.today().year,self.blog.author,self.blog.author_email)
+        return u"&copy; %d-%d %s &lt;%s&gt;"%(earliest.year,datetime.date.today().year,self.blog.author,self.blog.author_email)
 
 
 

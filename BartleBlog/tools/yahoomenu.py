@@ -133,9 +133,9 @@ class YahooMenuTool:
     }
 
     // Initialize and render the menu bar when it is available in the DOM
-    YAHOO.util.Event.onContentReady("%s", YAHOO.example.onMenuBarReady);
+    YAHOO.util.Event.addListener(window, "load", YAHOO.example.onMenuBarReady);
     </script>
-    '''%(self.root.title,self.root.title)
+    '''%(self.root.title)
         ]
 
 
