@@ -23,6 +23,13 @@ class EditorWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.closeWindow)
         
+        QtCore.QObject.connect(self.ui.guess,
+            QtCore.SIGNAL("clicked()"),
+            self.guessTags)
+        
+    def guessTags(self):
+        self.ui.tags.setText(','.join(db.guessCategories(str(self.ui.editor.toPlainText())+str(self.ui.title.text()))))
+        
     def closeWindow(self):
         self.close()
         

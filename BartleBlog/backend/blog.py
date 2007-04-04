@@ -30,8 +30,6 @@ class Blog:
 
         Macros(self)
 
-
-
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
         f=codecs.open(fname,"r","utf-8")
