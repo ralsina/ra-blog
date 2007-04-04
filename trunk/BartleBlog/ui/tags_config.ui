@@ -65,7 +65,7 @@
        <item>
         <widget class="QComboBox" name="list" >
          <property name="editable" >
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -86,6 +86,16 @@
          </property>
          <property name="icon" >
           <iconset resource="icons.qrc" >:/icons/icons/fileclose.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="rename" >
+         <property name="text" >
+          <string comment="Rename tag" >...</string>
+         </property>
+         <property name="icon" >
+          <iconset resource="icons.qrc" >:/icons/icons/edit.png</iconset>
          </property>
         </widget>
        </item>
