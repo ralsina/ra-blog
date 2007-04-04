@@ -18,7 +18,31 @@ class TagsConfigWidget(QtGui.QWidget):
         self.loadTags()
         QtCore.QObject.connect(self.ui.list,QtCore.SIGNAL('activated(QString)'),
             self.loadTag)
+        QtCore.QObject.connect(self.ui.new,QtCore.SIGNAL('clicked()'),
+            self.newTag)
+        QtCore.QObject.connect(self.ui.delete,QtCore.SIGNAL('clicked()'),
+            self.delTag)
+        
+    def delTag(self):
+        self.curTag.destroySelf()
+        
+    def newTag(self):
+        text,ok=QtGui.QInputDialog.getText(self,'BartleBlog - New Tag','Enter the name of the new tag')
+        text=str(text)
+        if ok:
+            self.curTag=db.Category(name=text,description='Posts about %s'%text,title=text,magicWords=text)
+            if self.curTag.title:
+                self.ui.title.setText(self.curTag.title)
+            if self.curTag.magicWords:
+                self.ui.magicWords.setText(self.curTag.magicWords)
+            if self.curTag.description:
+                self.ui.description.setText(self.curTag.description)
             
+            self.loadTags()
+            self.loadTag(text)
+            self.ui.list.setCurrentIndex(self.ui.list.findText(text))
+            
+        
         
     def saveTag(self):
         if not self.curTag:

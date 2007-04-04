@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/tags_config.ui'
 #
-# Created: Tue Apr  3 21:08:01 2007
+# Created: Tue Apr  3 21:59:08 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,21 +25,21 @@ class Ui_Form(object):
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
 
-        self.label = QtGui.QLabel(Form)
-        self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,0,0,1,1)
-
-        self.magicWords = QtGui.QLineEdit(Form)
-        self.magicWords.setObjectName("magicWords")
-        self.gridlayout.addWidget(self.magicWords,2,1,1,1)
-
         self.label_2 = QtGui.QLabel(Form)
         self.label_2.setObjectName("label_2")
         self.gridlayout.addWidget(self.label_2,2,0,1,1)
 
+        self.label = QtGui.QLabel(Form)
+        self.label.setObjectName("label")
+        self.gridlayout.addWidget(self.label,0,0,1,1)
+
         self.label_4 = QtGui.QLabel(Form)
         self.label_4.setObjectName("label_4")
         self.gridlayout.addWidget(self.label_4,1,0,1,1)
+
+        self.magicWords = QtGui.QLineEdit(Form)
+        self.magicWords.setObjectName("magicWords")
+        self.gridlayout.addWidget(self.magicWords,2,1,1,1)
 
         self.title = QtGui.QLineEdit(Form)
         self.title.setObjectName("title")
@@ -51,10 +51,21 @@ class Ui_Form(object):
         self.hboxlayout.setObjectName("hboxlayout")
 
         self.list = QtGui.QComboBox(Form)
+        self.list.setEditable(True)
         self.list.setObjectName("list")
         self.hboxlayout.addWidget(self.list)
 
-        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.new = QtGui.QToolButton(Form)
+        self.new.setIcon(QtGui.QIcon(":/icons/icons/filenew.png"))
+        self.new.setObjectName("new")
+        self.hboxlayout.addWidget(self.new)
+
+        self.delete = QtGui.QToolButton(Form)
+        self.delete.setIcon(QtGui.QIcon(":/icons/icons/fileclose.png"))
+        self.delete.setObjectName("delete")
+        self.hboxlayout.addWidget(self.delete)
+
+        spacerItem = QtGui.QSpacerItem(241,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.gridlayout.addLayout(self.hboxlayout,0,1,1,1)
         self.vboxlayout.addLayout(self.gridlayout)
@@ -81,14 +92,6 @@ class Ui_Form(object):
         spacerItem1 = QtGui.QSpacerItem(281,29,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout1.addItem(spacerItem1)
 
-        self.delete = QtGui.QPushButton(Form)
-        self.delete.setObjectName("delete")
-        self.hboxlayout1.addWidget(self.delete)
-
-        self.new = QtGui.QPushButton(Form)
-        self.new.setObjectName("new")
-        self.hboxlayout1.addWidget(self.new)
-
         self.close = QtGui.QPushButton(Form)
         self.close.setObjectName("close")
         self.hboxlayout1.addWidget(self.close)
@@ -99,14 +102,15 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Form", "Tags:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Magic Words:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Form", "Tags:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "Title:", None, QtGui.QApplication.UnicodeUTF8))
+        self.new.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.delete.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "Description:", None, QtGui.QApplication.UnicodeUTF8))
-        self.delete.setText(QtGui.QApplication.translate("Form", "Delete Tag", None, QtGui.QApplication.UnicodeUTF8))
-        self.new.setText(QtGui.QApplication.translate("Form", "New Tag", None, QtGui.QApplication.UnicodeUTF8))
         self.close.setText(QtGui.QApplication.translate("Form", "Close", None, QtGui.QApplication.UnicodeUTF8))
 
+import icons_rc
 
 
 if __name__ == "__main__":

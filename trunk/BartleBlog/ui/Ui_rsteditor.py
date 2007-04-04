@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Tue Apr  3 21:08:01 2007
+# Created: Tue Apr  3 21:59:08 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,800,600).size()).expandedTo(MainWindow.minimumSizeHint()))
+        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,536,493).size()).expandedTo(MainWindow.minimumSizeHint()))
 
         self.centralWidget = QtGui.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
@@ -28,35 +28,27 @@ class Ui_MainWindow(object):
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
 
-        self.tags = QtGui.QLineEdit(self.centralWidget)
-        self.tags.setObjectName("tags")
-        self.gridlayout.addWidget(self.tags,2,1,1,1)
-
-        self.format = QtGui.QComboBox(self.centralWidget)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(0))
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.format.sizePolicy().hasHeightForWidth())
-        self.format.setSizePolicy(sizePolicy)
-        self.format.setObjectName("format")
-        self.gridlayout.addWidget(self.format,2,3,1,1)
-
-        self.title = QtGui.QLineEdit(self.centralWidget)
-        self.title.setObjectName("title")
-        self.gridlayout.addWidget(self.title,0,1,1,3)
-
-        self.label_3 = QtGui.QLabel(self.centralWidget)
-        self.label_3.setObjectName("label_3")
-        self.gridlayout.addWidget(self.label_3,2,2,1,1)
+        self.gridlayout1 = QtGui.QGridLayout()
+        self.gridlayout1.setMargin(0)
+        self.gridlayout1.setSpacing(6)
+        self.gridlayout1.setObjectName("gridlayout1")
 
         self.link = QtGui.QLineEdit(self.centralWidget)
         self.link.setObjectName("link")
-        self.gridlayout.addWidget(self.link,1,1,1,2)
+        self.gridlayout1.addWidget(self.link,0,0,1,1)
+
+        self.tags = QtGui.QLineEdit(self.centralWidget)
+        self.tags.setObjectName("tags")
+        self.gridlayout1.addWidget(self.tags,1,0,1,1)
 
         self.pushButton = QtGui.QPushButton(self.centralWidget)
         self.pushButton.setObjectName("pushButton")
-        self.gridlayout.addWidget(self.pushButton,1,3,1,1)
+        self.gridlayout1.addWidget(self.pushButton,0,1,1,1)
+
+        self.guess = QtGui.QPushButton(self.centralWidget)
+        self.guess.setObjectName("guess")
+        self.gridlayout1.addWidget(self.guess,1,1,1,1)
+        self.gridlayout.addLayout(self.gridlayout1,1,1,1,1)
 
         self.vboxlayout1 = QtGui.QVBoxLayout()
         self.vboxlayout1.setMargin(0)
@@ -74,7 +66,11 @@ class Ui_MainWindow(object):
         self.label_2 = QtGui.QLabel(self.centralWidget)
         self.label_2.setObjectName("label_2")
         self.vboxlayout1.addWidget(self.label_2)
-        self.gridlayout.addLayout(self.vboxlayout1,0,0,3,1)
+        self.gridlayout.addLayout(self.vboxlayout1,0,0,2,1)
+
+        self.title = QtGui.QLineEdit(self.centralWidget)
+        self.title.setObjectName("title")
+        self.gridlayout.addWidget(self.title,0,1,1,1)
         self.vboxlayout.addLayout(self.gridlayout)
 
         self.editor = QtGui.QTextEdit(self.centralWidget)
@@ -84,17 +80,17 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.menuBar = QtGui.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0,0,800,31))
+        self.menuBar.setGeometry(QtCore.QRect(0,0,536,31))
         self.menuBar.setObjectName("menuBar")
-
-        self.menuPost = QtGui.QMenu(self.menuBar)
-        self.menuPost.setObjectName("menuPost")
 
         self.menuEdit = QtGui.QMenu(self.menuBar)
         self.menuEdit.setObjectName("menuEdit")
 
         self.menuInsert = QtGui.QMenu(self.menuEdit)
         self.menuInsert.setObjectName("menuInsert")
+
+        self.menuPost = QtGui.QMenu(self.menuBar)
+        self.menuPost.setObjectName("menuPost")
         MainWindow.setMenuBar(self.menuBar)
 
         self.statusBar = QtGui.QStatusBar(MainWindow)
@@ -155,10 +151,12 @@ class Ui_MainWindow(object):
         self.actionOpenomyTag = QtGui.QAction(MainWindow)
         self.actionOpenomyTag.setIcon(QtGui.QIcon(":/icons/icons/blockdevice.png"))
         self.actionOpenomyTag.setObjectName("actionOpenomyTag")
-        self.menuPost.addAction(self.actionSave)
-        self.menuPost.addAction(self.actionPreview)
-        self.menuPost.addSeparator()
-        self.menuPost.addAction(self.actionClose)
+
+        self.actionRST = QtGui.QAction(MainWindow)
+        self.actionRST.setCheckable(True)
+        self.actionRST.setChecked(True)
+        self.actionRST.setIcon(QtGui.QIcon(":/icons/icons/fonts.png"))
+        self.actionRST.setObjectName("actionRST")
         self.menuInsert.addAction(self.actionFlickr_Image)
         self.menuInsert.addAction(self.actionOpenomy_File)
         self.menuEdit.addAction(self.actionCut)
@@ -170,10 +168,16 @@ class Ui_MainWindow(object):
         self.menuEdit.addAction(self.actionDelete)
         self.menuEdit.addSeparator()
         self.menuEdit.addAction(self.menuInsert.menuAction())
+        self.menuPost.addAction(self.actionSave)
+        self.menuPost.addAction(self.actionPreview)
+        self.menuPost.addAction(self.actionRST)
+        self.menuPost.addSeparator()
+        self.menuPost.addAction(self.actionClose)
         self.menuBar.addAction(self.menuPost.menuAction())
         self.menuBar.addAction(self.menuEdit.menuAction())
         self.toolBar.addAction(self.actionSave)
         self.toolBar.addAction(self.actionPreview)
+        self.toolBar.addAction(self.actionRST)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCut)
         self.toolBar.addAction(self.actionCopy)
@@ -184,27 +188,27 @@ class Ui_MainWindow(object):
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionFlickr_Image)
         self.toolBar.addAction(self.actionOpenomy_File)
+        self.label.setBuddy(self.title)
+        self.label_4.setBuddy(self.link)
+        self.label_2.setBuddy(self.tags)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.title,self.link)
         MainWindow.setTabOrder(self.link,self.tags)
         MainWindow.setTabOrder(self.tags,self.editor)
-        MainWindow.setTabOrder(self.editor,self.format)
-        MainWindow.setTabOrder(self.format,self.pushButton)
+        MainWindow.setTabOrder(self.editor,self.pushButton)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.format.addItem(QtGui.QApplication.translate("MainWindow", "Restructured Text", None, QtGui.QApplication.UnicodeUTF8))
-        self.format.addItem(QtGui.QApplication.translate("MainWindow", "HTML", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_3.setText(QtGui.QApplication.translate("MainWindow", "Format:", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("MainWindow", "Make &Tiny", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("MainWindow", "Title:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("MainWindow", "Link:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Tags:", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuPost.setTitle(QtGui.QApplication.translate("MainWindow", "Post", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButton.setText(QtGui.QApplication.translate("MainWindow", "&Make Tiny", None, QtGui.QApplication.UnicodeUTF8))
+        self.guess.setText(QtGui.QApplication.translate("MainWindow", "&Guess Tags", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("MainWindow", "&Title", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("MainWindow", "&Link:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("MainWindow", "T&ags:", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuInsert.setTitle(QtGui.QApplication.translate("MainWindow", "Insert", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuPost.setTitle(QtGui.QApplication.translate("MainWindow", "Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionPreview.setText(QtGui.QApplication.translate("MainWindow", "Preview", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCut.setText(QtGui.QApplication.translate("MainWindow", "Cut", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCopy.setText(QtGui.QApplication.translate("MainWindow", "Copy", None, QtGui.QApplication.UnicodeUTF8))
@@ -218,6 +222,7 @@ class Ui_MainWindow(object):
         self.actionSave.setText(QtGui.QApplication.translate("MainWindow", "save", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClose.setText(QtGui.QApplication.translate("MainWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpenomyTag.setText(QtGui.QApplication.translate("MainWindow", "Openomy Tag", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRST.setText(QtGui.QApplication.translate("MainWindow", "Restructured Text", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
