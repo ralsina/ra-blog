@@ -12,7 +12,6 @@ class ConfigWindow(QtGui.QDialog):
 
         # Set up the UI from designer
         self.ui=Ui_Dialog()
-        print dir(self.ui)
         self.ui.setupUi(self)
         
         # Add configuration items to the list
