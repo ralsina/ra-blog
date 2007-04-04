@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/tags_config.ui'
 #
-# Created: Tue Apr  3 20:49:38 2007
+# Created: Tue Apr  3 21:08:01 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -78,12 +78,20 @@ class Ui_Form(object):
         self.hboxlayout1.setSpacing(6)
         self.hboxlayout1.setObjectName("hboxlayout1")
 
-        spacerItem1 = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem1 = QtGui.QSpacerItem(281,29,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout1.addItem(spacerItem1)
 
-        self.pushButton = QtGui.QPushButton(Form)
-        self.pushButton.setObjectName("pushButton")
-        self.hboxlayout1.addWidget(self.pushButton)
+        self.delete = QtGui.QPushButton(Form)
+        self.delete.setObjectName("delete")
+        self.hboxlayout1.addWidget(self.delete)
+
+        self.new = QtGui.QPushButton(Form)
+        self.new.setObjectName("new")
+        self.hboxlayout1.addWidget(self.new)
+
+        self.close = QtGui.QPushButton(Form)
+        self.close.setObjectName("close")
+        self.hboxlayout1.addWidget(self.close)
         self.vboxlayout.addLayout(self.hboxlayout1)
 
         self.retranslateUi(Form)
@@ -95,7 +103,9 @@ class Ui_Form(object):
         self.label_2.setText(QtGui.QApplication.translate("Form", "Magic Words:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "Title:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "Description:", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("Form", "Close", None, QtGui.QApplication.UnicodeUTF8))
+        self.delete.setText(QtGui.QApplication.translate("Form", "Delete Tag", None, QtGui.QApplication.UnicodeUTF8))
+        self.new.setText(QtGui.QApplication.translate("Form", "New Tag", None, QtGui.QApplication.UnicodeUTF8))
+        self.close.setText(QtGui.QApplication.translate("Form", "Close", None, QtGui.QApplication.UnicodeUTF8))
 
 
 

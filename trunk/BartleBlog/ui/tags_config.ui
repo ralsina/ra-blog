@@ -116,14 +116,28 @@
        </property>
        <property name="sizeHint" >
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>281</width>
+         <height>29</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton" >
+      <widget class="QPushButton" name="delete" >
+       <property name="text" >
+        <string>Delete Tag</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="new" >
+       <property name="text" >
+        <string>New Tag</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="close" >
        <property name="text" >
         <string>Close</string>
        </property>
