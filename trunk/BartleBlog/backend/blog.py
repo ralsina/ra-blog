@@ -148,6 +148,7 @@ class Blog:
                     fname,
                     story=story
                     )
+            self.progress.step()
 
 
     def renderBlogIndex(self):
@@ -316,7 +317,9 @@ class Blog:
         if self.progress: self.progress.gotoStage(1)
         self.renderBlogArchive(oldest.year,newest.year)
 
-        if self.progress: self.progress.gotoStage(2)
+        if self.progress: 
+            self.progress.gotoStage(2)
+            self.progress.setSteps(db.Story.select().count())
         self.renderStories()
 
         if self.progress: self.progress.gotoStage(3)
