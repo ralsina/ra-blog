@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>536</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -28,52 +28,37 @@
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item row="2" column="1" >
-       <widget class="QLineEdit" name="tags" />
-      </item>
-      <item row="2" column="3" >
-       <widget class="QComboBox" name="format" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>5</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+      <item row="1" column="1" >
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>0</number>
         </property>
-        <item>
-         <property name="text" >
-          <string>Restructured Text</string>
-         </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="0" column="0" >
+         <widget class="QLineEdit" name="link" />
         </item>
-        <item>
-         <property name="text" >
-          <string>HTML</string>
-         </property>
+        <item row="1" column="0" >
+         <widget class="QLineEdit" name="tags" />
         </item>
-       </widget>
+        <item row="0" column="1" >
+         <widget class="QPushButton" name="pushButton" >
+          <property name="text" >
+           <string>&amp;Make Tiny</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QPushButton" name="guess" >
+          <property name="text" >
+           <string>&amp;Guess Tags</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="0" column="1" colspan="3" >
-       <widget class="QLineEdit" name="title" />
-      </item>
-      <item row="2" column="2" >
-       <widget class="QLabel" name="label_3" >
-        <property name="text" >
-         <string>Format:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" colspan="2" >
-       <widget class="QLineEdit" name="link" />
-      </item>
-      <item row="1" column="3" >
-       <widget class="QPushButton" name="pushButton" >
-        <property name="text" >
-         <string>Make &amp;Tiny</string>
-        </property>
-       </widget>
-      </item>
-      <item rowspan="3" row="0" column="0" >
+      <item rowspan="2" row="0" column="0" >
        <layout class="QVBoxLayout" >
         <property name="margin" >
          <number>0</number>
@@ -84,25 +69,37 @@
         <item>
          <widget class="QLabel" name="label" >
           <property name="text" >
-           <string>Title:</string>
+           <string>&amp;Title</string>
+          </property>
+          <property name="buddy" >
+           <cstring>title</cstring>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_4" >
           <property name="text" >
-           <string>Link:</string>
+           <string>&amp;Link:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>link</cstring>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_2" >
           <property name="text" >
-           <string>Tags:</string>
+           <string>T&amp;ags:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>tags</cstring>
           </property>
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="title" />
       </item>
      </layout>
     </item>
@@ -120,19 +117,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>536</width>
      <height>31</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuPost" >
-    <property name="title" >
-     <string>Post</string>
-    </property>
-    <addaction name="actionSave" />
-    <addaction name="actionPreview" />
-    <addaction name="separator" />
-    <addaction name="actionClose" />
-   </widget>
    <widget class="QMenu" name="menuEdit" >
     <property name="title" >
      <string>Edit</string>
@@ -154,6 +142,16 @@
     <addaction name="separator" />
     <addaction name="menuInsert" />
    </widget>
+   <widget class="QMenu" name="menuPost" >
+    <property name="title" >
+     <string>Post</string>
+    </property>
+    <addaction name="actionSave" />
+    <addaction name="actionPreview" />
+    <addaction name="actionRST" />
+    <addaction name="separator" />
+    <addaction name="actionClose" />
+   </widget>
    <addaction name="menuPost" />
    <addaction name="menuEdit" />
   </widget>
@@ -167,6 +165,7 @@
    </attribute>
    <addaction name="actionSave" />
    <addaction name="actionPreview" />
+   <addaction name="actionRST" />
    <addaction name="separator" />
    <addaction name="actionCut" />
    <addaction name="actionCopy" />
@@ -276,13 +275,26 @@
     <string>Openomy Tag</string>
    </property>
   </action>
+  <action name="actionRST" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="checked" >
+    <bool>true</bool>
+   </property>
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/fonts.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Restructured Text</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>title</tabstop>
   <tabstop>link</tabstop>
   <tabstop>tags</tabstop>
   <tabstop>editor</tabstop>
-  <tabstop>format</tabstop>
   <tabstop>pushButton</tabstop>
  </tabstops>
  <resources>
