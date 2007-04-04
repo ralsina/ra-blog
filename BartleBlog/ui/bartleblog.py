@@ -17,6 +17,7 @@ from BartleBlog.backend.blog import Blog
 from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
 from BartleBlog.ui.config import ConfigWindow
 from BartleBlog.ui.editor import EditorWindow
+from BartleBlog.ui.progress import ProgressDialog
 
 from BartleBlog.ui.postmodel import *
 from BartleBlog.rst import rst2html
@@ -72,6 +73,8 @@ class MainWindow(QtGui.QMainWindow):
         cfg.exec_()
         
     def renderBlog(self):
+        self.blog.progress=ProgressDialog(self)
+        self.blog.progress.show()
         self.blog.renderBlog()
 
     def init_tree(self):

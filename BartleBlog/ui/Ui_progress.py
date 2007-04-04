@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/progress.ui'
 #
-# Created: Wed Apr  4 12:02:59 2007
+# Created: Wed Apr  4 12:48:21 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,7 +25,8 @@ class Ui_Dialog(object):
         self.vboxlayout.addWidget(self.stages)
 
         self.progress = QtGui.QProgressBar(Dialog)
-        self.progress.setProperty("value",QtCore.QVariant(24))
+        self.progress.setMaximum(0)
+        self.progress.setProperty("value",QtCore.QVariant(-1))
         self.progress.setOrientation(QtCore.Qt.Horizontal)
         self.progress.setObjectName("progress")
         self.vboxlayout.addWidget(self.progress)
