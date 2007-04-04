@@ -15,6 +15,7 @@ class Blog:
         db.initDB('blog.db')
         self.dest_dir=os.path.abspath("weblog")
         self.blog_title="Lateral Opinion"
+        self.progress=None
 
         #################################################################################
         ### Things that should be in the config file
@@ -38,6 +39,7 @@ class Blog:
     def renderBlogPage(self,title,curDate,itemtmpl,pagetmpl,dname,fname,postlist=None,story=None,body=None,bodytitle=None):
         macros=self.macros
         blog=self
+        progress=self.progress
         # Render
         if body or body=="":
             pass
@@ -71,6 +73,7 @@ class Blog:
         f.write(rss)
 
     def renderCategory(self,cat):
+        
         catname=cat.name.lower()
         title='Posts in %s about %s'%(self.blog_title,cat.name)
         dname=os.path.join(self.dest_dir,'categories')
@@ -85,7 +88,7 @@ class Blog:
                 dname,
                 fname,
                 postlist=postlist,
-                bodytitle=title
+                bodytitle=title,
             )
         self.renderRSS(title,curDate,dname,catname+'.xml',postlist)
 
@@ -101,7 +104,7 @@ class Blog:
                 'pageSite',
                 dname,
                 fname,
-                postlist=db.Category.select()
+                postlist=db.Category.select(),
             )
 
     def renderCategories(self):
@@ -145,7 +148,7 @@ class Blog:
                     story_dir,
                     fname,
                     story=story
-                )
+                    )
 
 
     def renderBlogIndex(self):
@@ -247,9 +250,9 @@ class Blog:
             postlist=db.Post.select(db.AND(db.Post.q.pubDate>=start,db.Post.q.pubDate<end),
                                 orderBy=db.Post.q.pubDate)
 
-            if postlist.count()==0:
+            pc=postlist.count()
+            if pc==0:
                 continue
-
             item=self.renderBlogPage(
                     'Posts for month %d/%d'%(month,year),
                     start,
@@ -275,7 +278,7 @@ class Blog:
             )
 
     def renderBlogArchive(self,start,end):
-        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ]))
+        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ])) 
 
         dname=os.path.join(self.dest_dir,'weblog')
         fname='archive.html'
@@ -292,13 +295,34 @@ class Blog:
 
 
     def renderBlog(self):
+        if self.progress:
+            self.progress.setStages([
+            ['Rendering Categories','Rendering index pages for each category.'],
+            ['Rendering Archives','Rendering the historical archive index.'],
+            ['Rendering Stories','Rendering the static story pages'],
+            ['Rendering Index','Rendering the main page.'],
+            ['Rendering Blog','Rendering all archived posts.']])        
         plist=db.Post.select(orderBy=db.Post.q.pubDate)
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
+        if self.progress: 
+            self.progress.gotoStage(0)
+            self.progress.setSteps(db.Category.select().count())
         self.renderCategories()
+
+        if self.progress: self.progress.gotoStage(1)
         self.renderBlogArchive(oldest.year,newest.year)
+
+        if self.progress: self.progress.gotoStage(2)
         self.renderStories()
+
+        if self.progress: self.progress.gotoStage(3)
         self.renderBlogIndex()
+
+        if self.progress: 
+            self.progress.gotoStage(4)
+            self.progress.setSteps(plist.count())
+            self.progress.setPos(0)
         for year in range(oldest.year,newest.year+1):
             self.renderBlogYear(year)
