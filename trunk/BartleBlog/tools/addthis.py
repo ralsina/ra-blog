@@ -18,7 +18,7 @@ class AddThisTool:
     def subscribe(self):
         return '''
 <a href="http://www.addthis.com/feed.php?pub=%s&h1=%s&t1=" title="Subscribe using any feed reader!"><img src="http://s3.addthis.com/button1-rss.gif" width="125" height="16" border="0" alt="AddThis Feed Button" /></a>
-'''%(self.user,urllib.quote(self.blog.macros.feedBurner.rssUrl()))
+'''.replace('&','&amp;')%(self.user,urllib.quote(self.blog.macros.feedBurner.rssUrl()))
 
 
 def factory (blog):
