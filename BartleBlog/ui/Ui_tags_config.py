@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/tags_config.ui'
 #
-# Created: Tue Apr  3 21:59:08 2007
+# Created: Tue Apr  3 22:56:15 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -51,7 +51,7 @@ class Ui_Form(object):
         self.hboxlayout.setObjectName("hboxlayout")
 
         self.list = QtGui.QComboBox(Form)
-        self.list.setEditable(True)
+        self.list.setEditable(False)
         self.list.setObjectName("list")
         self.hboxlayout.addWidget(self.list)
 
@@ -64,6 +64,11 @@ class Ui_Form(object):
         self.delete.setIcon(QtGui.QIcon(":/icons/icons/fileclose.png"))
         self.delete.setObjectName("delete")
         self.hboxlayout.addWidget(self.delete)
+
+        self.rename = QtGui.QToolButton(Form)
+        self.rename.setIcon(QtGui.QIcon(":/icons/icons/edit.png"))
+        self.rename.setObjectName("rename")
+        self.hboxlayout.addWidget(self.rename)
 
         spacerItem = QtGui.QSpacerItem(241,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
@@ -107,6 +112,7 @@ class Ui_Form(object):
         self.label_4.setText(QtGui.QApplication.translate("Form", "Title:", None, QtGui.QApplication.UnicodeUTF8))
         self.new.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.delete.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.rename.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "Description:", None, QtGui.QApplication.UnicodeUTF8))
         self.close.setText(QtGui.QApplication.translate("Form", "Close", None, QtGui.QApplication.UnicodeUTF8))
 
