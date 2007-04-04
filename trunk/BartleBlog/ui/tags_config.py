@@ -24,20 +24,29 @@ class TagsConfigWidget(QtGui.QWidget):
             self.delTag)
         
     def delTag(self):
-        self.curTag.destroySelf()
+        res=QtGui.QMessageBox.question(self,'BartleBlog delete tag','Delete tag %s?'%self.curTag.name,
+                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+        if res == QtGui.QMessageBox.Yes:
+            self.curTag.destroySelf()
+            self.loadTags()
+        
+    def fillWidgets(self):
+        self.ui.title.setText('')
+        self.ui.magicWords.setText('')
+        self.ui.description.setText('')
+        if self.curTag.title:
+            self.ui.title.setText(self.curTag.title)
+        if self.curTag.magicWords:
+            self.ui.magicWords.setText(self.curTag.magicWords)
+        if self.curTag.description:
+            self.ui.description.setText(self.curTag.description)
         
     def newTag(self):
         text,ok=QtGui.QInputDialog.getText(self,'BartleBlog - New Tag','Enter the name of the new tag')
         text=str(text)
         if ok:
             self.curTag=db.Category(name=text,description='Posts about %s'%text,title=text,magicWords=text)
-            if self.curTag.title:
-                self.ui.title.setText(self.curTag.title)
-            if self.curTag.magicWords:
-                self.ui.magicWords.setText(self.curTag.magicWords)
-            if self.curTag.description:
-                self.ui.description.setText(self.curTag.description)
-            
+            self.fillWidgets()
             self.loadTags()
             self.loadTag(text)
             self.ui.list.setCurrentIndex(self.ui.list.findText(text))
@@ -58,19 +67,6 @@ class TagsConfigWidget(QtGui.QWidget):
         self.loadTag(self.ui.list.itemText(0))
             
     def loadTag(self,tagname):
-            self.saveTag()
-            self.curTag=db.Category.select(db.Category.q.name==str(tagname))[0]
-
-            self.ui.title.setText('')
-            self.ui.magicWords.setText('')
-            self.ui.description.setText('')
-
-            if self.curTag.title:
-                self.ui.title.setText(self.curTag.title)
-            if self.curTag.magicWords:
-                self.ui.magicWords.setText(self.curTag.magicWords)
-            if self.curTag.description:
-                self.ui.description.setText(self.curTag.description)
-        
-        
-
+        self.saveTag()
+        self.curTag=db.Category.select(db.Category.q.name==str(tagname))[0]
+        self.fillWidgets()
