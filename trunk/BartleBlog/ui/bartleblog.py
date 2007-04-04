@@ -76,6 +76,7 @@ class MainWindow(QtGui.QMainWindow):
         self.blog.progress=ProgressDialog(self)
         self.blog.progress.show()
         self.blog.renderBlog()
+        self.blog.progress=None
 
     def init_tree(self):
         self.model=PostModel()

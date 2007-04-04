@@ -90,8 +90,6 @@ class Blog:
                 postlist=postlist,
                 bodytitle=title,
             )
-        if self.progress:
-            self.progress.step()
   
     def renderCategoryIndex(self):
         title='%s posts by topic'%self.blog_title
@@ -309,7 +307,10 @@ class Blog:
 
         if self.progress: 
             self.progress.gotoStage(0)
-            self.progress.setSteps(db.Category.select().count())
+            c=0
+            for cat in db.Category.select():
+                c=c+len(cat.posts)+len(cat.stories)
+            self.progress.setSteps(c)
         self.renderCategories()
 
         if self.progress: self.progress.gotoStage(1)
@@ -323,7 +324,8 @@ class Blog:
 
         if self.progress: 
             self.progress.gotoStage(4)
-            self.progress.setSteps(plist.count())
+            # Each post is rendered once in year/month/day pages
+            self.progress.setSteps(plist.count()*3)
             self.progress.setPos(0)
         for year in range(oldest.year,newest.year+1):
             self.renderBlogYear(year)
