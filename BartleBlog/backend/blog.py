@@ -72,14 +72,14 @@ class Blog:
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(rss)
 
-    def renderCategory(self,cat):
-        
+    def renderCategory(self,cat):        
         catname=cat.name.lower()
         title='Posts in %s about %s'%(self.blog_title,cat.name)
         dname=os.path.join(self.dest_dir,'categories')
         fname=catname+'.html'
         postlist=cat.posts
         curDate=datetime.datetime.today()
+        self.renderRSS(title,curDate,dname,catname+'.xml',postlist)
         self.renderBlogPage(
                 title,
                 curDate,
@@ -90,8 +90,9 @@ class Blog:
                 postlist=postlist,
                 bodytitle=title,
             )
-        self.renderRSS(title,curDate,dname,catname+'.xml',postlist)
-
+        if self.progress:
+            self.progress.step()
+  
     def renderCategoryIndex(self):
         title='%s posts by topic'%self.blog_title
         dname=os.path.join(self.dest_dir,'categories')
@@ -326,3 +327,5 @@ class Blog:
             self.progress.setPos(0)
         for year in range(oldest.year,newest.year+1):
             self.renderBlogYear(year)
+        if self.progress: 
+            self.progress.close()

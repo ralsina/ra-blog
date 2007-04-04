@@ -1,5 +1,4 @@
 <py-for="cat in postlist">
-        <py-exec="if progress: progress.step()">
     <div class="postbox thinedge">
         <h3><a href="<py-eval="macros.absoluteUrl(cat.myurl())">"><py-eval="cat.title"></a></h3>
         <py-eval="cat.description">
