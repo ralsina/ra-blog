@@ -34,6 +34,7 @@ class EditorWindow(QtGui.QMainWindow):
         self.ui.title.setText(post.title)
         self.ui.link.setText(post.link)
         self.ui.editor.setText(post.text)
+        self.ui.tags.setText(','.join( [c.name for c in post.categories]))
 
         
     def savePost(self):
