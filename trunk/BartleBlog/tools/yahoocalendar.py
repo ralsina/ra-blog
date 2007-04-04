@@ -50,9 +50,7 @@ class YahooCalendar:
 
                             YAHOO.blog.cal1.render();
                         }
-                        if (window.addEventListener) window.addEventListener("load",init,false);
-                        else if (window.attachEvent) window.attachEvent("onload",init);
-                        /*YAHOO.util.Event.addListener(window, "load", init);*/
+                        YAHOO.util.Event.addListener(window, "load", init);
                     </script>
                 '''%(date.month,date.year,disabled,self.blog.basepath)
 

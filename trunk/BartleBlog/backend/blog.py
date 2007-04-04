@@ -48,7 +48,7 @@ class Blog:
             page=renderTemplate(self.loadTemplate(pagetmpl))
         else:
             page=body
-        page=slimmer.html_slimmer(page)
+        #page=slimmer.html_slimmer(page)
         # Save or return
         if not fname:
             return page
