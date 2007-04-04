@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os
+import os,re
 from sqlobject import *
 import urllib
 from BartleBlog.util.html2text import html2text
@@ -26,6 +26,18 @@ def fteaser (self):
 def frender (self):
     pass
 
+def guessCategories(text):
+    text=text.lower()
+    res=[]
+    for cat in Category.select():
+        if not cat.magicWords:
+            continue
+        for word in cat.magicWords.split(' '):
+            if re.compile(' %s |^%s | %s$'%(word,word,word)).findall(text): 
+                res.append(cat.name)
+                break
+    return res
+    
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
