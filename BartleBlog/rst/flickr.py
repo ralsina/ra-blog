@@ -46,7 +46,7 @@ def flickr( name, arguments, options, content, lineno,
     t_url='http://farm%s.static.flickr.com/%s/%s_%s_%s.jpg'%(
             farm,server,id,secret,'m')
 
-    html='<a href="%s"><img src="%s" class="flickr"></a>'%(url,t_url)
+    html='<a href="%s"><img src="%s" class="flickr" alt="%s"></a>'%(url,t_url,fname)
 
     raw = docutils.nodes.raw('',html, format = 'html')
     return [raw]
