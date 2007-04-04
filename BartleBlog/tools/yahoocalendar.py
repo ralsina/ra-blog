@@ -12,7 +12,7 @@ class YahooCalendar:
         '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/calendar/assets/calendar.css">',
         '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
         '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/calendar/calendar-min.js"></script>',
-        '<script type="text/JavaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
+        '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
         ]
 
     def widget(self,_date):
@@ -32,7 +32,7 @@ class YahooCalendar:
         disabled=','.join(disabled)
 
         return '''  <div id="cal1Container"></div>
-                    <script>
+                    <script type="text/javaScript">
                         YAHOO.namespace("blog");
                         function init() {
                             YAHOO.blog.cal1 =
@@ -50,7 +50,9 @@ class YahooCalendar:
 
                             YAHOO.blog.cal1.render();
                         }
-                        YAHOO.util.Event.addListener(window, "load", init);
+                        if (window.addEventListener) window.addEventListener("load",init,false);
+                        else if (window.attachEvent) window.attachEvent("onload",init);
+                        /*YAHOO.util.Event.addListener(window, "load", init);*/
                     </script>
                 '''%(date.month,date.year,disabled,self.blog.basepath)
 
