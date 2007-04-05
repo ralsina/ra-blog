@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Thu Apr  5 11:11:15 2007
+# Created: Thu Apr  5 12:34:33 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,22 +23,14 @@ class Ui_MainWindow(object):
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
 
-        self.splitter_2 = QtGui.QSplitter(self.centralwidget)
-        self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
-        self.splitter_2.setObjectName("splitter_2")
-
-        self.viewer = QtGui.QTextBrowser(self.splitter_2)
-        self.viewer.setOpenExternalLinks(True)
-        self.viewer.setObjectName("viewer")
-
-        self.splitter = QtGui.QSplitter(self.splitter_2)
+        self.splitter = QtGui.QSplitter(self.centralwidget)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
 
         self.tree = QtGui.QTreeView(self.splitter)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tree.sizePolicy().hasHeightForWidth())
         self.tree.setSizePolicy(sizePolicy)
@@ -46,7 +38,21 @@ class Ui_MainWindow(object):
         self.tree.setAnimated(False)
         self.tree.setAllColumnsShowFocus(True)
         self.tree.setObjectName("tree")
-        self.vboxlayout.addWidget(self.splitter_2)
+
+        self.viewer = QtGui.QTextBrowser(self.splitter)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy.setHorizontalStretch(3)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.viewer.sizePolicy().hasHeightForWidth())
+        self.viewer.setSizePolicy(sizePolicy)
+
+        font = QtGui.QFont(self.viewer.font())
+        font.setFamily("Bitstream Vera Sans")
+        self.viewer.setFont(font)
+        self.viewer.setOpenExternalLinks(True)
+        self.viewer.setObjectName("viewer")
+        self.vboxlayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)

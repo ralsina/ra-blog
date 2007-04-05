@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Thu Apr  5 11:11:16 2007
+# Created: Thu Apr  5 12:34:55 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -80,6 +80,10 @@ class Ui_MainWindow(object):
         self.vboxlayout.addLayout(self.gridlayout)
 
         self.editor = QtGui.QTextEdit(self.centralWidget)
+
+        font = QtGui.QFont(self.editor.font())
+        font.setFamily("Bitstream Vera Sans Mono")
+        self.editor.setFont(font)
         self.editor.setAcceptRichText(False)
         self.editor.setObjectName("editor")
         self.vboxlayout.addWidget(self.editor)

@@ -28,7 +28,7 @@ class EditorWindow(QtGui.QMainWindow):
             self.guessTags)
         
     def guessTags(self):
-        self.ui.tags.setText(','.join(db.guessCategories(str(self.ui.editor.toPlainText())+str(self.ui.title.text()))))
+        self.ui.tags.setText(','.join(db.guessCategories(unicode(self.ui.editor.toPlainText())+unicode(self.ui.title.text()))))
         
     def closeWindow(self):
         self.close()
@@ -40,7 +40,7 @@ class EditorWindow(QtGui.QMainWindow):
             
         self.ui.title.setText(post.title)
         self.ui.link.setText(post.link)
-        self.ui.editor.setText(post.text)
+        self.ui.editor.setPlainText(post.text)
         self.ui.tags.setText(','.join( [c.name for c in post.categories]))
 
         

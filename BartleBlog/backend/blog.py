@@ -30,7 +30,8 @@ class Blog:
         self.version="Bartleblog 0.0"
 
         Macros(self)
-
+        
+        
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
         f=codecs.open(fname,"r","utf-8")
@@ -333,4 +334,37 @@ class Blog:
         for year in range(oldest.year,newest.year+1):
             self.renderBlogYear(year)
         if self.progress: 
+            self.progress.close()
+
+            
+    def regenerate(self,all=False):
+        if self.progress:
+            self.progress.setStages([
+            ['Regenerating Stories','Converting to HTML your stories.'],
+            ['Regenerating Posts','Converting to HTML your posts.']])        
+        if all:
+            plist=db.Post.select()
+            slist=db.Story.select()
+        else:
+            plist=db.Post.select(db.Post.q.is_dirty>0)
+            slist=db.Post.select(db.Story.q.is_dirty>0)
+            
+            
+        if self.progress:
+            self.progress.gotoStage(1)
+            self.progress.setSteps(slist.count())
+        for s in slist:
+            s.render()
+            if self.progress:
+                self.progress.step()
+
+        if self.progress:
+            self.progress.gotoStage(0)
+            self.progress.setSteps(plist.count())
+        for p in plist:
+            p.render()
+            if self.progress:
+                self.progress.step()
+        
+        if self.progress:
             self.progress.close()

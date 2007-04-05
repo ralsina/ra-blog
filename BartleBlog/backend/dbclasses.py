@@ -24,7 +24,14 @@ def fteaser (self):
         return cgi.escape(self.text[:100])
         
 def frender (self):
-    pass
+    if self.structured:
+        html,code=rst.rst2html(self.text)
+        # FIXME notice RST errors
+        self.rendered=html
+        self.is_dirty=code
+    else:
+        self.rendered=self.text
+        self.is_dirty=False
 
 def guessCategories(text):
     text=text.lower()
@@ -57,6 +64,7 @@ class Post(SQLObject):
                                                 self.pubDate.day,
                                                 self.postID)
     teaser=fteaser
+    render=frender
 
 
 class Story(SQLObject):
@@ -69,13 +77,14 @@ class Story(SQLObject):
     structured=BoolCol()
     draft=BoolCol()
     quiet=BoolCol()
+    is_dirty=IntCol(default=0)
     link=None #Ok, this one is cheating
     categories=RelatedJoin('Category')
     def myurl(self):
         return "stories/%s.html"%self.postID
     teaser=fteaser
+    render=frender
     link=''
-    is_dirty=IntCol(default=0)
 
 def initDB(name):
     #Initialize sqlobject

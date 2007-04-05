@@ -39,5 +39,4 @@ def rst2html(source, source_path=None, source_class=docutils.io.StringInput,
         settings_overrides=settings_overrides,
         config_section=config_section,
         enable_exit_status=enable_exit_status)
-    print pub.writer.parts['fragment']
     return pub.writer.parts['fragment'],pub.document.reporter.max_level

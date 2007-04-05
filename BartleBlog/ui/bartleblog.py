@@ -20,7 +20,6 @@ from BartleBlog.ui.editor import EditorWindow
 from BartleBlog.ui.progress import ProgressDialog
 
 from BartleBlog.ui.postmodel import *
-from BartleBlog.rst import rst2html
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
@@ -53,11 +52,31 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.newPost)
             
+        QtCore.QObject.connect(self.ui.actionRegenerateAll,
+            QtCore.SIGNAL("triggered()"),
+            self.regenerateAll)
+            
+        QtCore.QObject.connect(self.ui.actionRegenerateNeeded,
+            QtCore.SIGNAL("triggered()"),
+            self.regenerateNeeded)
+
         self.curPost=None
 
         self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
         self.renderTemplate=None
 
+    def regenerateNeeded(self):
+        self.blog.progress=ProgressDialog(self)
+        self.blog.progress.show()
+        self.blog.regenerate()
+        self.blog.progress=None
+    
+    def regenerateAll(self):
+        self.blog.progress=ProgressDialog(self)
+        self.blog.progress.show()
+        self.blog.regenerate(all=True)
+        self.blog.progress=None
+        
     def edit(self):
         self.editor=EditorWindow(self.curPost)
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
@@ -107,13 +126,7 @@ class MainWindow(QtGui.QMainWindow):
 
     def reRenderCurrentPost(self):
         if self.curPost:
-            html,code=rst2html(self.curPost.text)
-
-            # Basic HTML for the DB
-            # FIXME notice RST errors
-            self.curPost.rendered=html
-            self.curPost.is_dirty=False
-            self.displayPostInViewer()
+            self.curPost.render()
 
 def main():
     app=QtGui.QApplication(sys.argv)

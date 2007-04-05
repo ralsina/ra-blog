@@ -4,15 +4,30 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 
-pygments_formatter = HtmlFormatter()
+city={
+    'cpp':'c',
+    'hypertext':'html'
+}
+
+pygments_formatter = HtmlFormatter(linenos=True,cssclass='code-block')
 
 def pygments_directive(name, arguments, options, content, lineno,
                        content_offset, block_text, state, state_machine):
-##    try:
-    lexer = get_lexer_by_name(arguments[0])
-##    except ValueError:
-##        # no lexer found - use the text one instead of an exception
-##        lexer = get_lexer_by_name('text')
+    lexer=None
+    lname=arguments[0].lower()
+    try:
+        lexer = get_lexer_by_name(lname)
+    except ValueError:
+        pass
+    # First try one of the SilverCity names, just in case
+    try:
+        lexer = get_lexer_by_name(city[lname])
+    except KeyError:
+        pass
+    if not lexer:
+        print "No lexer found for "+lname
+        # no lexer found - use the text one instead of an exception
+        lexer = get_lexer_by_name('text')
     parsed = highlight(u'\n'.join(content), lexer, pygments_formatter)
     return [nodes.raw('', parsed, format='html')]
 pygments_directive.arguments = (1, 0, 1)

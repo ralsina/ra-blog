@@ -117,6 +117,11 @@
     </item>
     <item>
      <widget class="QTextEdit" name="editor" >
+      <property name="font" >
+       <font>
+        <family>Bitstream Vera Sans Mono</family>
+       </font>
+      </property>
       <property name="acceptRichText" >
        <bool>false</bool>
       </property>
