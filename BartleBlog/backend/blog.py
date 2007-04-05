@@ -351,7 +351,7 @@ class Blog:
             
             
         if self.progress:
-            self.progress.gotoStage(1)
+            self.progress.gotoStage(0)
             self.progress.setSteps(slist.count())
         for s in slist:
             s.render()
@@ -359,7 +359,7 @@ class Blog:
                 self.progress.step()
 
         if self.progress:
-            self.progress.gotoStage(0)
+            self.progress.gotoStage(1)
             self.progress.setSteps(plist.count())
         for p in plist:
             p.render()
