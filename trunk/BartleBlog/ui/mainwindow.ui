@@ -163,17 +163,20 @@
     <addaction name="separator" />
     <addaction name="separator" />
    </widget>
-   <widget class="QMenu" name="menuBlog" >
-    <property name="title" >
-     <string>Blog</string>
-    </property>
-    <addaction name="actionRender_Blog" />
-   </widget>
    <widget class="QMenu" name="menuSettings" >
     <property name="title" >
      <string>Settings</string>
     </property>
     <addaction name="actionConfigure" />
+   </widget>
+   <widget class="QMenu" name="menuBlog" >
+    <property name="title" >
+     <string>Blog</string>
+    </property>
+    <addaction name="actionRender_Blog" />
+    <addaction name="separator" />
+    <addaction name="actionImport_Advogato" />
+    <addaction name="actionImport_PyDS" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -226,6 +229,16 @@
    </property>
    <property name="text" >
     <string>Configure BartleBlog</string>
+   </property>
+  </action>
+  <action name="actionImport_Advogato" >
+   <property name="text" >
+    <string>Import Advogato</string>
+   </property>
+  </action>
+  <action name="actionImport_PyDS" >
+   <property name="text" >
+    <string>Import PyDS</string>
    </property>
   </action>
  </widget>
