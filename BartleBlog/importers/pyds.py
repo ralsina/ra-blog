@@ -61,6 +61,7 @@ def importStories():
             pubDate=datetime.datetime.fromtimestamp(p.pubtime)
             )
 
-initDB('blog.db')
-importStories()
-importWeblog()
+if __name__ == "__main__":    
+    initDB('blog.db')
+    importStories()
+    importWeblog()
