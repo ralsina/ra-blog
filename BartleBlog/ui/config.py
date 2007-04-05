@@ -5,6 +5,7 @@ from PyQt4 import QtGui
 from BartleBlog.ui.Ui_main_config import Ui_Dialog
 
 from BartleBlog.ui.tags_config import TagsConfigWidget
+from BartleBlog.ui.pygment_config import PygmentConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
     def __init__(self):
@@ -16,13 +17,19 @@ class ConfigWindow(QtGui.QDialog):
         
         # Add configuration items to the list
         
-        QtGui.QListWidgetItem("Tags",self.ui.list)
-        self.widgets={}
-        self.widgets['tags']=TagsConfigWidget()
-        self.layout=QtGui.QHBoxLayout()
-        self.layout.addWidget(self.widgets['tags'])
-        self.ui.frame.setLayout(self.layout)
+##        QtGui.QListWidgetItem("Tags",self.ui.list)
+##        self.widgets={}
+##        self.widgets['tags']=TagsConfigWidget()
+##        self.layout=QtGui.QHBoxLayout()
+##        self.layout.addWidget(self.widgets['tags'])
+##        self.ui.frame.setLayout(self.layout)
         
+        QtGui.QListWidgetItem("Pygment",self.ui.list)
+        self.widgets={}
+        self.widgets['pygment']=PygmentConfigWidget()
+        self.layout=QtGui.QHBoxLayout()
+        self.layout.addWidget(self.widgets['pygment'])
+        self.ui.frame.setLayout(self.layout)
         
         
         
