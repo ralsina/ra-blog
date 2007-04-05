@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Wed Apr  4 21:15:26 2007
+# Created: Thu Apr  5 11:11:15 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,12 +18,20 @@ class Ui_MainWindow(object):
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.hboxlayout = QtGui.QHBoxLayout(self.centralwidget)
-        self.hboxlayout.setMargin(9)
-        self.hboxlayout.setSpacing(6)
-        self.hboxlayout.setObjectName("hboxlayout")
+        self.vboxlayout = QtGui.QVBoxLayout(self.centralwidget)
+        self.vboxlayout.setMargin(9)
+        self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setObjectName("vboxlayout")
 
-        self.splitter = QtGui.QSplitter(self.centralwidget)
+        self.splitter_2 = QtGui.QSplitter(self.centralwidget)
+        self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter_2.setObjectName("splitter_2")
+
+        self.viewer = QtGui.QTextBrowser(self.splitter_2)
+        self.viewer.setOpenExternalLinks(True)
+        self.viewer.setObjectName("viewer")
+
+        self.splitter = QtGui.QSplitter(self.splitter_2)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
 
@@ -38,84 +46,15 @@ class Ui_MainWindow(object):
         self.tree.setAnimated(False)
         self.tree.setAllColumnsShowFocus(True)
         self.tree.setObjectName("tree")
-
-        self.stack = QtGui.QStackedWidget(self.splitter)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(5))
-        sizePolicy.setHorizontalStretch(2)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.stack.sizePolicy().hasHeightForWidth())
-        self.stack.setSizePolicy(sizePolicy)
-        self.stack.setObjectName("stack")
-
-        self.page_2 = QtGui.QWidget()
-        self.page_2.setObjectName("page_2")
-
-        self.hboxlayout1 = QtGui.QHBoxLayout(self.page_2)
-        self.hboxlayout1.setMargin(9)
-        self.hboxlayout1.setSpacing(6)
-        self.hboxlayout1.setObjectName("hboxlayout1")
-
-        self.viewer = QtGui.QTextBrowser(self.page_2)
-        self.viewer.setOpenExternalLinks(True)
-        self.viewer.setObjectName("viewer")
-        self.hboxlayout1.addWidget(self.viewer)
-        self.stack.addWidget(self.page_2)
-
-        self.page = QtGui.QWidget()
-        self.page.setObjectName("page")
-
-        self.vboxlayout = QtGui.QVBoxLayout(self.page)
-        self.vboxlayout.setMargin(9)
-        self.vboxlayout.setSpacing(6)
-        self.vboxlayout.setObjectName("vboxlayout")
-
-        self.gridlayout = QtGui.QGridLayout()
-        self.gridlayout.setMargin(0)
-        self.gridlayout.setSpacing(6)
-        self.gridlayout.setObjectName("gridlayout")
-
-        self.label = QtGui.QLabel(self.page)
-        self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,0,0,1,1)
-
-        self.link = QtGui.QLineEdit(self.page)
-        self.link.setObjectName("link")
-        self.gridlayout.addWidget(self.link,1,1,1,1)
-
-        self.label_2 = QtGui.QLabel(self.page)
-        self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,1,0,1,1)
-
-        self.title = QtGui.QLineEdit(self.page)
-        self.title.setObjectName("title")
-        self.gridlayout.addWidget(self.title,0,1,1,1)
-        self.vboxlayout.addLayout(self.gridlayout)
-
-        self.editor = QtGui.QTextEdit(self.page)
-        self.editor.setObjectName("editor")
-        self.vboxlayout.addWidget(self.editor)
-
-        self.hboxlayout2 = QtGui.QHBoxLayout()
-        self.hboxlayout2.setMargin(0)
-        self.hboxlayout2.setSpacing(6)
-        self.hboxlayout2.setObjectName("hboxlayout2")
-
-        self.categories = QtGui.QLineEdit(self.page)
-        self.categories.setObjectName("categories")
-        self.hboxlayout2.addWidget(self.categories)
-
-        self.pubDate = QtGui.QDateTimeEdit(self.page)
-        self.pubDate.setObjectName("pubDate")
-        self.hboxlayout2.addWidget(self.pubDate)
-        self.vboxlayout.addLayout(self.hboxlayout2)
-        self.stack.addWidget(self.page)
-        self.hboxlayout.addWidget(self.splitter)
+        self.vboxlayout.addWidget(self.splitter_2)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0,0,686,31))
         self.menubar.setObjectName("menubar")
+
+        self.menuSettings = QtGui.QMenu(self.menubar)
+        self.menuSettings.setObjectName("menuSettings")
 
         self.menu_Post = QtGui.QMenu(self.menubar)
         self.menu_Post.setObjectName("menu_Post")
@@ -123,11 +62,14 @@ class Ui_MainWindow(object):
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
 
-        self.menuSettings = QtGui.QMenu(self.menubar)
-        self.menuSettings.setObjectName("menuSettings")
+        self.menuImport = QtGui.QMenu(self.menu_File)
+        self.menuImport.setObjectName("menuImport")
 
         self.menuBlog = QtGui.QMenu(self.menubar)
         self.menuBlog.setObjectName("menuBlog")
+
+        self.menuRegenerate_HTML = QtGui.QMenu(self.menuBlog)
+        self.menuRegenerate_HTML.setObjectName("menuRegenerate_HTML")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -161,15 +103,25 @@ class Ui_MainWindow(object):
 
         self.actionImport_PyDS = QtGui.QAction(MainWindow)
         self.actionImport_PyDS.setObjectName("actionImport_PyDS")
+
+        self.actionRegenerateNeeded = QtGui.QAction(MainWindow)
+        self.actionRegenerateNeeded.setObjectName("actionRegenerateNeeded")
+
+        self.actionRegenerateAll = QtGui.QAction(MainWindow)
+        self.actionRegenerateAll.setObjectName("actionRegenerateAll")
+        self.menuSettings.addAction(self.actionConfigure)
         self.menu_Post.addAction(self.actionEditPost)
+        self.menuImport.addAction(self.actionImport_Advogato)
+        self.menuImport.addAction(self.actionImport_PyDS)
         self.menu_File.addAction(self.actionNewPost)
         self.menu_File.addSeparator()
         self.menu_File.addSeparator()
-        self.menuSettings.addAction(self.actionConfigure)
+        self.menu_File.addAction(self.menuImport.menuAction())
+        self.menuRegenerate_HTML.addAction(self.actionRegenerateNeeded)
+        self.menuRegenerate_HTML.addAction(self.actionRegenerateAll)
         self.menuBlog.addAction(self.actionRender_Blog)
         self.menuBlog.addSeparator()
-        self.menuBlog.addAction(self.actionImport_Advogato)
-        self.menuBlog.addAction(self.actionImport_PyDS)
+        self.menuBlog.addAction(self.menuRegenerate_HTML.menuAction())
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Post.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
@@ -178,26 +130,26 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionEditPost)
         self.toolBar.addAction(self.actionRender_Blog)
         self.toolBar.addAction(self.actionConfigure)
-        self.label_2.setBuddy(self.link)
 
         self.retranslateUi(MainWindow)
-        self.stack.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("MainWindow", "Title", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Link", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuSettings.setTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_Post.setTitle(QtGui.QApplication.translate("MainWindow", "&Post", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuSettings.setTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuImport.setTitle(QtGui.QApplication.translate("MainWindow", "Import", None, QtGui.QApplication.UnicodeUTF8))
         self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuRegenerate_HTML.setTitle(QtGui.QApplication.translate("MainWindow", "Regenerate HTML", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditPost.setText(QtGui.QApplication.translate("MainWindow", "Edit Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNewPost.setText(QtGui.QApplication.translate("MainWindow", "New Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfigure.setText(QtGui.QApplication.translate("MainWindow", "Configure BartleBlog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionImport_Advogato.setText(QtGui.QApplication.translate("MainWindow", "Import Advogato", None, QtGui.QApplication.UnicodeUTF8))
         self.actionImport_PyDS.setText(QtGui.QApplication.translate("MainWindow", "Import PyDS", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRegenerateNeeded.setText(QtGui.QApplication.translate("MainWindow", "Where necessary", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRegenerateAll.setText(QtGui.QApplication.translate("MainWindow", "Everywhere", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
