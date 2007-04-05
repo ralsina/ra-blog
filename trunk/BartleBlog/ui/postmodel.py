@@ -170,6 +170,25 @@ class StoriesItem(PostModelItem):
             return QtCore.QVariant("Stories")
         return QtCore.QVariant()
 
+class ErrorItem(PostModelItem):
+    def __init__(self,parent):
+        PostModelItem.__init__(self,parent)
+        self.children=None
+
+    def child(self,row):
+        if not self.children:
+            self.children=[StoryItem(x,self) for x in list(Story.select(Story.q.is_dirty>1))]+\
+                [PostItem(x,self) for x in list(Post.select(Post.q.is_dirty>1))]
+        return self.children[row]
+
+    def childCount(self):
+        return Story.select(Story.q.is_dirty>1).count()+Post.select(Post.q.is_dirty>1).count()
+
+    def data(self,column):
+        if column==0:
+            return QtCore.QVariant("Errors")
+        return QtCore.QVariant()
+
 
 class PostModel(QtCore.QAbstractItemModel):
     def __init__(self,parent=None):
@@ -177,6 +196,7 @@ class PostModel(QtCore.QAbstractItemModel):
         self.rootItem=PostModelItem(None)
         self.rootItem.appendChild(PostByDateItem(self.rootItem))
         self.rootItem.appendChild(StoriesItem(self.rootItem))
+        self.rootItem.appendChild(ErrorItem(self.rootItem))
         self.columns=["","Title"]
 
     def index (self,row,column,parentIndex):

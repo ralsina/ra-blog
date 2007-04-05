@@ -21,38 +21,46 @@
      <number>6</number>
     </property>
     <item>
-     <widget class="QSplitter" name="splitter_2" >
+     <widget class="QSplitter" name="splitter" >
       <property name="orientation" >
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTextBrowser" name="viewer" >
-       <property name="openExternalLinks" >
+      <widget class="QTreeView" name="tree" >
+       <property name="sizePolicy" >
+        <sizepolicy>
+         <hsizetype>7</hsizetype>
+         <vsizetype>7</vsizetype>
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="sortingEnabled" >
+        <bool>false</bool>
+       </property>
+       <property name="animated" >
+        <bool>false</bool>
+       </property>
+       <property name="allColumnsShowFocus" >
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QSplitter" name="splitter" >
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
+      <widget class="QTextBrowser" name="viewer" >
+       <property name="sizePolicy" >
+        <sizepolicy>
+         <hsizetype>7</hsizetype>
+         <vsizetype>7</vsizetype>
+         <horstretch>3</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <widget class="QTreeView" name="tree" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>7</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="sortingEnabled" >
-         <bool>false</bool>
-        </property>
-        <property name="animated" >
-         <bool>false</bool>
-        </property>
-        <property name="allColumnsShowFocus" >
-         <bool>true</bool>
-        </property>
-       </widget>
+       <property name="font" >
+        <font>
+         <family>Bitstream Vera Sans</family>
+        </font>
+       </property>
+       <property name="openExternalLinks" >
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
     </item>
