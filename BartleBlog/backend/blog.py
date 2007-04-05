@@ -347,7 +347,7 @@ class Blog:
             slist=db.Story.select()
         else:
             plist=db.Post.select(db.Post.q.is_dirty>0)
-            slist=db.Post.select(db.Story.q.is_dirty>0)
+            slist=db.Story.select(db.Story.q.is_dirty>0)
             
             
         if self.progress:
