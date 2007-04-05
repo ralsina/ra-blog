@@ -9,7 +9,7 @@ city={
     'hypertext':'html'
 }
 
-pygments_formatter = HtmlFormatter(linenos=True,cssclass='code-block')
+pygments_formatter = HtmlFormatter(cssclass='code-block')
 
 def pygments_directive(name, arguments, options, content, lineno,
                        content_offset, block_text, state, state_machine):
