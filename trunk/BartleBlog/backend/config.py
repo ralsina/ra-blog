@@ -6,9 +6,9 @@ import ConfigParser
 import os
 
 conf=ConfigParser.SafeConfigParser()
-fp=open(os.path.expanduser('~/.bartleblog.conf'),'rw')
-conf.readfp(fp)
-fp.close()
+f=open(os.path.expanduser('~/.bartleblog.conf'),'r')
+conf.readfp(f)
+f.close()
 
 def getValue(section,key,default=None):
     try:
@@ -19,12 +19,11 @@ def getValue(section,key,default=None):
 def setValue(section,key,value):
     try:
         r=conf.set(section,key,value)
-    except NoSectionError:
+    except ConfigParser.NoSectionError:
         conf.add_section(section)
         r=conf.set(section,key,value)
-    fp=open(os.path.expanduser('~/.bartleblog.conf'),'rw')
-    conf.write(fp)
-    fp.close()
+    f=open(os.path.expanduser('~/.bartleblog.conf'),'w')
+    conf.write(f)
     return r
     
     
