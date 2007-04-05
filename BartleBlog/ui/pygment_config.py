@@ -6,6 +6,8 @@ from BartleBlog.ui.Ui_pygment_config import Ui_Form
 from pygments.styles import get_all_styles
 from pygments.formatters import HtmlFormatter
 
+import BartleBlog.backend.config as config
+
 previewtext='''<html><div class="highlight"><pre><span class="n">bstring</span> <span class="nf">spf_query_expand_domain</span><span class="p">(</span> <span class="n">spf_query</span> <span class="o">*</span><span class="n">q</span><span class="p">,</span> <span class="n">bstring</span> <span class="n">arg</span> <span class="p">)</span>
 <span class="p">{</span>
     <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="o">=</span><span class="n">bstr2cstr</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
@@ -38,11 +40,17 @@ class PygmentConfigWidget(QtGui.QWidget):
         QtCore.QObject.connect(self.ui.styles,QtCore.SIGNAL('activated(QString)'),
             self.loadStyle)
         
+        curStyle=config.getValue('pygment','style','murphy')
+        self.ui.styles.setCurrentIndex(self.ui.styles.findText(curStyle))
+        self.loadStyle(curStyle)
+        
     def loadStyle(self,style):
-        formatter=HtmlFormatter(style=str(style))
+        style=str(style)
+        formatter=HtmlFormatter(style=style)
         css=formatter.get_style_defs()
         self.ui.preview.document().setDefaultStyleSheet(css)
         self.ui.preview.setHtml(previewtext)
+        config.setValue('pygment','style',style)
         
         print css
         
