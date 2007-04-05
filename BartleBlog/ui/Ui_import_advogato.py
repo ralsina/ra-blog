@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/import_advogato.ui'
 #
-# Created: Thu Apr  5 15:34:14 2007
+# Created: Thu Apr  5 18:20:46 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -75,9 +75,9 @@ class Ui_Dialog(object):
         self.cancel.setObjectName("cancel")
         self.hboxlayout.addWidget(self.cancel)
 
-        self.import = QtGui.QPushButton(Dialog)
-        self.import.setObjectName("import")
-        self.hboxlayout.addWidget(self.import)
+        self.do_import = QtGui.QPushButton(Dialog)
+        self.do_import.setObjectName("do_import")
+        self.hboxlayout.addWidget(self.do_import)
         self.vboxlayout.addLayout(self.hboxlayout)
 
         self.retranslateUi(Dialog)
@@ -99,7 +99,7 @@ class Ui_Dialog(object):
         self.label_3.setText(QtGui.QApplication.translate("Dialog", "User:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Dialog", "Password:", None, QtGui.QApplication.UnicodeUTF8))
         self.cancel.setText(QtGui.QApplication.translate("Dialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
-        self.import.setText(QtGui.QApplication.translate("Dialog", "Import", None, QtGui.QApplication.UnicodeUTF8))
+        self.do_import.setText(QtGui.QApplication.translate("Dialog", "Import", None, QtGui.QApplication.UnicodeUTF8))
 
 
 

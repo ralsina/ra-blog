@@ -120,7 +120,7 @@ p, li { white-space: pre-wrap; }
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="import" >
+      <widget class="QPushButton" name="do_import" >
        <property name="text" >
         <string>Import</string>
        </property>
