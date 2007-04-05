@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import os,re
+import os,re,cgi,datetime
 from sqlobject import *
-import urllib
 from BartleBlog.util.html2text import html2text
 import BartleBlog.rst as rst
-import cgi,datetime
 
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)

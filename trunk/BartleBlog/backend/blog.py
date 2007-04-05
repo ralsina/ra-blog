@@ -29,8 +29,7 @@ class Blog:
         self.language="en"
         self.version="Bartleblog 0.0"
 
-        Macros(self)
-        
+        Macros(self)        
         
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
@@ -79,6 +78,7 @@ class Blog:
         dname=os.path.join(self.dest_dir,'categories')
         fname=catname+'.html'
         postlist=cat.posts
+        postlist.reverse()
         curDate=datetime.datetime.today()
         self.renderRSS(title,curDate,dname,catname+'.xml',postlist)
         self.renderBlogPage(
