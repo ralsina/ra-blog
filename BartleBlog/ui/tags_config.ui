@@ -9,6 +9,14 @@
     <height>510</height>
    </rect>
   </property>
+  <property name="sizePolicy" >
+   <sizepolicy>
+    <hsizetype>7</hsizetype>
+    <vsizetype>5</vsizetype>
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
@@ -143,26 +151,6 @@
      <property name="spacing" >
       <number>6</number>
      </property>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>281</width>
-         <height>29</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="close" >
-       <property name="text" >
-        <string>Close</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
   </layout>

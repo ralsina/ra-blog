@@ -52,5 +52,3 @@ class PygmentConfigWidget(QtGui.QWidget):
         self.ui.preview.setHtml(previewtext)
         config.setValue('pygment','style',style)
         
-        print css
-        

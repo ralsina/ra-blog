@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui,QtCore
 
 from BartleBlog.ui.Ui_main_config import Ui_Dialog
 
@@ -14,22 +14,27 @@ class ConfigWindow(QtGui.QDialog):
         # Set up the UI from designer
         self.ui=Ui_Dialog()
         self.ui.setupUi(self)
+        self.widget=None
+        self.widgets={}
+        self.layout=QtGui.QHBoxLayout()
+        self.ui.frame.setLayout(self.layout)
         
         # Add configuration items to the list
         
-##        QtGui.QListWidgetItem("Tags",self.ui.list)
-##        self.widgets={}
-##        self.widgets['tags']=TagsConfigWidget()
-##        self.layout=QtGui.QHBoxLayout()
-##        self.layout.addWidget(self.widgets['tags'])
-##        self.ui.frame.setLayout(self.layout)
-        
+        QtGui.QListWidgetItem("Tags",self.ui.list)
+        self.widgets['tags']=TagsConfigWidget
+
         QtGui.QListWidgetItem("Pygment",self.ui.list)
-        self.widgets={}
-        self.widgets['pygment']=PygmentConfigWidget()
-        self.layout=QtGui.QHBoxLayout()
-        self.layout.addWidget(self.widgets['pygment'])
-        self.ui.frame.setLayout(self.layout)
+        self.widgets['pygment']=PygmentConfigWidget
+
+        QtCore.QObject.connect(self.ui.list,
+            QtCore.SIGNAL("currentItemChanged( QListWidgetItem *, QListWidgetItem *)"),
+            self.gotoPage)        
         
-        
-        
+    def gotoPage(self,current,previous):
+        if self.widget:
+            self.widget.hide()
+            self.widget=None
+        pagename=str(current.text()).lower()
+        self.widget=self.widgets[str(pagename)]()
+        self.layout.addWidget(self.widget)
