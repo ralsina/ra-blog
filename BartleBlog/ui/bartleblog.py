@@ -117,7 +117,7 @@ class MainWindow(QtGui.QMainWindow):
             # Fancier HTML for the user
         post=self.curPost
         
-        if post.is_dirty:
+        if post.is_dirty>1:
             self.reRenderCurrentPost()
         
         html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))

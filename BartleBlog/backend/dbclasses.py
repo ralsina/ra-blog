@@ -29,7 +29,7 @@ def frender (self):
         self.is_dirty=code
     else:
         self.rendered=self.text
-        self.is_dirty=False
+        self.is_dirty=-1
 
 def guessCategories(text):
     text=text.lower()
@@ -55,7 +55,7 @@ class Post(SQLObject):
     structured=BoolCol(default=True)
     pubDate=DateTimeCol(default=datetime.datetime.now())
     categories=RelatedJoin('Category',orderBy='name')
-    is_dirty=IntCol(default=0)
+    is_dirty=IntCol(default=-1)
     def myurl(self):
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                 self.pubDate.month,
@@ -75,7 +75,7 @@ class Story(SQLObject):
     structured=BoolCol()
     draft=BoolCol()
     quiet=BoolCol()
-    is_dirty=IntCol(default=0)
+    is_dirty=IntCol(default=-1)
     link=None #Ok, this one is cheating
     categories=RelatedJoin('Category')
     def myurl(self):
