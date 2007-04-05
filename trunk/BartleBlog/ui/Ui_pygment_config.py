@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/pygment_config.ui'
 #
-# Created: Thu Apr  5 14:15:23 2007
+# Created: Thu Apr  5 14:24:03 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,9 +29,9 @@ class Ui_Form(object):
         self.label.setObjectName("label")
         self.hboxlayout.addWidget(self.label)
 
-        self.comboBox = QtGui.QComboBox(Form)
-        self.comboBox.setObjectName("comboBox")
-        self.hboxlayout.addWidget(self.comboBox)
+        self.styles = QtGui.QComboBox(Form)
+        self.styles.setObjectName("styles")
+        self.hboxlayout.addWidget(self.styles)
         self.vboxlayout.addLayout(self.hboxlayout)
 
         self.label_2 = QtGui.QLabel(Form)

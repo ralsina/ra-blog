@@ -3,7 +3,8 @@
 from PyQt4 import QtGui, QtCore
 
 from BartleBlog.ui.Ui_pygment_config import Ui_Form
-
+from pygments.styles import get_all_styles
+from pygments.formatters import HtmlFormatter
 
 previewtext='''<html><div class="highlight"><pre><span class="n">bstring</span> <span class="nf">spf_query_expand_domain</span><span class="p">(</span> <span class="n">spf_query</span> <span class="o">*</span><span class="n">q</span><span class="p">,</span> <span class="n">bstring</span> <span class="n">arg</span> <span class="p">)</span>
 <span class="p">{</span>
@@ -27,4 +28,21 @@ previewtext='''<html><div class="highlight"><pre><span class="n">bstring</span> 
 class PygmentConfigWidget(QtGui.QWidget):
     def __init__(self,parent=None):
         QtGui.QWidget.__init__(self,parent)
-        self.preview.setHTML(previewtext)
+        
+        # Set up the UI from designer
+        self.ui=Ui_Form()
+        self.ui.setupUi(self)
+
+        self.ui.styles.addItems(list(get_all_styles()))
+        
+        QtCore.QObject.connect(self.ui.styles,QtCore.SIGNAL('activated(QString)'),
+            self.loadStyle)
+        
+    def loadStyle(self,style):
+        formatter=HtmlFormatter(style=str(style))
+        css=formatter.get_style_defs()
+        self.ui.preview.document().setDefaultStyleSheet(css)
+        self.ui.preview.setHtml(previewtext)
+        
+        print css
+        
