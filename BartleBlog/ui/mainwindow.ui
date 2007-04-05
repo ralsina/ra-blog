@@ -13,7 +13,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <layout class="QHBoxLayout" >
+   <layout class="QVBoxLayout" >
     <property name="margin" >
      <number>9</number>
     </property>
@@ -21,119 +21,37 @@
      <number>6</number>
     </property>
     <item>
-     <widget class="QSplitter" name="splitter" >
+     <widget class="QSplitter" name="splitter_2" >
       <property name="orientation" >
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTreeView" name="tree" >
-       <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>7</vsizetype>
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="sortingEnabled" >
-        <bool>false</bool>
-       </property>
-       <property name="animated" >
-        <bool>false</bool>
-       </property>
-       <property name="allColumnsShowFocus" >
+      <widget class="QTextBrowser" name="viewer" >
+       <property name="openExternalLinks" >
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QStackedWidget" name="stack" >
-       <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>5</vsizetype>
-         <horstretch>2</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+      <widget class="QSplitter" name="splitter" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="currentIndex" >
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="page_2" >
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>9</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QTextBrowser" name="viewer" >
-           <property name="openExternalLinks" >
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="page" >
-        <layout class="QVBoxLayout" >
-         <property name="margin" >
-          <number>9</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <layout class="QGridLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item row="0" column="0" >
-            <widget class="QLabel" name="label" >
-             <property name="text" >
-              <string>Title</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1" >
-            <widget class="QLineEdit" name="link" />
-           </item>
-           <item row="1" column="0" >
-            <widget class="QLabel" name="label_2" >
-             <property name="text" >
-              <string>Link</string>
-             </property>
-             <property name="buddy" >
-              <cstring>link</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" >
-            <widget class="QLineEdit" name="title" />
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QTextEdit" name="editor" />
-         </item>
-         <item>
-          <layout class="QHBoxLayout" >
-           <property name="margin" >
-            <number>0</number>
-           </property>
-           <property name="spacing" >
-            <number>6</number>
-           </property>
-           <item>
-            <widget class="QLineEdit" name="categories" />
-           </item>
-           <item>
-            <widget class="QDateTimeEdit" name="pubDate" />
-           </item>
-          </layout>
-         </item>
-        </layout>
+       <widget class="QTreeView" name="tree" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>7</hsizetype>
+          <vsizetype>7</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="sortingEnabled" >
+         <bool>false</bool>
+        </property>
+        <property name="animated" >
+         <bool>false</bool>
+        </property>
+        <property name="allColumnsShowFocus" >
+         <bool>true</bool>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -149,6 +67,12 @@
      <height>31</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSettings" >
+    <property name="title" >
+     <string>Settings</string>
+    </property>
+    <addaction name="actionConfigure" />
+   </widget>
    <widget class="QMenu" name="menu_Post" >
     <property name="title" >
      <string>&amp;Post</string>
@@ -159,24 +83,32 @@
     <property name="title" >
      <string>&amp;File</string>
     </property>
+    <widget class="QMenu" name="menuImport" >
+     <property name="title" >
+      <string>Import</string>
+     </property>
+     <addaction name="actionImport_Advogato" />
+     <addaction name="actionImport_PyDS" />
+    </widget>
     <addaction name="actionNewPost" />
     <addaction name="separator" />
     <addaction name="separator" />
-   </widget>
-   <widget class="QMenu" name="menuSettings" >
-    <property name="title" >
-     <string>Settings</string>
-    </property>
-    <addaction name="actionConfigure" />
+    <addaction name="menuImport" />
    </widget>
    <widget class="QMenu" name="menuBlog" >
     <property name="title" >
      <string>Blog</string>
     </property>
+    <widget class="QMenu" name="menuRegenerate_HTML" >
+     <property name="title" >
+      <string>Regenerate HTML</string>
+     </property>
+     <addaction name="actionRegenerateNeeded" />
+     <addaction name="actionRegenerateAll" />
+    </widget>
     <addaction name="actionRender_Blog" />
     <addaction name="separator" />
-    <addaction name="actionImport_Advogato" />
-    <addaction name="actionImport_PyDS" />
+    <addaction name="menuRegenerate_HTML" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -239,6 +171,16 @@
   <action name="actionImport_PyDS" >
    <property name="text" >
     <string>Import PyDS</string>
+   </property>
+  </action>
+  <action name="actionRegenerateNeeded" >
+   <property name="text" >
+    <string>Where necessary</string>
+   </property>
+  </action>
+  <action name="actionRegenerateAll" >
+   <property name="text" >
+    <string>Everywhere</string>
    </property>
   </action>
  </widget>

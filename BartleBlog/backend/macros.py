@@ -56,7 +56,7 @@ class Macros:
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/rst.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/html.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/bartleblog.css'),
-        '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/silvercity.css')
+        '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/borland.css')
         ]
 
     #################################################################################
