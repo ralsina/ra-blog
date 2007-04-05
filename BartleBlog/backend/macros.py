@@ -5,7 +5,9 @@ import datetime
 from sqlobject import *
 import urllib
 
+import BartleBlog.backend.config as config
 import BartleBlog.backend.dbclasses as db
+
 import BartleBlog.tools.yahoomenu
 import BartleBlog.tools.addthis
 import BartleBlog.tools.technorati
@@ -57,7 +59,7 @@ class Macros:
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/html.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/bartleblog.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/code.css'),
-        '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/pygment/murphy.css')
+        '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/pygment/%s.css')%config.getValue('pygment','style','murphy')
         ]
 
     #################################################################################

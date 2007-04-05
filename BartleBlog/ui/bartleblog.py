@@ -11,7 +11,6 @@ from cherrytemplate import renderTemplate
 from PyQt4 import QtGui, QtCore
 
 import BartleBlog.backend.dbclasses as db
-import BartleBlog.backend.macros as macros
 from BartleBlog.backend.blog import Blog
 
 from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
