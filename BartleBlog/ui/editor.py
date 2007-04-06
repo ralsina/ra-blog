@@ -4,7 +4,9 @@ from PyQt4 import QtGui, QtCore
 import time
 
 from BartleBlog.ui.Ui_rsteditor import Ui_MainWindow
+from BartleBlog.ui.choose_tags import TagsDialog
 import BartleBlog.backend.dbclasses as db
+
 
 class EditorWindow(QtGui.QMainWindow):
     def __init__(self,post=None):
@@ -26,6 +28,18 @@ class EditorWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.guess,
             QtCore.SIGNAL("clicked()"),
             self.guessTags)
+
+        QtCore.QObject.connect(self.ui.tags,
+            QtCore.SIGNAL("clicked()"),
+            self.chooseTags)
+
+    def chooseTags(self):
+        self.d=TagsDialog(self,self.ui.tags.text())
+        r=self.d.exec_()
+        
+        if r:
+            self.ui.tags.setText(self.d.currentCategories())
+        del self.d
         
     def guessTags(self):
         self.ui.tags.setText(','.join(db.guessCategories(unicode(self.ui.editor.toPlainText())+unicode(self.ui.title.text()))))
