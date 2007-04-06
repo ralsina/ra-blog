@@ -51,13 +51,16 @@ class EditorWindow(QtGui.QMainWindow):
                             link=str(self.ui.link.text()),
                             text=str(self.ui.editor.toPlainText()))
             # Silly hack to have PostID be unique but not ugly
-            self.post.PostID='BB'+str(self.post.id)
+            self.post.postID='BB'+str(self.post.id)
         else:
             self.post.title=str(self.ui.title.text())
             self.post.link=str(self.ui.link.text())
             self.post.text=str(self.ui.editor.toPlainText())
             self.post.render()
             
+        cats=[ db.Category.select(db.Category.q.name==c)[0] for c in \
+                unicode(self.ui.tags.text()).split(',') ]
+        self.post.setCategories(cats)
         self.post.is_dirty=99
         self.emit(QtCore.SIGNAL('saved'))
 

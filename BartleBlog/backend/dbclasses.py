@@ -12,9 +12,27 @@ class Category(SQLObject):
     posts=RelatedJoin('Post',orderBy='pubDate')
     stories=RelatedJoin('Story',orderBy='pubDate')
     magicWords=UnicodeCol()
+    is_dirty=IntCol(default=-1)
     def myurl(self):
         return "categories/%s.html"%(self.name.lower())
 
+def fsetCategories(self,categories):
+
+    # First mark as dirty those categories the post
+    # doesn't belong anymore
+    for c in self.categories:
+        if not c in categories:
+            c.is_dirty=99
+            self.removeCategory(c)
+
+    # Now mark as dirty all the new categories 
+    # for the post
+    for c in categories:
+        if not c in self.categories:
+            c.is_dirty=99
+            self.addCategory(c)
+        
+        
 def fteaser (self):
     try:
         return cgi.escape(html2text(self.rendered)[:100])
@@ -53,9 +71,14 @@ class Post(SQLObject):
     rendered=UnicodeCol(default='')
     onHome=BoolCol(default=True)
     structured=BoolCol(default=True)
-    pubDate=DateTimeCol(default=datetime.datetime.now())
     categories=RelatedJoin('Category',orderBy='name')
+
     is_dirty=IntCol(default=-1)
+
+    pubDate=DateTimeCol(default=datetime.datetime.now())
+    modDate=DateTimeCol(default=datetime.datetime.now())
+    uplDate=DateTimeCol(default=datetime.datetime.now())
+
     def myurl(self):
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                 self.pubDate.month,
@@ -63,11 +86,11 @@ class Post(SQLObject):
                                                 self.postID)
     teaser=fteaser
     render=frender
+    setCategories=fsetCategories
 
 
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)
-    pubDate=DateTimeCol()
     title=UnicodeCol()
     desc=UnicodeCol()
     text=UnicodeCol()
@@ -76,12 +99,19 @@ class Story(SQLObject):
     draft=BoolCol()
     quiet=BoolCol()
     is_dirty=IntCol(default=-1)
-    link=None #Ok, this one is cheating
     categories=RelatedJoin('Category')
+
+    is_dirty=IntCol(default=-1)
+
+    pubDate=DateTimeCol(default=datetime.datetime.now())
+    modDate=DateTimeCol(default=datetime.datetime.now())
+    uplDate=DateTimeCol(default=datetime.datetime.now())
+
     def myurl(self):
         return "stories/%s.html"%self.postID
     teaser=fteaser
     render=frender
+    setCategories=fsetCategories
     link=''
 
 def initDB(name):
