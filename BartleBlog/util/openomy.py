@@ -109,33 +109,38 @@ class Openomy:
                 t=Tag(e)
                 self.tags[t.name]=t
         return self.tags
-
+        
+    def Auth_AuthorizeUser(self,username,password):
+        u=self.createUrl('Auth.AuthorizeUser')
+        resp.self.getResponse(u)
+        return resp.find('confirmedtoken').text
+        
     def createUrl(self,method,tok=None,**params):
     
-            params['method']=method
-            params['applicationKey']=appkey
-    
-            if method=='Auth.AuthorizeUser':
-                    pass
-            elif method=='Auth.GetConfirmedToken':
-                    params['unconfirmedToken']=self.tok
-            else:
-                    params['confirmedToken']=self.tok
-            k=params.keys()
-            k.sort()
-            url=baseurl+'&'.join([ '%s=%s'%(key,params[key]) for key in k])
-    
-            sig=''.join(['%s=%s'%(key,params[key]) for key in k])+secret
-            url=url+'&signature=%s'%md5.md5(sig).hexdigest()
-            return url
+        params['method']=method
+        params['applicationKey']=appkey
+        
+        if method=='Auth.AuthorizeUser':
+                pass
+        elif method=='Auth.GetConfirmedToken':
+                params['unconfirmedToken']=self.tok
+        else:
+                params['confirmedToken']=self.tok
+        k=params.keys()
+        k.sort()
+        url=baseurl+'&'.join([ '%s=%s'%(key,params[key]) for key in k])
+        
+        sig=''.join(['%s=%s'%(key,params[key]) for key in k])+secret
+        url=url+'&signature=%s'%md5.md5(sig).hexdigest()
+        return url
     
     def getResponse(self,url):
-            data=urllib2.urlopen(url).read()
-            f=StringIO(data)
-            
-            t=tree.parse(f)
-    
-            r=t.getroot()
-            if r.tag=='error':
-                    raise OpenomyError(int(r.attrib['code']))
-            return r
+        data=urllib2.urlopen(url).read()
+        f=StringIO(data)
+        
+        t=tree.parse(f)
+        
+        r=t.getroot()
+        if r.tag=='error':
+                raise OpenomyError(int(r.attrib['code']))
+        return r
