@@ -57,6 +57,8 @@ class EditorWindow(QtGui.QMainWindow):
             self.post.link=str(self.ui.link.text())
             self.post.text=str(self.ui.editor.toPlainText())
             self.post.render()
+            
+        self.post.is_dirty=99
         self.emit(QtCore.SIGNAL('saved'))
 
         
