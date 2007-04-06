@@ -16,6 +16,7 @@ class Blog:
         self.dest_dir=os.path.abspath("weblog")
         self.blog_title="Lateral Opinion"
         self.progress=None
+        self.queue=[]
 
         #################################################################################
         ### Things that should be in the config file
@@ -295,6 +296,40 @@ class Blog:
             )
 
 
+    def relatedPages(self,postID):
+        '''Gives a list of all the pages that relate to the given post, which you
+        can later queue for rerendering'''
+
+        p=Post(postID=postID)        
+        d=p.pubDate
+        
+        list=[]
+        list.append(['year',d.year])
+        list.append(['month',d.month])
+        list.append(['day',d.day])
+        for c in p.categories:
+            list.append(['category',c.name])
+            
+        return list
+        
+    def queuePages(self,list):
+        '''Queue all given pages for rendering, if they are not in the queue
+        already'''
+        for p in list:
+            if not p in self.queue:
+                self.queue.append(p)
+            
+    def updateRenderBlog(self):
+        '''Queue for rerendering all pages related to posts which are dirty,
+        or where the post's uplDate is older than its modDate or its pubDate.
+        
+        Also, all categories marked as dirty, all stories marked as dirty, 
+        and their respective indexes.
+        
+        '''
+        
+        pass
+            
     def renderBlog(self):
         if self.progress:
             self.progress.setStages([
