@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-04-05, 18:13:11 -->
+<!-- Saved: 2007-04-06, 18:04:49 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -250,6 +250,19 @@
       <Dir>ui</Dir>
       <Name>pygment_config.py</Name>
     </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_about.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>openomy_config.py</Name>
+    </Source>
+    <Source>
+      <Name>bartleblog.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -302,6 +315,11 @@
       <Dir>ui</Dir>
       <Name>pygment_config.ui</Name>
     </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>about.ui</Name>
+    </Form>
   </Forms>
   <Translations>
   </Translations>
@@ -319,7 +337,7 @@
     </Other>
   </Others>
   <MainScript>
-    <Name>bartleblog</Name>
+    <Name>bartleblog.py</Name>
   </MainScript>
   <Vcs>
     <VcsType>Subversion</VcsType>
@@ -382,9 +400,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
