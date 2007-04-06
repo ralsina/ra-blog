@@ -6,6 +6,7 @@ from BartleBlog.ui.Ui_main_config import Ui_Dialog
 
 from BartleBlog.ui.tags_config import TagsConfigWidget
 from BartleBlog.ui.pygment_config import PygmentConfigWidget
+from BartleBlog.ui.openomy_config import OpenomyConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
     def __init__(self):
@@ -26,6 +27,9 @@ class ConfigWindow(QtGui.QDialog):
 
         QtGui.QListWidgetItem("Pygment",self.ui.list)
         self.widgets['pygment']=PygmentConfigWidget
+
+        QtGui.QListWidgetItem("Openomy",self.ui.list)
+        self.widgets['openomy']=OpenomyConfigWidget
 
         QtCore.QObject.connect(self.ui.list,
             QtCore.SIGNAL("currentItemChanged( QListWidgetItem *, QListWidgetItem *)"),
