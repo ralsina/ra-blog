@@ -1,11 +1,11 @@
 <py-for="post in postlist">
   <py-exec="if progress: progress.step()">
   <div class="yui-u postbox thinedge">
+      <a name="<py-eval="post.postID">"></a>
       <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
       <py-eval="str(post.pubDate)"></a>
       <py-if="post.link">
-        <h2><a name="<py-eval="post.postID">"></a>
-        <a href="<py-eval="post.link">"><py-eval="post.title"></a></h2>
+        <h2><a href="<py-eval="post.link">"><py-eval="post.title"></a></h2>
       </py-if>
       <py-else>
         <h2><a name="<py-eval="post.postID">"></a>
