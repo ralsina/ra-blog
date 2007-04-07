@@ -81,12 +81,6 @@
     </property>
     <addaction name="actionConfigure" />
    </widget>
-   <widget class="QMenu" name="menu_Post" >
-    <property name="title" >
-     <string>&amp;Post</string>
-    </property>
-    <addaction name="actionEditPost" />
-   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -117,6 +111,13 @@
     <addaction name="actionRender_Blog" />
     <addaction name="separator" />
     <addaction name="menuRegenerate_HTML" />
+   </widget>
+   <widget class="QMenu" name="menu_Post" >
+    <property name="title" >
+     <string>&amp;Post</string>
+    </property>
+    <addaction name="actionEditPost" />
+    <addaction name="actionDelete" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -189,6 +190,14 @@
   <action name="actionRegenerateAll" >
    <property name="text" >
     <string>Everywhere</string>
+   </property>
+  </action>
+  <action name="actionDelete" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/fileclose.png</iconset>
+   </property>
+   <property name="text" >
+    <string>delete</string>
    </property>
   </action>
  </widget>
