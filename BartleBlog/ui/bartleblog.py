@@ -60,11 +60,25 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.regenerateNeeded)
 
+        QtCore.QObject.connect(self.ui.actionDelete,
+            QtCore.SIGNAL("triggered()"),
+            self.deletePost)
+
         self.curPost=None
 
         self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
         self.renderTemplate=None
 
+    def deletePost(self):
+        if not self.curPost:
+            return
+        res=QtGui.QMessageBox.question(self,'BartleBlog delete post','Delete post "%s"?'%self.curPost.title,
+                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+        if res == QtGui.QMessageBox.Yes:
+            self.curPost.destroySelf()
+            self.init_tree()
+
+        
     def regenerateNeeded(self):
         self.blog.progress=ProgressDialog(self)
         self.blog.progress.show()

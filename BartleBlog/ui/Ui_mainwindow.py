@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Thu Apr  5 15:34:12 2007
+# Created: Sat Apr  7 12:57:11 2007
 #      by: PyQt4 UI code generator 4.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -62,9 +62,6 @@ class Ui_MainWindow(object):
         self.menuSettings = QtGui.QMenu(self.menubar)
         self.menuSettings.setObjectName("menuSettings")
 
-        self.menu_Post = QtGui.QMenu(self.menubar)
-        self.menu_Post.setObjectName("menu_Post")
-
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
 
@@ -76,6 +73,9 @@ class Ui_MainWindow(object):
 
         self.menuRegenerate_HTML = QtGui.QMenu(self.menuBlog)
         self.menuRegenerate_HTML.setObjectName("menuRegenerate_HTML")
+
+        self.menu_Post = QtGui.QMenu(self.menubar)
+        self.menu_Post.setObjectName("menu_Post")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -115,8 +115,11 @@ class Ui_MainWindow(object):
 
         self.actionRegenerateAll = QtGui.QAction(MainWindow)
         self.actionRegenerateAll.setObjectName("actionRegenerateAll")
+
+        self.actionDelete = QtGui.QAction(MainWindow)
+        self.actionDelete.setIcon(QtGui.QIcon(":/icons/icons/fileclose.png"))
+        self.actionDelete.setObjectName("actionDelete")
         self.menuSettings.addAction(self.actionConfigure)
-        self.menu_Post.addAction(self.actionEditPost)
         self.menuImport.addAction(self.actionImport_Advogato)
         self.menuImport.addAction(self.actionImport_PyDS)
         self.menu_File.addAction(self.actionNewPost)
@@ -128,6 +131,8 @@ class Ui_MainWindow(object):
         self.menuBlog.addAction(self.actionRender_Blog)
         self.menuBlog.addSeparator()
         self.menuBlog.addAction(self.menuRegenerate_HTML.menuAction())
+        self.menu_Post.addAction(self.actionEditPost)
+        self.menu_Post.addAction(self.actionDelete)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Post.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
@@ -143,11 +148,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
         self.menuSettings.setTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.menu_Post.setTitle(QtGui.QApplication.translate("MainWindow", "&Post", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuImport.setTitle(QtGui.QApplication.translate("MainWindow", "Import", None, QtGui.QApplication.UnicodeUTF8))
         self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.menuRegenerate_HTML.setTitle(QtGui.QApplication.translate("MainWindow", "Regenerate HTML", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_Post.setTitle(QtGui.QApplication.translate("MainWindow", "&Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditPost.setText(QtGui.QApplication.translate("MainWindow", "Edit Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNewPost.setText(QtGui.QApplication.translate("MainWindow", "New Post", None, QtGui.QApplication.UnicodeUTF8))
@@ -156,6 +161,7 @@ class Ui_MainWindow(object):
         self.actionImport_PyDS.setText(QtGui.QApplication.translate("MainWindow", "Import PyDS", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRegenerateNeeded.setText(QtGui.QApplication.translate("MainWindow", "Where necessary", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRegenerateAll.setText(QtGui.QApplication.translate("MainWindow", "Everywhere", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDelete.setText(QtGui.QApplication.translate("MainWindow", "delete", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
