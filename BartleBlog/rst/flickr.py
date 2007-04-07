@@ -25,16 +25,16 @@ def flickr( name, arguments, options, content, lineno,
     rsp = fapi.photos_search(api_key=flickrAPIKey,auth_token=token,user_id='me',text=fname)
 
     # Get the secret and ID of the photo
-
-    if len(rsp.photos[0].photo)==0:
+    try:
+        photo=rsp.photos[0].photo[0]
+    except AttributeError:
         error = state_machine.reporter.error( "Can't find image called %s in Flickr"% fname,
                     docutils.nodes.literal_block(block_text, block_text), line=lineno )
         return [error]
-
-    id=rsp.photos[0].photo[0]['id']
-    secret=rsp.photos[0].photo[0]['secret']
-    owner=rsp.photos[0].photo[0]['owner']
-    print rsp.photos[0].photo[0]['title']
+        
+    id=photo['id']
+    secret=photo['secret']
+    owner=photo['owner']
 
     rsp = fapi.photos_getInfo(api_key=flickrAPIKey,auth_token=token,photo_id=id,secret=secret)
 
