@@ -21,6 +21,9 @@ class OpenomyConfigWidget(QtGui.QWidget):
         QtCore.QObject.connect(self.ui.get,
             QtCore.SIGNAL("clicked()"),
             self.getToken)
+        QtCore.QObject.connect(self.ui.verify,
+            QtCore.SIGNAL("clicked()"),
+            self.verifyToken)
             
     def setupButtons(self):
         self.tok=config.getValue('openomy','token')
@@ -28,16 +31,18 @@ class OpenomyConfigWidget(QtGui.QWidget):
             self.ui.forget.setEnabled(False)
             self.ui.verify.setEnabled(False)
             self.ui.get.setEnabled(True)
-            self.ui.status.setText("No token available")
-            
+            self.ui.status.setText("No token available")            
         else:        
             self.ui.forget.setEnabled(True)
             self.ui.verify.setEnabled(True)
             self.ui.get.setEnabled(False)
-            self.ui.status.setText("Token available")
+            t="Token available"
+            if config.getValue('openomy','verified','False')=='True':
+                t+=' and verified'
+            else:
+                t+=' but not verified'
+            self.ui.status.setText(t)
         
-
-
     def getToken(self):
         d=AuthDialog(self,'Enter user and password of your openomy.com account')
         d.exec_()
@@ -46,3 +51,15 @@ class OpenomyConfigWidget(QtGui.QWidget):
                                   password=str(d.ui.password.text()))
         config.setValue('openomy','token',tok)
         self.setupButtons()
+
+    def verifyToken(self):
+        try:
+            op=openomy.Openomy()
+            op.Files_GetAllFiles(nocache=True)
+            config.setValue('openomy','verified','True')
+        except openomy.OpenomyError:
+            config.setValue('openomy','verified','False')
+        self.setupButtons()
+            
+        
+        
