@@ -16,6 +16,13 @@ class OpenomyConfigWidget(QtGui.QWidget):
         self.ui=Ui_Form()
         self.ui.setupUi(self)
 
+        self.setupButtons()
+        
+        QtCore.QObject.connect(self.ui.get,
+            QtCore.SIGNAL("clicked()"),
+            self.getToken)
+            
+    def setupButtons(self):
         self.tok=config.getValue('openomy','token')
         if not self.tok:
             self.ui.forget.setEnabled(False)
@@ -30,9 +37,6 @@ class OpenomyConfigWidget(QtGui.QWidget):
             self.ui.status.setText("Token available")
         
 
-        QtCore.QObject.connect(self.ui.get,
-            QtCore.SIGNAL("clicked()"),
-            self.getToken)
 
     def getToken(self):
         d=AuthDialog(self,'Enter user and password of your openomy.com account')
@@ -41,3 +45,4 @@ class OpenomyConfigWidget(QtGui.QWidget):
         tok=op.Auth_AuthorizeUser(username=str(d.ui.user.text()),
                                   password=str(d.ui.password.text()))
         config.setValue('openomy','token',tok)
+        self.setupButtons()
