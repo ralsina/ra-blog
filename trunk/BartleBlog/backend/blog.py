@@ -280,7 +280,10 @@ class Blog:
             )
 
     def renderBlogArchive(self,start,end):
-        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ]))
+        body=''.join( [ '''
+        <div class="yui-u postbox thinedge"><a href="%s">Posts for year %d</a>        
+        </div>
+        '''%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ])
 
         dname=os.path.join(self.dest_dir,'weblog')
         fname='archive.html'
@@ -292,7 +295,8 @@ class Blog:
             'pageSite',
             dname,
             fname,
-            body=body
+            body=body,
+            bodytitle=self.blog_title
             )
 
 
