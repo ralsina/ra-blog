@@ -36,7 +36,7 @@ class FeedBurner:
           </a>
         </td>
     '''%(self.feedburnerName,self.feedburnerName,self.blog.blogName)
-    
+
     def feedBox(self,feedName):
         return u'''
         <script src="http://feeds.feedburner.com/%s?format=sigpro" type="text/javascript" ></script><noscript><br/>Powered by FeedBurner</noscript>'''%feedName

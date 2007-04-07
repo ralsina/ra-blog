@@ -37,5 +37,5 @@ directives.register_directive('code-block', pygments_directive)
 
 
 if __name__ == "__main__":
-  import docutils.core
-  docutils.core.publish_cmdline(writer_name='html')
+    import docutils.core
+    docutils.core.publish_cmdline(writer_name='html')

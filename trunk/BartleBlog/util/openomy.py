@@ -36,8 +36,8 @@ class OpenomyError(Exception):
         print xml
         self.error=errors[code]
 
-                
-                
+
+
 class File:
     def __init__(self,tree):
         self.filename=tree.find('file').find('filename').text
@@ -48,7 +48,7 @@ class File:
         self.owner=tree.find('file').find('owner').text
         self.public=tree.find('file').find('public').attrib['ispublic']=='1'
         self.url=tree.find('file').find('public').text
-                
+
 class Tag:
     def __init__(self,element):
         self.name=element.text
@@ -57,7 +57,7 @@ class Tag:
         self.files=None
 
 class Openomy:
-    
+
     def __init__(self,notoken=False):
         self.tags={}
         self.files={}
@@ -65,7 +65,7 @@ class Openomy:
             self.tok=config.getValue('openomy','token')
             if not self.tok:
                 raise OpenomyError(11)
-        
+
     def Files_GetFile(self,fname,nocache=False):
         if not self.files.has_key(id) or nocache:
             self.Files_GetAllFiles(nocache)
@@ -78,7 +78,7 @@ class Openomy:
         else:
             f=self.files[id]
         return f
-            
+
     def Files_GetAllFiles(self,nocache=False):
         if nocache or not self.files:
             u=self.createUrl('Files.GetAllFiles',tok=self.tok)
@@ -87,8 +87,8 @@ class Openomy:
             for f in fs:
                 self.files[f[1]]=f[0]
         return self.files
-            
-        
+
+
     def Tags_GetTag(self,name,nocache=False):
         ts=self.Tags_GetAllTags(nocache)
         try:
@@ -102,7 +102,7 @@ class Openomy:
             tag.users=[ x.text for x in resp.find('tag').find('users').findall('user') ]
             tag.files=[ x.text for x in resp.find('tag').find('files').findall('file') ]
         return tag
-        
+
     def Tags_GetAllTags(self,nocache=False):
         if nocache:
             self.tags={}
@@ -113,39 +113,39 @@ class Openomy:
                 t=Tag(e)
                 self.tags[t.name]=t
         return self.tags
-        
+
     def Auth_AuthorizeUser(self,username,password):
         u=self.createUrl('Auth.AuthorizeUser',username=username,password=password)
         print u
         resp=self.getResponse(u)
         return resp.find('confirmedtoken').text
-        
+
     def createUrl(self,method,tok=None,**params):
-    
+
         params['method']=method
         params['applicationKey']=appkey
-        
+
         if method=='Auth.AuthorizeUser':
-                pass
+            pass
         elif method=='Auth.GetConfirmedToken':
-                params['unconfirmedToken']=self.tok
+            params['unconfirmedToken']=self.tok
         else:
-                params['confirmedToken']=self.tok
+            params['confirmedToken']=self.tok
         k=params.keys()
         k.sort()
         url=baseurl+'&'.join([ '%s=%s'%(key,params[key]) for key in k])
-        
+
         sig=''.join(['%s=%s'%(key,params[key]) for key in k])+secret
         url=url+'&signature=%s'%md5.md5(sig).hexdigest()
         return url
-    
+
     def getResponse(self,url):
         data=urllib2.urlopen(url).read()
         f=StringIO(data)
-        
+
         t=tree.parse(f)
-        
+
         r=t.getroot()
         if r.tag=='error':
-                raise OpenomyError(int(r.attrib['code']),data)
+            raise OpenomyError(int(r.attrib['code']),data)
         return r

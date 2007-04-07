@@ -15,7 +15,7 @@ def getValue(section,key,default=None):
         return conf.get (section,key)
     except:
         return default
-        
+
 def setValue(section,key,value):
     try:
         r=conf.set(section,key,value)
@@ -25,8 +25,8 @@ def setValue(section,key,value):
     f=open(os.path.expanduser('~/.bartleblog.conf'),'w')
     conf.write(f)
     return r
-    
-    
+
+
 class ConfigError(Exception):
     def __init__(self,modulename,msg):
         self.modulename=modulename
