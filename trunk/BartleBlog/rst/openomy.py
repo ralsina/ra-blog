@@ -37,7 +37,7 @@ def directive_openomy_tag (name, arguments, options, content, lineno,
         return [raw]
         
     except OpenomyError, e:
-        error = state_machine.reporter.error( e.error[2],
+        error = state_machine.reporter.error( e.error[1],
         docutils.nodes.literal_block(block_text, block_text), line=lineno )
         return [error]
 

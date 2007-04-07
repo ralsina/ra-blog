@@ -11,27 +11,30 @@ secret='39578658'
 
 baseurl='http://www.openomy.com/api/rest/?'
 
-errors=[
-        [0,'Invalid token','The token (either unconfirmed or confirmed) was not valid.'],
-        [1,'Invalid signature','The MD5 based signature did not match what Openomy produced.'],
-        [2,'Permissions','The application does not have enough permissions to perform the requested call.'],
-        [3,'Null Reference','One or more of the arguments was null. You\'re probably missing an argument (maybe a token or key?).'],
-        [4,'General','A general, undescribed, error occured.'],
-        [5,'Tag Name Not Valid','The name of the tag you are describing is not valid. Perhaps forbidden characters or already used?'],
-        [6,'User Not Found','The user you are requesting was not found.'],
-        [7,'File Too Large','The file you are trying to upload was too large based on the user\'s quota.'],
-        [8,'Out Of Storage','The user is out of storage space and the requested call could not be completed.'],
-        [9,'InvalidApplicationKey','The applicationKey you passed was invalid.'],
-        [10,'UnknownMethod',"The method you passed was unknown (or you didn't pass a method)."],
-        [11,'No token configured','There is no token configured to access openomy.com, please configure the Openomy tool'],
-        [12,'No such tag','There is no tag with that name in openomy.com'],
-        [13,'No such file','There is no file with that name in openomy.com']
-]
+errors={0:['Invalid token','The token (either unconfirmed or confirmed) was not valid.'],
+        1:['Invalid signature','The MD5 based signature did not match what Openomy produced.'],
+        2:['Permissions','The application does not have enough permissions to perform the requested call.'],
+        3:['Null Reference','One or more of the arguments was null. You\'re probably missing an argument (maybe a token or key?).'],
+        4:['General','A general, undescribed, error occured.'],
+        5:['Tag Name Not Valid','The name of the tag you are describing is not valid. Perhaps forbidden characters or already used?'],
+        6:['User Not Found','The user you are requesting was not found.'],
+        7:['File Too Large','The file you are trying to upload was too large based on the user\'s quota.'],
+        8:['Out Of Storage','The user is out of storage space and the requested call could not be completed.'],
+        9:['InvalidApplicationKey','The applicationKey you passed was invalid.'],
+        10:['UnknownMethod',"The method you passed was unknown (or you didn't pass a method)."],
+        11:['No token configured','There is no token configured to access openomy.com, please configure the Openomy tool'],
+        12:['No such tag','There is no tag with that name in openomy.com'],
+        13:['No such file','There is no file with that name in openomy.com'],
+        18:['Authentication error','Username not found']
+}
 
 
 class OpenomyError(Exception):
-        def __init__(self,code):
-                self.error=errors[code]
+    def __init__(self,code,xml):
+        print "Openomy error: ",code
+        print
+        print xml
+        self.error=errors[code]
 
                 
                 
@@ -55,12 +58,13 @@ class Tag:
 
 class Openomy:
     
-    def __init__(self):
-        self.tok=config.getValue('openomy','token')
+    def __init__(self,notoken=False):
         self.tags={}
         self.files={}
-        if not self.tok:
-            raise OpenomyError(11)
+        if not notoken:
+            self.tok=config.getValue('openomy','token')
+            if not self.tok:
+                raise OpenomyError(11)
         
     def Files_GetFile(self,fname,nocache=False):
         if not self.files.has_key(id) or nocache:
@@ -111,8 +115,9 @@ class Openomy:
         return self.tags
         
     def Auth_AuthorizeUser(self,username,password):
-        u=self.createUrl('Auth.AuthorizeUser')
-        resp.self.getResponse(u)
+        u=self.createUrl('Auth.AuthorizeUser',username=username,password=password)
+        print u
+        resp=self.getResponse(u)
         return resp.find('confirmedtoken').text
         
     def createUrl(self,method,tok=None,**params):
@@ -142,5 +147,5 @@ class Openomy:
         
         r=t.getroot()
         if r.tag=='error':
-                raise OpenomyError(int(r.attrib['code']))
+                raise OpenomyError(int(r.attrib['code']),data)
         return r

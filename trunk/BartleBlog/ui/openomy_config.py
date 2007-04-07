@@ -3,6 +3,7 @@
 from PyQt4 import QtGui, QtCore
 
 from BartleBlog.ui.Ui_openomy_config import Ui_Form
+from BartleBlog.ui.authdialog import AuthDialog
 import BartleBlog.backend.dbclasses as db
 import BartleBlog.backend.config as config
 import BartleBlog.util.openomy as openomy
@@ -28,3 +29,15 @@ class OpenomyConfigWidget(QtGui.QWidget):
             self.ui.get.setEnabled(False)
             self.ui.status.setText("Token available")
         
+
+        QtCore.QObject.connect(self.ui.get,
+            QtCore.SIGNAL("clicked()"),
+            self.getToken)
+
+    def getToken(self):
+        d=AuthDialog(self,'Enter user and password of your openomy.com account')
+        d.exec_()
+        op=openomy.Openomy(notoken=True)
+        tok=op.Auth_AuthorizeUser(username=str(d.ui.user.text()),
+                                  password=str(d.ui.password.text()))
+        config.setValue('openomy','token',tok)
