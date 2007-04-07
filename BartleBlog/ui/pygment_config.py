@@ -30,20 +30,20 @@ previewtext='''<html><div class="highlight"><pre><span class="n">bstring</span> 
 class PygmentConfigWidget(QtGui.QWidget):
     def __init__(self,parent=None):
         QtGui.QWidget.__init__(self,parent)
-        
+
         # Set up the UI from designer
         self.ui=Ui_Form()
         self.ui.setupUi(self)
 
         self.ui.styles.addItems(list(get_all_styles()))
-        
+
         QtCore.QObject.connect(self.ui.styles,QtCore.SIGNAL('activated(QString)'),
             self.loadStyle)
-        
+
         curStyle=config.getValue('pygment','style','murphy')
         self.ui.styles.setCurrentIndex(self.ui.styles.findText(curStyle))
         self.loadStyle(curStyle)
-        
+
     def loadStyle(self,style):
         style=str(style)
         formatter=HtmlFormatter(style=style)
@@ -51,4 +51,3 @@ class PygmentConfigWidget(QtGui.QWidget):
         self.ui.preview.document().setDefaultStyleSheet(css)
         self.ui.preview.setHtml(previewtext)
         config.setValue('pygment','style',style)
-        

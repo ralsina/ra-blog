@@ -25,20 +25,20 @@ def fsetCategories(self,categories):
             c.is_dirty=99
             self.removeCategory(c)
 
-    # Now mark as dirty all the new categories 
+    # Now mark as dirty all the new categories
     # for the post
     for c in categories:
         if not c in self.categories:
             c.is_dirty=99
             self.addCategory(c)
-        
-        
+
+
 def fteaser (self):
     try:
         return cgi.escape(html2text(self.rendered)[:100])
     except:
         return cgi.escape(self.text[:100])
-        
+
 def frender (self):
     if self.structured:
         html,code=rst.rst2html(self.text)
@@ -56,11 +56,11 @@ def guessCategories(text):
         if not cat.magicWords:
             continue
         for word in cat.magicWords.split(' '):
-            if re.compile(' %s |^%s | %s$'%(word,word,word)).findall(text): 
+            if re.compile(' %s |^%s | %s$'%(word,word,word)).findall(text):
                 res.append(cat.name)
                 break
     return res
-    
+
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()

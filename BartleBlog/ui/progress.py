@@ -25,29 +25,23 @@ class ProgressDialog(QtGui.QDialog):
     def step(self,step=1):
         self.ui.progress.setValue(self.ui.progress.value()+step)
         QtCore.QCoreApplication.instance().processEvents()
-                
+
     def gotoStage(self,stage):
         self.curStage=stage
         self.setSteps(0)
         self.setPos(0)
         self.renderStages()
         QtCore.QCoreApplication.instance().processEvents()
-        
+
     def renderStages(self):
         html=''
         for i in range(0,len(self.stages)):
             if i==self.curStage:
-               html+='<b>%s</b><br>&nbsp;&nbsp;%s<p>'%(self.stages[i][0],self.stages[i][1])
+                html+='<b>%s</b><br>&nbsp;&nbsp;%s<p>'%(self.stages[i][0],self.stages[i][1])
             else:
-               html+='%s<p>'%(self.stages[i][0])
+                html+='%s<p>'%(self.stages[i][0])
         self.ui.stages.setHtml(html)
-        
+
     def setStages(self,stages):
         self.stages=stages
         self.renderStages()
-        
-        
-        
-        
-        
-        

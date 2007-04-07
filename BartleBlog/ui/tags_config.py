@@ -11,11 +11,11 @@ class TagsConfigWidget(QtGui.QWidget):
         QtGui.QWidget.__init__(self,parent)
         self.curTag=None
         self.newName=None
-        
+
         # Set up the UI from designer
         self.ui=Ui_Form()
         self.ui.setupUi(self)
-        
+
         self.loadTags()
         QtCore.QObject.connect(self.ui.list,QtCore.SIGNAL('activated(QString)'),
             self.loadTag)
@@ -25,7 +25,7 @@ class TagsConfigWidget(QtGui.QWidget):
             self.delTag)
         QtCore.QObject.connect(self.ui.rename,QtCore.SIGNAL('clicked()'),
             self.renameTag)
-    
+
     def renameTag(self):
         text,ok=QtGui.QInputDialog.getText(self,'BartleBlog - Rename Tag','Enter the new name of the %s tag'%self.curTag.name)
         text=str(text)
@@ -34,14 +34,14 @@ class TagsConfigWidget(QtGui.QWidget):
             self.loadTags()
             self.loadTag(text)
             self.ui.list.setCurrentIndex(self.ui.list.findText(text))
-    
+
     def delTag(self):
         res=QtGui.QMessageBox.question(self,'BartleBlog delete tag','Delete tag %s?'%self.curTag.name,
                 QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
         if res == QtGui.QMessageBox.Yes:
             self.curTag.destroySelf()
             self.loadTags()
-        
+
     def fillWidgets(self):
         self.ui.title.setText('')
         self.ui.magicWords.setText('')
@@ -52,7 +52,7 @@ class TagsConfigWidget(QtGui.QWidget):
             self.ui.magicWords.setText(self.curTag.magicWords)
         if self.curTag.description:
             self.ui.description.setText(self.curTag.description)
-        
+
     def newTag(self):
         text,ok=QtGui.QInputDialog.getText(self,'BartleBlog - New Tag','Enter the name of the new tag')
         text=str(text)
@@ -62,22 +62,22 @@ class TagsConfigWidget(QtGui.QWidget):
             self.loadTags()
             self.loadTag(text)
             self.ui.list.setCurrentIndex(self.ui.list.findText(text))
-            
-        
-        
+
+
+
     def saveTag(self):
         if not self.curTag:
             return
         self.curTag.description=str(self.ui.description.toPlainText())
         self.curTag.title=str(self.ui.title.text())
         self.curTag.magicWords=str(self.ui.magicWords.text())
-        
+
     def loadTags(self):
         self.ui.list.clear()
         for tag in db.Category.select(orderBy=db.Category.q.name):
             self.ui.list.addItem(tag.name)
         self.loadTag(self.ui.list.itemText(0))
-            
+
     def loadTag(self,tagname):
         self.newName=None
         self.saveTag()

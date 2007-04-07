@@ -30,8 +30,8 @@ class Blog:
         self.language="en"
         self.version="Bartleblog 0.0"
 
-        Macros(self)        
-        
+        Macros(self)
+
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
         f=codecs.open(fname,"r","utf-8")
@@ -73,7 +73,7 @@ class Blog:
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(rss)
 
-    def renderCategory(self,cat):        
+    def renderCategory(self,cat):
         catname=cat.name.lower()
         title='Posts in %s about %s'%(self.blog_title,cat.name)
         dname=os.path.join(self.dest_dir,'categories')
@@ -92,7 +92,7 @@ class Blog:
                 postlist=postlist,
                 bodytitle=title,
             )
-  
+
     def renderCategoryIndex(self):
         title='%s posts by topic'%self.blog_title
         dname=os.path.join(self.dest_dir,'categories')
@@ -280,7 +280,7 @@ class Blog:
             )
 
     def renderBlogArchive(self,start,end):
-        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ])) 
+        body='<div class="yui-u rounded postbox thinedge"><h1>%s</h1><ul>%s</ul></div>'%(self.blog_title,''.join( [ '<li><a href="%s">%d</a>'%(self.macros.absoluteUrl('weblog/%d/index.html'%y),y) for y in range(start,end+1) ]))
 
         dname=os.path.join(self.dest_dir,'weblog')
         fname='archive.html'
@@ -300,36 +300,36 @@ class Blog:
         '''Gives a list of all the pages that relate to the given post, which you
         can later queue for rerendering'''
 
-        p=Post(postID=postID)        
+        p=Post(postID=postID)
         d=p.pubDate
-        
+
         list=[]
         list.append(['year',d.year])
         list.append(['month',d.month])
         list.append(['day',d.day])
         for c in p.categories:
             list.append(['category',c.name])
-            
+
         return list
-        
+
     def queuePages(self,list):
         '''Queue all given pages for rendering, if they are not in the queue
         already'''
         for p in list:
             if not p in self.queue:
                 self.queue.append(p)
-            
+
     def updateRenderBlog(self):
         '''Queue for rerendering all pages related to posts which are dirty,
         or where the post's uplDate is older than its modDate or its pubDate.
-        
-        Also, all categories marked as dirty, all stories marked as dirty, 
+
+        Also, all categories marked as dirty, all stories marked as dirty,
         and their respective indexes.
-        
+
         '''
-        
+
         pass
-            
+
     def renderBlog(self):
         if self.progress:
             self.progress.setStages([
@@ -337,12 +337,12 @@ class Blog:
             ['Rendering Archives','Rendering the historical archive index.'],
             ['Rendering Stories','Rendering the static story pages'],
             ['Rendering Index','Rendering the main page.'],
-            ['Rendering Blog','Rendering all archived posts.']])        
+            ['Rendering Blog','Rendering all archived posts.']])
         plist=db.Post.select(orderBy=db.Post.q.pubDate)
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
-        if self.progress: 
+        if self.progress:
             self.progress.gotoStage(0)
             c=0
             for cat in db.Category.select():
@@ -353,7 +353,7 @@ class Blog:
         if self.progress: self.progress.gotoStage(1)
         self.renderBlogArchive(oldest.year,newest.year)
 
-        if self.progress: 
+        if self.progress:
             self.progress.gotoStage(2)
             self.progress.setSteps(db.Story.select().count())
         self.renderStories()
@@ -361,30 +361,30 @@ class Blog:
         if self.progress: self.progress.gotoStage(3)
         self.renderBlogIndex()
 
-        if self.progress: 
+        if self.progress:
             self.progress.gotoStage(4)
             # Each post is rendered once in year/month/day pages
             self.progress.setSteps(plist.count()*3)
             self.progress.setPos(0)
         for year in range(oldest.year,newest.year+1):
             self.renderBlogYear(year)
-        if self.progress: 
+        if self.progress:
             self.progress.close()
 
-            
+
     def regenerate(self,all=False):
         if self.progress:
             self.progress.setStages([
             ['Regenerating Stories','Converting to HTML your stories.'],
-            ['Regenerating Posts','Converting to HTML your posts.']])        
+            ['Regenerating Posts','Converting to HTML your posts.']])
         if all:
             plist=db.Post.select()
             slist=db.Story.select()
         else:
             plist=db.Post.select(db.Post.q.is_dirty>1)
             slist=db.Story.select(db.Story.q.is_dirty>1)
-            
-            
+
+
         if self.progress:
             self.progress.gotoStage(0)
             self.progress.setSteps(slist.count())
@@ -400,6 +400,6 @@ class Blog:
             p.render()
             if self.progress:
                 self.progress.step()
-        
+
         if self.progress:
             self.progress.close()

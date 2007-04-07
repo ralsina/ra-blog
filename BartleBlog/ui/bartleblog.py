@@ -43,7 +43,7 @@ class MainWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.actionConfigure,
             QtCore.SIGNAL("triggered()"),
             self.configure)
-            
+
         QtCore.QObject.connect(self.ui.actionEditPost,
             QtCore.SIGNAL("triggered()"),
             self.edit)
@@ -51,11 +51,11 @@ class MainWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.actionNewPost,
             QtCore.SIGNAL("triggered()"),
             self.newPost)
-            
+
         QtCore.QObject.connect(self.ui.actionRegenerateAll,
             QtCore.SIGNAL("triggered()"),
             self.regenerateAll)
-            
+
         QtCore.QObject.connect(self.ui.actionRegenerateNeeded,
             QtCore.SIGNAL("triggered()"),
             self.regenerateNeeded)
@@ -70,13 +70,13 @@ class MainWindow(QtGui.QMainWindow):
         self.blog.progress.show()
         self.blog.regenerate()
         self.blog.progress=None
-    
+
     def regenerateAll(self):
         self.blog.progress=ProgressDialog(self)
         self.blog.progress.show()
         self.blog.regenerate(all=True)
         self.blog.progress=None
-        
+
     def edit(self):
         self.editor=EditorWindow(self.curPost)
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
@@ -86,11 +86,11 @@ class MainWindow(QtGui.QMainWindow):
         self.editor=EditorWindow()
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
-        
+
     def configure(self):
         cfg=ConfigWindow()
         cfg.exec_()
-        
+
     def renderBlog(self):
         self.blog.progress=ProgressDialog(self)
         self.blog.progress.show()
@@ -117,10 +117,10 @@ class MainWindow(QtGui.QMainWindow):
     def displayPostInViewer(self):
             # Fancier HTML for the user
         post=self.curPost
-        
+
         if post.is_dirty>1:
             self.reRenderCurrentPost()
-        
+
         html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))
         self.ui.viewer.setHtml(html)
 
@@ -150,13 +150,9 @@ def my_excepthook(exc_type, exc_value, exc_traceback):
 
     # Call the default exception handler if you want
     sys.__excepthook__(exc_type, exc_value, exc_traceback)
-    
+
 def install_handler():
     sys.excepthook = my_excepthook
-        
+
 install_handler()
 main()
-    
-
-
-

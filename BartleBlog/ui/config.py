@@ -19,9 +19,9 @@ class ConfigWindow(QtGui.QDialog):
         self.widgets={}
         self.layout=QtGui.QHBoxLayout()
         self.ui.frame.setLayout(self.layout)
-        
+
         # Add configuration items to the list
-        
+
         QtGui.QListWidgetItem("Tags",self.ui.list)
         self.widgets['tags']=TagsConfigWidget
 
@@ -33,8 +33,8 @@ class ConfigWindow(QtGui.QDialog):
 
         QtCore.QObject.connect(self.ui.list,
             QtCore.SIGNAL("currentItemChanged( QListWidgetItem *, QListWidgetItem *)"),
-            self.gotoPage)        
-        
+            self.gotoPage)
+
     def gotoPage(self,current,previous):
         if self.widget:
             self.widget.hide()

@@ -16,7 +16,7 @@ class EditorWindow(QtGui.QMainWindow):
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
         self.setPost(post)
-        
+
         QtCore.QObject.connect(self.ui.actionSave,
             QtCore.SIGNAL("triggered()"),
             self.savePost)
@@ -24,7 +24,7 @@ class EditorWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.actionClose,
             QtCore.SIGNAL("triggered()"),
             self.closeWindow)
-        
+
         QtCore.QObject.connect(self.ui.guess,
             QtCore.SIGNAL("clicked()"),
             self.guessTags)
@@ -36,28 +36,28 @@ class EditorWindow(QtGui.QMainWindow):
     def chooseTags(self):
         self.d=TagsDialog(self,self.ui.tags.text())
         r=self.d.exec_()
-        
+
         if r:
             self.ui.tags.setText(self.d.currentCategories())
         del self.d
-        
+
     def guessTags(self):
         self.ui.tags.setText(','.join(db.guessCategories(unicode(self.ui.editor.toPlainText())+unicode(self.ui.title.text()))))
-        
+
     def closeWindow(self):
         self.close()
-        
+
     def setPost(self,post):
         self.post=post
         if not post:
             return
-            
+
         self.ui.title.setText(post.title)
         self.ui.link.setText(post.link)
         self.ui.editor.setPlainText(post.text)
         self.ui.tags.setText(','.join( [c.name for c in post.categories]))
 
-        
+
     def savePost(self):
         if not self.post:
             self.post=db.Post( postID="BB%s"%str(time.time()),
@@ -78,5 +78,3 @@ class EditorWindow(QtGui.QMainWindow):
             self.post.setCategories(cats)
         self.post.is_dirty=99
         self.emit(QtCore.SIGNAL('saved'))
-
-        
