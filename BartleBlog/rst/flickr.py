@@ -12,7 +12,7 @@ def flickr( name, arguments, options, content, lineno,
 
     The syntax is this::
 
-    .. flickr:: title
+        .. flickr:: title
 
     Where title is the title you used in flickr.
     """
@@ -59,5 +59,5 @@ flickr.content = 1
 docutils.parsers.rst.directives.register_directive( 'flickr', flickr )
 
 if __name__ == "__main__":
-  import docutils.core
-  docutils.core.publish_cmdline(writer_name='html')
+    import docutils.core
+    docutils.core.publish_cmdline(writer_name='html')

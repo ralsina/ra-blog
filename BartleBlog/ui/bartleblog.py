@@ -4,6 +4,7 @@
 import codecs
 import sys
 import os
+import traceback
 import datetime
 
 import docutils.core
@@ -134,4 +135,28 @@ def main():
     window.init_tree()
     sys.exit(app.exec_())
 
+def my_excepthook(exc_type, exc_value, exc_traceback):
+    app=QtCore.QCoreApplication.instance()
+    msg = ' '.join(traceback.format_exception(exc_type,
+                                                       exc_value,
+                                                       exc_traceback,4))
+    QtGui.QMessageBox.critical(None,
+                         app.tr("Critical Error"),
+                         app.tr("An unexpected Exception has occured!\n"
+                                "%1").arg(msg),
+                         QtGui.QMessageBox.Ok,
+                         QtGui.QMessageBox.NoButton,
+                         QtGui.QMessageBox.NoButton)
+
+    # Call the default exception handler if you want
+    sys.__excepthook__(exc_type, exc_value, exc_traceback)
+    
+def install_handler():
+    sys.excepthook = my_excepthook
+        
+install_handler()
 main()
+    
+
+
+
