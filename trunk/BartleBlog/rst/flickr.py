@@ -36,7 +36,7 @@ def htmlforphoto(photo,fname):
     t_url='http://farm%s.static.flickr.com/%s/%s_%s_%s.jpg'%(
             farm,server,id,secret,'m')
 
-    html='<div class="center"><a href="%s"><img src="%s" class="flickr" alt="%s"></a><div class="footerbox">%s</div><div>'%(url,t_url,fname,fname)
+    html='<div class="center"><a href="%s"><img src="%s" class="flickr" alt="%s"></a><div class="footerbox">%s</div></div>'%(url,t_url,fname,fname)
     return html
 
 def flickr( name, arguments, options, content, lineno,

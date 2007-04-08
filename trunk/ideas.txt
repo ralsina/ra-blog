@@ -1,0 +1,4 @@
+Ideas:
+------
+
+* Implement a JS-KIT tool for ratings and comments
