@@ -97,6 +97,13 @@
     <addaction name="separator" />
     <addaction name="menuImport" />
    </widget>
+   <widget class="QMenu" name="menu_Post" >
+    <property name="title" >
+     <string>&amp;Post</string>
+    </property>
+    <addaction name="actionEditPost" />
+    <addaction name="actionDelete" />
+   </widget>
    <widget class="QMenu" name="menuBlog" >
     <property name="title" >
      <string>Blog</string>
@@ -108,16 +115,16 @@
      <addaction name="actionRegenerateNeeded" />
      <addaction name="actionRegenerateAll" />
     </widget>
-    <addaction name="actionRender_Blog" />
+    <widget class="QMenu" name="menuRender_Pages" >
+     <property name="title" >
+      <string>Render Pages</string>
+     </property>
+     <addaction name="actionRender_Blog" />
+     <addaction name="actionRender_Full_Blog" />
+    </widget>
     <addaction name="separator" />
+    <addaction name="menuRender_Pages" />
     <addaction name="menuRegenerate_HTML" />
-   </widget>
-   <widget class="QMenu" name="menu_Post" >
-    <property name="title" >
-     <string>&amp;Post</string>
-    </property>
-    <addaction name="actionEditPost" />
-    <addaction name="actionDelete" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -198,6 +205,11 @@
    </property>
    <property name="text" >
     <string>delete</string>
+   </property>
+  </action>
+  <action name="actionRender_Full_Blog" >
+   <property name="text" >
+    <string>Render Full Blog</string>
    </property>
   </action>
  </widget>

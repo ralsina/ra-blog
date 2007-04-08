@@ -40,6 +40,10 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.renderBlog)
 
+        QtCore.QObject.connect(self.ui.actionRender_Full_Blog,
+            QtCore.SIGNAL("triggered()"),
+            self.renderFullBlog)
+
         QtCore.QObject.connect(self.ui.actionConfigure,
             QtCore.SIGNAL("triggered()"),
             self.configure)
@@ -109,6 +113,12 @@ class MainWindow(QtGui.QMainWindow):
         self.blog.progress=ProgressDialog(self)
         self.blog.progress.show()
         self.blog.renderBlog()
+        self.blog.progress=None
+
+    def renderFullBlog(self):
+        self.blog.progress=ProgressDialog(self)
+        self.blog.progress.show()
+        self.blog.renderFullBlog()
         self.blog.progress=None
 
     def init_tree(self):

@@ -16,7 +16,6 @@ class Blog:
         self.dest_dir=os.path.abspath("weblog")
         self.blog_title="Lateral Opinion"
         self.progress=None
-        self.queue=[]
 
         #################################################################################
         ### Things that should be in the config file
@@ -131,25 +130,28 @@ class Blog:
             )
         self.renderRSS(title,curDate,dname,'rss.xml',postlist)
 
+    def renderStory(self,story):
+        story_dir=os.path.join(self.dest_dir,'stories')
+        title=story.title
+        curDate=story.pubDate
+        fname="%s.html"%(story.postID)
+        self.renderBlogPage(
+                title,
+                curDate,
+                'storySite',
+                'pageSite',
+                story_dir,
+                fname,
+                story=story
+                )
+        
     def renderStories(self):
 
         self.renderStoryIndex()
 
         # Render stories
-        story_dir=os.path.join(self.dest_dir,'stories')
         for story in db.Story.select():
-            title=story.title
-            curDate=story.pubDate
-            fname="%s.html"%(story.postID)
-            self.renderBlogPage(
-                    title,
-                    curDate,
-                    'storySite',
-                    'pageSite',
-                    story_dir,
-                    fname,
-                    story=story
-                    )
+            self.renderStory(story)
             self.progress.step()
 
 
@@ -279,7 +281,11 @@ class Blog:
             body=body
             )
 
-    def renderBlogArchive(self,start,end):
+    def renderBlogArchive(self):
+        plist=db.Post.select(orderBy=db.Post.q.pubDate)
+        start=plist[0].pubDate.year
+        end=plist[-1].pubDate.year
+        
         body=''.join( [ '''
         <div class="yui-u postbox thinedge"><a href="%s">Posts for year %d</a>        
         </div>
@@ -299,42 +305,69 @@ class Blog:
             bodytitle=self.blog_title
             )
 
+    def renderPage(self,page):
+        print "rendering: ",page.path
+        path=page.path.split('/')
+        if path[0]=='categories':
+            if path[1]=='index.html':
+                self.renderCategoryIndex()                
+            elif len(path)==2:
+                self.renderCategory(db.categoryByName(path[1].split('.')[0]))
+            else:
+                print "Page I don't know how to render",page.path
+                return
+                
+        elif path[0]=='stories':
+            if path[1]=='index.html':
+                self.renderStoryIndex()                
+            elif len(path)==2:
+                s=db.storyById(path[1].split('.')[0])
+                if s:
+                    self.renderStory(s)
+            else:
+                print "Page I don't know how to render",page.path
+                return            
+                
+        elif path[0]=='weblog':
+            if path[1]=='index.html':
+                self.renderBlogIndex()                
+            elif path[1]=='archive.html':
+                self.renderBlogArchive()                
+            elif len(path)==3:
+                if path[2]=='index.html':
+                    year=int(path[1])
+                    self.renderBlogYear(year)
+            elif len(path)==4:
+                year=int(path[1])
+                month=int(path[2])
+                if path[3]=='index.html':
+                    self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
+                else:
+                    day=int(path[3].split('.')[0])
+                    self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))            
+            else:
+                print "Page I don't know how to render",page.path
+                return            
 
-    def relatedPages(self,postID):
-        '''Gives a list of all the pages that relate to the given post, which you
-        can later queue for rerendering'''
-
-        p=Post(postID=postID)
-        d=p.pubDate
-
-        list=[]
-        list.append(['year',d.year])
-        list.append(['month',d.month])
-        list.append(['day',d.day])
-        for c in p.categories:
-            list.append(['category',c.name])
-
-        return list
-
-    def queuePages(self,list):
-        '''Queue all given pages for rendering, if they are not in the queue
-        already'''
-        for p in list:
-            if not p in self.queue:
-                self.queue.append(p)
-
-    def updateRenderBlog(self):
-        '''Queue for rerendering all pages related to posts which are dirty,
-        or where the post's uplDate is older than its modDate or its pubDate.
-
-        Also, all categories marked as dirty, all stories marked as dirty,
-        and their respective indexes.
-
-        '''
-
-        pass
-
+        else:
+            print "Page I don't know how to render",page.path
+            return
+            
+        page.is_dirty=False
+                
+            
     def renderBlog(self):
+        '''Redo all pages marked as dirty'''
+        plist=db.Page.select(db.Page.q.is_dirty==True)
+        if self.progress:
+            self.progress.setSteps(plist.count())
+        for p in plist:
+            self.renderPage(p)
+            if self.progress: self.progress.step()
+        if self.progress:
+            self.progress.close()
+        
+    def renderFullBlog(self):
         if self.progress:
             self.progress.setStages([
             ['Rendering Categories','Rendering index pages for each category.'],
@@ -355,7 +388,7 @@ class Blog:
         self.renderCategories()
 
         if self.progress: self.progress.gotoStage(1)
-        self.renderBlogArchive(oldest.year,newest.year)
+        self.renderBlogArchive()
 
         if self.progress:
             self.progress.gotoStage(2)
