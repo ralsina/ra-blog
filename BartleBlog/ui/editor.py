@@ -76,5 +76,5 @@ class EditorWindow(QtGui.QMainWindow):
             cats=[ db.Category.select(db.Category.q.name==c)[0] for c in \
                 t.split(',') ]
             self.post.setCategories(cats)
-        self.post.is_dirty=99
+        self.post.render()
         self.emit(QtCore.SIGNAL('saved'))

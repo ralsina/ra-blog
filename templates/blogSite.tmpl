@@ -1,5 +1,4 @@
 <py-for="post in postlist">
-  <py-exec="if progress: progress.step()">
   <div class="yui-u postbox thinedge">
       <a name="<py-eval="post.postID">"></a>
       <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">

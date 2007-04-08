@@ -5,16 +5,28 @@ from sqlobject import *
 from BartleBlog.util.html2text import html2text
 import BartleBlog.rst as rst
 
-class Category(SQLObject):
-    name=UnicodeCol(alternateID=True)
-    description=UnicodeCol()
-    title=UnicodeCol()
-    posts=RelatedJoin('Post',orderBy='pubDate')
-    stories=RelatedJoin('Story',orderBy='pubDate')
-    magicWords=UnicodeCol()
-    is_dirty=IntCol(default=-1)
-    def myurl(self):
-        return "categories/%s.html"%(self.name.lower())
+def categoryByName(name):
+    cq=Category.select(Category.q.name==name)
+    if cq.count():
+        return cq[0]
+    else:
+        return Category(name=name,
+                        description='Posts about %s'%name,
+                        title='Posts about %s'%name)
+                        
+def storyById(id):
+    sq=Story.select(Story.q.postID==id)
+    if sq.count():
+        return sq[0]
+    else:
+        return None
+
+def postById(id):
+    sq=Post.select(Post.q.postID==id)
+    if sq.count():
+        return sq[0]
+    else:
+        return None
 
 def fsetCategories(self,categories):
 
@@ -47,7 +59,8 @@ def frender (self):
         self.is_dirty=code
     else:
         self.rendered=self.text
-        self.is_dirty=-1
+        self.is_dirty=-1        
+    self.modDate=datetime.datetime.now()
 
 def guessCategories(text):
     text=text.lower()
@@ -60,6 +73,23 @@ def guessCategories(text):
                 res.append(cat.name)
                 break
     return res
+    
+class Page(SQLObject):
+    path=UnicodeCol(alternateID=True)
+    is_dirty=BoolCol(default=True)
+    
+
+class Category(SQLObject):
+    name=UnicodeCol(alternateID=True)
+    description=UnicodeCol()
+    title=UnicodeCol()
+    posts=RelatedJoin('Post',orderBy='pubDate')
+    stories=RelatedJoin('Story',orderBy='pubDate')
+    magicWords=UnicodeCol(default='')
+    is_dirty=IntCol(default=-1)
+    def myurl(self):
+        return "categories/%s.html"%(self.name.lower())
+
 
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
@@ -77,7 +107,6 @@ class Post(SQLObject):
 
     pubDate=DateTimeCol(default=datetime.datetime.now())
     modDate=DateTimeCol(default=datetime.datetime.now())
-    uplDate=DateTimeCol(default=datetime.datetime.now())
 
     def myurl(self):
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
@@ -88,6 +117,27 @@ class Post(SQLObject):
     render=frender
     setCategories=fsetCategories
 
+    def setDirty(self):    
+        '''Mark related pages as dirty'''
+    
+        post=self
+        pages=[]
+        pages.append('weblog/%s/index.html'%post.pubDate.year)
+        pages.append('weblog/%s/%s/index.html'%(post.pubDate.year,post.pubDate.month))
+        pages.append('weblog/%s/%s/%s.html'%(post.pubDate.year,post.pubDate.month,post.pubDate.day))
+        for c in post.categories:
+            pages.append('categories/%s.html'%c.name.lower())
+        if len(post.categories)>0:
+            pages.append('categories/index.html')            
+        pages.append('weblog/index.html')
+        
+        for path in pages:
+            pq=Page.select(Page.q.path==path)
+            if pq.count():
+                p=pq[0]
+            else:
+                p=Page(path=path)
+            p.is_dirty=True
 
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)
@@ -100,12 +150,12 @@ class Story(SQLObject):
     quiet=BoolCol()
     is_dirty=IntCol(default=-1)
     categories=RelatedJoin('Category')
+    pages=RelatedJoin('Page')
 
     is_dirty=IntCol(default=-1)
 
     pubDate=DateTimeCol(default=datetime.datetime.now())
     modDate=DateTimeCol(default=datetime.datetime.now())
-    uplDate=DateTimeCol(default=datetime.datetime.now())
 
     def myurl(self):
         return "stories/%s.html"%self.postID
@@ -125,3 +175,4 @@ def initDB(name):
         Post.createTable()
         Story.createTable()
         Category.createTable()
+        Page.createTable()
