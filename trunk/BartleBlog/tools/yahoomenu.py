@@ -89,7 +89,7 @@ class YahooMenuTool:
             [' Ra-Plugins','http://raplugins.blogsite.org'],
             [' RaSPF','http://raspf.blogsite.org'],
             [' CherryTV','http://cherrytv.blogsite.org'],
-            [' BartleBlog','categories/bartleblog.html'],
+            [' BartleBlog',blog.macros.absoluteUrl('categories/bartleblog.html')],
             ['Tags',blog.macros.absoluteUrl('categories/index.html')]
             ]
         for tag in db.Category.select():

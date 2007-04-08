@@ -27,6 +27,14 @@ def postById(id):
         return sq[0]
     else:
         return None
+        
+def pageByPath(path):
+    pq=Page.select(Page.q.path==path)
+    if pq.count():
+        p=pq[0]
+    else:
+        p=Page(path=path)
+    return p
 
 def fsetCategories(self,categories):
 
@@ -34,14 +42,14 @@ def fsetCategories(self,categories):
     # doesn't belong anymore
     for c in self.categories:
         if not c in categories:
-            c.is_dirty=99
+            c.setDirtyPages()
             self.removeCategory(c)
 
     # Now mark as dirty all the new categories
     # for the post
     for c in categories:
         if not c in self.categories:
-            c.is_dirty=99
+            c.setDirtyPages()
             self.addCategory(c)
 
 
@@ -89,6 +97,15 @@ class Category(SQLObject):
     is_dirty=IntCol(default=-1)
     def myurl(self):
         return "categories/%s.html"%(self.name.lower())
+    def setDirtyPages(self):    
+        '''Mark related pages as dirty'''
+    
+        pages=[]
+        pages.append('categories/index.html')
+        pages.append('categories/%s.html'%(self.name))        
+        for path in pages:
+            p=pageByPath(path)
+            p.is_dirty=True
 
 
 class Post(SQLObject):
@@ -117,7 +134,7 @@ class Post(SQLObject):
     render=frender
     setCategories=fsetCategories
 
-    def setDirty(self):    
+    def setDirtyPages(self):    
         '''Mark related pages as dirty'''
     
         post=self
@@ -132,11 +149,7 @@ class Post(SQLObject):
         pages.append('weblog/index.html')
         
         for path in pages:
-            pq=Page.select(Page.q.path==path)
-            if pq.count():
-                p=pq[0]
-            else:
-                p=Page(path=path)
+            p=pageByPath(path)
             p.is_dirty=True
 
 class Story(SQLObject):
@@ -163,6 +176,19 @@ class Story(SQLObject):
     render=frender
     setCategories=fsetCategories
     link=''
+    def setDirtyPages(self):    
+        '''Mark related pages as dirty'''    
+        post=self
+        pages=[]
+        pages.append('stories/%s.html'%post.postID)
+        pages.append('stories/index.html')
+        for c in post.categories:
+            pages.append('categories/%s.html'%c.name.lower())
+        if len(post.categories)>0:
+            pages.append('categories/index.html')                    
+        for path in pages:
+            p=pageByPath(path)
+            p.is_dirty=True
 
 def initDB(name):
     #Initialize sqlobject

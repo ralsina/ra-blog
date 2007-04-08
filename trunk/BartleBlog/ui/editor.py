@@ -77,4 +77,5 @@ class EditorWindow(QtGui.QMainWindow):
                 t.split(',') ]
             self.post.setCategories(cats)
         self.post.render()
+        self.post.setDirtyPages()
         self.emit(QtCore.SIGNAL('saved'))
