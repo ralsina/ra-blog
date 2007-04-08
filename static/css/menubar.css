@@ -174,7 +174,7 @@ div.yuimenu div.bottomscrollbar_disabled {
 div.yuimenu li,
 div.yuimenubar li {
 
-    font-size:100%;
+    font-size:80%;
     cursor:pointer;
     cursor:hand;
     white-space:nowrap;
@@ -191,7 +191,7 @@ div.yuimenu li.yuimenuitem {
 div.yuimenu li li,
 div.yuimenubar li li {
 
-    font-size:100%;
+    font-size:80%;
 
 }
 
