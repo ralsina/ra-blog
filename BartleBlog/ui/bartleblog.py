@@ -15,6 +15,7 @@ import BartleBlog.backend.dbclasses as db
 from BartleBlog.backend.blog import Blog
 
 from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
+import BartleBlog.ui.Ui_about
 from BartleBlog.ui.config import ConfigWindow
 from BartleBlog.ui.editor import EditorWindow
 from BartleBlog.ui.progress import ProgressDialog
@@ -31,6 +32,10 @@ class MainWindow(QtGui.QMainWindow):
 
         self.blog=Blog()
         self.model=PostModel()
+
+        QtCore.QObject.connect(self.ui.actionAbout_BartleBlog,
+            QtCore.SIGNAL("triggered()"),
+            self.about)
 
         QtCore.QObject.connect(self.ui.tree,
             QtCore.SIGNAL("activated(QModelIndex)"),
@@ -82,6 +87,11 @@ class MainWindow(QtGui.QMainWindow):
             self.curPost.destroySelf()
             self.init_tree()
 
+    def about(self):    
+        Dialog = QtGui.QDialog()
+        ui = BartleBlog.ui.Ui_about.Ui_Dialog()
+        ui.setupUi(Dialog)
+        Dialog.exec_()
         
     def regenerateNeeded(self):
         self.blog.progress=ProgressDialog(self)
