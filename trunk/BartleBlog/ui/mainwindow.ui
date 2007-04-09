@@ -126,10 +126,17 @@
     <addaction name="menuRender_Pages" />
     <addaction name="menuRegenerate_HTML" />
    </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout_BartleBlog" />
+   </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
    <addaction name="menuSettings" />
    <addaction name="menuBlog" />
+   <addaction name="menuHelp" />
   </widget>
   <widget class="QStatusBar" name="statusbar" />
   <widget class="QToolBar" name="toolBar" >
@@ -210,6 +217,11 @@
   <action name="actionRender_Full_Blog" >
    <property name="text" >
     <string>Render Full Blog</string>
+   </property>
+  </action>
+  <action name="actionAbout_BartleBlog" >
+   <property name="text" >
+    <string>About BartleBlog</string>
    </property>
   </action>
  </widget>
