@@ -18,6 +18,7 @@ import BartleBlog.tools.statcounter
 import BartleBlog.tools.feedburner
 import BartleBlog.tools.talkr
 import BartleBlog.tools.delicious
+import BartleBlog.tools.mootools
 
 class Macros:
     def __init__ (self,blog):
@@ -35,6 +36,7 @@ class Macros:
         self.feedBurner=BartleBlog.tools.feedburner.factory(blog)
         self.talkr=BartleBlog.tools.talkr.factory(blog)
         self.delicious=BartleBlog.tools.delicious.factory(blog)
+        self.mootools=BartleBlog.tools.mootools.factory(blog)
 
     def absoluteUrl(self,path):
         return basepath+path
