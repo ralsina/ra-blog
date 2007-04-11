@@ -12,3 +12,5 @@ Ideas:
 * Slideshows using mootools Fx.Slide and other transitions
 
 * Menu editor
+
+* Integrate pingomatic.com or something similar
