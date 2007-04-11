@@ -10,3 +10,5 @@ Ideas:
 * Integrate clipperz
 
 * Slideshows using mootools Fx.Slide and other transitions
+
+* Menu editor
