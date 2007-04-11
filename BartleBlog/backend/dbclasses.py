@@ -55,9 +55,14 @@ def fsetCategories(self,categories):
 
 def fteaser (self):
     try:
-        return cgi.escape(html2text(self.rendered)[:100])
+        t=cgi.escape(html2text(self.rendered)[:250])
     except:
-        return cgi.escape(self.text[:100])
+        t=cgi.escape(self.text[:250])
+      
+    if len(t)==250:  
+        l=t.split(' ')[:-1]
+        t=' '.join(l)
+    return t
 
 def frender (self):
     if self.structured:
