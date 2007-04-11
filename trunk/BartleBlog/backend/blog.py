@@ -10,7 +10,6 @@ from macros import Macros
 from BartleBlog.util import slimmer
 
 class Blog:
-
     def __init__(self):
         db.initDB('blog.db')
         self.dest_dir=os.path.abspath("weblog")
@@ -29,7 +28,11 @@ class Blog:
         self.language="en"
         self.version="Bartleblog 0.0"
 
-        Macros(self)
+        self.dayHooks=[]
+        self.monthHooks=[]
+        self.yearHooks=[]
+        
+        Macros(self)        
 
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
@@ -196,6 +199,9 @@ class Blog:
                 fname,
                 postlist=postlist
             )
+        # Render tool hooks for days
+        for hook in self.dayHooks:
+            apply(hook,[date])
 
     def renderBlogMonth(self,date):
         start=date.replace(day=1,hour=0,minute=0,second=0)
@@ -229,12 +235,19 @@ class Blog:
                 postlist=postlist
             )
 
+        # FIXME: this should not be necessary, check it out
+            
         for day in range(1,32):
             try:
                 self.renderBlogDay(curDate.replace(day=day))
             except ValueError:
                 #To avoid checking month length
                 pass
+                
+        # Render tool hooks for months        
+        for hook in self.monthHooks:
+            apply(hook,[date])
+        
 
     def renderBlogYear(self,year):
         for month in range(1,13):
@@ -280,6 +293,9 @@ class Blog:
             fname,
             body=body
             )
+        # Render tool hooks for years
+        for hook in self.yearHooks:
+            apply(hook,[date])
 
     def renderBlogArchive(self):
         plist=db.Post.select(orderBy=db.Post.q.pubDate)
