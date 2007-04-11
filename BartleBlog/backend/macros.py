@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 
 import datetime
 from sqlobject import *
@@ -42,6 +41,13 @@ class Macros:
         return basepath+path
 
 
+    def chunk(self,name):
+        s=db.Chunk.select(db.Chunk.q.name==name)
+        if s.count():
+            return s[0].text
+        else:
+            return ''
+        
     #################################################################################
     ### <head> manipulation
     #################################################################################
@@ -83,14 +89,3 @@ class Macros:
         if rss:
             return u"Copyright %d-%d %s"%(earliest.year,datetime.date.today().year,self.blog.author)
         return u"&copy; %d-%d %s &lt;%s&gt;"%(earliest.year,datetime.date.today().year,self.blog.author,self.blog.author_email)
-
-
-
-    chunk={
-    'blurb':u'''
-    All contents of this site written by me are free.
-    Copy, modify, whatever., just put my name in it, and if you change the contents,
-    clearly say so in the same page. Please provide a link back to the original.
-
-    '''
-    }

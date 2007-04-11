@@ -190,6 +190,10 @@ class Story(SQLObject):
             p=pageByPath(path)
             p.is_dirty=True
 
+class Chunk(SQLObject):
+    name=UnicodeCol(alternateID=True)
+    text=UnicodeCol(default='')
+            
 def initDB(name):
     #Initialize sqlobject
     db_fname=os.path.abspath(name)
@@ -202,3 +206,4 @@ def initDB(name):
         Story.createTable()
         Category.createTable()
         Page.createTable()
+        Chunk.createTable()
