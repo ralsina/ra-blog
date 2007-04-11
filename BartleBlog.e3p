@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-04-10, 22:56:36 -->
+<!-- Saved: 2007-04-11, 08:58:07 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -298,6 +298,11 @@
       <Dir>tools</Dir>
       <Name>mootools.py</Name>
     </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_menu_config.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -359,6 +364,11 @@
       <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>choose_tags.ui</Name>
+    </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>menu_config.ui</Name>
     </Form>
   </Forms>
   <Translations>
@@ -445,9 +455,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
