@@ -1,21 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import BartleBlog.backend.dbclasses as db
+import os,codecs
 
 
 class YahooCalendar:
     def __init__(self,blog):
         self.blog=blog
+        self.blog.monthHooks.append(self.renderMonth)
 
-    def head(self):
-        return [
-        '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/calendar/assets/calendar.css">',
-        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
-        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/calendar/calendar-min.js"></script>',
-        '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
-        ]
-
-    def widget(self,_date):
+    def monthScript(self,_date):
         date=_date.replace(day=1)
         if date.month==12:
             nextmonth=date.replace(year=date.year+1,month=1)
@@ -30,10 +24,7 @@ class YahooCalendar:
             if s in disabled:
                 disabled.remove(s)
         disabled=','.join(disabled)
-
-        return '''  <div id="cal1Container"></div>
-                    <script type="text/javaScript">
-                        YAHOO.namespace("blog");
+        return '''YAHOO.namespace("blog");
                         function init() {
                             YAHOO.blog.cal1 =
                                 new YAHOO.widget.Calendar("cal1","cal1Container", {
@@ -51,8 +42,29 @@ class YahooCalendar:
                             YAHOO.blog.cal1.render();
                         }
                         YAHOO.util.Event.addListener(window, "load", init);
-                    </script>
                 '''%(date.month,date.year,disabled,self.blog.basepath)
+
+    def monthScriptTag(self,date):
+        return '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/calendar/%s-%s.js'%(date.year,date.month))
+        
+    def renderMonth(self,date):
+        dname='static/js/calendar'
+        fname='%s-%s.js'%(date.year,date.month)
+        print "rendering calendar",os.path.join(dname,fname)
+        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
+        f.write(self.monthScript(date))
+        
+        
+    def head(self):
+        return [
+        '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/calendar/assets/calendar.css">',
+        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
+        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/calendar/calendar-min.js"></script>',
+        '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
+        ]
+
+    def widget(self,_date):
+        return '<div id="cal1Container"></div>'
 
 
 
