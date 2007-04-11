@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.9.dtd">
 <!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-04-08, 20:49:15 -->
+<!-- Saved: 2007-04-10, 22:56:36 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="3.9">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -293,6 +293,11 @@
       <Dir>rst</Dir>
       <Name>rst2html.py</Name>
     </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>tools</Dir>
+      <Name>mootools.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -370,6 +375,11 @@
     <Other>
       <Name>ideas.txt</Name>
     </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>moomenu.css</Name>
+    </Other>
   </Others>
   <MainScript>
     <Name>bartleblog.py</Name>
@@ -435,9 +445,9 @@ s.</VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
