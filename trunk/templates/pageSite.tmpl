@@ -6,6 +6,7 @@
   <py-exec="macros.addHead(macros.yahooCalendar.head())">
   <py-exec="macros.addHead(macros.yahooMenu.head())">
   <py-exec="macros.addHead(macros.haloScan.head())">
+  <py-exec="macros.addHead(macros.mootools.head())">
   <py-exec="macros.addHead(macros.feedBurner.rssHead())">
   <py-exec="macros.addHead(macros.rstHead())">
   <py-eval="macros.insertHead()">
@@ -30,8 +31,10 @@
                                 </div>
                         </div>
                         
-                        
                         <div class="yui-b"><!-- sidebar -->
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.mootools.menu()">
+                                </div>
                                 <div class="yui-g sidebox thinedge">
                                         <py-eval="macros.yahooCalendar.widget(curDate)">
                                 </div>
@@ -41,7 +44,7 @@
                                 </div>
                     
                                 <div class="yui-g sidebox thinedge">
-                                        <py-eval="macros.chunk['blurb']">
+                                        <py-eval="macros.chunk('blurb')">
                                 </div>
                                 
                                 <div class="yui-g sidebox thinedge">
@@ -66,6 +69,8 @@
                         </div><!-- end of sidebar -->
                 </div><!-- end of body -->    
         </div><!-- end of doc -->    
+<py-eval="macros.chunk('google_analytics')">
+<py-eval="macros.mootools.accordionScript('menuHeader2','menuSlider')">
 </body>
 </html>
 

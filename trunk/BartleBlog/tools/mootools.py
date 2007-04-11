@@ -76,7 +76,8 @@ class Mootools:
 
 
     def head(self):
-        return ['<script type="text/javascript" charset="utf-8" src="%s" ></script>'%self.blog.macros.absoluteUrl('static/js/mootools.js')]
+        return ['<link rel="stylesheet" type="text/css" href="%s">'%self.blog.macros.absoluteUrl('static/css/moomenu.css'),
+        '<script type="text/javascript" charset="utf-8" src="%s" ></script>'%self.blog.macros.absoluteUrl('static/js/mootools.js')]
 
         
     def menu(self):

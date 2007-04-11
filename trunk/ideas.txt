@@ -7,3 +7,6 @@ Ideas:
 
 * MyBlogLog
 
+* Integrate clipperz
+
+* Slideshows using mootools Fx.Slide and other transitions
