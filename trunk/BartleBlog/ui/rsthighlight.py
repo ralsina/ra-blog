@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from PyQt import QtGui
+from PyQt4 import QtGui
 
 class rstHighlighter (QtGui.QSyntaxHighlighter):
-    def __init__(self):
-        QtGui.QSyntaxHighlighter.__init__(self)
+    def __init__(self,document):
+        QtGui.QSyntaxHighlighter.__init__(self,document)
+
+        
+    def highlightBlock(self,text):
+        pass
