@@ -61,9 +61,9 @@ class EditorWindow(QtGui.QMainWindow):
     def savePost(self):
         if not self.post:
             self.post=db.Post( postID="BB%s"%str(time.time()),
-                            title=str(self.ui.title.text()),
-                            link=str(self.ui.link.text()),
-                            text=str(self.ui.editor.toPlainText()))
+                            title=unicode(self.ui.title.text()),
+                            link=unicode(self.ui.link.text()),
+                            text=unicode(self.ui.editor.toPlainText()))
             # Silly hack to have PostID be unique but not ugly
             self.post.postID='BB'+str(self.post.id)
         else:

@@ -14,3 +14,5 @@ Ideas:
 * Menu editor
 
 * Integrate pingomatic.com or something similar
+
+* Integrate video site revver.com
