@@ -94,10 +94,10 @@ class Mootools:
                         function accordionInit() {
                                 new Accordion($$('.%s'),$$('.%s'));
                         }
-                        YAHOO.util.Event.onContentReady("moomenu", accordionInit);                        
-                        /*YAHOO.util.Event.addListener(window, "load", accordionInit);*/
-                    </script>        
+                        window.addEvent('domready',accordionInit);
+                    </script>
         '''%(controlClass,sliderClass)
+        
         
 def factory (blog):
     return Mootools(blog)
