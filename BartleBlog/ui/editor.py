@@ -6,7 +6,7 @@ import time
 from BartleBlog.ui.Ui_rsteditor import Ui_MainWindow
 from BartleBlog.ui.choose_tags import TagsDialog
 import BartleBlog.backend.dbclasses as db
-
+from rsthighlight import rstHighlighter
 
 class EditorWindow(QtGui.QMainWindow):
     def __init__(self,post=None):
@@ -32,6 +32,8 @@ class EditorWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.tags,
             QtCore.SIGNAL("clicked()"),
             self.chooseTags)
+            
+        self.hl=rstHighlighter(self.ui.editor.document())
 
     def chooseTags(self):
         self.d=TagsDialog(self,self.ui.tags.text())
