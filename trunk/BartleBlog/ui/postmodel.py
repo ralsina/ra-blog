@@ -49,7 +49,7 @@ class PostItem(PostModelItem):
         if column==0:
             return QtCore.QVariant(str(self.day))
         elif column==1:
-            return QtCore.QVariant(str(self.title))
+            return QtCore.QVariant(unicode(self.title))
         elif column==2:
             return QtCore.QVariant(str(self.id))
         return QtCore.QVariant()
@@ -149,7 +149,7 @@ class StoryItem(PostModelItem):
         if column==0:
             return QtCore.QVariant(str(self.id))
         elif column==1:
-            return QtCore.QVariant(str(self.title))
+            return QtCore.QVariant(unicode(self.title))
         return QtCore.QVariant()
 
 class StoriesItem(PostModelItem):

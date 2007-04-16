@@ -67,9 +67,9 @@ class EditorWindow(QtGui.QMainWindow):
             # Silly hack to have PostID be unique but not ugly
             self.post.postID='BB'+str(self.post.id)
         else:
-            self.post.title=str(self.ui.title.text())
+            self.post.title=unicode(self.ui.title.text())
             self.post.link=str(self.ui.link.text())
-            self.post.text=str(self.ui.editor.toPlainText())
+            self.post.text=unicode(self.ui.editor.toPlainText())
             self.post.render()
         t=unicode(self.ui.tags.text())
         if t:
