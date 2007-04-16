@@ -119,7 +119,8 @@ class YahooMenuTool:
             '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/menu/menu-min.js"></script>',
             '''
     <script type="text/javascript">
-    YAHOO.example.onMenuBarReady = function(p_oEvent)
+    YAHOO.namespace("blog");
+    YAHOO.blog.onMenuBarReady = function(p_oEvent)
     {
         // Instantiate and render the menu bar
 
@@ -133,7 +134,7 @@ class YahooMenuTool:
     }
 
     // Initialize and render the menu bar when it is available in the DOM
-    YAHOO.util.Event.addListener(window, "load", YAHOO.example.onMenuBarReady);
+    YAHOO.util.Event.addListener(window, "load", YAHOO.blog.onMenuBarReady);
     </script>
     '''%(self.root.title)
         ]
