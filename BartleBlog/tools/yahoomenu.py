@@ -112,11 +112,11 @@ class YahooMenuTool:
 
     def head(self):
         return [
-            '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/reset-fonts-grids/reset-fonts-grids.css">',
+            '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.1/build/reset-fonts-grids/reset-fonts-grids.css">',
             '<link rel="stylesheet" type="text/css" href="%s">'%self.blog.macros.absoluteUrl('static/css/menubar.css'),
-            '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
-            '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/container/container_core-min.js"></script>',
-            '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/menu/menu-min.js"></script>',
+            '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
+            '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/container/container_core-min.js"></script>',
+            '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/menu/menu-min.js"></script>',
             '''
     <script type="text/javascript">
     YAHOO.namespace("blog");
@@ -134,7 +134,7 @@ class YahooMenuTool:
     }
 
     // Initialize and render the menu bar when it is available in the DOM
-    YAHOO.util.Event.addListener(window, "load", YAHOO.blog.onMenuBarReady);
+    YAHOO.util.Event.onDOMReady(YAHOO.blog.onMenuBarReady);
     </script>
     '''%(self.root.title)
         ]
