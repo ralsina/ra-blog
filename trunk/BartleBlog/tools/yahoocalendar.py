@@ -25,7 +25,7 @@ class YahooCalendar:
                 disabled.remove(s)
         disabled=','.join(disabled)
         return '''YAHOO.namespace("blog");
-                        function init() {
+                        function cal1_init() {
                             YAHOO.blog.cal1 =
                                 new YAHOO.widget.Calendar("cal1","cal1Container", {
                                     pagedate:"%d/%d"
@@ -37,11 +37,15 @@ class YahooCalendar:
                                 var s2 = s1[0];
                                 window.location=printf("%s/weblog/%%d/%%02d/%%02d.html",s2[0],s2[1],s2[2]);
                             };
+                              
+                            var changeMonth = function(type,args,obj) {
+                            };
                             YAHOO.blog.cal1.selectEvent.subscribe(selectedDate, YAHOO.blog.cal1, true);
+                            YAHOO.blog.cal1.changePageEvent.subscribe(changeMonth, YAHOO.blog.cal1, true);
 
                             YAHOO.blog.cal1.render();
                         }
-                        YAHOO.util.Event.addListener(window, "load", init);
+                        YAHOO.util.Event.onDOMReady (cal1_init);
                 '''%(date.month,date.year,disabled,self.blog.basepath)
 
     def monthScriptTag(self,date):
@@ -57,9 +61,9 @@ class YahooCalendar:
         
     def head(self):
         return [
-        '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.0/build/calendar/assets/calendar.css">',
-        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
-        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.0/build/calendar/calendar-min.js"></script>',
+        '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.1/build/calendar/assets/calendar.css">',
+        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
+        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/calendar/calendar-min.js"></script>',
         '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
         ]
 
