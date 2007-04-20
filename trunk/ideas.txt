@@ -16,3 +16,5 @@ Ideas:
 * Integrate pingomatic.com or something similar
 
 * Integrate video site revver.com
+
+* Billboards http://google-ajax-examples.googlecode.com/svn/trunk/feedbillboard/index.html
