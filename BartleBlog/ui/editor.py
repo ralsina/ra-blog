@@ -33,7 +33,7 @@ class EditorWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("clicked()"),
             self.chooseTags)
             
-        self.hl=rstHighlighter(self.ui.editor.document())
+        #self.hl=rstHighlighter(self.ui.editor.document())
 
     def chooseTags(self):
         self.d=TagsDialog(self,self.ui.tags.text())
