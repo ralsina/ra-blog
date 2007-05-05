@@ -168,7 +168,7 @@ class Story(SQLObject):
     quiet=BoolCol(default=False)
     is_dirty=IntCol(default=-1)
     categories=RelatedJoin('Category')
-    pages=RelatedJoin('Page')
+#    pages=RelatedJoin('Page')
 
     is_dirty=IntCol(default=-1)
 
