@@ -17,20 +17,23 @@ class Blog:
             os.mkdir(dn)
         db.initDB(os.path.join(dn,'blog.db'))
         
-        self.dest_dir=os.path.abspath("weblog")
-        self.blog_title="Lateral Opinion"
         self.progress=None
 
         #################################################################################
         ### Things that should be in the config file
         #################################################################################
 
+        self.blog_title="Lateral Opinion"
         self.blogName="Lateral Opinion"
         self.basepath=u"http://lateral.blogsite.org/"
         self.author=u"Roberto Alsina"
         self.author_email=u"ralsina@kde.org"
         self.description=u"Roberto Alsina's blog"
+        self.dest_dir=os.path.abspath("weblog")
         self.language="en"
+        
+        #################################################################################
+        
         self.version="Bartleblog 0.0"
 
         self.dayHooks=[]
