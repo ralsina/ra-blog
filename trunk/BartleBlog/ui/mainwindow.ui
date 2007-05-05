@@ -110,12 +110,6 @@
     <addaction name="menuRender_Pages" />
     <addaction name="menuRegenerate_HTML" />
    </widget>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
-     <string>Help</string>
-    </property>
-    <addaction name="actionAbout_BartleBlog" />
-   </widget>
    <widget class="QMenu" name="menu_File" >
     <property name="title" >
      <string>&amp;File</string>
@@ -134,6 +128,13 @@
     <addaction name="menuImport" />
     <addaction name="separator" />
     <addaction name="actionQuit" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>Help</string>
+    </property>
+    <addaction name="actionBartleBlog_Help" />
+    <addaction name="actionAbout_BartleBlog" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -238,6 +239,11 @@
    </property>
    <property name="shortcut" >
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionBartleBlog_Help" >
+   <property name="text" >
+    <string>BartleBlog Help</string>
    </property>
   </action>
  </widget>
