@@ -81,22 +81,6 @@
     </property>
     <addaction name="actionConfigure" />
    </widget>
-   <widget class="QMenu" name="menu_File" >
-    <property name="title" >
-     <string>&amp;File</string>
-    </property>
-    <widget class="QMenu" name="menuImport" >
-     <property name="title" >
-      <string>Import</string>
-     </property>
-     <addaction name="actionImport_Advogato" />
-     <addaction name="actionImport_PyDS" />
-    </widget>
-    <addaction name="actionNewPost" />
-    <addaction name="separator" />
-    <addaction name="separator" />
-    <addaction name="menuImport" />
-   </widget>
    <widget class="QMenu" name="menu_Post" >
     <property name="title" >
      <string>&amp;Post</string>
@@ -131,6 +115,25 @@
      <string>Help</string>
     </property>
     <addaction name="actionAbout_BartleBlog" />
+   </widget>
+   <widget class="QMenu" name="menu_File" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <widget class="QMenu" name="menuImport" >
+     <property name="title" >
+      <string>Import</string>
+     </property>
+     <addaction name="actionImport_Advogato" />
+     <addaction name="actionImport_PyDS" />
+    </widget>
+    <addaction name="separator" />
+    <addaction name="actionNewPost" />
+    <addaction name="actionNew_Story" />
+    <addaction name="separator" />
+    <addaction name="menuImport" />
+    <addaction name="separator" />
+    <addaction name="actionQuit" />
    </widget>
    <addaction name="menu_File" />
    <addaction name="menu_Post" />
@@ -222,6 +225,19 @@
   <action name="actionAbout_BartleBlog" >
    <property name="text" >
     <string>About BartleBlog</string>
+   </property>
+  </action>
+  <action name="actionNew_Story" >
+   <property name="text" >
+    <string>New Story</string>
+   </property>
+  </action>
+  <action name="actionQuit" >
+   <property name="text" >
+    <string>Quit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>
