@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Sat May  5 13:05:35 2007
+# Created: Sat May  5 18:57:54 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -73,14 +73,14 @@ class Ui_MainWindow(object):
         self.menuRender_Pages = QtGui.QMenu(self.menuBlog)
         self.menuRender_Pages.setObjectName("menuRender_Pages")
 
-        self.menuHelp = QtGui.QMenu(self.menubar)
-        self.menuHelp.setObjectName("menuHelp")
-
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
 
         self.menuImport = QtGui.QMenu(self.menu_File)
         self.menuImport.setObjectName("menuImport")
+
+        self.menuHelp = QtGui.QMenu(self.menubar)
+        self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -136,6 +136,9 @@ class Ui_MainWindow(object):
 
         self.actionQuit = QtGui.QAction(MainWindow)
         self.actionQuit.setObjectName("actionQuit")
+
+        self.actionBartleBlog_Help = QtGui.QAction(MainWindow)
+        self.actionBartleBlog_Help.setObjectName("actionBartleBlog_Help")
         self.menuSettings.addAction(self.actionConfigure)
         self.menu_Post.addAction(self.actionEditPost)
         self.menu_Post.addAction(self.actionDelete)
@@ -146,7 +149,6 @@ class Ui_MainWindow(object):
         self.menuBlog.addSeparator()
         self.menuBlog.addAction(self.menuRender_Pages.menuAction())
         self.menuBlog.addAction(self.menuRegenerate_HTML.menuAction())
-        self.menuHelp.addAction(self.actionAbout_BartleBlog)
         self.menuImport.addAction(self.actionImport_Advogato)
         self.menuImport.addAction(self.actionImport_PyDS)
         self.menu_File.addSeparator()
@@ -156,6 +158,8 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.menuImport.menuAction())
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.actionQuit)
+        self.menuHelp.addAction(self.actionBartleBlog_Help)
+        self.menuHelp.addAction(self.actionAbout_BartleBlog)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Post.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
@@ -176,9 +180,9 @@ class Ui_MainWindow(object):
         self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.menuRegenerate_HTML.setTitle(QtGui.QApplication.translate("MainWindow", "Regenerate HTML", None, QtGui.QApplication.UnicodeUTF8))
         self.menuRender_Pages.setTitle(QtGui.QApplication.translate("MainWindow", "Render Pages", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuImport.setTitle(QtGui.QApplication.translate("MainWindow", "Import", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditPost.setText(QtGui.QApplication.translate("MainWindow", "Edit Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNewPost.setText(QtGui.QApplication.translate("MainWindow", "New Post", None, QtGui.QApplication.UnicodeUTF8))
@@ -193,6 +197,7 @@ class Ui_MainWindow(object):
         self.actionNew_Story.setText(QtGui.QApplication.translate("MainWindow", "New Story", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionBartleBlog_Help.setText(QtGui.QApplication.translate("MainWindow", "BartleBlog Help", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

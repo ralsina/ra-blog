@@ -20,6 +20,7 @@ from BartleBlog.ui.config import ConfigWindow
 from BartleBlog.ui.editor import EditorWindow
 from BartleBlog.ui.storyeditor import StoryEditorWindow
 from BartleBlog.ui.progress import ProgressDialog
+from BartleBlog.ui.help import HelpWindow
 
 from BartleBlog.ui.postmodel import *
 
@@ -78,11 +79,19 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.deletePost)
 
+        QtCore.QObject.connect(self.ui.actionBartleBlog_Help,
+            QtCore.SIGNAL("triggered()"),
+            self.showHelp)
+
         self.curPost=None
 
         self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
         self.renderTemplate=None
 
+    def showHelp(self):
+        self.help=HelpWindow()
+        self.help.show()
+        
     def deletePost(self):
         if not self.curPost:
             return
