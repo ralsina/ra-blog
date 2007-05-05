@@ -11,7 +11,12 @@ from BartleBlog.util import slimmer
 
 class Blog:
     def __init__(self):
-        db.initDB('blog.db')
+    
+        dn=os.path.expanduser('~/.bartleblog/')
+        if not os.path.isdir(dn):
+            os.mkdir(dn)
+        db.initDB(os.path.join(dn,'blog.db'))
+        
         self.dest_dir=os.path.abspath("weblog")
         self.blog_title="Lateral Opinion"
         self.progress=None

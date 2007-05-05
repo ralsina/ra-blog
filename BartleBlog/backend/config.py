@@ -6,7 +6,11 @@ import ConfigParser
 import os
 
 conf=ConfigParser.SafeConfigParser()
-f=open(os.path.expanduser('~/.bartleblog.conf'),'r')
+    
+dn=os.path.expanduser('~/.bartleblog/')
+if not os.path.isdir(dn):
+    os.mkdir(dn)
+f=open(os.path.expanduser('~/.bartleblog/config'),'r')
 conf.readfp(f)
 f.close()
 
