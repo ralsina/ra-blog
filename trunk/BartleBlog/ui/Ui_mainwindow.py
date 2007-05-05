@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/ra-blog/bartleblog/BartleBlog/ui/mainwindow.ui'
+# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Mon Apr  9 13:15:56 2007
-#      by: PyQt4 UI code generator 4.1.1
+# Created: Sat May  5 13:05:35 2007
+#      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
 
-import sys
 from PyQt4 import QtCore, QtGui
 
 class Ui_MainWindow(object):
@@ -47,7 +46,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.viewer.sizePolicy().hasHeightForWidth())
         self.viewer.setSizePolicy(sizePolicy)
 
-        font = QtGui.QFont(self.viewer.font())
+        font = QtGui.QFont()
         font.setFamily("Bitstream Vera Sans")
         self.viewer.setFont(font)
         self.viewer.setOpenExternalLinks(True)
@@ -61,12 +60,6 @@ class Ui_MainWindow(object):
 
         self.menuSettings = QtGui.QMenu(self.menubar)
         self.menuSettings.setObjectName("menuSettings")
-
-        self.menu_File = QtGui.QMenu(self.menubar)
-        self.menu_File.setObjectName("menu_File")
-
-        self.menuImport = QtGui.QMenu(self.menu_File)
-        self.menuImport.setObjectName("menuImport")
 
         self.menu_Post = QtGui.QMenu(self.menubar)
         self.menu_Post.setObjectName("menu_Post")
@@ -82,6 +75,12 @@ class Ui_MainWindow(object):
 
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+
+        self.menu_File = QtGui.QMenu(self.menubar)
+        self.menu_File.setObjectName("menu_File")
+
+        self.menuImport = QtGui.QMenu(self.menu_File)
+        self.menuImport.setObjectName("menuImport")
         MainWindow.setMenuBar(self.menubar)
 
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -131,13 +130,13 @@ class Ui_MainWindow(object):
 
         self.actionAbout_BartleBlog = QtGui.QAction(MainWindow)
         self.actionAbout_BartleBlog.setObjectName("actionAbout_BartleBlog")
+
+        self.actionNew_Story = QtGui.QAction(MainWindow)
+        self.actionNew_Story.setObjectName("actionNew_Story")
+
+        self.actionQuit = QtGui.QAction(MainWindow)
+        self.actionQuit.setObjectName("actionQuit")
         self.menuSettings.addAction(self.actionConfigure)
-        self.menuImport.addAction(self.actionImport_Advogato)
-        self.menuImport.addAction(self.actionImport_PyDS)
-        self.menu_File.addAction(self.actionNewPost)
-        self.menu_File.addSeparator()
-        self.menu_File.addSeparator()
-        self.menu_File.addAction(self.menuImport.menuAction())
         self.menu_Post.addAction(self.actionEditPost)
         self.menu_Post.addAction(self.actionDelete)
         self.menuRegenerate_HTML.addAction(self.actionRegenerateNeeded)
@@ -148,6 +147,15 @@ class Ui_MainWindow(object):
         self.menuBlog.addAction(self.menuRender_Pages.menuAction())
         self.menuBlog.addAction(self.menuRegenerate_HTML.menuAction())
         self.menuHelp.addAction(self.actionAbout_BartleBlog)
+        self.menuImport.addAction(self.actionImport_Advogato)
+        self.menuImport.addAction(self.actionImport_PyDS)
+        self.menu_File.addSeparator()
+        self.menu_File.addAction(self.actionNewPost)
+        self.menu_File.addAction(self.actionNew_Story)
+        self.menu_File.addSeparator()
+        self.menu_File.addAction(self.menuImport.menuAction())
+        self.menu_File.addSeparator()
+        self.menu_File.addAction(self.actionQuit)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Post.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
@@ -164,13 +172,13 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
         self.menuSettings.setTitle(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuImport.setTitle(QtGui.QApplication.translate("MainWindow", "Import", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_Post.setTitle(QtGui.QApplication.translate("MainWindow", "&Post", None, QtGui.QApplication.UnicodeUTF8))
         self.menuBlog.setTitle(QtGui.QApplication.translate("MainWindow", "Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.menuRegenerate_HTML.setTitle(QtGui.QApplication.translate("MainWindow", "Regenerate HTML", None, QtGui.QApplication.UnicodeUTF8))
         self.menuRender_Pages.setTitle(QtGui.QApplication.translate("MainWindow", "Render Pages", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_File.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuImport.setTitle(QtGui.QApplication.translate("MainWindow", "Import", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditPost.setText(QtGui.QApplication.translate("MainWindow", "Edit Post", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNewPost.setText(QtGui.QApplication.translate("MainWindow", "New Post", None, QtGui.QApplication.UnicodeUTF8))
@@ -182,11 +190,15 @@ class Ui_MainWindow(object):
         self.actionDelete.setText(QtGui.QApplication.translate("MainWindow", "delete", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRender_Full_Blog.setText(QtGui.QApplication.translate("MainWindow", "Render Full Blog", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout_BartleBlog.setText(QtGui.QApplication.translate("MainWindow", "About BartleBlog", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNew_Story.setText(QtGui.QApplication.translate("MainWindow", "New Story", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionQuit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
 
 if __name__ == "__main__":
+    import sys
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
     ui = Ui_MainWindow()

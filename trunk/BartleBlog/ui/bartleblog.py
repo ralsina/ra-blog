@@ -18,6 +18,7 @@ from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
 import BartleBlog.ui.Ui_about
 from BartleBlog.ui.config import ConfigWindow
 from BartleBlog.ui.editor import EditorWindow
+from BartleBlog.ui.storyeditor import StoryEditorWindow
 from BartleBlog.ui.progress import ProgressDialog
 
 from BartleBlog.ui.postmodel import *
@@ -61,6 +62,10 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.newPost)
 
+        QtCore.QObject.connect(self.ui.actionNew_Story,
+            QtCore.SIGNAL("triggered()"),
+            self.newStory)
+
         QtCore.QObject.connect(self.ui.actionRegenerateAll,
             QtCore.SIGNAL("triggered()"),
             self.regenerateAll)
@@ -73,6 +78,8 @@ class MainWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.deletePost)
 
+
+            
         self.curPost=None
 
         self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
@@ -112,6 +119,11 @@ class MainWindow(QtGui.QMainWindow):
 
     def newPost(self):
         self.editor=EditorWindow()
+        QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
+        self.editor.show()
+
+    def newStory(self):
+        self.editor=StoryEditorWindow()
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
 
