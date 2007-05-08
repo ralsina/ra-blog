@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>686</width>
-    <height>552</height>
+    <height>558</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -244,6 +244,9 @@
   <action name="actionBartleBlog_Help" >
    <property name="text" >
     <string>BartleBlog Help</string>
+   </property>
+   <property name="shortcut" >
+    <string>F1</string>
    </property>
   </action>
  </widget>
