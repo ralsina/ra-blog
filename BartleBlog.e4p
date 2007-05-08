@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Project SYSTEM "Project-3.9.dtd">
-<!-- Project file for project BartleBlog -->
-<!-- Saved: 2007-05-05, 18:53:54 -->
+<!DOCTYPE Project SYSTEM "Project-4.0.dtd">
+<!-- eric4 project file for project BartleBlog -->
+<!-- Saved: 2007-05-08, 11:46:23 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
-<Project version="3.9">
+<Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
   <UIType>Qt4</UIType>
   <Description></Description>
@@ -413,6 +413,8 @@
   </Forms>
   <Translations>
   </Translations>
+  <Resources>
+  </Resources>
   <Interfaces>
   </Interfaces>
   <Others>
@@ -441,68 +443,122 @@
   </MainScript>
   <Vcs>
     <VcsType>Subversion</VcsType>
-    <VcsOptions>(dp0
-S'status'
-p1
-(lp2
-S''
-p3
-asS'log'
-p4
-(lp5
-g3
-asS'global'
-p6
-(lp7
-g3
-asS'update'
-p8
-(lp9
-g3
-asS'remove'
-p10
-(lp11
-g3
-asS'add'
-p12
-(lp13
-g3
-asS'tag'
-p14
-(lp15
-g3
-asS'export'
-p16
-(lp17
-g3
-asS'commit'
-p18
-(lp19
-g3
-asS'diff'
-p20
-(lp21
-g3
-asS'checkout'
-p22
-(lp23
-g3
-asS'history'
-p24
-(lp25
-g3
-as.</VcsOptions>
-    <VcsOtherData>(dp0
-S'standardLayout'
-p1
-I1
-s.</VcsOtherData>
+    <VcsOptions>
+      <dict>
+        <key>
+          <string>status</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>log</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>global</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>update</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>remove</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>add</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>tag</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>export</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>commit</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>diff</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>checkout</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+        <key>
+          <string>history</string>
+        </key>
+        <value>
+          <list>
+            <string></string>
+          </list>
+        </value>
+      </dict>
+    </VcsOptions>
+    <VcsOtherData>
+      <dict>
+        <key>
+          <string>standardLayout</string>
+        </key>
+        <value>
+          <int>1</int>
+        </value>
+      </dict>
+    </VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
