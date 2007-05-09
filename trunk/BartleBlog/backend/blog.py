@@ -29,7 +29,9 @@ class Blog:
         self.author=config.getValue('blog', 'author', 'Joe Doe') 
         self.author_email=config.getValue('blog', 'email', 'joe@doe')
         self.description=config.getValue('blog', 'description', 'My Blog')
-        self.dest_dir=config.getValue('blog', 'folder', os.path.abspath(".bartleblog/weblog"))
+        self.dest_dir=config.getValue('blog', 'folder', os.path.expanduser("~/.bartleblog/weblog"))
+        if not os.path.isdir(self.dest_dir):
+            os.mkdir(self.dest_dir)
         self.language="en"
         
         #################################################################################
