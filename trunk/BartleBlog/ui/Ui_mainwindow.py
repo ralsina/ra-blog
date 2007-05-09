@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Sat May  5 19:08:00 2007
+# Created: Tue May  8 20:24:55 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,10 +38,10 @@ class Ui_MainWindow(object):
         self.tree.setAllColumnsShowFocus(True)
         self.tree.setObjectName("tree")
 
-        self.viewer = QtGui.QTextBrowser(self.splitter)
+        self.viewer = PBrowser(self.splitter)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
-        sizePolicy.setHorizontalStretch(3)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(13),QtGui.QSizePolicy.Policy(13))
+        sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.viewer.sizePolicy().hasHeightForWidth())
         self.viewer.setSizePolicy(sizePolicy)
@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,686,31))
+        self.menubar.setGeometry(QtCore.QRect(0,0,686,29))
         self.menubar.setObjectName("menubar")
 
         self.menuSettings = QtGui.QMenu(self.menubar)
@@ -200,6 +200,7 @@ class Ui_MainWindow(object):
         self.actionBartleBlog_Help.setText(QtGui.QApplication.translate("MainWindow", "BartleBlog Help", None, QtGui.QApplication.UnicodeUTF8))
         self.actionBartleBlog_Help.setShortcut(QtGui.QApplication.translate("MainWindow", "F1", None, QtGui.QApplication.UnicodeUTF8))
 
+from pbrowser import PBrowser
 import icons_rc
 
 
