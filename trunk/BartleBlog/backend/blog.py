@@ -25,7 +25,9 @@ class Blog:
         #################################################################################
 
         self.blog_title=config.getValue('blog', 'title', 'My First Blog')
-        self.basepath=config.getValue('blog', 'url', 'http://')
+        self.basepath=config.getValue('blog', 'url', 'http://some.host/some_path/')
+	if self.basepath[-1]<>'/':
+		self.basepath+='/'
         self.author=config.getValue('blog', 'author', 'Joe Doe') 
         self.author_email=config.getValue('blog', 'email', 'joe@doe')
         self.description=config.getValue('blog', 'description', 'My Blog')
