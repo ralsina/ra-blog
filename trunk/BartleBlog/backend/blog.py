@@ -8,6 +8,7 @@ import dbclasses as db
 from macros import Macros
 
 from BartleBlog.util import slimmer
+import BartleBlog.backend.config as config
 
 class Blog:
     def __init__(self):
@@ -23,13 +24,12 @@ class Blog:
         ### Things that should be in the config file
         #################################################################################
 
-        self.blog_title="Lateral Opinion"
-        self.blogName="Lateral Opinion"
-        self.basepath=u"http://lateral.blogsite.org/"
-        self.author=u"Roberto Alsina"
-        self.author_email=u"ralsina@kde.org"
-        self.description=u"Roberto Alsina's blog"
-        self.dest_dir=os.path.abspath("weblog")
+        self.blog_title=config.getValue('blog', 'title', 'My First Blog')
+        self.basepath=config.getValue('blog', 'url', 'http://')
+        self.author=config.getValue('blog', 'author', 'Joe Doe') 
+        self.author_email=config.getValue('blog', 'email', 'joe@doe')
+        self.description=config.getValue('blog', 'description', 'My Blog')
+        self.dest_dir=config.getValue('blog', 'folder', os.path.abspath(".bartleblog/weblog"))
         self.language="en"
         
         #################################################################################
@@ -137,7 +137,7 @@ class Blog:
                 dname,
                 fname,
                 postlist=postlist,
-                bodytitle='%s posts by topic'%self.blogName
+                bodytitle='%s posts by topic'%self.blog_title
             )
         self.renderRSS(title,curDate,dname,'rss.xml',postlist)
 

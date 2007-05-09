@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/blog_config.ui'
 #
-# Created: Sat May  5 18:57:27 2007
+# Created: Wed May  9 14:08:16 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(QtCore.QSize(QtCore.QRect(0,0,400,535).size()).expandedTo(Form.minimumSizeHint()))
+        Form.resize(QtCore.QSize(QtCore.QRect(0,0,400,637).size()).expandedTo(Form.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(Form)
         self.vboxlayout.setMargin(9)
@@ -84,23 +84,50 @@ class Ui_Form(object):
         self.label_5.setObjectName("label_5")
         self.vboxlayout1.addWidget(self.label_5)
 
-        self.textEdit = QtGui.QTextEdit(Form)
-        self.textEdit.setObjectName("textEdit")
-        self.vboxlayout1.addWidget(self.textEdit)
+        self.description = QtGui.QTextEdit(Form)
+        self.description.setObjectName("description")
+        self.vboxlayout1.addWidget(self.description)
         self.vboxlayout.addLayout(self.vboxlayout1)
+
+        self.hboxlayout1 = QtGui.QHBoxLayout()
+        self.hboxlayout1.setMargin(0)
+        self.hboxlayout1.setSpacing(6)
+        self.hboxlayout1.setObjectName("hboxlayout1")
+
+        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.hboxlayout1.addItem(spacerItem)
+
+        self.save = QtGui.QPushButton(Form)
+        self.save.setObjectName("save")
+        self.hboxlayout1.addWidget(self.save)
+        self.vboxlayout.addLayout(self.hboxlayout1)
+        self.label.setBuddy(self.title)
+        self.label_2.setBuddy(self.url)
+        self.label_6.setBuddy(self.folder)
+        self.label_3.setBuddy(self.author)
+        self.label_4.setBuddy(self.email)
+        self.label_5.setBuddy(self.description)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        Form.setTabOrder(self.title,self.url)
+        Form.setTabOrder(self.url,self.author)
+        Form.setTabOrder(self.author,self.email)
+        Form.setTabOrder(self.email,self.folder)
+        Form.setTabOrder(self.folder,self.description)
+        Form.setTabOrder(self.description,self.examine)
+        Form.setTabOrder(self.examine,self.save)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Form", "BLog title:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Form", "Blog title:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Blog URL:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("Form", "Blog Folder:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "Author:", None, QtGui.QApplication.UnicodeUTF8))
         self.examine.setText(QtGui.QApplication.translate("Form", "Examine", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "Author\'s email:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("Form", "Blog\'s description:", None, QtGui.QApplication.UnicodeUTF8))
+        self.save.setText(QtGui.QApplication.translate("Form", "Save", None, QtGui.QApplication.UnicodeUTF8))
 
 
 
