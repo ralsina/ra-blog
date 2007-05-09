@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Tue May  8 20:24:55 2007
+# Created: Wed May  9 13:29:35 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!

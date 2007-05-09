@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Sat May  5 18:57:24 2007
+# Created: Wed May  9 13:29:44 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
