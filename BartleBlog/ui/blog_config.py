@@ -18,7 +18,7 @@ class BlogConfigWidget(QtGui.QWidget):
             self.save)
             
         self.ui.title.setText(config.getValue('blog', 'title', 'My First Blog'))
-        self.ui.url.setText(config.getValue('blog', 'url', 'http://'))
+	self.ui.url.setText(config.getValue('blog', 'url', 'http://some.host/some_path/'))
         self.ui.author.setText(config.getValue('blog', 'author', 'Joe Doe'))
         self.ui.email.setText(config.getValue('blog', 'email', 'joe@doe'))
         self.ui.folder.setText(config.getValue('blog', 'folder', os.path.expanduser("~/.bartleblog/weblog")))
