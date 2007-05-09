@@ -18,3 +18,5 @@ Ideas:
 * Billboards http://google-ajax-examples.googlecode.com/svn/trunk/feedbillboard/index.html
 
 * Add support for hq23.com photo sharing (same api as flickr!)
+
+* Reddit buttons: http://reddit.com/buttons
