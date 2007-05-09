@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/blog_config.ui'
 #
-# Created: Wed May  9 14:08:16 2007
+# Created: Wed May  9 14:16:45 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,6 +13,12 @@ class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(QtCore.QSize(QtCore.QRect(0,0,400,637).size()).expandedTo(Form.minimumSizeHint()))
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
+        Form.setSizePolicy(sizePolicy)
 
         self.vboxlayout = QtGui.QVBoxLayout(Form)
         self.vboxlayout.setMargin(9)

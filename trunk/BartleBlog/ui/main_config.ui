@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>416</width>
+    <height>522</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -53,7 +53,7 @@
          <property name="sizePolicy" >
           <sizepolicy>
            <hsizetype>7</hsizetype>
-           <vsizetype>5</vsizetype>
+           <vsizetype>7</vsizetype>
            <horstretch>4</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>

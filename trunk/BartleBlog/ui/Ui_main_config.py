@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/main_config.ui'
 #
-# Created: Wed May  9 13:29:39 2007
+# Created: Wed May  9 14:18:11 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(QtCore.QSize(QtCore.QRect(0,0,400,300).size()).expandedTo(Dialog.minimumSizeHint()))
+        Dialog.resize(QtCore.QSize(QtCore.QRect(0,0,416,522).size()).expandedTo(Dialog.minimumSizeHint()))
 
         self.vboxlayout = QtGui.QVBoxLayout(Dialog)
         self.vboxlayout.setMargin(9)
@@ -43,7 +43,7 @@ class Ui_Dialog(object):
 
         self.frame = QtGui.QFrame(self.layoutWidget)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
         sizePolicy.setHorizontalStretch(4)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
