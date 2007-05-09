@@ -44,12 +44,12 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QTextBrowser" name="viewer" >
+      <widget class="PBrowser" name="viewer" >
        <property name="sizePolicy" >
         <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>7</vsizetype>
-         <horstretch>3</horstretch>
+         <hsizetype>13</hsizetype>
+         <vsizetype>13</vsizetype>
+         <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
@@ -72,7 +72,7 @@
      <x>0</x>
      <y>0</y>
      <width>686</width>
-     <height>31</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSettings" >
@@ -250,6 +250,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>pbrowser.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="icons.qrc" />
  </resources>
