@@ -26,7 +26,7 @@ def setValue(section,key,value):
     except ConfigParser.NoSectionError:
         conf.add_section(section)
         r=conf.set(section,key,value)
-    f=open(os.path.expanduser('~/.bartleblog.conf'),'w')
+    f=open(os.path.expanduser('~/.bartleblog/config'),'w')
     conf.write(f)
     return r
 

@@ -35,7 +35,7 @@ class FeedBurner:
             <img src="http://feeds.feedburner.com/%s.gif" alt="%s" style="border:0">
           </a>
         </td>
-    '''%(self.feedburnerName,self.feedburnerName,self.blog.blogName)
+    '''%(self.feedburnerName,self.feedburnerName,self.blog.blog_title)
 
     def feedBox(self,feedName):
         return u'''
