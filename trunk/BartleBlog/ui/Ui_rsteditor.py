@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Wed May  9 13:29:44 2007
+# Created: Thu May 10 14:04:32 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -89,7 +89,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.menuBar = QtGui.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0,0,536,31))
+        self.menuBar.setGeometry(QtCore.QRect(0,0,536,29))
         self.menuBar.setObjectName("menuBar")
 
         self.menuEdit = QtGui.QMenu(self.menuBar)
@@ -112,59 +112,59 @@ class Ui_MainWindow(object):
         MainWindow.addToolBar(self.toolBar)
 
         self.actionPreview = QtGui.QAction(MainWindow)
-        self.actionPreview.setIcon(QtGui.QIcon(":/icons/icons/xeyes.png"))
+        self.actionPreview.setIcon(QtGui.QIcon(":/icons/icons/preview.svg"))
         self.actionPreview.setObjectName("actionPreview")
 
         self.actionCut = QtGui.QAction(MainWindow)
-        self.actionCut.setIcon(QtGui.QIcon(":/icons/icons/editcut.png"))
+        self.actionCut.setIcon(QtGui.QIcon(":/icons/icons/editcut.svg"))
         self.actionCut.setObjectName("actionCut")
 
         self.actionCopy = QtGui.QAction(MainWindow)
-        self.actionCopy.setIcon(QtGui.QIcon(":/icons/icons/editcopy.png"))
+        self.actionCopy.setIcon(QtGui.QIcon(":/icons/icons/editcopy.svg"))
         self.actionCopy.setObjectName("actionCopy")
 
         self.actionPaste = QtGui.QAction(MainWindow)
-        self.actionPaste.setIcon(QtGui.QIcon(":/icons/icons/editpaste.png"))
+        self.actionPaste.setIcon(QtGui.QIcon(":/icons/icons/editpaste.svg"))
         self.actionPaste.setObjectName("actionPaste")
 
         self.actionUndo = QtGui.QAction(MainWindow)
-        self.actionUndo.setIcon(QtGui.QIcon(":/icons/icons/undo.png"))
+        self.actionUndo.setIcon(QtGui.QIcon(":/icons/icons/undo.svg"))
         self.actionUndo.setObjectName("actionUndo")
 
         self.actionRedo = QtGui.QAction(MainWindow)
-        self.actionRedo.setIcon(QtGui.QIcon(":/icons/icons/redo.png"))
+        self.actionRedo.setIcon(QtGui.QIcon(":/icons/icons/redo.svg"))
         self.actionRedo.setObjectName("actionRedo")
 
         self.actionDelete = QtGui.QAction(MainWindow)
+        self.actionDelete.setIcon(QtGui.QIcon(":/icons/icons/delete.svg"))
         self.actionDelete.setObjectName("actionDelete")
 
         self.actionSelect_All = QtGui.QAction(MainWindow)
         self.actionSelect_All.setObjectName("actionSelect_All")
 
         self.actionFlickr_Image = QtGui.QAction(MainWindow)
-        self.actionFlickr_Image.setIcon(QtGui.QIcon(":/icons/icons/camera.png"))
+        self.actionFlickr_Image.setIcon(QtGui.QIcon(":/icons/icons/camera.svg"))
         self.actionFlickr_Image.setObjectName("actionFlickr_Image")
 
         self.actionOpenomy_File = QtGui.QAction(MainWindow)
-        self.actionOpenomy_File.setIcon(QtGui.QIcon(":/icons/icons/blockdevice.png"))
+        self.actionOpenomy_File.setIcon(QtGui.QIcon(":/icons/icons/openomy.svg"))
         self.actionOpenomy_File.setObjectName("actionOpenomy_File")
 
         self.actionSave = QtGui.QAction(MainWindow)
-        self.actionSave.setIcon(QtGui.QIcon(":/icons/icons/filesave.png"))
+        self.actionSave.setIcon(QtGui.QIcon(":/icons/icons/filesave.svg"))
         self.actionSave.setObjectName("actionSave")
 
         self.actionClose = QtGui.QAction(MainWindow)
-        self.actionClose.setIcon(QtGui.QIcon(":/icons/icons/fileclose.png"))
+        self.actionClose.setIcon(QtGui.QIcon(":/icons/icons/fileclose.svg"))
         self.actionClose.setObjectName("actionClose")
 
         self.actionOpenomyTag = QtGui.QAction(MainWindow)
-        self.actionOpenomyTag.setIcon(QtGui.QIcon(":/icons/icons/blockdevice.png"))
         self.actionOpenomyTag.setObjectName("actionOpenomyTag")
 
         self.actionRST = QtGui.QAction(MainWindow)
         self.actionRST.setCheckable(True)
         self.actionRST.setChecked(True)
-        self.actionRST.setIcon(QtGui.QIcon(":/icons/icons/fonts.png"))
+        self.actionRST.setIcon(QtGui.QIcon(":/icons/icons/fonts.svg"))
         self.actionRST.setObjectName("actionRST")
         self.menuInsert.addAction(self.actionFlickr_Image)
         self.menuInsert.addAction(self.actionOpenomy_File)

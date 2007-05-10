@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/menu_config.ui'
 #
-# Created: Thu May 10 12:39:10 2007
+# Created: Thu May 10 14:04:34 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -24,9 +24,9 @@ class Ui_Form(object):
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
 
-        self.tree = QtGui.QTreeWidget(Form)
-        self.tree.setObjectName("tree")
-        self.vboxlayout.addWidget(self.tree)
+        self.list = QtGui.QListWidget(Form)
+        self.list.setObjectName("list")
+        self.vboxlayout.addWidget(self.list)
 
         self.hboxlayout1 = QtGui.QHBoxLayout()
         self.hboxlayout1.setMargin(0)
@@ -34,26 +34,32 @@ class Ui_Form(object):
         self.hboxlayout1.setObjectName("hboxlayout1")
 
         self.left = QtGui.QToolButton(Form)
+        self.left.setIcon(QtGui.QIcon(":/icons/icons/1leftarrow.svg"))
         self.left.setObjectName("left")
         self.hboxlayout1.addWidget(self.left)
 
         self.right = QtGui.QToolButton(Form)
+        self.right.setIcon(QtGui.QIcon(":/icons/icons/1rightarrow.svg"))
         self.right.setObjectName("right")
         self.hboxlayout1.addWidget(self.right)
 
         self.up = QtGui.QToolButton(Form)
+        self.up.setIcon(QtGui.QIcon(":/icons/icons/1uparrow.svg"))
         self.up.setObjectName("up")
         self.hboxlayout1.addWidget(self.up)
 
         self.down = QtGui.QToolButton(Form)
+        self.down.setIcon(QtGui.QIcon(":/icons/icons/1downarrow.svg"))
         self.down.setObjectName("down")
         self.hboxlayout1.addWidget(self.down)
 
         self.delete = QtGui.QToolButton(Form)
+        self.delete.setIcon(QtGui.QIcon(":/icons/icons/delete.svg"))
         self.delete.setObjectName("delete")
         self.hboxlayout1.addWidget(self.delete)
 
         self.new = QtGui.QToolButton(Form)
+        self.new.setIcon(QtGui.QIcon(":/icons/icons/filenew.svg"))
         self.new.setObjectName("new")
         self.hboxlayout1.addWidget(self.new)
         self.vboxlayout.addLayout(self.hboxlayout1)
@@ -102,7 +108,6 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-        Form.setTabOrder(self.tree,self.label)
         Form.setTabOrder(self.label,self.type)
         Form.setTabOrder(self.type,self.lineEdit)
         Form.setTabOrder(self.lineEdit,self.left)

@@ -83,7 +83,7 @@
           <string comment="New Tag" >...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/filenew.png</iconset>
+          <iconset resource="icons.qrc" >:/icons/icons/filenew.svg</iconset>
          </property>
         </widget>
        </item>
@@ -93,7 +93,7 @@
           <string comment="Delete Tag" >...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/fileclose.png</iconset>
+          <iconset resource="icons.qrc" >:/icons/icons/delete.svg</iconset>
          </property>
         </widget>
        </item>
@@ -103,7 +103,7 @@
           <string comment="Rename tag" >...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/edit.png</iconset>
+          <iconset resource="icons.qrc" >:/icons/icons/edit.svg</iconset>
          </property>
         </widget>
        </item>
