@@ -124,7 +124,6 @@ class MenuConfigWidget(QtGui.QWidget):
         else:
             self.ui.tree.insertTopLevelItem(self.ui.tree.indexOfTopLevelItem(p)+1, i)
             
-        
         p.setExpanded(True)
         self.ui.tree.setCurrentItem(i)
         self.editItem(i)
@@ -151,7 +150,7 @@ class MenuConfigWidget(QtGui.QWidget):
             if self.ui.tree.indexOfTopLevelItem(i)<i.parent().childCount()-1:
                 self.ui.down.setEnabled(True)
             if i.parent().childCount()>1:
-                if i.parent().indexOfChild(i)>0:
+                if i.parent().indexOfChild(i)>0 and not i.parent().parent():
                     self.ui.right.setEnabled(True)
         else:
             if self.ui.tree.topLevelItemCount()>1:
