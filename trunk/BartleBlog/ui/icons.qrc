@@ -1,21 +1,27 @@
 <RCC>
     <qresource prefix="/icons" >
-        <file>icons/blockdevice.png</file>
-        <file>icons/camera.png</file>
-        <file>icons/configure.png</file>
-        <file>icons/edit.png</file>
-        <file>icons/editcopy.png</file>
-        <file>icons/editcut.png</file>
-        <file>icons/editpaste.png</file>
-        <file>icons/fileclose.png</file>
-        <file>icons/filenew.png</file>
-        <file>icons/filesave.png</file>
-        <file>icons/find.png</file>
-        <file>icons/fonts.png</file>
-        <file>icons/redo.png</file>
+        <file>icons/1downarrow.svg</file>
+        <file>icons/1leftarrow.svg</file>
+        <file>icons/1rightarrow.svg</file>
+        <file>icons/1uparrow.svg</file>
+        <file>icons/blockdevice.svg</file>
+        <file>icons/camera.svg</file>
+        <file>icons/configure.svg</file>
+        <file>icons/delete.svg</file>
+        <file>icons/down.svg</file>
+        <file>icons/edit.svg</file>
+        <file>icons/editcopy.svg</file>
+        <file>icons/editcut.svg</file>
+        <file>icons/editpaste.svg</file>
+        <file>icons/fileclose.svg</file>
+        <file>icons/filenew.svg</file>
+        <file>icons/filesave.svg</file>
+        <file>icons/filesaveas.svg</file>
+        <file>icons/find.svg</file>
+        <file>icons/fonts.svg</file>
+        <file>icons/preview.svg</file>
+        <file>icons/redo.svg</file>
         <file>icons/scribe.png</file>
-        <file>icons/undo.png</file>
-        <file>icons/up.png</file>
-        <file>icons/xeyes.png</file>
+        <file>icons/undo.svg</file>
     </qresource>
 </RCC>
