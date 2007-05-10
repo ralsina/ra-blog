@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/tags_config.ui'
 #
-# Created: Wed May  9 13:29:45 2007
+# Created: Thu May 10 14:04:32 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -61,17 +61,17 @@ class Ui_Form(object):
         self.hboxlayout.addWidget(self.list)
 
         self.new = QtGui.QToolButton(Form)
-        self.new.setIcon(QtGui.QIcon(":/icons/icons/filenew.png"))
+        self.new.setIcon(QtGui.QIcon(":/icons/icons/filenew.svg"))
         self.new.setObjectName("new")
         self.hboxlayout.addWidget(self.new)
 
         self.delete = QtGui.QToolButton(Form)
-        self.delete.setIcon(QtGui.QIcon(":/icons/icons/fileclose.png"))
+        self.delete.setIcon(QtGui.QIcon(":/icons/icons/delete.svg"))
         self.delete.setObjectName("delete")
         self.hboxlayout.addWidget(self.delete)
 
         self.rename = QtGui.QToolButton(Form)
-        self.rename.setIcon(QtGui.QIcon(":/icons/icons/edit.png"))
+        self.rename.setIcon(QtGui.QIcon(":/icons/icons/edit.svg"))
         self.rename.setObjectName("rename")
         self.hboxlayout.addWidget(self.rename)
 

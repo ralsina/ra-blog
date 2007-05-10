@@ -13,15 +13,19 @@
         <file>icons/editcopy.svg</file>
         <file>icons/editcut.svg</file>
         <file>icons/editpaste.svg</file>
+        <file>icons/exit.svg</file>
         <file>icons/fileclose.svg</file>
         <file>icons/filenew.svg</file>
         <file>icons/filesave.svg</file>
         <file>icons/filesaveas.svg</file>
         <file>icons/find.svg</file>
         <file>icons/fonts.svg</file>
+        <file>icons/help.svg</file>
+        <file>icons/openomy.svg</file>
         <file>icons/preview.svg</file>
         <file>icons/redo.svg</file>
         <file>icons/scribe.png</file>
         <file>icons/undo.svg</file>
+        <file>icons/webexport.svg</file>
     </qresource>
 </RCC>

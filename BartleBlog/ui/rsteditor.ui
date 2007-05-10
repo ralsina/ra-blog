@@ -135,7 +135,7 @@
      <x>0</x>
      <y>0</y>
      <width>536</width>
-     <height>31</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit" >
@@ -196,7 +196,7 @@
   </widget>
   <action name="actionPreview" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/xeyes.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/preview.svg</iconset>
    </property>
    <property name="text" >
     <string>Preview</string>
@@ -204,7 +204,7 @@
   </action>
   <action name="actionCut" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/editcut.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/editcut.svg</iconset>
    </property>
    <property name="text" >
     <string>Cut</string>
@@ -212,7 +212,7 @@
   </action>
   <action name="actionCopy" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/editcopy.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/editcopy.svg</iconset>
    </property>
    <property name="text" >
     <string>Copy</string>
@@ -220,7 +220,7 @@
   </action>
   <action name="actionPaste" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/editpaste.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/editpaste.svg</iconset>
    </property>
    <property name="text" >
     <string>Paste</string>
@@ -228,7 +228,7 @@
   </action>
   <action name="actionUndo" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/undo.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/undo.svg</iconset>
    </property>
    <property name="text" >
     <string>Undo</string>
@@ -236,13 +236,16 @@
   </action>
   <action name="actionRedo" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/redo.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/redo.svg</iconset>
    </property>
    <property name="text" >
     <string>Redo</string>
    </property>
   </action>
   <action name="actionDelete" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/delete.svg</iconset>
+   </property>
    <property name="text" >
     <string>Delete</string>
    </property>
@@ -254,7 +257,7 @@
   </action>
   <action name="actionFlickr_Image" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/camera.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/camera.svg</iconset>
    </property>
    <property name="text" >
     <string>Flickr Image</string>
@@ -262,7 +265,7 @@
   </action>
   <action name="actionOpenomy_File" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/blockdevice.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/openomy.svg</iconset>
    </property>
    <property name="text" >
     <string>Openomy File</string>
@@ -270,7 +273,7 @@
   </action>
   <action name="actionSave" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/filesave.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/filesave.svg</iconset>
    </property>
    <property name="text" >
     <string>save</string>
@@ -278,16 +281,13 @@
   </action>
   <action name="actionClose" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/fileclose.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/fileclose.svg</iconset>
    </property>
    <property name="text" >
     <string>Close</string>
    </property>
   </action>
   <action name="actionOpenomyTag" >
-   <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/blockdevice.png</iconset>
-   </property>
    <property name="text" >
     <string>Openomy Tag</string>
    </property>
@@ -300,7 +300,7 @@
     <bool>true</bool>
    </property>
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/fonts.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/fonts.svg</iconset>
    </property>
    <property name="text" >
     <string>Restructured Text</string>

@@ -160,7 +160,7 @@
     <bool>false</bool>
    </property>
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/edit.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/edit.svg</iconset>
    </property>
    <property name="text" >
     <string>Edit Post</string>
@@ -168,7 +168,7 @@
   </action>
   <action name="actionRender_Blog" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/up.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/webexport.svg</iconset>
    </property>
    <property name="text" >
     <string>Render Blog</string>
@@ -176,7 +176,7 @@
   </action>
   <action name="actionNewPost" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/filenew.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/filenew.svg</iconset>
    </property>
    <property name="text" >
     <string>New Post</string>
@@ -184,7 +184,7 @@
   </action>
   <action name="actionConfigure" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/configure.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/configure.svg</iconset>
    </property>
    <property name="text" >
     <string>Configure BartleBlog</string>
@@ -212,13 +212,16 @@
   </action>
   <action name="actionDelete" >
    <property name="icon" >
-    <iconset resource="icons.qrc" >:/icons/icons/fileclose.png</iconset>
+    <iconset resource="icons.qrc" >:/icons/icons/delete.svg</iconset>
    </property>
    <property name="text" >
     <string>delete</string>
    </property>
   </action>
   <action name="actionRender_Full_Blog" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/webexport.svg</iconset>
+   </property>
    <property name="text" >
     <string>Render Full Blog</string>
    </property>
@@ -229,11 +232,17 @@
    </property>
   </action>
   <action name="actionNew_Story" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/filenew.svg</iconset>
+   </property>
    <property name="text" >
     <string>New Story</string>
    </property>
   </action>
   <action name="actionQuit" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/exit.svg</iconset>
+   </property>
    <property name="text" >
     <string>Quit</string>
    </property>
@@ -242,6 +251,9 @@
    </property>
   </action>
   <action name="actionBartleBlog_Help" >
+   <property name="icon" >
+    <iconset resource="icons.qrc" >:/icons/icons/help.svg</iconset>
+   </property>
    <property name="text" >
     <string>BartleBlog Help</string>
    </property>

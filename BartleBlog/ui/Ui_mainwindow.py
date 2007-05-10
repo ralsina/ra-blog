@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Wed May  9 13:29:35 2007
+# Created: Thu May 10 14:04:31 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -94,19 +94,19 @@ class Ui_MainWindow(object):
 
         self.actionEditPost = QtGui.QAction(MainWindow)
         self.actionEditPost.setCheckable(False)
-        self.actionEditPost.setIcon(QtGui.QIcon(":/icons/icons/edit.png"))
+        self.actionEditPost.setIcon(QtGui.QIcon(":/icons/icons/edit.svg"))
         self.actionEditPost.setObjectName("actionEditPost")
 
         self.actionRender_Blog = QtGui.QAction(MainWindow)
-        self.actionRender_Blog.setIcon(QtGui.QIcon(":/icons/icons/up.png"))
+        self.actionRender_Blog.setIcon(QtGui.QIcon(":/icons/icons/webexport.svg"))
         self.actionRender_Blog.setObjectName("actionRender_Blog")
 
         self.actionNewPost = QtGui.QAction(MainWindow)
-        self.actionNewPost.setIcon(QtGui.QIcon(":/icons/icons/filenew.png"))
+        self.actionNewPost.setIcon(QtGui.QIcon(":/icons/icons/filenew.svg"))
         self.actionNewPost.setObjectName("actionNewPost")
 
         self.actionConfigure = QtGui.QAction(MainWindow)
-        self.actionConfigure.setIcon(QtGui.QIcon(":/icons/icons/configure.png"))
+        self.actionConfigure.setIcon(QtGui.QIcon(":/icons/icons/configure.svg"))
         self.actionConfigure.setObjectName("actionConfigure")
 
         self.actionImport_Advogato = QtGui.QAction(MainWindow)
@@ -122,22 +122,26 @@ class Ui_MainWindow(object):
         self.actionRegenerateAll.setObjectName("actionRegenerateAll")
 
         self.actionDelete = QtGui.QAction(MainWindow)
-        self.actionDelete.setIcon(QtGui.QIcon(":/icons/icons/fileclose.png"))
+        self.actionDelete.setIcon(QtGui.QIcon(":/icons/icons/delete.svg"))
         self.actionDelete.setObjectName("actionDelete")
 
         self.actionRender_Full_Blog = QtGui.QAction(MainWindow)
+        self.actionRender_Full_Blog.setIcon(QtGui.QIcon(":/icons/icons/webexport.svg"))
         self.actionRender_Full_Blog.setObjectName("actionRender_Full_Blog")
 
         self.actionAbout_BartleBlog = QtGui.QAction(MainWindow)
         self.actionAbout_BartleBlog.setObjectName("actionAbout_BartleBlog")
 
         self.actionNew_Story = QtGui.QAction(MainWindow)
+        self.actionNew_Story.setIcon(QtGui.QIcon(":/icons/icons/filenew.svg"))
         self.actionNew_Story.setObjectName("actionNew_Story")
 
         self.actionQuit = QtGui.QAction(MainWindow)
+        self.actionQuit.setIcon(QtGui.QIcon(":/icons/icons/exit.svg"))
         self.actionQuit.setObjectName("actionQuit")
 
         self.actionBartleBlog_Help = QtGui.QAction(MainWindow)
+        self.actionBartleBlog_Help.setIcon(QtGui.QIcon(":/icons/icons/help.svg"))
         self.actionBartleBlog_Help.setObjectName("actionBartleBlog_Help")
         self.menuSettings.addAction(self.actionConfigure)
         self.menu_Post.addAction(self.actionEditPost)
