@@ -4,6 +4,7 @@ from PyQt4 import QtGui, QtCore
 
 from BartleBlog.ui.Ui_menu_config import Ui_Form
 import BartleBlog.backend.config as config
+from BartleBlog.util.demjson import JSON
 
 class MenuConfigWidget(QtGui.QWidget):
     def __init__(self,parent=None):
@@ -47,6 +48,40 @@ class MenuConfigWidget(QtGui.QWidget):
         QtCore.QObject.connect(self.ui.delete,  
             QtCore.SIGNAL('clicked()'), 
             self.delete)
+
+        QtCore.QObject.connect(self.ui.save,  
+            QtCore.SIGNAL('clicked()'), 
+            self.save)
+
+        self.load()
+        
+    def load(self):
+        data=JSON().decode(config.getValue('blog', 'menu', "[]"))
+        print data        
+        for item in data:
+            print item
+            i=QtGui.QTreeWidgetItem([item[0]])
+            i.extra_type=item[1] 
+            i.extra_data=item[2]
+            self.ui.tree.addTopLevelItem(i)
+            for subi in item[3]:
+                si=QtGui.QTreeWidgetItem([subi[0]])
+                si.extra_type=subi[1] 
+                si.extra_data=subi[2]
+                i.addChild(si)
+
+    def process(self, item):
+        data=[]
+        for i in range(0, item.childCount()):
+            child=item.child(i)
+            data.append([unicode(child.text(0)), child.extra_type, child.extra_data])
+        return data
+    def save(self):
+        data=[]
+        for i in range(0, self.ui.tree.topLevelItemCount()):
+            item=self.ui.tree.topLevelItem(i)
+            data.append([unicode(item.text(0)), item.extra_type, item.extra_data, self.process(item)])
+        config.setValue('blog', 'menu',JSON().encode(data) )
 
     def delete(self):
         i=self.ui.tree.currentItem()
@@ -132,7 +167,7 @@ class MenuConfigWidget(QtGui.QWidget):
         i=self.ui.tree.currentItem()
         if i:
             i.setText(0,text)
-            
+
     def enableButtons(self):
         print 'enableButtons'
         i=self.ui.tree.currentItem()
@@ -166,6 +201,7 @@ class MenuConfigWidget(QtGui.QWidget):
         self.enableButtons()
         t=unicode(item.text(0))
         self.ui.label.setText(t.lstrip())
+        self.ui.label.setFocus()
         if item.extra_type=='label':
             self.ui.data_type.setText('')
             self.ui.extra_data.setVisible(False)
