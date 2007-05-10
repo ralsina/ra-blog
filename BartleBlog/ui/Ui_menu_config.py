@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/menu_config.ui'
 #
-# Created: Wed May  9 13:29:54 2007
+# Created: Thu May 10 12:39:10 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -52,6 +52,10 @@ class Ui_Form(object):
         self.delete = QtGui.QToolButton(Form)
         self.delete.setObjectName("delete")
         self.hboxlayout1.addWidget(self.delete)
+
+        self.new = QtGui.QToolButton(Form)
+        self.new.setObjectName("new")
+        self.hboxlayout1.addWidget(self.new)
         self.vboxlayout.addLayout(self.hboxlayout1)
         self.hboxlayout.addLayout(self.vboxlayout)
 
@@ -59,10 +63,6 @@ class Ui_Form(object):
         self.vboxlayout1.setMargin(0)
         self.vboxlayout1.setSpacing(6)
         self.vboxlayout1.setObjectName("vboxlayout1")
-
-        self.type = QtGui.QComboBox(Form)
-        self.type.setObjectName("type")
-        self.vboxlayout1.addWidget(self.type)
 
         self.label = QtGui.QLabel(Form)
         self.label.setObjectName("label")
@@ -76,16 +76,42 @@ class Ui_Form(object):
         self.label_2.setObjectName("label_2")
         self.vboxlayout1.addWidget(self.label_2)
 
-        self.special = QtGui.QLineEdit(Form)
-        self.special.setObjectName("special")
-        self.vboxlayout1.addWidget(self.special)
+        self.type = QtGui.QComboBox(Form)
+        self.type.setObjectName("type")
+        self.vboxlayout1.addWidget(self.type)
 
-        spacerItem = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.data_type = QtGui.QLabel(Form)
+        self.data_type.setObjectName("data_type")
+        self.vboxlayout1.addWidget(self.data_type)
+
+        self.lineEdit = QtGui.QLineEdit(Form)
+        self.lineEdit.setEnabled(False)
+        self.lineEdit.setObjectName("lineEdit")
+        self.vboxlayout1.addWidget(self.lineEdit)
+
+        spacerItem = QtGui.QSpacerItem(122,51,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
         self.vboxlayout1.addItem(spacerItem)
+
+        self.save = QtGui.QPushButton(Form)
+        self.save.setObjectName("save")
+        self.vboxlayout1.addWidget(self.save)
         self.hboxlayout.addLayout(self.vboxlayout1)
+        self.label.setBuddy(self.label)
+        self.label_2.setBuddy(self.type)
+        self.data_type.setBuddy(self.lineEdit)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+        Form.setTabOrder(self.tree,self.label)
+        Form.setTabOrder(self.label,self.type)
+        Form.setTabOrder(self.type,self.lineEdit)
+        Form.setTabOrder(self.lineEdit,self.left)
+        Form.setTabOrder(self.left,self.right)
+        Form.setTabOrder(self.right,self.up)
+        Form.setTabOrder(self.up,self.down)
+        Form.setTabOrder(self.down,self.delete)
+        Form.setTabOrder(self.delete,self.new)
+        Form.setTabOrder(self.new,self.save)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
@@ -94,8 +120,10 @@ class Ui_Form(object):
         self.up.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.down.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.delete.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.new.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "Label:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Form", "Special", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Form", "Type:", None, QtGui.QApplication.UnicodeUTF8))
+        self.save.setText(QtGui.QApplication.translate("Form", "Save", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
