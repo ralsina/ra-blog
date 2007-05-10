@@ -8,6 +8,7 @@ from BartleBlog.ui.tags_config import TagsConfigWidget
 from BartleBlog.ui.pygment_config import PygmentConfigWidget
 from BartleBlog.ui.openomy_config import OpenomyConfigWidget
 from BartleBlog.ui.blog_config import BlogConfigWidget
+from BartleBlog.ui.menu_config import MenuConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
     def __init__(self):
@@ -28,6 +29,9 @@ class ConfigWindow(QtGui.QDialog):
 
         QtGui.QListWidgetItem("Tags",self.ui.list)
         self.widgets['tags']=TagsConfigWidget
+
+        QtGui.QListWidgetItem("Blog Menu",self.ui.list)
+        self.widgets['blog menu']=MenuConfigWidget
 
         QtGui.QListWidgetItem("Pygment",self.ui.list)
         self.widgets['pygment']=PygmentConfigWidget
