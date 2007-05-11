@@ -85,7 +85,7 @@ class MainWindow(QtGui.QMainWindow):
 
         self.curPost=None
 
-        self.ui.viewer.document().setDefaultStyleSheet(open("/home/ralsina/.PyDS/www/static/pyds.css","r").read())
+        self.ui.viewer.document().setDefaultStyleSheet(open("resources/preview.css","r").read())
         self.renderTemplate=None
 
     def showHelp(self):
