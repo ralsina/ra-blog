@@ -1,44 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import BartleBlog.backend.dbclasses as db
+import BartleBlog.backend.config as config
 
-def linedepth(line):
-    c=0
-    while line[c]==' ':
-        c=c+1
-    return c
-
-class menuitem:
-    def __init__(self,parent,data,depth,img):
-        self.parent=parent
-        self.img=img
-        self.title=data[0].strip()
-        if data[1]:
-            self.link='<a href="%s">%s</a>'%(data[1],self.title)
-        else:
-            self.link=self.title
-        self.children=[]
-        self.depth=depth
-        if parent:
-            self.parent.children.append(self)
-
-    
-    def __repr__(self):
-        
-        if self.depth==0:
-            return '''<div id="moomenu">%s</div>'''%('\n\n'.join([str(x) for x in self.children]))
-        elif self.depth==1:
-            if self.children:
-                return '''
-                <div class="menuHeader2">%s</div>
-                <ul class="menuSlider">%s</ul>
-                '''%(self.link,'\n\n'.join([str(x) for x in self.children]))
-            else:
-                return '<div class="menuHeader">%s</div>'%(self.link)
-        else:
-            return '''
-            <li>%s</li>
-            '''%self.link
 
 class Mootools:
     def __init__(self,blog):
@@ -49,36 +13,46 @@ class Mootools:
         '<script type="text/javascript" charset="utf-8" src="%s" ></script>'%self.blog.macros.absoluteUrl('static/js/mootools.js')]
 
     def gen(self, item):
-        data=''
-        if item[3]:
-            h='<div class="menuHeader2">'            
-        else:
-            h='<div class="menuHeader">'
         if item[1]=='home':
             c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
         elif item[1]=='archives':
-            h='<div class="menuHeader2">' # Archives actually have a submenu
-            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            c='<a href="%s">%s</a>'%(self.blog.macros.absoluteUrl('weblog/archive.html'), item[0])
         elif item[1]=='tag list':
-            h='<div class="menuHeader2">' # Tag Lists actually have a submenu
-            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            c='<a href="%s">%s</a>'%(self.blog.macros.absoluteUrl('categories/index.html'), item[0])
         elif item[1]=='label':
-            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            c=item[0]
         elif item[1]=='link':
-            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            c='<a href="%s">%s</a>'%(item[2], item[0])
         elif item[1]=='story':
-            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            c='<a href="%s">%s</a>'%(self.blog.macros.absoluteUrl('stories/%s.html'%item[2]), item[0])
         elif item[1]=='tag':
-            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            c='<a href="%s">%s</a>'%(self.blog.macros.absoluteUrl('categories/%s.html'%item[2].lower()), item[0])
             
-        return h+c+'</div>'
+        if len(item)>3 and item[3]:
+            inner='\n'.join([ '<li>%s'%self.gen(i) for i in item[3]])
+            return '<div class="menuHeader2">%s</div><ul class="menuSlider">%s</ul>'%(c,inner)
+        else:
+            return '<div class="menuHeader">%s</div>'%c
             
 
     def menu(self):
         self.menudata=config.getValue('blog', 'menu', config.defaultMenu)
         data='<div id=moomenu>'
-        for titem in self.menudata:
-            data+=self.gen(titem)        
+        for item in self.menudata:
+            if item[1]=='tag list':
+                for tag in db.Category.select():
+                    item[3].append([tag.name,'link',
+                                    self.blog.macros.absoluteUrl('categories/%s.html'%tag.name.lower())])
+
+            elif item[1]=='archives':
+                plist=db.Post.select(orderBy=db.Post.q.pubDate)
+                start=plist[0].pubDate.year
+                end=plist[-1].pubDate.year
+                for year in range(start,end+1):
+                    item[3].append([str(year),'link',
+                                    self.blog.macros.absoluteUrl('weblog/%d/index.html'%year)])
+
+            data+=self.gen(item)
         data+='</div>'
         return data
         
