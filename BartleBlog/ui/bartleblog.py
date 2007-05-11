@@ -176,6 +176,8 @@ class MainWindow(QtGui.QMainWindow):
 
         html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))
         self.ui.viewer.setHtml(html)
+        # TODO: give it correct searchpaths so ../static loads thing
+        # self.ui.viewer.setSearchPaths(['/home/ralsina/sitio2/stories/'])
 
     def reRenderCurrentPost(self):
         if self.curPost:
