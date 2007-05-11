@@ -83,7 +83,7 @@
           <string comment="New Tag" >...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/filenew.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/filenew.svg</iconset>
          </property>
         </widget>
        </item>
@@ -93,7 +93,7 @@
           <string comment="Delete Tag" >...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/delete.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/delete.svg</iconset>
          </property>
         </widget>
        </item>
@@ -103,7 +103,7 @@
           <string comment="Rename tag" >...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/edit.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/edit.svg</iconset>
          </property>
         </widget>
        </item>
@@ -156,7 +156,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="icons.qrc" />
+  <include location="../../resources/icons.qrc" />
  </resources>
  <connections/>
 </ui>
