@@ -6,8 +6,9 @@ import os
 import BartleBlog.backend.config as config
 
 class BlogConfigWidget(QtGui.QWidget):
-    def __init__(self,parent=None):
+    def __init__(self,blog, parent=None):
         QtGui.QWidget.__init__(self,parent)
+        self.blog=blog
 
         # Set up the UI from designer
         self.ui=Ui_Form()
@@ -18,7 +19,7 @@ class BlogConfigWidget(QtGui.QWidget):
             self.save)
             
         self.ui.title.setText(config.getValue('blog', 'title', 'My First Blog'))
-	self.ui.url.setText(config.getValue('blog', 'url', 'http://some.host/some_path/'))
+        self.ui.url.setText(config.getValue('blog', 'url', 'http://some.host/some_path/'))
         self.ui.author.setText(config.getValue('blog', 'author', 'Joe Doe'))
         self.ui.email.setText(config.getValue('blog', 'email', 'joe@doe'))
         self.ui.folder.setText(config.getValue('blog', 'folder', os.path.expanduser("~/.bartleblog/weblog")))

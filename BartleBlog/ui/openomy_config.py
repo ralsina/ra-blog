@@ -9,7 +9,7 @@ import BartleBlog.backend.config as config
 import BartleBlog.util.openomy as openomy
 
 class OpenomyConfigWidget(QtGui.QWidget):
-    def __init__(self,parent=None):
+    def __init__(self, blog, parent=None):
         QtGui.QWidget.__init__(self,parent)
 
         # Set up the UI from designer

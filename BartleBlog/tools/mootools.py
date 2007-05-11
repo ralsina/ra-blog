@@ -43,45 +43,44 @@ class menuitem:
 class Mootools:
     def __init__(self,blog):
         self.blog=blog
-        self.img=self.blog.macros.absoluteUrl('static/down.gif')
-        
-        s=db.Post.select(orderBy=db.Post.q.pubDate)
-        years=range(s[0].pubDate.year,s[-1].pubDate.year+1)
-        years=[[' '+str(y),blog.macros.absoluteUrl('weblog/%d/index.html'%y)] for y in years]
-
-        self.menudesc=[
-            ['Home',blog.macros.absoluteUrl('weblog/index.html')],
-            ['Articles',blog.macros.absoluteUrl('stories/index.html')],
-            ['Archives',blog.macros.absoluteUrl('weblog/archive.html')]]+years+[
-            ['Software',None],
-            [' RaSCAN','http://rascan.blogsite.org'],
-            [' Ra-Plugins','http://raplugins.blogsite.org'],
-            [' RaSPF','http://raspf.blogsite.org'],
-            [' CherryTV','http://cherrytv.blogsite.org'],
-            [' BartleBlog',blog.macros.absoluteUrl('categories/bartleblog.html')],
-            ['Tags',blog.macros.absoluteUrl('categories/index.html')]
-            ]
-        for tag in db.Category.select():
-            self.menudesc.append([' '+tag.name,blog.macros.absoluteUrl('categories/%s.html'%tag.name.lower())])
-
-        curDepth=0
-        self.root=menuitem(None,["menubar",None],0,self.img)
-        curItem=self.root
-        for line in self.menudesc:
-            d=linedepth(line[0])
-            curItem=self.root
-            for x in range(0,d):
-                curItem=curItem.children[-1]
-            menuitem(curItem,line,d+1,self.img)
-
 
     def head(self):
         return ['<link rel="stylesheet" type="text/css" href="%s">'%self.blog.macros.absoluteUrl('static/css/moomenu.css'),
         '<script type="text/javascript" charset="utf-8" src="%s" ></script>'%self.blog.macros.absoluteUrl('static/js/mootools.js')]
 
-        
+    def gen(self, item):
+        data=''
+        if item[3]:
+            h='<div class="menuHeader2">'            
+        else:
+            h='<div class="menuHeader">'
+        if item[1]=='home':
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+        elif item[1]=='archives':
+            h='<div class="menuHeader2">' # Archives actually have a submenu
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+        elif item[1]=='tag list':
+            h='<div class="menuHeader2">' # Tag Lists actually have a submenu
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+        elif item[1]=='label':
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+        elif item[1]=='link':
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+        elif item[1]=='story':
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+        elif item[1]=='tag':
+            c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
+            
+        return h+c+'</div>'
+            
+
     def menu(self):
-        return str(self.root)
+        self.menudata=config.getValue('blog', 'menu', config.defaultMenu)
+        data='<div id=moomenu>'
+        for titem in self.menudata:
+            data+=self.gen(titem)        
+        data+='</div>'
+        return data
         
     def accordionScript(self,controlClass,sliderClass):
         '''Takes as arguments the names of two CSS classes.

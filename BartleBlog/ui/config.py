@@ -11,8 +11,9 @@ from BartleBlog.ui.blog_config import BlogConfigWidget
 from BartleBlog.ui.menu_config import MenuConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
-    def __init__(self):
+    def __init__(self, blog):
         QtGui.QDialog.__init__(self)
+        self.blog=blog
 
         # Set up the UI from designer
         self.ui=Ui_Dialog()
@@ -48,5 +49,5 @@ class ConfigWindow(QtGui.QDialog):
             self.widget.hide()
             self.widget=None
         pagename=str(current.text()).lower()
-        self.widget=self.widgets[str(pagename)]()
+        self.widget=self.widgets[str(pagename)](self.blog)
         self.layout.addWidget(self.widget)
