@@ -9,7 +9,7 @@ How to use BartleBlog and have a website in 5 minutes
 :Author: Roberto Alsina <ralsina@kde.org>
 :HomePage: http://bartleblog.netmanagers.com.ar
 
-.. image:: :/scribe.png
+.. image:: icons:/scribe.png
 
 .. contents::
 
