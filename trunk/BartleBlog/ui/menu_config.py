@@ -6,8 +6,9 @@ from BartleBlog.ui.Ui_menu_config import Ui_Form
 import BartleBlog.backend.config as config
 
 class MenuConfigWidget(QtGui.QWidget):
-    def __init__(self,parent=None):
+    def __init__(self, blog, parent=None):
         QtGui.QWidget.__init__(self,parent)
+        self.blog=blog
 
         # Set up the UI from designer
         self.ui=Ui_Form()
@@ -27,6 +28,10 @@ class MenuConfigWidget(QtGui.QWidget):
         QtCore.QObject.connect(self.ui.label, 
             QtCore.SIGNAL('textChanged(QString)'), 
             self.labelChanged)
+            
+        QtCore.QObject.connect(self.ui.extra_data, 
+            QtCore.SIGNAL('textChanged(QString)'), 
+            self.extraDataChanged)
             
         QtCore.QObject.connect(self.ui.right, 
             QtCore.SIGNAL('clicked()'), 
@@ -52,13 +57,32 @@ class MenuConfigWidget(QtGui.QWidget):
             QtCore.SIGNAL('clicked()'), 
             self.save)
 
+        QtCore.QObject.connect(self.ui.preview,  
+            QtCore.SIGNAL('clicked()'), 
+            self.preview)
+
+        QtCore.QObject.connect(self.ui.type,  
+            QtCore.SIGNAL('currentIndexChanged(QString)'), 
+            self.setType)
+
         self.load()
+        
+    def preview(self):
+        dname=os.expanduser('~/.bartleblog/preview')
+        fname='menupreview.html'
+        
+        
+    def setType(self, type):
+        type=unicode(type)
+        i=self.ui.tree.currentItem()
+        if not i:
+            return
+        i.extra_type=type.lower()
+        self.enableButtons()
         
     def load(self):
         data=config.getValue('blog', 'menu', [])
-        print data        
         for item in data:
-            print item
             i=QtGui.QTreeWidgetItem([item[0]])
             i.extra_type=item[1] 
             i.extra_data=item[2]
@@ -166,17 +190,28 @@ class MenuConfigWidget(QtGui.QWidget):
         i=self.ui.tree.currentItem()
         if i:
             i.setText(0,text)
+            
+
+    def extraDataChanged(self, text):
+        i=self.ui.tree.currentItem()
+        if i:
+            i.extra_data=unicode(text)
 
     def enableButtons(self):
-        print 'enableButtons'
         i=self.ui.tree.currentItem()
         self.ui.left.setEnabled(False)
         self.ui.right.setEnabled(False)
         self.ui.up.setEnabled(False)
         self.ui.down.setEnabled(False)
+        self.ui.delete.setEnabled(False)
+        self.ui.type.setEnabled(False)
+        self.ui.label.setEnabled(False)
         if not i:
             return
+        
         self.ui.delete.setEnabled(True)
+        self.ui.type.setEnabled(True)
+        self.ui.label.setEnabled(True)
         if i.parent():
             self.ui.left.setEnabled(True)
             if i.parent().indexOfChild(i)>0:
@@ -194,17 +229,45 @@ class MenuConfigWidget(QtGui.QWidget):
                 self.ui.up.setEnabled(True)
             if self.ui.tree.indexOfTopLevelItem(i)<self.ui.tree.topLevelItemCount()-1:
                 self.ui.down.setEnabled(True)
-            
+
+        item=i
+        if item.extra_type=='archives':
+            self.ui.data_type.setText('')
+            self.ui.extra_data.setVisible(False)
+            self.ui.type.setCurrentIndex(0)
+        elif item.extra_type=='home':
+            self.ui.data_type.setText('')
+            self.ui.extra_data.setVisible(False)
+            self.ui.type.setCurrentIndex(1)
+        elif item.extra_type=='label':
+            self.ui.data_type.setText('')
+            self.ui.extra_data.setVisible(False)
+            self.ui.type.setCurrentIndex(2)
+        elif item.extra_type=='link':
+            self.ui.data_type.setText('Link URL:')
+            self.ui.extra_data.setVisible(True)
+            self.ui.extra_data.setText(item.extra_data)
+            self.ui.type.setCurrentIndex(3)
+        elif item.extra_type=='story':
+            self.ui.data_type.setText('Story ID:')
+            self.ui.extra_data.setVisible(True)
+            self.ui.extra_data.setText(item.extra_data)
+            self.ui.type.setCurrentIndex(4)
+        elif item.extra_type=='tag':
+            self.ui.data_type.setText('Tag name:')
+            self.ui.extra_data.setVisible(True)
+            self.ui.extra_data.setText(item.extra_data)
+            self.ui.type.setCurrentIndex(5)
+        elif item.extra_type=='tag list':
+            self.ui.data_type.setText('')
+            self.ui.extra_data.setVisible(False)
+            self.ui.type.setCurrentIndex(6)
+        
     def editItem(self, item,  col=0):
-        print 'editItem'
         self.enableButtons()
         t=unicode(item.text(0))
         self.ui.label.setText(t.lstrip())
         self.ui.label.setFocus()
-        if item.extra_type=='label':
-            self.ui.data_type.setText('')
-            self.ui.extra_data.setVisible(False)
-            self.ui.type.setCurrentIndex(1)
             
     def newItem(self):
         item=QtGui.QTreeWidgetItem(['New Item'])

@@ -7,7 +7,7 @@ import BartleBlog.backend.dbclasses as db
 
 
 class TagsConfigWidget(QtGui.QWidget):
-    def __init__(self,parent=None):
+    def __init__(self, blog, parent=None):
         QtGui.QWidget.__init__(self,parent)
         self.curTag=None
         self.newName=None

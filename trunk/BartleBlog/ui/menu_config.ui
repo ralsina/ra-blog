@@ -153,7 +153,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="label" />
+      <widget class="QLineEdit" name="label" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_2" >
@@ -167,9 +171,17 @@
      </item>
      <item>
       <widget class="QComboBox" name="type" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
        <item>
         <property name="text" >
          <string>Archives</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>Home</string>
         </property>
        </item>
        <item>
@@ -212,7 +224,7 @@
      <item>
       <widget class="QLineEdit" name="extra_data" >
        <property name="enabled" >
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>

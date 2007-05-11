@@ -17,17 +17,21 @@ class Blog:
         if not os.path.isdir(dn):
             os.mkdir(dn)
         db.initDB(os.path.join(dn,'blog.db'))
+        self.loadConfig()
         
         self.progress=None
 
-        #################################################################################
-        ### Things that should be in the config file
-        #################################################################################
-
+        self.dayHooks=[]
+        self.monthHooks=[]
+        self.yearHooks=[]
+        
+        Macros(self)        
+        
+    def loadConfig(self):
         self.blog_title=config.getValue('blog', 'title', 'My First Blog')
         self.basepath=config.getValue('blog', 'url', 'http://some.host/some_path/')
-	if self.basepath[-1]<>'/':
-		self.basepath+='/'
+        if self.basepath[-1]<>'/':
+            self.basepath+='/'
         self.author=config.getValue('blog', 'author', 'Joe Doe') 
         self.author_email=config.getValue('blog', 'email', 'joe@doe')
         self.description=config.getValue('blog', 'description', 'My Blog')
@@ -36,15 +40,7 @@ class Blog:
             os.mkdir(self.dest_dir)
         self.language="en"
         
-        #################################################################################
-        
         self.version="Bartleblog 0.0"
-
-        self.dayHooks=[]
-        self.monthHooks=[]
-        self.yearHooks=[]
-        
-        Macros(self)        
 
     def loadTemplate(self,name):
         fname=os.path.abspath('templates/%s.tmpl'%name)
@@ -394,7 +390,7 @@ class Blog:
             if self.progress: self.progress.step()
         if self.progress:
             self.progress.close()
-        
+
     def renderFullBlog(self):
         if self.progress:
             self.progress.setStages([
@@ -436,7 +432,6 @@ class Blog:
         if self.progress:
             self.progress.close()
 
-
     def regenerate(self,all=False):
         if self.progress:
             self.progress.setStages([
@@ -468,3 +463,5 @@ class Blog:
 
         if self.progress:
             self.progress.close()
+
+        

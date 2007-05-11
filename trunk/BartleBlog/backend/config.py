@@ -7,7 +7,10 @@ import os
 from BartleBlog.util.demjson import JSON
 
 conf=ConfigParser.SafeConfigParser()
-    
+
+defaultMenu=[["Home","home","",[]],["Archives","archives","http://www.kde.org",[]],["Tags","tag list","",[]]]
+
+
 dn=os.path.expanduser('~/.bartleblog/')
 if not os.path.isdir(dn):
     os.mkdir(dn)

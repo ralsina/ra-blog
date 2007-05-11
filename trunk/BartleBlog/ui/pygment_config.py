@@ -28,7 +28,7 @@ previewtext='''<html><div class="highlight"><pre><span class="n">bstring</span> 
 
 
 class PygmentConfigWidget(QtGui.QWidget):
-    def __init__(self,parent=None):
+    def __init__(self, blog, parent=None):
         QtGui.QWidget.__init__(self,parent)
 
         # Set up the UI from designer

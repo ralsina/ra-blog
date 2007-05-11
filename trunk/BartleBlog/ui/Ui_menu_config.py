@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/menu_config.ui'
 #
-# Created: Thu May 10 20:25:37 2007
+# Created: Fri May 11 11:06:31 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -91,6 +91,7 @@ class Ui_Form(object):
         self.vboxlayout1.addWidget(self.QLabel)
 
         self.label = QtGui.QLineEdit(Form)
+        self.label.setEnabled(False)
         self.label.setObjectName("label")
         self.vboxlayout1.addWidget(self.label)
 
@@ -99,6 +100,7 @@ class Ui_Form(object):
         self.vboxlayout1.addWidget(self.label_2)
 
         self.type = QtGui.QComboBox(Form)
+        self.type.setEnabled(False)
         self.type.setObjectName("type")
         self.vboxlayout1.addWidget(self.type)
 
@@ -107,7 +109,7 @@ class Ui_Form(object):
         self.vboxlayout1.addWidget(self.data_type)
 
         self.extra_data = QtGui.QLineEdit(Form)
-        self.extra_data.setEnabled(False)
+        self.extra_data.setEnabled(True)
         self.extra_data.setObjectName("extra_data")
         self.vboxlayout1.addWidget(self.extra_data)
 
@@ -146,6 +148,7 @@ class Ui_Form(object):
         self.QLabel.setText(QtGui.QApplication.translate("Form", "Label:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Type:", None, QtGui.QApplication.UnicodeUTF8))
         self.type.addItem(QtGui.QApplication.translate("Form", "Archives", None, QtGui.QApplication.UnicodeUTF8))
+        self.type.addItem(QtGui.QApplication.translate("Form", "Home", None, QtGui.QApplication.UnicodeUTF8))
         self.type.addItem(QtGui.QApplication.translate("Form", "Label", None, QtGui.QApplication.UnicodeUTF8))
         self.type.addItem(QtGui.QApplication.translate("Form", "Link", None, QtGui.QApplication.UnicodeUTF8))
         self.type.addItem(QtGui.QApplication.translate("Form", "Story", None, QtGui.QApplication.UnicodeUTF8))

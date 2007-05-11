@@ -135,7 +135,7 @@ class MainWindow(QtGui.QMainWindow):
         self.editor.show()
 
     def configure(self):
-        cfg=ConfigWindow()
+        cfg=ConfigWindow(self.blog)
         cfg.exec_()
 
     def renderBlog(self):
