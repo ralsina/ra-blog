@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/menu_config.ui'
 #
-# Created: Fri May 11 11:06:31 2007
+# Created: Fri May 11 19:03:58 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,6 +25,7 @@ class Ui_Form(object):
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.tree = QtGui.QTreeWidget(Form)
+        self.tree.setColumnCount(1)
         self.tree.setObjectName("tree")
         self.vboxlayout.addWidget(self.tree)
 
@@ -138,6 +139,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree.headerItem().setText(0,QtGui.QApplication.translate("Form", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.new.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.delete.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.preview.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))

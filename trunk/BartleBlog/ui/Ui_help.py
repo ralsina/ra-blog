@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/help.ui'
 #
-# Created: Thu May 10 14:04:35 2007
+# Created: Fri May 11 19:03:59 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,15 +26,15 @@ class Ui_MainWindow(object):
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
 
-        self.widget = QtGui.QWidget(self.splitter)
-        self.widget.setObjectName("widget")
+        self.layoutWidget = QtGui.QWidget(self.splitter)
+        self.layoutWidget.setObjectName("layoutWidget")
 
-        self.vboxlayout = QtGui.QVBoxLayout(self.widget)
+        self.vboxlayout = QtGui.QVBoxLayout(self.layoutWidget)
         self.vboxlayout.setMargin(0)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
 
-        self.label_2 = QtGui.QLabel(self.widget)
+        self.label_2 = QtGui.QLabel(self.layoutWidget)
         self.label_2.setObjectName("label_2")
         self.vboxlayout.addWidget(self.label_2)
 
@@ -43,21 +43,20 @@ class Ui_MainWindow(object):
         self.hboxlayout1.setSpacing(6)
         self.hboxlayout1.setObjectName("hboxlayout1")
 
-        self.search = QtGui.QLineEdit(self.widget)
+        self.search = QtGui.QLineEdit(self.layoutWidget)
         self.search.setObjectName("search")
         self.hboxlayout1.addWidget(self.search)
 
-        self.searchButton = QtGui.QToolButton(self.widget)
-        self.searchButton.setIcon(QtGui.QIcon(":/icons/icons/find.png"))
+        self.searchButton = QtGui.QToolButton(self.layoutWidget)
         self.searchButton.setObjectName("searchButton")
         self.hboxlayout1.addWidget(self.searchButton)
         self.vboxlayout.addLayout(self.hboxlayout1)
 
-        self.label = QtGui.QLabel(self.widget)
+        self.label = QtGui.QLabel(self.layoutWidget)
         self.label.setObjectName("label")
         self.vboxlayout.addWidget(self.label)
 
-        self.contents = QtGui.QTreeWidget(self.widget)
+        self.contents = QtGui.QTreeWidget(self.layoutWidget)
         self.contents.setObjectName("contents")
         self.vboxlayout.addWidget(self.contents)
 
