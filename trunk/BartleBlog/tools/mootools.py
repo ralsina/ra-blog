@@ -40,7 +40,7 @@ class Mootools:
         data='<div id=moomenu>'
         for item in self.menudata:
             if item[1]=='tag list':
-                for tag in db.Category.select():
+                for tag in db.Category.select(orderBy=db.Category.q.name):
                     item[3].append([tag.name,'link',
                                     self.blog.macros.absoluteUrl('categories/%s.html'%tag.name.lower())])
 
