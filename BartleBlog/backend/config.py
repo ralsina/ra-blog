@@ -4,6 +4,7 @@
 
 import ConfigParser
 import os
+from BartleBlog.util.demjson import JSON
 
 conf=ConfigParser.SafeConfigParser()
     
@@ -16,11 +17,12 @@ f.close()
 
 def getValue(section,key,default=None):
     try:
-        return conf.get (section,key)
+        return JSON().decode(conf.get (section,key))
     except:
         return default
 
 def setValue(section,key,value):
+    value=JSON().encode(value)
     try:
         r=conf.set(section,key,value)
     except ConfigParser.NoSectionError:

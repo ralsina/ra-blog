@@ -4,7 +4,6 @@ from PyQt4 import QtGui, QtCore
 
 from BartleBlog.ui.Ui_menu_config import Ui_Form
 import BartleBlog.backend.config as config
-from BartleBlog.util.demjson import JSON
 
 class MenuConfigWidget(QtGui.QWidget):
     def __init__(self,parent=None):
@@ -56,7 +55,7 @@ class MenuConfigWidget(QtGui.QWidget):
         self.load()
         
     def load(self):
-        data=JSON().decode(config.getValue('blog', 'menu', "[]"))
+        data=config.getValue('blog', 'menu', [])
         print data        
         for item in data:
             print item
@@ -81,7 +80,7 @@ class MenuConfigWidget(QtGui.QWidget):
         for i in range(0, self.ui.tree.topLevelItemCount()):
             item=self.ui.tree.topLevelItem(i)
             data.append([unicode(item.text(0)), item.extra_type, item.extra_data, self.process(item)])
-        config.setValue('blog', 'menu',JSON().encode(data) )
+        config.setValue('blog', 'menu',data )
 
     def delete(self):
         i=self.ui.tree.currentItem()
