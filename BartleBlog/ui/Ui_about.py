@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/about.ui'
 #
-# Created: Thu May 10 14:04:34 2007
+# Created: Fri May 11 19:03:57 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,7 +30,6 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
         self.label.setSizePolicy(sizePolicy)
-        self.label.setPixmap(QtGui.QPixmap(":/icons/icons/scribe.png"))
         self.label.setObjectName("label")
         self.vboxlayout.addWidget(self.label)
 
