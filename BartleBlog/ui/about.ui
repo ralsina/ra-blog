@@ -43,7 +43,7 @@ p, li { white-space: pre-wrap; }
       <string/>
      </property>
      <property name="pixmap" >
-      <pixmap resource="icons.qrc" >:/icons/icons/scribe.png</pixmap>
+      <pixmap/>
      </property>
     </widget>
    </item>
@@ -88,7 +88,7 @@ More information at http://some-site-here</string>
   </layout>
  </widget>
  <resources>
-  <include location="icons.qrc" />
+  <include location="../../resources/icons.qrc" />
  </resources>
  <connections>
   <connection>

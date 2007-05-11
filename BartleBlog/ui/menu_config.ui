@@ -53,7 +53,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/filenew.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/filenew.svg</iconset>
          </property>
         </widget>
        </item>
@@ -66,7 +66,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/delete.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/delete.svg</iconset>
          </property>
         </widget>
        </item>
@@ -76,7 +76,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/preview.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/preview.svg</iconset>
          </property>
         </widget>
        </item>
@@ -96,7 +96,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/1leftarrow.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/1leftarrow.svg</iconset>
          </property>
         </widget>
        </item>
@@ -109,7 +109,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/1rightarrow.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/1rightarrow.svg</iconset>
          </property>
         </widget>
        </item>
@@ -122,7 +122,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/1uparrow.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/1uparrow.svg</iconset>
          </property>
         </widget>
        </item>
@@ -135,7 +135,7 @@
           <string>...</string>
          </property>
          <property name="icon" >
-          <iconset resource="icons.qrc" >:/icons/icons/1downarrow.svg</iconset>
+          <iconset resource="../../resources/icons.qrc" >:/icons/icons/1downarrow.svg</iconset>
          </property>
         </widget>
        </item>
@@ -274,7 +274,7 @@
   <tabstop>save</tabstop>
  </tabstops>
  <resources>
-  <include location="icons.qrc" />
+  <include location="../../resources/icons.qrc" />
  </resources>
  <connections/>
 </ui>
