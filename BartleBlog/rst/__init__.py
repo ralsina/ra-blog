@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# import codeblock
 import sourcecode
 import openomy
 import flickr
