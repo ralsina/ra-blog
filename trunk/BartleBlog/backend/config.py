@@ -6,19 +6,9 @@ import ConfigParser
 import os
 from BartleBlog.util.demjson import JSON
 
-conf=ConfigParser.SafeConfigParser()
-
 defaultMenu=[["Home","home","",[]],["Archives","archives","",[]],["Tags","tag list","",[]]]
 
 
-dn=os.path.expanduser('~/.bartleblog/')
-if not os.path.isdir(dn):
-    os.mkdir(dn)
-if not os.path.isfile(os.path.expanduser('~/.bartleblog/config')):
-    open(os.path.expanduser('~/.bartleblog/config'),'w').close()
-f=open(os.path.expanduser('~/.bartleblog/config'),'r')
-conf.readfp(f)
-f.close()
 
 def getValue(section,key,default=None):
     try:
@@ -42,3 +32,21 @@ class ConfigError(Exception):
     def __init__(self,modulename,msg):
         self.modulename=modulename
         self.msg=msg
+
+
+conf=ConfigParser.SafeConfigParser()
+firstRun=False
+dn=os.path.expanduser('~/.bartleblog/')
+if not os.path.isdir(dn):
+    os.mkdir(dn)
+if not os.path.isfile(os.path.expanduser('~/.bartleblog/config')):
+    open(os.path.expanduser('~/.bartleblog/config'),'w').close()
+    firstRun=True
+f=open(os.path.expanduser('~/.bartleblog/config'),'r')
+conf.readfp(f)
+f.close()
+if firstRun:
+    conf.setValue('blog','firstRun',True)
+
+
+
