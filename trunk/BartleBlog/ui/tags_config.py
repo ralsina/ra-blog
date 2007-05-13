@@ -46,6 +46,8 @@ class TagsConfigWidget(QtGui.QWidget):
         self.ui.title.setText('')
         self.ui.magicWords.setText('')
         self.ui.description.setText('')
+        if not self.curTag:
+            return
         if self.curTag.title:
             self.ui.title.setText(self.curTag.title)
         if self.curTag.magicWords:
@@ -81,5 +83,7 @@ class TagsConfigWidget(QtGui.QWidget):
     def loadTag(self,tagname):
         self.newName=None
         self.saveTag()
-        self.curTag=db.Category.select(db.Category.q.name==str(tagname))[0]
+        sel=db.Category.select(db.Category.q.name==str(tagname))
+        if sel.count()>0:
+            self.curTag=db.Category.select(db.Category.q.name==str(tagname))[0]
         self.fillWidgets()
