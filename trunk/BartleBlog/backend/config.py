@@ -8,7 +8,7 @@ from BartleBlog.util.demjson import JSON
 
 conf=ConfigParser.SafeConfigParser()
 
-defaultMenu=[["Home","home","",[]],["Archives","archives","http://www.kde.org",[]],["Tags","tag list","",[]]]
+defaultMenu=[["Home","home","",[]],["Archives","archives","",[]],["Tags","tag list","",[]]]
 
 
 dn=os.path.expanduser('~/.bartleblog/')
