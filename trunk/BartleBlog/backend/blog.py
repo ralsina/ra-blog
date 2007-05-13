@@ -14,6 +14,7 @@ import BartleBlog.backend.config as config
 class Blog:
     def __init__(self):
 
+        dn=os.path.expanduser('~/.bartleblog')
         db.initDB(os.path.join(dn,'blog.db'))
 
         self.loadConfig()
