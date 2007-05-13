@@ -2,11 +2,11 @@
 
 import docutils.core
 import docutils.parsers.rst
-import BartleBlog.util.flickrapi as flickrapi
+import BartleBlog.util.hq23api as hq23api
+
 
 flickrAPIKey='a4b67aa4c75657b2db3ebc2f2f43c136'
-fapi=flickrapi.FlickrAPI(flickrAPIKey,'ab116226d50899a7')
-fapi.flickrHost='www.23hq.com'
+fapi=hq23api.FlickrAPI(flickrAPIKey,'ab116226d50899a7')
 
 
 def flickrset( name, arguments, options, content, lineno,
