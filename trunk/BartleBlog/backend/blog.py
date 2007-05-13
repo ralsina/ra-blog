@@ -6,17 +6,16 @@ from cherrytemplate import renderTemplate
 
 import dbclasses as db
 from macros import Macros
+import shutil
 
 from BartleBlog.util import slimmer
 import BartleBlog.backend.config as config
 
 class Blog:
     def __init__(self):
-    
-        dn=os.path.expanduser('~/.bartleblog/')
-        if not os.path.isdir(dn):
-            os.mkdir(dn)
+
         db.initDB(os.path.join(dn,'blog.db'))
+
         self.loadConfig()
         
         self.progress=None
@@ -25,7 +24,14 @@ class Blog:
         self.monthHooks=[]
         self.yearHooks=[]
         
-        Macros(self)        
+        Macros(self)
+
+    def setupTree(self):
+        '''Setup things in ~/.bartleblog: templates/static/js/calendar/etc.'''
+        #FIXME: this path should be from a standard location
+        os.makedirs(os.path.expanduser('~/.bartleblog/weblog')
+        shutil.copytree(os.path.abspath('templates'),os.path.expanduser('~/.bartleblog'))
+        shutil.copytree(os.path.abspath('static'),os.path.expanduser('~/.bartleblog/weblog'))
         
     def loadConfig(self):
         self.blog_title=config.getValue('blog', 'title', 'My First Blog')
