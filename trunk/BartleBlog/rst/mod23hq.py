@@ -5,7 +5,8 @@ import docutils.parsers.rst
 import BartleBlog.util.flickrapi as flickrapi
 
 flickrAPIKey='a4b67aa4c75657b2db3ebc2f2f43c136'
-fapi=flickrapi.FlickrAPI(flickrAPIKey,'ab116226d50899a7',flickrHost='www.23hq.com')
+fapi=flickrapi.FlickrAPI(flickrAPIKey,'ab116226d50899a7')
+fapi.flickrHost='www.23hq.com'
 
 
 def flickrset( name, arguments, options, content, lineno,
