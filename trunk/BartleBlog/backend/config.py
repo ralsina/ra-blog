@@ -46,7 +46,7 @@ f=open(os.path.expanduser('~/.bartleblog/config'),'r')
 conf.readfp(f)
 f.close()
 if firstRun:
-    conf.setValue('blog','firstRun',True)
+    setValue('blog','firstRun',True)
 
 
 
