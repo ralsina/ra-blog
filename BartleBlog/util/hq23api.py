@@ -181,11 +181,11 @@ class FlickrAPI:
       rsp = flickr.auth_checkToken(api_key=flickrAPIKey, auth_token=token)
 
     """
-    flickrHost = "api.flickr.com"
+    flickrHost = "www.23hq.com"
     flickrRESTForm = "/services/rest/"
     flickrAuthForm = "/services/auth/"
     flickrUploadForm = "/services/upload/"
-    servname="flickr"
+    servname="23hq"
 
     #-------------------------------------------------------------------
     def __init__(self, apiKey, secret):
