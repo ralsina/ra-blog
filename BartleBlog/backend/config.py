@@ -14,6 +14,8 @@ defaultMenu=[["Home","home","",[]],["Archives","archives","http://www.kde.org",[
 dn=os.path.expanduser('~/.bartleblog/')
 if not os.path.isdir(dn):
     os.mkdir(dn)
+if not os.path.isfile(os.path.expanduser('~/.bartleblog/config')):
+    open(os.path.expanduser('~/.bartleblog/config'),'w').close()
 f=open(os.path.expanduser('~/.bartleblog/config'),'r')
 conf.readfp(f)
 f.close()
