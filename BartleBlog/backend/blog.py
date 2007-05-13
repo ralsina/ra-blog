@@ -30,9 +30,12 @@ class Blog:
     def setupTree(self):
         '''Setup things in ~/.bartleblog: templates/static/js/calendar/etc.'''
         #FIXME: this path should be from a standard location
-        os.makedirs(os.path.expanduser('~/.bartleblog/weblog'))
-        shutil.copytree(os.path.abspath('templates'),os.path.expanduser('~/.bartleblog'))
-        shutil.copytree(os.path.abspath('static'),os.path.expanduser('~/.bartleblog/weblog'))
+        if not os.path.isdir(os.path.expanduser('~/.bartleblog/weblog')):
+            os.makedirs(os.path.expanduser('~/.bartleblog/weblog'))
+        if not os.path.isdir(os.path.expanduser('~/.bartleblog/templates')):
+            shutil.copytree(os.path.abspath('templates'),os.path.expanduser('~/.bartleblog/templates'))
+        if not os.path.isdir(os.path.expanduser('~/.bartleblog/weblog/static')):
+            shutil.copytree(os.path.abspath('static'),os.path.expanduser('~/.bartleblog/weblog/static'))
         
     def loadConfig(self):
         self.blog_title=config.getValue('blog', 'title', 'My First Blog')
