@@ -3,14 +3,20 @@
 
 <%def name="bodytitle()">
   <h2>${cat.name}</h2>
-  <pre>
   ${cat.description}
-  </pre>
-  <hr>
+  <p>
 </%def>
 
 <%def name="body()">
+
+  There are <a href="#stories">${len(storylist)} stories</a> and 
+  <a href="#posts">${len(postlist)} posts</a> tagged ${cat.name}
+
+  <hr>
+
+
   % if storylist:
+    <a name="stories"></a>
     <h3>Articles tagged ${cat.name}</h3>
     % for post in storylist:
       <div class="postbox thinedge">
@@ -22,7 +28,8 @@
       </div>
     % endfor
   % endif
-  
+
+  <a name="posts"></a>
   <h3>Posts tagged ${cat.name}</h3>
   % for post in postlist:
     <div class="postbox thinedge">
