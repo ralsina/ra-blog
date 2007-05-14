@@ -75,16 +75,20 @@ def frender (self):
         self.is_dirty=-1        
     self.modDate=datetime.datetime.now()
 
+def matchesCategory(text, cat):
+    res=False
+    if cat.magicWords:
+        for word in cat.magicWords.split(' '):
+            if re.compile(' %s |^%s | %s$'%(word,word,word)).findall(text):
+                res=True
+                break
+    return res
 def guessCategories(text):
     text=text.lower()
     res=[]
     for cat in Category.select():
-        if not cat.magicWords:
-            continue
-        for word in cat.magicWords.split(' '):
-            if re.compile(' %s |^%s | %s$'%(word,word,word)).findall(text):
-                res.append(cat.name)
-                break
+        if matchesCategory(text, cat):
+            res.append(cat.name)
     return res
     
 class Page(SQLObject):
