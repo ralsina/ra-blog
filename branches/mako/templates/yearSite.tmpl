@@ -1,0 +1,25 @@
+## -*- coding: utf-8 -*-
+<%inherit file="pageSite.tmpl" />
+
+<%def name="bodytitle()">
+<h2>Posts for year ${year}</h2>
+</%def>
+
+
+<%def name="body()">
+
+% for month in range(1,13):
+  <div class="postbox thinedge">
+  <a href="${macros.absoluteUrl('weblog/%s/%02d/index.html'%(year,month))}">
+  Posts for ${month} / ${year}  
+  </a>
+  <ul>
+  % for post in postlist[month]:
+    <li> ${post.title}
+  % endfor
+  </ul>
+  </div>
+% endfor
+
+</%def>
+

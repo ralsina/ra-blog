@@ -1,20 +1,29 @@
+## -*- coding: utf-8 -*-
+<%inherit file="pageSite.tmpl" />
+
+<%def name="bodytitle()">
+</%def>
+
+
+<%def name="body()">
 <div class="postbox thinedge">
-  <h1><py-eval="story.title"></h1>
+  <h1>${story.title}</h1>
   <table width="100%">
   <tr>
     <py-eval="macros.feedBurner.banner()">
   </tr>
   </table>
   
-  <py-eval="story.rendered">
+  ${story.rendered}
   
   <div class="footerbox">
-    Posted: <py-eval="str(story.pubDate)">&nbsp;&bull;&nbsp;
-    <py-eval="macros.haloScan.comments(story)">&nbsp;&bull;&nbsp;
-    <py-eval="macros.haloScan.trackback(story)">
-    <py-eval="macros.feedBurner.flare(story)"><br>
-    <py-eval="macros.delicious.tags(story)"><br>
-    <py-eval="macros.addThis.bookmark(story)">
+    Posted: ${str(story.pubDate)}&nbsp;&bull;&nbsp;
+    ${macros.haloScan.comments(story)}&nbsp;&bull;&nbsp;
+    ${macros.haloScan.trackback(story)}
+    ${macros.feedBurner.flare(story)}<br>
+    ${macros.delicious.tags(story)}<br>
+    ${macros.addThis.bookmark(story)}
   </div>
 </div>
+</%def>
 
