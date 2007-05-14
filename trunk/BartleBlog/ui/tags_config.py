@@ -16,6 +16,8 @@ class TagsConfigWidget(QtGui.QWidget):
         self.ui=Ui_Form()
         self.ui.setupUi(self)
 
+        self.save=True
+
         self.loadTags()
         QtCore.QObject.connect(self.ui.list,QtCore.SIGNAL('activated(QString)'),
             self.loadTag)
@@ -36,8 +38,10 @@ class TagsConfigWidget(QtGui.QWidget):
 
     def autoTag(self):
         posts=db.Post.select()
-        c=posts.count()
-        progress=QtGui.QProgressDialog("Searching posts matching tag %s..."%self.curTag.name, "Abort Search", 0, c);        
+        stories=db.Story.select()
+        c1=posts.count()
+        c2=stories.count()
+        progress=QtGui.QProgressDialog("Searching posts matching tag %s..."%self.curTag.name, "Abort Search", 0, c1+c2);
         progress.setWindowModality(QtCore.Qt.WindowModal);
         progress.show()
 
@@ -53,11 +57,23 @@ class TagsConfigWidget(QtGui.QWidget):
             
             if db.matchesCategory((post.text+' '+post.title).lower(), self.curTag):
                 matches.append(post)
-                
+        for story in stories:
+            progress.setValue(i)
+            i+=1
+            QtCore.QCoreApplication.instance().processEvents()
+
+            if progress.wasCanceled():
+                break;
+            
+            if db.matchesCategory((story.text+' '+story.title).lower(), self.curTag):
+                matches.append(story)
+
+        if not matches:
+                return
         res=QtGui.QMessageBox.question(self,'BartleBlog autotag','Found %d posts matching tag %s. Tag them all?'%(len(matches), self.curTag.name),
                 QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
         if res == QtGui.QMessageBox.Yes:
-            progress=QtGui.QProgressDialog("Tagging posts matching tag %s..."%self.curTag.name, "Abort", 0, c);        
+            progress=QtGui.QProgressDialog("Tagging posts matching tag %s..."%self.curTag.name, "Abort", 0, len(matches));
             progress.setWindowModality(QtCore.Qt.WindowModal);
             progress.show()
             i=0
@@ -91,17 +107,21 @@ class TagsConfigWidget(QtGui.QWidget):
             self.loadTags()
 
     def fillWidgets(self):
+
+        self.save=False
+
         self.ui.title.setText('')
         self.ui.magicWords.setText('')
         self.ui.description.setText('')
-        if not self.curTag:
-            return
-        if self.curTag.title:
-            self.ui.title.setText(self.curTag.title)
-        if self.curTag.magicWords:
-            self.ui.magicWords.setText(self.curTag.magicWords)
-        if self.curTag.description:
-            self.ui.description.setText(self.curTag.description)
+        if self.curTag:
+            if self.curTag.title:
+                self.ui.title.setText(self.curTag.title)
+            if self.curTag.magicWords:
+                self.ui.magicWords.setText(self.curTag.magicWords)
+            if self.curTag.description:
+                self.ui.description.setText(self.curTag.description)
+
+        self.save=True
 
     def newTag(self):
         text,ok=QtGui.QInputDialog.getText(self,'BartleBlog - New Tag','Enter the name of the new tag')
@@ -116,7 +136,7 @@ class TagsConfigWidget(QtGui.QWidget):
 
 
     def saveTag(self):
-        if not self.curTag:
+        if not self.curTag or not self.save:
             return
         self.curTag.description=str(self.ui.description.toPlainText())
         self.curTag.title=str(self.ui.title.text())
