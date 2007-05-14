@@ -2,7 +2,7 @@
 
 import os,sys,datetime,codecs
 
-from cherrytemplate import renderTemplate
+from mako.template import Template
 
 import dbclasses as db
 from macros import Macros
