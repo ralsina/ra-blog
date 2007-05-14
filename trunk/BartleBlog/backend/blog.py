@@ -36,6 +36,8 @@ class Blog:
             shutil.copytree(os.path.abspath('templates'),os.path.expanduser('~/.bartleblog/templates'))
         if not os.path.isdir(os.path.expanduser('~/.bartleblog/weblog/static')):
             shutil.copytree(os.path.abspath('static'),os.path.expanduser('~/.bartleblog/weblog/static'))
+        if not os.path.isdir(os.path.expanduser('~/.bartleblog/resources')):
+            shutil.copytree(os.path.abspath('resources'),os.path.expanduser('~/.bartleblog/resources'))
         
     def loadConfig(self):
         self.blog_title=config.getValue('blog', 'title', 'My First Blog')
@@ -81,6 +83,7 @@ class Blog:
             os.unlink(fname)
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(page)
+        print 'saving: ', os.path.join(dname,fname)
 
     def renderRSS(self,title,curDate,dname,fname,postlist):
         macros=self.macros

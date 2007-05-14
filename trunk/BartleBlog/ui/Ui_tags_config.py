@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/tags_config.ui'
 #
-# Created: Fri May 11 19:03:55 2007
+# Created: Sun May 13 22:46:41 2007
 #      by: PyQt4 UI code generator 4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,26 +30,6 @@ class Ui_Form(object):
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
 
-        self.label_2 = QtGui.QLabel(Form)
-        self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,2,0,1,1)
-
-        self.label = QtGui.QLabel(Form)
-        self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,0,0,1,1)
-
-        self.label_4 = QtGui.QLabel(Form)
-        self.label_4.setObjectName("label_4")
-        self.gridlayout.addWidget(self.label_4,1,0,1,1)
-
-        self.magicWords = QtGui.QLineEdit(Form)
-        self.magicWords.setObjectName("magicWords")
-        self.gridlayout.addWidget(self.magicWords,2,1,1,1)
-
-        self.title = QtGui.QLineEdit(Form)
-        self.title.setObjectName("title")
-        self.gridlayout.addWidget(self.title,1,1,1,1)
-
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
@@ -75,9 +55,34 @@ class Ui_Form(object):
         self.rename.setObjectName("rename")
         self.hboxlayout.addWidget(self.rename)
 
-        spacerItem = QtGui.QSpacerItem(241,23,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        self.autotag = QtGui.QToolButton(Form)
+        self.autotag.setIcon(QtGui.QIcon(":/icons/icons/find.svg"))
+        self.autotag.setObjectName("autotag")
+        self.hboxlayout.addWidget(self.autotag)
+
+        spacerItem = QtGui.QSpacerItem(241,25,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.gridlayout.addLayout(self.hboxlayout,0,1,1,1)
+
+        self.label_2 = QtGui.QLabel(Form)
+        self.label_2.setObjectName("label_2")
+        self.gridlayout.addWidget(self.label_2,2,0,1,1)
+
+        self.label_4 = QtGui.QLabel(Form)
+        self.label_4.setObjectName("label_4")
+        self.gridlayout.addWidget(self.label_4,1,0,1,1)
+
+        self.label = QtGui.QLabel(Form)
+        self.label.setObjectName("label")
+        self.gridlayout.addWidget(self.label,0,0,1,1)
+
+        self.title = QtGui.QLineEdit(Form)
+        self.title.setObjectName("title")
+        self.gridlayout.addWidget(self.title,1,1,1,1)
+
+        self.magicWords = QtGui.QLineEdit(Form)
+        self.magicWords.setObjectName("magicWords")
+        self.gridlayout.addWidget(self.magicWords,2,1,1,1)
         self.vboxlayout.addLayout(self.gridlayout)
 
         self.label_3 = QtGui.QLabel(Form)
@@ -105,12 +110,13 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_2.setText(QtGui.QApplication.translate("Form", "Magic Words:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Form", "Tags:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("Form", "Title:", None, QtGui.QApplication.UnicodeUTF8))
         self.new.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.delete.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.rename.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.autotag.setText(QtGui.QApplication.translate("Form", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("Form", "Magic Words:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("Form", "Title:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Form", "Tags:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "Description:", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc

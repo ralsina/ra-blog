@@ -25,7 +25,51 @@ class TagsConfigWidget(QtGui.QWidget):
             self.delTag)
         QtCore.QObject.connect(self.ui.rename,QtCore.SIGNAL('clicked()'),
             self.renameTag)
+        QtCore.QObject.connect(self.ui.autotag,QtCore.SIGNAL('clicked()'),
+            self.autoTag)
+        QtCore.QObject.connect(self.ui.magicWords,QtCore.SIGNAL('textChanged(QString)'),
+            self.saveTag)
 
+    def autoTag(self):
+        posts=db.Post.select()
+        c=posts.count()
+        progress=QtGui.QProgressDialog("Searching posts matching tag %s..."%self.curTag.name, "Abort Search", 0, c);        
+        progress.setWindowModality(QtCore.Qt.WindowModal);
+        progress.show()
+
+        i=0
+        matches=[]
+        for post in posts:
+            progress.setValue(i)
+            i+=1
+            QtCore.QCoreApplication.instance().processEvents()
+
+            if progress.wasCanceled():
+                break;
+            
+            if db.matchesCategory((post.text+' '+post.title).lower(), self.curTag):
+                matches.append(post)
+                
+        res=QtGui.QMessageBox.question(self,'BartleBlog autotag','Found %d posts matching tag %s. Tag them all?'%(len(matches), self.curTag.name),
+                QtGui.QMessageBox.Yes | QtGui.QMessageBox.No)
+        if res == QtGui.QMessageBox.Yes:
+            progress=QtGui.QProgressDialog("Tagging posts matching tag %s..."%self.curTag.name, "Abort", 0, c);        
+            progress.setWindowModality(QtCore.Qt.WindowModal);
+            progress.show()
+            i=0
+            for match in matches:
+                print match.title
+                progress.setValue(i)
+                i+=1
+                QtCore.QCoreApplication.instance().processEvents()
+                if progress.wasCanceled():
+                    break;
+                if self.curTag not in match.categories:
+                    match.addCategory(self.curTag)
+            self.curTag.setDirtyPages()
+            
+        
+                
     def renameTag(self):
         text,ok=QtGui.QInputDialog.getText(self,'BartleBlog - Rename Tag','Enter the new name of the %s tag'%self.curTag.name)
         text=str(text)
