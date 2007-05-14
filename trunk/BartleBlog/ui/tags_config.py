@@ -29,6 +29,10 @@ class TagsConfigWidget(QtGui.QWidget):
             self.autoTag)
         QtCore.QObject.connect(self.ui.magicWords,QtCore.SIGNAL('textChanged(QString)'),
             self.saveTag)
+        QtCore.QObject.connect(self.ui.title,QtCore.SIGNAL('textChanged(QString)'),
+            self.saveTag)
+        QtCore.QObject.connect(self.ui.description,QtCore.SIGNAL('textChanged()'),
+            self.saveTag)
 
     def autoTag(self):
         posts=db.Post.select()
