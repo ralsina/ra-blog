@@ -1,0 +1,20 @@
+<div class="postbox thinedge">
+  <h1><py-eval="story.title"></h1>
+  <table width="100%">
+  <tr>
+    <py-eval="macros.feedBurner.banner()">
+  </tr>
+  </table>
+  
+  <py-eval="story.rendered">
+  
+  <div class="footerbox">
+    Posted: <py-eval="str(story.pubDate)">&nbsp;&bull;&nbsp;
+    <py-eval="macros.haloScan.comments(story)">&nbsp;&bull;&nbsp;
+    <py-eval="macros.haloScan.trackback(story)">
+    <py-eval="macros.feedBurner.flare(story)"><br>
+    <py-eval="macros.delicious.tags(story)"><br>
+    <py-eval="macros.addThis.bookmark(story)">
+  </div>
+</div>
+

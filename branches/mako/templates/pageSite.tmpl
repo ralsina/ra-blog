@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> 
+<head> 
+  <title><py-eval="title"></title>
+  <py-exec="macros.addHead(macros.yahooGrids.head())">
+  <py-exec="macros.addHead(macros.yahooCalendar.head())">
+  <py-exec="macros.addHead(macros.yahooMenu.head())">
+  <py-exec="macros.addHead(macros.haloScan.head())">
+  <py-exec="macros.addHead(macros.mootools.head())">
+  <py-exec="macros.addHead(macros.feedBurner.rssHead())">
+  <py-exec="macros.addHead(macros.rstHead())">
+  <py-eval="macros.insertHead()">
+  <py-eval="macros.yahooCalendar.monthScriptTag(curDate)">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+        <div id="doc3" class="yui-t5">
+                <div id="hd" class="header"><!-- header -->
+                        <img src="<py-eval="macros.absoluteUrl('static/banner.png')">" ALT="Lateral Opinion">
+                </div>  
+                <div id="bd"><!-- body -->
+                        <div id="yui-main"><!-- main column-->
+                                <div class="yui-b">
+                                        <py-eval="macros.yahooMenu.menuBar()">
+                                        <py-if="bodytitle">
+                                        <h2><py-eval="bodytitle"></h2>
+                                        </py-if>
+                                        <py-eval="body">
+                                        <div id="ft" class="footer"><!-- footer -->
+                                                <py-eval="macros.copyright()">
+                                        </div>  
+                                </div>
+                        </div>
+                        
+                        <div class="yui-b"><!-- sidebar -->
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.mootools.menu()">
+                                </div>
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.yahooCalendar.widget(curDate)">
+                                </div>
+                    
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.technorati.search()">
+                                </div>
+                    
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.chunk('blurb')">
+                                </div>
+                                
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.feedBurner.feedBox('CommentsForRalsina-Haloscancom')">
+                                </div>
+                                
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.technorati.favorites()">
+                                </div>
+                                
+                                <div class="yui-g sidebox thinedge">
+                                        <py-eval="macros.statCounter.chiclet()">
+                                        <br>
+                                        <py-eval="macros.talkr.chiclet()">
+                                        <br>
+                                        <py-eval="macros.haloScan.chiclet()">
+                                        <br>
+                                        <py-eval="macros.feedBurner.counter()">
+                                        <br>
+                                        <py-eval="macros.addThis.subscribe()">
+                                </div>            
+                        </div><!-- end of sidebar -->
+                </div><!-- end of body -->    
+        </div><!-- end of doc -->    
+<py-eval="macros.chunk('google_analytics')">
+<py-eval="macros.mootools.accordionScript('menuHeader2','menuSlider')">
+</body>
+</html>
+
