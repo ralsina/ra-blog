@@ -14,7 +14,6 @@ class MenuConfigWidget(QtGui.QWidget):
         self.ui=Ui_Form()
         self.ui.setupUi(self)
         
-        self.menu=config.getValue('blog', 'menu')
         self.ui.extra_data.setVisible(False)
         
         QtCore.QObject.connect(self.ui.new,
@@ -81,7 +80,7 @@ class MenuConfigWidget(QtGui.QWidget):
         self.enableButtons()
         
     def load(self):
-        data=config.getValue('blog', 'menu', [])
+        data=config.getValue('blog', 'menu', config.defaultMenu)
         for item in data:
             i=QtGui.QTreeWidgetItem([item[0]])
             i.extra_type=item[1] 
