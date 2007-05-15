@@ -1,9 +1,44 @@
-<py-for="cat in postlist">
+## -*- coding: utf-8 -*-
+<%inherit file="pageSite.tmpl" />
+
+<%def name="bodytitle()">
+  <h2>${cat.name}</h2>
+  ${cat.description}
+  <p>
+</%def>
+
+<%def name="body()">
+
+  There are <a href="#stories">${len(storylist)} stories</a> and 
+  <a href="#posts">${len(postlist)} posts</a> tagged ${cat.name}
+
+  <hr>
+
+
+  % if storylist:
+    <a name="stories"></a>
+    <h3>Articles tagged ${cat.name}</h3>
+    % for post in storylist:
+      <div class="postbox thinedge">
+        <a href="${macros.getUrlForDay(post.pubDate)}">
+        ${str(post.pubDate)}</a>
+        <h4><a href="${macros.absoluteUrl(post.myurl())}">        
+        ${post.title}</a></h4>
+        ${post.teaser()} ...
+      </div>
+    % endfor
+  % endif
+
+  <a name="posts"></a>
+  <h3>Posts tagged ${cat.name}</h3>
+  % for post in postlist:
     <div class="postbox thinedge">
-        <h3><a href="<py-eval="macros.absoluteUrl(cat.myurl())">"><py-eval="cat.title"></a></h3>
-        <py-eval="cat.description">
-        <div class="footerbox">
-            <py-eval="str(len(cat.posts))"> posts and <py-eval="str(len(cat.stories))"> stories in this category.
-        </div>
+        <a href="${macros.getUrlForDay(post.pubDate)}">
+        ${str(post.pubDate)}</a>
+        <h4><a href="${macros.absoluteUrl(post.myurl())}">        
+        ${post.title}</a></h4>
+        ${post.teaser()} ...
     </div>
-</py-for>
+  % endfor
+</%def>
+
