@@ -1,0 +1,78 @@
+## -*- coding: utf-8 -*-
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html> 
+<head> 
+  <title>${title}</title>
+  <%
+    macros.addHead(macros.yahooGrids.head())
+    macros.addHead(macros.yahooCalendar.head())
+    macros.addHead(macros.yahooMenu.head())
+    macros.addHead(macros.haloScan.head())
+    macros.addHead(macros.mootools.head())
+    macros.addHead(macros.feedBurner.rssHead())
+    macros.addHead(macros.rstHead())
+  %>
+  ${macros.insertHead()}
+  ${macros.yahooCalendar.monthScriptTag(curDate)}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+        <div id="doc3" class="yui-t5">
+                <div id="hd" class="header"><!-- header -->
+                        <img src="${macros.absoluteUrl('static/banner.png')}" ALT="Lateral Opinion">
+                </div>  
+                <div id="bd"><!-- body -->
+                        <div id="yui-main"><!-- main column-->
+                                <div class="yui-b">
+                                        ${macros.yahooMenu.menuBar()}
+                                        ${self.bodytitle()}
+                                        ${self.body()}
+                                        <div id="ft" class="footer"><!-- footer -->
+                                                ${macros.copyright()}
+                                        </div>
+                                </div>
+                        </div>
+                        
+                        <div class="yui-b"><!-- sidebar -->
+                                <div class="yui-g sidebox thinedge">
+                                        ${macros.mootools.menu()}
+                                </div>
+                                <div class="yui-g sidebox thinedge">
+                                        ${macros.yahooCalendar.widget(curDate)}
+                                </div>
+                    
+                                <div class="yui-g sidebox thinedge">
+                                        ${macros.technorati.search()}
+                                </div>
+                    
+                                <div class="yui-g sidebox thinedge">
+                                        ${macros.chunk('blurb')}
+                                </div>
+                                
+                                <div class="yui-g sidebox thinedge">
+                                	${macros.feedBurner.feedBox('CommentsForRalsina-Haloscancom')}
+                                </div>
+                                
+                                <div class="yui-g sidebox thinedge">
+                                        ${macros.technorati.favorites()}
+                                </div>
+                                
+                                <div class="yui-g sidebox thinedge">
+                                        ${macros.statCounter.chiclet()}
+                                        <br>
+                                        ${macros.talkr.chiclet()}
+                                        <br>
+                                        ${macros.haloScan.chiclet()}
+                                        <br>
+                                        ${macros.feedBurner.counter()}
+                                        <br>
+                                        ${macros.addThis.subscribe()}
+                                </div>            
+                        </div><!-- end of sidebar -->
+                </div><!-- end of body -->    
+        </div><!-- end of doc -->    
+${macros.chunk('google_analytics')}
+${macros.mootools.accordionScript('menuHeader2','menuSlider')}
+</body>
+</html>
+

@@ -1,0 +1,9 @@
+<py-for="post in postlist">
+    <div class="postbox thinedge">
+        <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
+        <py-eval="str(post.pubDate)"></a>
+        <h4><a href="<py-eval="macros.absoluteUrl(post.myurl())">">        
+        <py-eval="post.title"></a></h4>
+        <py-eval="post.teaser()"> ...
+    </div>
+</py-for>
