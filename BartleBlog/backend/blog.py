@@ -244,10 +244,6 @@ class Blog:
         for hook in self.dayHooks:
             apply(hook,[date])
 
-
-    def rederBlogPage (*args, **kwargs):
-        return
-
     def renderBlogYear(self,year):
         # Yearly archive page
         start=datetime.datetime(year=year,day=1,month=1)
