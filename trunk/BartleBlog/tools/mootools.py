@@ -16,7 +16,7 @@ class Mootools:
         if item[1]=='home':
             c='<a href="%s">%s</a>'%(self.blog.basepath, item[0])
         elif item[1]=='archives':
-            c='<a href="%s">%s</a>'%(self.blog.macros.absoluteUrl('weblog/archive.html'), item[0])
+            c='%s'%item[0]
         elif item[1]=='tag list':
             c='<a href="%s">%s</a>'%(self.blog.macros.absoluteUrl('categories/index.html'), item[0])
         elif item[1]=='label':
