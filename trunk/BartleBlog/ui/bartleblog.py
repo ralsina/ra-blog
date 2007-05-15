@@ -21,6 +21,7 @@ from BartleBlog.ui.editor import EditorWindow
 from BartleBlog.ui.storyeditor import StoryEditorWindow
 from BartleBlog.ui.progress import ProgressDialog
 from BartleBlog.ui.help import HelpWindow
+import BartleBlog.backend.config as config
 
 from BartleBlog.ui.postmodel import *
 
@@ -87,6 +88,10 @@ class MainWindow(QtGui.QMainWindow):
 
         self.ui.viewer.document().setDefaultStyleSheet(open("resources/preview.css","r").read())
         self.renderTemplate=None
+        
+        if config.firstRun:
+            self.blog.setupTree()
+            self.configure('blog')
 
     def showHelp(self):
         self.help=HelpWindow()
@@ -134,8 +139,8 @@ class MainWindow(QtGui.QMainWindow):
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
 
-    def configure(self):
-        cfg=ConfigWindow(self.blog)
+    def configure(self, page=None):
+        cfg=ConfigWindow(self.blog, page=None)
         cfg.exec_()
 
     def renderBlog(self):

@@ -30,7 +30,7 @@ class MyApplication(RegexApplication):
         self.blog.renderPage(page)
         fn=os.path.join(self.blog.dest_dir, path)
         resp=HttpResponse(codecs.open(fn).read())
-        #os.unlink(fn)
+        os.unlink(fn)
         return resp
 
 def run():    

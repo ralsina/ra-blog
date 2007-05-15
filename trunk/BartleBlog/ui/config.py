@@ -11,7 +11,7 @@ from BartleBlog.ui.blog_config import BlogConfigWidget
 from BartleBlog.ui.menu_config import MenuConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
-    def __init__(self, blog):
+    def __init__(self, blog,  page=None):
         QtGui.QDialog.__init__(self)
         self.blog=blog
 
@@ -43,7 +43,9 @@ class ConfigWindow(QtGui.QDialog):
         QtCore.QObject.connect(self.ui.list,
             QtCore.SIGNAL("currentItemChanged( QListWidgetItem *, QListWidgetItem *)"),
             self.gotoPage)
-
+        if page:
+            self.gotoPage(page, page)
+    
     def gotoPage(self,current,previous):
         if self.widget:
             self.widget.hide()
