@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/help" >
-        <file>help.rst</file>
-	<file>scribe.png</file>
-    </qresource>
-</RCC>
