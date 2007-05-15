@@ -1,30 +1,38 @@
-<py-for="post in postlist">
+## -*- coding: utf-8 -*-
+<%inherit file="pageSite.tmpl" />
+
+<%def name="bodytitle()">
+</%def>
+
+
+<%def name="body()">
+  % for post in postlist:
   <div class="yui-u postbox thinedge">
-      <a name="<py-eval="post.postID">"></a>
-      <a href="<py-eval="macros.getUrlForDay(post.pubDate)">">
-      <py-eval="str(post.pubDate)"></a>
-      <py-if="post.link">
-        <h2 class="postHeader"><a href="<py-eval="post.link">"><py-eval="post.title"></a></h2>
-      </py-if>
-      <py-else>
-        <h2 class="postHeader"><a name="<py-eval="post.postID">"></a>
-        <py-eval="post.title"></h2>
-      </py-else>
+      <a name="${post.postID}"></a>
+      <a href="${macros.getUrlForDay(post.pubDate)}">
+      ${str(post.pubDate)}</a>
+      % if post.link:
+        <h2 class="postHeader"><a href="${post.link}">${post.title}</a></h2>
+      % else:
+        <h2 class="postHeader"><a name="${post.postID}"></a>
+        ${post.title}</h2>
+      %endif
       <div class="postBody">
-          <py-eval="post.rendered">
+          ${post.rendered}
           <div class="footerbox">
-            <a href="<py-eval="macros.weblogPermaLink(post)">">#</a>&nbsp;&bull;&nbsp;
-            <py-eval="macros.haloScan.comments(post)">&nbsp;&bull;&nbsp;
-            <py-eval="macros.haloScan.trackback(post)">&nbsp;&bull;&nbsp;
-            <py-eval="macros.talkr.link(post)">
-            <py-if="post.link">
-              &nbsp;&bull;&nbsp;<a class=reference href="<py-eval="post.link">">Read More</a>
-            </py-if>
-            <py-eval="macros.feedBurner.flare(post)"><br>
-            <py-eval="macros.delicious.tags(post)"><br>
-            <py-eval="macros.addThis.bookmark(post)">
+            <a href="${macros.weblogPermaLink(post)}">#</a>&nbsp;&bull;&nbsp;
+            ${macros.haloScan.comments(post)}&nbsp;&bull;&nbsp;
+            ${macros.haloScan.trackback(post)}&nbsp;&bull;&nbsp;
+            ${macros.talkr.link(post)}
+            % if post.link:
+              &nbsp;&bull;&nbsp;<a class=reference href="${post.link}">Read More</a>
+            %endif
+            ${macros.feedBurner.flare(post)}<br>
+            ${macros.delicious.tags(post)}<br>
+            ${macros.addThis.bookmark(post)}
       </div>
     </div>
   </div>
-</py-for>
+  % endfor
+</%def>
 

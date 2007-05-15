@@ -1,9 +1,11 @@
+## -*- coding: utf-8 -*-
+
 <h2>
-<py-if="post.link">
-    <a href='<py-eval="post.link">'><py-eval="post.title"></a>
-</py-if>
-<py-else>
-    <py-eval="post.title">
-</py-else>
+% if post.link:
+    <a href='${post.link}'>${post.title}</a>
+% else:
+    ${post.title}
+% endif
 </h2>
-<py-eval="post.rendered">
+
+${post.rendered}
