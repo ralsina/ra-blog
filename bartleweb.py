@@ -30,7 +30,7 @@ class MyApplication(RegexApplication):
 
 app = MyApplication
 app = StaticExports(app, {
-    '/static': './static'
+    '/static': os.path.expanduser('~/.bartleblog/static')
 })
 
 if __name__ == '__main__':
