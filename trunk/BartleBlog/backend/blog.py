@@ -201,7 +201,7 @@ class Blog:
         self.renderStoryIndex()
         for story in db.Story.select():
             self.renderStory(story)
-            self.progress.step()
+            if self.progress: self.progress.step()
 
 
     def renderBlogIndex(self):
