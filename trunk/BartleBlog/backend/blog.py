@@ -25,7 +25,7 @@ class Blog:
         self.dayHooks=[]
         self.monthHooks=[]
         self.yearHooks=[]
-        self.lookup = TemplateLookup(directories=['./templates', '.'], module_directory='/tmp/mako_modules')
+        self.lookup = TemplateLookup(directories=[os.path.expanduser('~/.bartleblog/templates'), '.'], module_directory='/tmp/mako_modules')
         
         Macros(self)
 
