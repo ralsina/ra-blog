@@ -8,15 +8,17 @@ from BartleBlog.util.demjson import JSON
 
 defaultMenu=[["Home","home","",[]],["Archives","archives","",[]],["Tags","tag list","",[]]]
 
-
-
 def getValue(section,key,default=None):
+    section=section.lower()
+    key=key.lower()
     try:
         return JSON().decode(conf.get (section,key))
     except:
         return default
 
 def setValue(section,key,value):
+    section=section.lower()
+    key=key.lower()
     value=JSON().encode(value)
     try:
         r=conf.set(section,key,value)
@@ -45,8 +47,6 @@ if not os.path.isfile(os.path.expanduser('~/.bartleblog/config')):
 f=open(os.path.expanduser('~/.bartleblog/config'),'r')
 conf.readfp(f)
 f.close()
-if firstRun:
-    setValue('blog','firstRun',True)
 
 
 
