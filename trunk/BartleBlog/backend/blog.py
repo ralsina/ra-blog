@@ -25,6 +25,7 @@ class Blog:
         self.dayHooks=[]
         self.monthHooks=[]
         self.yearHooks=[]
+        self.lookup = TemplateLookup(directories=['./templates', '.'], module_directory='/tmp/mako_modules')
         
         Macros(self)
 
@@ -60,9 +61,20 @@ class Blog:
         f=codecs.open(fname,"r","utf-8")
         return f.read()
 
+    def renderRSS(self,title,curDate,dname,fname,postlist):
+        template = self.lookup.get_template('feedRSS.tmpl')
+        rss=template.render_unicode(title=title, curDate=curDate, 
+                                    postlist=postlist, macros=self.macros, 
+                                    blog=self)
+        if not os.path.exists(dname):
+            os.makedirs(dname)
+        if os.path.exists(fname):
+            os.unlink(fname)
+        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
+        f.write(rss)
+
     def renderMakoPage(self, template, dname, fname, **kwargs):
-        lookup = TemplateLookup(directories=['./templates', '.'], module_directory='/tmp/mako_modules')
-        template = lookup.get_template(template)
+        template = self.lookup.get_template(template)
         kwargs['macros']=self.macros
         page=template.render_unicode(**kwargs)
         if not os.path.exists(dname):
@@ -149,18 +161,6 @@ class Blog:
         # Render tool hooks for months        
         for hook in self.monthHooks:
             apply(hook,[date])
-
-    def renderRSS(self,title,curDate,dname,fname,postlist):
-        return
-        macros=self.macros
-        blog=self
-        rss=renderTemplate(self.loadTemplate('feedRSS'))
-        if not os.path.exists(dname):
-            os.makedirs(dname)
-        if os.path.exists(fname):
-            os.unlink(fname)
-        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
-        f.write(rss)
 
     def renderCategories(self):
         self.renderCategoryIndex()
