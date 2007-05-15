@@ -67,8 +67,7 @@ class MenuConfigWidget(QtGui.QWidget):
         self.load()
         
     def preview(self):
-        dname=os.expanduser('~/.bartleblog/preview')
-        fname='menupreview.html'
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl('http://localhost:8080/weblog/index.html'))
         
         
     def setType(self, type):
