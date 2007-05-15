@@ -9,16 +9,22 @@
 <%def name="body()">
 
 % for month in range(1,13):
-  <div class="postbox thinedge">
-  <a href="${macros.absoluteUrl('weblog/%s/%02d/index.html'%(year,month))}">
-  Posts for ${month} / ${year}  
-  </a>
-  <ul>
-  % for post in postlist[month]:
-    <li> ${post.title}
-  % endfor
-  </ul>
-  </div>
+  % if postlist[month-1].count():
+    <div class="postbox thinedge">
+      <a href="${macros.absoluteUrl('weblog/%s/%02d/index.html'%(year,month))}">
+        Posts for ${month} / ${year}  
+      </a>
+      <ul>
+      % for post in postlist[month-1]:
+        <li> 
+          <a href="${macros.getUrlForDay(post.pubDate)}">
+          ${str(post.pubDate)}</a>
+          <a href="${macros.absoluteUrl(post.myurl())}">        
+          ${post.title}</a>
+    % endfor
+      </ul>
+    </div>
+  %endif
 % endfor
 
 </%def>
