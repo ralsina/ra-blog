@@ -8,7 +8,7 @@ import traceback
 import datetime
 
 import docutils.core
-from cherrytemplate import renderTemplate
+from mako.template import Template
 from PyQt4 import QtGui, QtCore
 
 import BartleBlog.backend.dbclasses as db
@@ -174,7 +174,7 @@ class MainWindow(QtGui.QMainWindow):
         if post.is_dirty>1:
             self.reRenderCurrentPost()
 
-        html=renderTemplate(self.blog.loadTemplate(self.renderTemplate))
+        html=Template(self.blog.loadTemplate(self.renderTemplate)).render(post=post)
         self.ui.viewer.setHtml(html)
         # TODO: give it correct searchpaths so ../static loads thing
         # self.ui.viewer.setSearchPaths(['/home/ralsina/sitio2/stories/'])
