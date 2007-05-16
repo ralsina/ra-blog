@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project BartleBlog -->
-<!-- Saved: 2007-05-15, 17:42:13 -->
+<!-- Saved: 2007-05-15, 20:18:42 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -366,6 +366,11 @@
       <Dir>backend</Dir>
       <Name>web.py</Name>
     </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>backend</Dir>
+      <Name>preview.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -583,10 +588,10 @@
     </VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
     <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

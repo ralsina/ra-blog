@@ -244,6 +244,16 @@ class Blog:
         for hook in self.dayHooks:
             apply(hook,[date])
 
+    def renderBlogPostPreview(self, postID):
+        post=db.postPreviewById(postID)
+        self.renderMakoPage('blogSite.tmpl',
+                            os.path.join(self.dest_dir,"preview"), 
+                            postID, 
+                            title=self.blog_title+' - preview', 
+                            curDate=datetime.datetime.today(), 
+                            postlist=[post]
+                            )
+
     def renderBlogYear(self,year):
         # Yearly archive page
         start=datetime.datetime(year=year,day=1,month=1)
@@ -313,6 +323,8 @@ class Blog:
                 print "Page I don't know how to render",page.path
                 return            
 
+        elif path[0]=='preview':
+            self.renderBlogPostPreview(path[1])
         else:
             print "Page I don't know how to render",page.path
             return

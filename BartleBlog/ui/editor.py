@@ -25,6 +25,10 @@ class EditorWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.closeWindow)
 
+        QtCore.QObject.connect(self.ui.actionPreview,
+            QtCore.SIGNAL("triggered()"),
+            self.preview)
+
         QtCore.QObject.connect(self.ui.guess,
             QtCore.SIGNAL("clicked()"),
             self.guessTags)
@@ -34,6 +38,7 @@ class EditorWindow(QtGui.QMainWindow):
             self.chooseTags)
             
         #self.hl=rstHighlighter(self.ui.editor.document())
+        self.previewPost=None
 
     def chooseTags(self):
         self.d=TagsDialog(self,self.ui.tags.text())
@@ -58,20 +63,22 @@ class EditorWindow(QtGui.QMainWindow):
         self.ui.link.setText(post.link)
         self.ui.editor.setPlainText(post.text)
         self.ui.tags.setText(','.join( [c.name for c in post.categories]))
-
+        self.ui.actionRST.setChecked(post.structured)
 
     def savePost(self):
         if not self.post:
             self.post=db.Post( postID="BB%s"%str(time.time()),
                             title=unicode(self.ui.title.text()),
                             link=unicode(self.ui.link.text()),
-                            text=unicode(self.ui.editor.toPlainText()))
+                            text=unicode(self.ui.editor.toPlainText()), 
+                            structured=self.ui.actionRST.isChecked())
             # Silly hack to have PostID be unique but not ugly
             self.post.postID='BB'+str(self.post.id)
         else:
             self.post.title=unicode(self.ui.title.text())
             self.post.link=str(self.ui.link.text())
             self.post.text=unicode(self.ui.editor.toPlainText())
+            self.post.structured=self.ui.actionRST.isChecked()
             self.post.render()
         t=unicode(self.ui.tags.text())
         if t:
@@ -81,3 +88,19 @@ class EditorWindow(QtGui.QMainWindow):
         self.post.render()
         self.post.setDirtyPages()
         self.emit(QtCore.SIGNAL('saved'))
+
+
+    def preview(self):
+        if self.previewPost:
+            self.previewPost.title=unicode(self.ui.title.text())
+            self.previewPost.link=str(self.ui.link.text())
+            self.previewPost.text=unicode(self.ui.editor.toPlainText())
+            self.previewPost.structured=self.ui.actionRST.isChecked()            
+        else:
+            self.previewPost=db.PostPreview( postID="PREVIEW%s"%str(time.time()),
+                                      title=unicode(self.ui.title.text()),
+                                      link=unicode(self.ui.link.text()),
+                                      text=unicode(self.ui.editor.toPlainText()), 
+                                      structured=self.ui.actionRST.isChecked())
+        self.previewPost.render()
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl('http://localhost:8080/preview/%s'%self.previewPost.postID))

@@ -22,6 +22,7 @@ from BartleBlog.ui.storyeditor import StoryEditorWindow
 from BartleBlog.ui.progress import ProgressDialog
 from BartleBlog.ui.help import HelpWindow
 import BartleBlog.backend.config as config
+import BartleBlog.backend.preview as preview
 
 from BartleBlog.ui.postmodel import *
 
@@ -92,6 +93,11 @@ class MainWindow(QtGui.QMainWindow):
         if config.firstRun:
             self.blog.setupTree()
             self.configure('blog')
+            
+        #FIXME: this is not working,  so start bartleweb manually (shell wrapper?)
+#        self.previewThread=preview.Preview()
+#        self.previewThread.setDaemon(True)
+#        self.previewThread.start()
 
     def showHelp(self):
         self.help=HelpWindow()
