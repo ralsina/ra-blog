@@ -330,7 +330,7 @@ class Blog:
             print 'Bogus Page: ',page.path
             page.destroySelf()
         except:
-            #TODO: nicer
+            #TODO: nicer    
             print 'Error rendering ', page.path, 'please debug'
 
                 
