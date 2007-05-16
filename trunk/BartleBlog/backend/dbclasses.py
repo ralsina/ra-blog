@@ -27,6 +27,12 @@ def postById(id):
         return sq[0]
     else:
         return None
+def postPreviewById(id):
+    sq=PostPreview.select(PostPreview.q.postID==id)
+    if sq.count():
+        return sq[0]
+    else:
+        return None
         
 def pageByPath(path):
     pq=Page.select(Page.q.path==path)
@@ -161,6 +167,9 @@ class Post(SQLObject):
             p=pageByPath(path)
             p.is_dirty=True
 
+class PostPreview(Post):
+    pass
+
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
@@ -212,6 +221,7 @@ def initDB(name):
 
     if not os.path.exists(db_fname):
         Post.createTable()
+        PostPreview.createTable()
         Story.createTable()
         Category.createTable()
         Page.createTable()
