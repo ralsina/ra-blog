@@ -283,54 +283,56 @@ class Blog:
             apply(hook,[date])
 
     def renderPage(self,page):
-        print "rendering: ",page.path
-        path=page.path.split('/')
-        if path[0]=='categories':
-            if path[1]=='index.html':
-                self.renderCategoryIndex()                
-            elif len(path)==2:
-                self.renderCategory(db.categoryByName(path[1].split('.')[0]))
-            else:
-                print "Page I don't know how to render",page.path
-                return
-                
-        elif path[0]=='stories':
-            if path[1]=='index.html':
-                self.renderStoryIndex()                
-            elif len(path)==2:
-                s=db.storyById(path[1].split('.')[0])
-                if s:
-                    self.renderStory(s)
-            else:
-                print "Page I don't know how to render",page.path
-                return            
-                
-        elif path[0]=='weblog':
-            if path[1]=='index.html':
-                self.renderBlogIndex()                
-            elif len(path)==3:
-                if path[2]=='index.html':
-                    year=int(path[1])
-                    self.renderBlogYear(year)
-            elif len(path)==4:
-                year=int(path[1])
-                month=int(path[2])
-                if path[3]=='index.html':
-                    self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
+        try:
+            print "rendering: ",page.path
+            path=page.path.split('/')
+            if path[0]=='categories':
+                if path[1]=='index.html':
+                    self.renderCategoryIndex()                
+                elif len(path)==2:
+                    self.renderCategory(db.categoryByName(path[1].split('.')[0]))
                 else:
-                    day=int(path[3].split('.')[0])
-                    self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))            
+                    raise 'BogusPage'
+                    
+            elif path[0]=='stories':
+                if path[1]=='index.html':
+                    self.renderStoryIndex()                
+                elif len(path)==2:
+                    s=db.storyById(path[1].split('.')[0])
+                    if s:
+                        self.renderStory(s)
+                else:
+                    raise 'BogusPage'
+                    
+            elif path[0]=='weblog':
+                if path[1]=='index.html':
+                    self.renderBlogIndex()                
+                elif len(path)==3:
+                    if path[2]=='index.html' and path[1].isdigit():
+                        year=int(path[1])
+                        self.renderBlogYear(year)
+                elif len(path)==4 and path[1].isdigit() and path[2].isdigit():
+                    year=int(path[1])
+                    month=int(path[2])
+                    if path[3]=='index.html':
+                        self.renderBlogMonth(datetime.datetime(year=year,month=month,day=1))
+                    else:
+                        day=int(path[3].split('.')[0])
+                        self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))            
+                else:
+                    raise 'BogusPage'
+            elif path[0]=='preview':
+                self.renderBlogPostPreview(path[1])
             else:
-                print "Page I don't know how to render",page.path
-                return            
+                raise 'BogusPage'
+            page.is_dirty=False
+        except 'BogusPage':
+            print 'Bogus Page: ',page.path
+            page.destroySelf()
+        except:
+            #TODO: nicer
+            print 'Error rendering ', page.path, 'please debug'
 
-        elif path[0]=='preview':
-            self.renderBlogPostPreview(path[1])
-        else:
-            print "Page I don't know how to render",page.path
-            return
-            
-        page.is_dirty=False
                 
             
     def renderBlog(self):
