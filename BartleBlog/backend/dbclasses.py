@@ -28,6 +28,7 @@ def postById(id):
     else:
         return None
 def postPreviewById(id):
+    print id
     sq=PostPreview.select(PostPreview.q.postID==id)
     if sq.count():
         return sq[0]
@@ -168,7 +169,7 @@ class Post(SQLObject):
             p.is_dirty=True
 
 class PostPreview(Post):
-    pass
+    categories=[]
 
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)
