@@ -2,7 +2,7 @@
 
 import BartleBlog.backend.dbclasses as db
 import BartleBlog.backend.config as config
-
+import datetime
 
 class Mootools:
     def __init__(self,blog):
@@ -46,8 +46,12 @@ class Mootools:
 
             elif item[1]=='archives':
                 plist=db.Post.select(orderBy=db.Post.q.pubDate)
-                start=plist[0].pubDate.year
-                end=plist[-1].pubDate.year
+                if plist.count():
+                    start=plist[0].pubDate.year
+                    end=plist[-1].pubDate.year
+                else:
+                    start=datetime.datetime.today().year
+                    end=datetime.datetime.today().year
                 for year in range(start,end+1):
                     item[3].append([str(year),'link',
                                     self.blog.macros.absoluteUrl('weblog/%d/index.html'%year)])
