@@ -16,8 +16,7 @@ class webBlog(Blog):
             self.setupTree()
         self.dest_dir=os.path.expanduser("~/.bartleblog/preview")
         if not os.path.isdir(self.dest_dir):
-            os.mkdir(self.dest_dir)
-        
+            os.mkdir(self.dest_dir)         
 
 class MyApplication(RegexApplication):
     blog=webBlog()
