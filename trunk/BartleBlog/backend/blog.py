@@ -25,7 +25,8 @@ class Blog:
         self.dayHooks=[]
         self.monthHooks=[]
         self.yearHooks=[]
-        self.lookup = TemplateLookup(directories=[os.path.expanduser('~/.bartleblog/templates'), '.'], module_directory='/tmp/mako_modules')
+        self.lookup = TemplateLookup(directories=[os.path.expanduser('~/.bartleblog/templates'), '.'], 
+                                                                     module_directory=os.path.expanduser('~/.bartleblog/mako_modules'))
         
         Macros(self)
 
@@ -329,9 +330,9 @@ class Blog:
         except 'BogusPage':
             print 'Bogus Page: ',page.path
             page.destroySelf()
-        except:
-            #TODO: nicer    
-            print 'Error rendering ', page.path, 'please debug'
+#        except:
+#            #TODO: nicer    
+#            print 'Error rendering ', page.path, 'please debug'
 
                 
             
