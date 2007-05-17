@@ -5,12 +5,15 @@ from colubrid.server import StaticExports
 from colubrid.exceptions import PageNotFound
 from BartleBlog.backend.blog import Blog
 import BartleBlog.backend.dbclasses as db
+import BartleBlog.backend.config as config
 import os, codecs, sys
 
 class webBlog(Blog):
     def __init__(self):
         Blog.__init__(self)
         self.basepath='http://localhost:8080/'
+        if config.firstRun:
+            self.setupTree()
         self.dest_dir=os.path.expanduser("~/.bartleblog/preview")
         if not os.path.isdir(self.dest_dir):
             os.mkdir(self.dest_dir)
