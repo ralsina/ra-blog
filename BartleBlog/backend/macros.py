@@ -81,7 +81,11 @@ class Macros:
         return self.blog.basepath+path
 
     def copyright(self,rss=False):
-        earliest=db.Post.select(orderBy=db.Post.q.pubDate)[0].pubDate
+        s=db.Post.select(orderBy=db.Post.q.pubDate)
+        if s.count():
+            earliest=db.Post.select(orderBy=db.Post.q.pubDate)[0].pubDate
+        else:
+            earliest=datetime.date.today()
         if rss:
             return u"Copyright %d-%d %s"%(earliest.year,datetime.date.today().year,self.blog.author)
         return u"&copy; %d-%d %s &lt;%s&gt;"%(earliest.year,datetime.date.today().year,self.blog.author,self.blog.author_email)
