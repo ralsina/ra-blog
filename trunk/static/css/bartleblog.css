@@ -1,3 +1,9 @@
+.gradientbg {
+        background-image: url(../icons/gradient.png);
+        background-repeat: repeat-x;
+        background-position: bottom;
+}
+
 .flickr {
     padding:4px;
     border:1px 
