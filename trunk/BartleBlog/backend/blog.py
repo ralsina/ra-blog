@@ -254,6 +254,8 @@ class Blog:
 
     def renderBlogPostPreview(self, postID):
         post=db.postPreviewById(postID)
+        if not post: # Previews get deleted often
+            return
         print postID, post        
         self.renderMakoPage('blogSite.tmpl',
                             os.path.join(self.dest_dir,"preview"), 
