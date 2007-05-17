@@ -43,5 +43,5 @@ class MyApplication(RegexApplication):
 
 def run():    
     app = MyApplication
-    app = StaticExports(app, {'/static': os.path.expanduser('~/.bartleblog/static')})
+    app = StaticExports(app, {'/static': os.path.expanduser('~/.bartleblog/weblog/static')})
     execute(app)
