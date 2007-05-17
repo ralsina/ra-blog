@@ -34,8 +34,15 @@ class MainWindow(QtGui.QMainWindow):
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
 
+        if config.firstRun:
+            self.firstRun=True
+
         self.blog=Blog()
         self.model=PostModel()
+
+        if self.firstRun:
+            self.blog.setupTree()
+            self.configure('blog')
 
         QtCore.QObject.connect(self.ui.actionAbout_BartleBlog,
             QtCore.SIGNAL("triggered()"),
@@ -90,10 +97,6 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.viewer.document().setDefaultStyleSheet(open("resources/preview.css","r").read())
         self.renderTemplate=None
         
-        if config.firstRun:
-            self.blog.setupTree()
-            self.configure('blog')
-            
         #FIXME: this is not working,  so start bartleweb manually (shell wrapper?)
 #        self.previewThread=preview.Preview()
 #        self.previewThread.setDaemon(True)

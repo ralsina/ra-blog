@@ -29,9 +29,12 @@ class Blog:
                                                                      module_directory=os.path.expanduser('~/.bartleblog/mako_modules'))
         
         Macros(self)
+        if config.firstRun:
+            self.setupTree()
 
     def setupTree(self):
         '''Setup things in ~/.bartleblog: templates/static/js/calendar/etc.'''
+        print 'Setting up tree'
         #FIXME: this path should be from a standard location
         if not os.path.isdir(os.path.expanduser('~/.bartleblog/weblog')):
             os.makedirs(os.path.expanduser('~/.bartleblog/weblog'))
