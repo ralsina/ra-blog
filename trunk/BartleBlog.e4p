@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project BartleBlog -->
-<!-- Saved: 2007-05-15, 20:18:42 -->
+<!-- Saved: 2007-05-17, 14:24:37 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -470,6 +470,129 @@
       <Dir>css</Dir>
       <Name>moomenu.css</Name>
     </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>bartleblog.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>code.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>html.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>map.gif</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>menubar.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>pyds.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>rst.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>silvercity.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Name>slides.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>autumn.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>borland.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>colorful.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>default.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>emacs.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>friendly.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>fruity.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>manni.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>murphy.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>native.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>pastie.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>perldoc.css</Name>
+    </Other>
+    <Other>
+      <Dir>static</Dir>
+      <Dir>css</Dir>
+      <Dir>pygment</Dir>
+      <Name>trac.css</Name>
+    </Other>
   </Others>
   <MainScript>
     <Name>bartleblog.py</Name>
@@ -589,9 +712,9 @@
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
