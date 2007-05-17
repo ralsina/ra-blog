@@ -18,13 +18,13 @@
 </head>
 <body>
         <div id="doc3" class="yui-t5">
-                <div id="hd" class="header"><!-- header -->
-                        <img src="${macros.absoluteUrl('static/banner.png')}" ALT="Lateral Opinion">
-                </div>  
+                <div id="hd" class="header gradientbg thinedge"><!-- header -->
+                <H1>${blog.blog_title}</H1>
+                <div class="footerbox">Powered by BartleBlog</div>
+		</div>  
                 <div id="bd"><!-- body -->
                         <div id="yui-main"><!-- main column-->
                                 <div class="yui-b">
-                                        ${macros.yahooMenu.menuBar()}
                                         ${self.bodytitle()}
                                         ${self.body()}
                                         <div id="ft" class="footer"><!-- footer -->
