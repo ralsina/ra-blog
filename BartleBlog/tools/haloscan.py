@@ -17,7 +17,7 @@ class HaloScan:
         else:
             id=post.postID
         return u'''
-            <a href="javascript:HaloScan('%s');" target="_self">
+            <a href="javascript:HaloScan('%s');">
             <script type="text/javascript">postCount('%s');</script></a>'''%(id,id)
 
     def trackback(self,post):
@@ -26,7 +26,7 @@ class HaloScan:
         else:
             id=post.postID
         return u'''
-            <a href="javascript:HaloScanTB('%s');" target="_self">
+            <a href="javascript:HaloScanTB('%s');">
             <script type="text/javascript">postCountTB('%s'); </script></a>'''%(id,id)
 
     def latestComments(self):
