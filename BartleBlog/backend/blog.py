@@ -207,7 +207,10 @@ class Blog:
 
     def renderBlogIndex(self):
         postlist=db.Post.select(orderBy='-pubDate')[:20]
-        curDate=postlist[0].pubDate
+        if postlist.count():
+            curDate=postlist[0].pubDate
+        else:
+            curDate=datetime.datetime.today()
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
         self.renderRSS(title,curDate,dname,'rss.xml',postlist)
