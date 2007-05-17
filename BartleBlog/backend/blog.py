@@ -80,6 +80,7 @@ class Blog:
     def renderMakoPage(self, template, dname, fname, **kwargs):
         template = self.lookup.get_template(template)
         kwargs['macros']=self.macros
+        kwargs['blog']=self
         page=template.render_unicode(**kwargs)
         if not os.path.exists(dname):
             os.makedirs(dname)
