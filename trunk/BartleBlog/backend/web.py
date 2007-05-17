@@ -21,15 +21,11 @@ class webBlog(Blog):
 class MyApplication(RegexApplication):
     blog=webBlog()
     urls = [
-        ('quit', 'quit'), 
         (r'^(.*?)$', 'page'), 
         (r'^(.*?)/(.*?)$', 'page'), 
         (r'^(.*?)/(.*?)/(.*?)$', 'page'), 
         (r'^(.*?)/(.*?)/(.*?)/(.*?)$', 'page')
     ]
-
-    def quit(self):
-        sys.exit(0)
 
     def page(self, *args):
         path=''.join(args)
