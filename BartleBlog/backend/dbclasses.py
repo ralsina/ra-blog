@@ -9,11 +9,8 @@ def categoryByName(name):
     cq=Category.select(Category.q.name==name)
     if cq.count():
         return cq[0]
-    else:
-        return Category(name=name,
-                        description='Posts about %s'%name,
-                        title='Posts about %s'%name)
-                        
+    return None
+
 def storyById(id):
     sq=Story.select(Story.q.postID==id)
     if sq.count():
@@ -114,8 +111,7 @@ class Category(SQLObject):
     def myurl(self):
         return "categories/%s.html"%(self.name.lower())
     def setDirtyPages(self):    
-        '''Mark related pages as dirty'''
-    
+        '''Mark related pages as dirty'''    
         pages=[]
         pages.append('categories/index.html')
         pages.append('categories/%s.html'%(self.name))        
