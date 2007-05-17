@@ -36,6 +36,8 @@ class MainWindow(QtGui.QMainWindow):
 
         if config.firstRun:
             self.firstRun=True
+        else:
+            self.firstRun=False
 
         self.blog=Blog()
         self.model=PostModel()
