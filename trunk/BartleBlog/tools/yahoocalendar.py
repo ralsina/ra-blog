@@ -52,7 +52,7 @@ class YahooCalendar:
         return '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/calendar/%s-%s.js'%(date.year,date.month))
         
     def renderMonth(self,date):
-        dname='static/js/calendar'
+        dname=os.path.join(self.blog.dest_dir, 'static/js/calendar')
         fname='%s-%s.js'%(date.year,date.month)
         print "rendering calendar",os.path.join(dname,fname)
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
