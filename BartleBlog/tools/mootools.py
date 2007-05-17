@@ -52,6 +52,7 @@ class Mootools:
                 else:
                     start=datetime.datetime.today().year
                     end=datetime.datetime.today().year
+                item[3]=[]
                 for year in range(start,end+1):
                     item[3].append([str(year),'link',
                                     self.blog.macros.absoluteUrl('weblog/%d/index.html'%year)])
