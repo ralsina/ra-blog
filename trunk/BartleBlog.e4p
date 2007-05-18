@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project BartleBlog -->
-<!-- Saved: 2007-05-17, 18:19:47 -->
+<!-- Saved: 2007-05-18, 10:56:10 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -371,6 +371,16 @@
       <Dir>backend</Dir>
       <Name>preview.py</Name>
     </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>technorati_config.py</Name>
+    </Source>
+    <Source>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>Ui_technorati_config.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -447,6 +457,11 @@
       <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>help.ui</Name>
+    </Form>
+    <Form>
+      <Dir>BartleBlog</Dir>
+      <Dir>ui</Dir>
+      <Name>technorati_config.ui</Name>
     </Form>
   </Forms>
   <Translations>
