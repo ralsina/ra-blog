@@ -14,6 +14,16 @@ li {
   margin-bottom: .3em;
 }
 
+blockquote {
+ width: 90%;
+ margin: 0;
+ margin-left: auto;
+ padding: 10px;
+ background-color: #eeeeee;
+ quotes: "\201C" " \201D";
+ }
+ blockquote:before { content: open-quote; font-weight: bold; }
+ blockquote:after { content: close-quote; font-weight: bold; }
 
 .flickr {
     padding:4px;
