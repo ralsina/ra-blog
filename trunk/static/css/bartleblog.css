@@ -1,8 +1,19 @@
-.gradientbg {
-        background-image: url(../icons/gradient.png);
-        background-repeat: repeat-x;
-        background-position: bottom;
+h1, h2, h3, h4, h5, h6 {
+  font-family: serif;
 }
+
+p, dl, multicol {
+  line-height: 1.4;
+}
+
+ol {
+  margin-bottom: .3em;
+}
+
+li {
+  margin-bottom: .3em;
+}
+
 
 .flickr {
     padding:4px;
@@ -31,6 +42,7 @@
     overflow: auto;
     color: #000000;
     padding: 1em;
+    padding-left: 2em;
 }
 
 .thinedge {
