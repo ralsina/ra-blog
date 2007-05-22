@@ -14,3 +14,11 @@ Ideas:
 * Billboards http://google-ajax-examples.googlecode.com/svn/trunk/feedbillboard/index.html
 
 * Reddit buttons: http://reddit.com/buttons
+
+* Use blog icons: http://avi.alkalay.net/2007/05/blog-icons.html
+
+* Some way to do mirroring over FTP (maybe just require lftp)
+
+---------
+
+* Follow better typographical conventions (in progress)
