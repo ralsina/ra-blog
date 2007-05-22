@@ -14,11 +14,20 @@ li {
   margin-bottom: .3em;
 }
 
+.code-block{
+    padding: 1em;
+    width: 100%;
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+    overflow: auto;
+    background-color: #eeeeee 
+}
+
+
 blockquote {
- width: 90%;
  margin: 0;
- margin-left: auto;
- padding: 10px;
+ margin-left: 4em;
+ padding: 1em;
  background-color: #eeeeee;
  quotes: "\201C" " \201D";
  }
@@ -71,14 +80,6 @@ blockquote {
     text-align: right;
     padding: .7em;
     margin-top: 1em;
-}
-
-.code-block{
-    margin: 2em ;
-    margin-right: 2em ;
-    font-family: "Courier New", Courier, monospace;
-    overflow: auto;
-    background-color: #eeeeee 
 }
 
 /* These are for compatibilty with PyDS for my blog.
