@@ -105,6 +105,8 @@ class Blog:
             )
 
     def renderCategory(self,cat):
+        if not cat:
+            return
         catname=cat.name.lower()
         title='Posts in %s about %s'%(self.blog_title,cat.name)
         dname=os.path.join(self.dest_dir,'categories')
