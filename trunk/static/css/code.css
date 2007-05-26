@@ -1,9 +1,10 @@
 div.code-block{
-  margin: 2em ;
+  margin: 5% 0 5% 0 ;
   background-color: #eeeeee;
   padding: 0.5em;
   overflow: auto;
   font-family: "Courier New", Courier, monospace;
+  width: 90%;
 }
 
 /* The new Pygment highlighter */

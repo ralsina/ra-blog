@@ -1,3 +1,4 @@
+
 h1, h2, h3, h4, h5, h6 {
   font-family: serif;
 }
@@ -15,11 +16,11 @@ li {
 }
 
 blockquote {
- margin: 0;
- margin-left: 4em;
+ margin: 5% 0 5% 0;
  padding: 1em;
  background-color: #eeeeee;
  quotes: "\201C" " \201D";
+ width: 90%;
  }
  blockquote:before { content: open-quote; font-weight: bold; }
  blockquote:after { content: close-quote; font-weight: bold; }
