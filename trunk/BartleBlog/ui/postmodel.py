@@ -159,7 +159,7 @@ class StoriesItem(PostModelItem):
 
     def child(self,row):
         if not self.children:
-            self.children=[StoryItem(x,self) for x in list(Story.select())]
+            self.children=[StoryItem(x,self) for x in list(Story.select(orderBy=Story.q.pubDate))]
         return self.children[row]
 
     def childCount(self):
