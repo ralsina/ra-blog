@@ -307,7 +307,7 @@ class Blog:
                     raise 'BogusPage'
                     
             elif path[0]=='stories':
-                if path[1]=='index.html':
+                if len(path)==1 or path[1]=='index.html':
                     self.renderStoryIndex()                
                 elif len(path)==2:
                     s=db.storyById(path[1].split('.')[0])

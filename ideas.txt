@@ -17,7 +17,11 @@ Ideas:
 
 * Use blog icons: http://avi.alkalay.net/2007/05/blog-icons.html
 
-* Some way to do mirroring over FTP (maybe just require lftp)
+* Some way to do mirroring over FTP (maybe just require lftp). Check
+sitecopy
+
+* Switch colubrid for this: http://muharem.wordpress.com/2007/05/29/roll-your-own-server-in-50-lines-of-code/
+
 
 ---------
 
