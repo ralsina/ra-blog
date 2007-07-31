@@ -99,10 +99,7 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.viewer.document().setDefaultStyleSheet(open("resources/preview.css","r").read())
         self.renderTemplate=None
         
-        #FIXME: this is not working,  so start bartleweb manually (shell wrapper?)
-#        self.previewThread=preview.Preview()
-#        self.previewThread.setDaemon(True)
-#        self.previewThread.start()
+        self.previewProcess=preview.Preview()
 
     def showHelp(self):
         self.help=HelpWindow()
@@ -204,7 +201,9 @@ def main():
     window=MainWindow()
     window.show()
     window.init_tree()
-    sys.exit(app.exec_())
+    r=app.exec_()
+    window.previewProcess.stop()
+    sys.exit(r)
 
 def my_excepthook(exc_type, exc_value, exc_traceback):
     app=QtCore.QCoreApplication.instance()
