@@ -177,7 +177,7 @@ class Blog:
     def renderStoryIndex(self):
         dname=os.path.join(self.dest_dir,'stories')
         fname="index.html"
-        storylist=db.Story.select(orderBy='pubDate')
+        storylist=db.Story.select(orderBy='-pubDate')
         title="%s - Story Index"%self.blog_title
         curDate=datetime.datetime.today()
         self.renderMakoPage(
