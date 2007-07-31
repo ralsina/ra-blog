@@ -12,7 +12,7 @@
       ${str(post.pubDate)}</a>
         <h2><a href="${macros.absoluteUrl(post.myurl())}">
         ${post.title}</a></h2>
-        ${post.desc}
+        ${post.teaser()}
   </div>
 % endfor
 </%def>

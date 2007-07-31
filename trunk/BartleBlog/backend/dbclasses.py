@@ -189,7 +189,11 @@ class Story(SQLObject):
 
     def myurl(self):
         return "stories/%s.html"%self.postID
-    teaser=fteaser
+    def teaser(self):
+        if  self.desc:
+            return self.desc
+        else:
+            return fteaser(self)    
     render=frender
     setCategories=fsetCategories
     link=''
