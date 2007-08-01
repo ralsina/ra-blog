@@ -61,14 +61,14 @@ class YahooCalendar:
         
     def head(self):
         return [
-        '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.2.1/build/calendar/assets/calendar.css">',
-        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/yahoo-dom-event/yahoo-dom-event.js"></script>',
-        '<script type="text/javascript" src="http://yui.yahooapis.com/2.2.1/build/calendar/calendar-min.js"></script>',
+        '<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.3.0/build/calendar/assets/skins/sam/calendar.css">', 
+        '<script type="text/javascript" src="http://yui.yahooapis.com/2.3.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>', 
+        '<script type="text/javascript" src="http://yui.yahooapis.com/2.3.0/build/calendar/calendar-min.js"></script>', 
         '<script type="text/javaScript" src="%s"></script>'%self.blog.macros.absoluteUrl('static/js/sprintf.js')
         ]
 
     def widget(self,_date):
-        return '<div id="cal1Container"></div>'
+        return '<div id="cal1Container class="yui-skin-sam"></div>'
 
 
 

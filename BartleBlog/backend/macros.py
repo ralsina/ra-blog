@@ -60,7 +60,6 @@ class Macros:
     def rstHead(self):
         return [
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/rst.css'),
-        '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/html.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/bartleblog.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/code.css'),
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/pygment/%s.css')%config.getValue('pygment','style','murphy')

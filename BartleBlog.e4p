@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project BartleBlog -->
-<!-- Saved: 2007-05-18, 10:56:10 -->
+<!-- Saved: 2007-07-31, 20:18:58 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -381,6 +381,15 @@
       <Dir>ui</Dir>
       <Name>Ui_technorati_config.py</Name>
     </Source>
+    <Source>
+      <Name>bartleblog-rerender.py</Name>
+    </Source>
+    <Source>
+      <Name>delicious.py</Name>
+    </Source>
+    <Source>
+      <Name>technorati.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -726,10 +735,10 @@
     </VcsOtherData>
   </Vcs>
   <FiletypeAssociations>
-    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
     <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
   </FiletypeAssociations>
 </Project>
