@@ -54,8 +54,12 @@ class Mootools:
                     end=datetime.datetime.today().year
                 item[3]=[]
                 for year in range(start,end+1):
-                    item[3].append([str(year),'link',
-                                    self.blog.macros.absoluteUrl('weblog/%d/index.html'%year)])
+                    yitem=[str(year),'link', 
+                           self.blog.macros.absoluteUrl('weblog/%d/index.html'%year), []]
+#                    for m in range(1, 13):
+#                        yitem[3].append([str(m), 'link', 
+#                                      self.blog.macros.absoluteUrl('weblog/%d/%d/index.html'%(year, m))])
+                    item[3].append(yitem)
 
             data+=self.gen(item)
         data+='</div>'
