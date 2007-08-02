@@ -7,7 +7,6 @@ class HaloScan:
         self.blog=blog
         self.user='ralsina'
 
-
     def head(self):
         return ['<script type="text/javascript" src="http://www.haloscan.com/load/%s"> </script>'%self.user]
 
@@ -28,6 +27,21 @@ class HaloScan:
         return u'''
             <a href="javascript:HaloScanTB('%s');">
             <script type="text/javascript">postCountTB('%s'); </script></a>'''%(id,id)
+
+    def comments_and_trackbacks(self, post, separator='&nbsp;&bull;&nbsp;'):
+        if isinstance(post,db.Story):
+            id="STORY"+post.postID
+        else:
+            id=post.postID
+        return u'''
+            <script type="text/javascript">
+            document.write('<a href="javascript:HaloScan(\\'%s\\');">');
+            postCount('%s');
+            document.write('</a>%s');
+            document.write('<a href="javascript:HaloScanTB(\\'%s\\');">');
+            postCountTB('%s');
+            document.write('</a>');
+            </script>'''%(id,id,separator,id,id)
 
     def latestComments(self):
         return u'''
