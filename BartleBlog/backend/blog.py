@@ -212,7 +212,7 @@ class Blog:
 
 
     def renderBlogIndex(self):
-        postlist=db.Post.select(orderBy='-pubDate')[:20]
+        postlist=db.Post.select(orderBy='-pubDate')[:10]
         if postlist.count():
             curDate=postlist[0].pubDate
         else:
