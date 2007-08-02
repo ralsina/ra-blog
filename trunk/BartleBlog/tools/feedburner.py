@@ -26,7 +26,7 @@ class FeedBurner:
             n=self.feedburnerName
         return u'''
             <script src="http://feeds.feedburner.com/~s/%s?i=%s" type="text/javascript" charset="utf-8"></script>
-            '''%(n,post.myurl().replace('#','%23'))
+            '''%(n,self.blog.macros.absoluteUrl(post.myurl()).replace('#','%23'))
 
     def banner(self):
         return u'''
