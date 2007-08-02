@@ -71,14 +71,7 @@ class Mootools:
         controlClass is what you click to expand the accordion,
         sliderClass is what contains the piece that expands.
         '''
-        return '''
-                    <script type="text/javaScript">
-                        function accordionInit() {
-                                new Accordion($$('.%s'),$$('.%s'));
-                        }
-                        window.addEvent('domready',accordionInit);
-                    </script>
-        '''%(controlClass,sliderClass)
+        return '''<script type="text/javaScript">new Accordion($$('.%s'),$$('.%s'));</script>'''%(controlClass,sliderClass)
         
         
 def factory (blog):
