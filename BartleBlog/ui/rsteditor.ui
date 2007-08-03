@@ -214,6 +214,9 @@
     <addaction name="actionSelect_All" />
     <addaction name="actionDelete" />
     <addaction name="separator" />
+    <addaction name="actionFind" />
+    <addaction name="actionFindNext" />
+    <addaction name="separator" />
     <addaction name="menuInsert" />
    </widget>
    <widget class="QMenu" name="menuPost" >
@@ -364,6 +367,22 @@
    </property>
    <property name="text" >
     <string>Restructured Text</string>
+   </property>
+  </action>
+  <action name="actionFind" >
+   <property name="icon" >
+    <iconset resource="../../resources/icons.qrc" >:/icons/icons/find.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>Find</string>
+   </property>
+  </action>
+  <action name="actionFindNext" >
+   <property name="icon" >
+    <iconset resource="../../resources/icons.qrc" >:/icons/icons/next.svg</iconset>
+   </property>
+   <property name="text" >
+    <string>FindNext</string>
    </property>
   </action>
  </widget>
