@@ -99,8 +99,13 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.viewer.document().setDefaultStyleSheet(open("resources/preview.css","r").read())
         self.renderTemplate=None
         
-        self.previewProcess=preview.Preview()
-
+        try:
+            self.previewProcess=preview.Preview()
+        except:
+            QtGui.QMessageBox.warning(self, 'BartleBlog', 
+            'Error starting bartleweb.py, previews will not be available.')
+            self.previewProcess=None
+            
     def showHelp(self):
         self.help=HelpWindow()
         self.help.show()
@@ -133,17 +138,17 @@ class MainWindow(QtGui.QMainWindow):
         self.blog.progress=None
 
     def edit(self):
-        self.editor=EditorWindow(self.curPost)
+        self.editor=EditorWindow(self.curPost, previews=self.previewProcess)
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
 
     def newPost(self):
-        self.editor=EditorWindow()
+        self.editor=EditorWindow(previews=self.previewProcess)
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
 
     def newStory(self):
-        self.editor=StoryEditorWindow()
+        self.editor=StoryEditorWindow(previews=self.previewProcess)
         QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
         self.editor.show()
 
