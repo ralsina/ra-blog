@@ -9,7 +9,7 @@ import BartleBlog.backend.dbclasses as db
 from rsthighlight import rstHighlighter
 
 class EditorWindow(QtGui.QMainWindow):
-    def __init__(self,post=None):
+    def __init__(self,post=None, previews=True):
         QtGui.QMainWindow.__init__(self)
 
         # Set up the UI from designer
@@ -25,9 +25,12 @@ class EditorWindow(QtGui.QMainWindow):
             QtCore.SIGNAL("triggered()"),
             self.closeWindow)
 
-        QtCore.QObject.connect(self.ui.actionPreview,
-            QtCore.SIGNAL("triggered()"),
-            self.preview)
+        if previews:
+            QtCore.QObject.connect(self.ui.actionPreview,
+                QtCore.SIGNAL("triggered()"),
+                self.preview)
+        else:
+            self.ui.actionPreview.setEnabled(False)
 
         QtCore.QObject.connect(self.ui.guess,
             QtCore.SIGNAL("clicked()"),
