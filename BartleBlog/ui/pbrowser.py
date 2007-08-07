@@ -17,7 +17,10 @@ class PBrowser(QtGui.QTextBrowser):
 
             print type, fn
             if not os.path.isfile(fn):
-                urllib.urlretrieve(url, fn)
+                try:
+                    urllib.urlretrieve(url, fn)
+                except:
+                    pass
             ret=QtGui.QTextBrowser.loadResource(self, type, QtCore.QUrl(fn))
         else:
             ret=QtGui.QTextBrowser.loadResource(self, type, name)
