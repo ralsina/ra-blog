@@ -192,7 +192,7 @@ class MainWindow(QtGui.QMainWindow):
         if post.is_dirty>1:
             self.reRenderCurrentPost()
 
-        html=Template(self.blog.loadTemplate(self.renderTemplate)).render(post=post)
+        html=Template(self.blog.loadTemplate(self.renderTemplate), output_encoding='utf-8').render(post=post)
         self.ui.viewer.setHtml(html)
         # TODO: give it correct searchpaths so ../static loads thing
         # self.ui.viewer.setSearchPaths(['/home/ralsina/sitio2/stories/'])
