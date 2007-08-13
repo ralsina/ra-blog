@@ -195,7 +195,7 @@ class MainWindow(QtGui.QMainWindow):
         html=Template(self.blog.loadTemplate(self.renderTemplate), output_encoding='utf-8').render(post=post)
         self.ui.viewer.setHtml(html)
         # TODO: give it correct searchpaths so ../static loads thing
-        # self.ui.viewer.setSearchPaths(['/home/ralsina/sitio2/stories/'])
+        self.ui.viewer.setSearchPaths([os.path.expanduser('~/.bartleblog/weblog/')])
 
     def reRenderCurrentPost(self):
         if self.curPost:
@@ -207,7 +207,7 @@ def main():
     window.show()
     window.init_tree()
     r=app.exec_()
-    window.previewProcess.stop()
+    if window.previewProcess: window.previewProcess.stop()
     sys.exit(r)
 
 def my_excepthook(exc_type, exc_value, exc_traceback):
