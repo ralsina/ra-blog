@@ -59,13 +59,13 @@ def fsetCategories(self,categories):
 
 def fteaser (self):
     try:
-        t=cgi.escape(html2text(self.rendered)[:250])
+        t=cgi.escape('\n\n'.join(html2text(self.rendered).split('\n\n')[:2]))
     except:
-        t=cgi.escape(self.text[:250])
+        t=cgi.escape(self.text)
       
-    if len(t)==250:  
-        l=t.split(' ')[:-1]
-        t=' '.join(l)
+#    if len(t)==250:  
+#        l=t.split(' ')[:-1]
+#        t=' '.join(l)
     return t
 
 def frender (self):
@@ -193,7 +193,7 @@ class Story(SQLObject):
         if  self.desc:
             return self.desc
         else:
-            return fteaser(self)    
+            return ""    
     render=frender
     setCategories=fsetCategories
     link=''
