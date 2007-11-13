@@ -69,7 +69,7 @@ def flickr( name, arguments, options, content, lineno,
     raw = docutils.nodes.raw('',html, format = 'html')
     return [raw]
 
-flickr.arguments = (1,0,0)
+flickr.arguments = (1,0,1)
 flickr.options = {'name' : docutils.parsers.rst.directives.unchanged }
 flickr.content = 1
 
