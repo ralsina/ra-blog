@@ -142,7 +142,7 @@ class Blog:
             return
 
         # Variables used by the templates
-        title=self.blog_title
+        title="%s for %d/%d"%(self.blog_title, start.month, start.year)
         curDate=postlist[0].pubDate
         dname=os.path.join(self.dest_dir,"weblog/%d/%02d"%(date.year,date.month))
         fname="index.html"
@@ -237,7 +237,7 @@ class Blog:
             return
 
         # Variables used by the templates
-        title=self.blog_title
+        title="%s for %d/%d/%d"%(self.blog_title, start.day, start.month, start.year)
         curDate=postlist[0].pubDate
         dname=os.path.join(self.dest_dir,"weblog/%d/%02d"%(date.year,date.month))
         fname="%02d.html"%(date.day)
@@ -284,7 +284,7 @@ class Blog:
         self.renderMakoPage ('yearSite.tmpl', 
                              os.path.join(self.dest_dir,'weblog', str(year)), 
                              'index.html', 
-                             title='Posts for year %d'%year,
+                             title='%s for year %d'%(self.blog_title, year),
                              curDate= datetime.datetime(year=year,day=1,month=1), 
                              postlist=postlist, 
                              year=year,
