@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/bartleblog/BartleBlog/ui/rsteditor.ui'
+# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Fri May 11 19:03:54 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Mon Nov 19 18:32:08 2007
+#      by: PyQt4 UI code generator 4.3.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,8 +18,6 @@ class Ui_MainWindow(object):
         self.centralWidget.setObjectName("centralWidget")
 
         self.vboxlayout = QtGui.QVBoxLayout(self.centralWidget)
-        self.vboxlayout.setMargin(9)
-        self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
 
         self.gridlayout = QtGui.QGridLayout()
@@ -32,8 +30,8 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.title,0,1,1,1)
 
         self.vboxlayout1 = QtGui.QVBoxLayout()
-        self.vboxlayout1.setMargin(0)
         self.vboxlayout1.setSpacing(6)
+        self.vboxlayout1.setMargin(0)
         self.vboxlayout1.setObjectName("vboxlayout1")
 
         self.label = QtGui.QLabel(self.centralWidget)
@@ -60,7 +58,7 @@ class Ui_MainWindow(object):
 
         self.tags = QtGui.QPushButton(self.centralWidget)
 
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(0))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tags.sizePolicy().hasHeightForWidth())
@@ -78,18 +76,41 @@ class Ui_MainWindow(object):
         self.gridlayout.addLayout(self.gridlayout1,1,1,1,1)
         self.vboxlayout.addLayout(self.gridlayout)
 
-        self.editor = QtGui.QTextEdit(self.centralWidget)
+        self.splitter = QtGui.QSplitter(self.centralWidget)
+        self.splitter.setOrientation(QtCore.Qt.Vertical)
+        self.splitter.setObjectName("splitter")
+
+        self.editor = QtGui.QTextEdit(self.splitter)
 
         font = QtGui.QFont()
         font.setFamily("Bitstream Vera Sans Mono")
         self.editor.setFont(font)
         self.editor.setAcceptRichText(False)
         self.editor.setObjectName("editor")
-        self.vboxlayout.addWidget(self.editor)
+
+        self.layoutWidget = QtGui.QWidget(self.splitter)
+        self.layoutWidget.setObjectName("layoutWidget")
+
+        self.hboxlayout = QtGui.QHBoxLayout(self.layoutWidget)
+        self.hboxlayout.setObjectName("hboxlayout")
+
+        self.clearSearch = QtGui.QToolButton(self.layoutWidget)
+        self.clearSearch.setIcon(QtGui.QIcon(":/icons/icons/editclear.svg"))
+        self.clearSearch.setObjectName("clearSearch")
+        self.hboxlayout.addWidget(self.clearSearch)
+
+        self.search = QtGui.QLineEdit(self.layoutWidget)
+        self.search.setObjectName("search")
+        self.hboxlayout.addWidget(self.search)
+
+        self.findNext = QtGui.QPushButton(self.layoutWidget)
+        self.findNext.setObjectName("findNext")
+        self.hboxlayout.addWidget(self.findNext)
+        self.vboxlayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralWidget)
 
         self.menuBar = QtGui.QMenuBar(MainWindow)
-        self.menuBar.setGeometry(QtCore.QRect(0,0,536,29))
+        self.menuBar.setGeometry(QtCore.QRect(0,0,536,31))
         self.menuBar.setObjectName("menuBar")
 
         self.menuEdit = QtGui.QMenu(self.menuBar)
@@ -109,7 +130,7 @@ class Ui_MainWindow(object):
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(self.toolBar)
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
 
         self.actionPreview = QtGui.QAction(MainWindow)
         self.actionPreview.setIcon(QtGui.QIcon(":/icons/icons/preview.svg"))
@@ -166,6 +187,18 @@ class Ui_MainWindow(object):
         self.actionRST.setChecked(True)
         self.actionRST.setIcon(QtGui.QIcon(":/icons/icons/fonts.svg"))
         self.actionRST.setObjectName("actionRST")
+
+        self.actionFind = QtGui.QAction(MainWindow)
+        self.actionFind.setIcon(QtGui.QIcon(":/icons/icons/find.svg"))
+        self.actionFind.setObjectName("actionFind")
+
+        self.actionFindNext = QtGui.QAction(MainWindow)
+        self.actionFindNext.setIcon(QtGui.QIcon(":/icons/icons/next.svg"))
+        self.actionFindNext.setObjectName("actionFindNext")
+
+        self.actionTranslate = QtGui.QAction(MainWindow)
+        self.actionTranslate.setIcon(QtGui.QIcon(":/icons/icons/translate.svg"))
+        self.actionTranslate.setObjectName("actionTranslate")
         self.menuInsert.addAction(self.actionFlickr_Image)
         self.menuInsert.addAction(self.actionOpenomy_File)
         self.menuEdit.addAction(self.actionCut)
@@ -176,10 +209,14 @@ class Ui_MainWindow(object):
         self.menuEdit.addAction(self.actionSelect_All)
         self.menuEdit.addAction(self.actionDelete)
         self.menuEdit.addSeparator()
+        self.menuEdit.addAction(self.actionFind)
+        self.menuEdit.addAction(self.actionFindNext)
+        self.menuEdit.addSeparator()
         self.menuEdit.addAction(self.menuInsert.menuAction())
         self.menuPost.addAction(self.actionSave)
         self.menuPost.addAction(self.actionPreview)
         self.menuPost.addAction(self.actionRST)
+        self.menuPost.addAction(self.actionTranslate)
         self.menuPost.addSeparator()
         self.menuPost.addAction(self.actionClose)
         self.menuBar.addAction(self.menuPost.menuAction())
@@ -187,6 +224,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionSave)
         self.toolBar.addAction(self.actionPreview)
         self.toolBar.addAction(self.actionRST)
+        self.toolBar.addAction(self.actionTranslate)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCut)
         self.toolBar.addAction(self.actionCopy)
@@ -202,6 +240,7 @@ class Ui_MainWindow(object):
         self.label_2.setBuddy(self.tags)
 
         self.retranslateUi(MainWindow)
+        QtCore.QObject.connect(self.search,QtCore.SIGNAL("returnPressed()"),self.findNext.animateClick)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.title,self.link)
         MainWindow.setTabOrder(self.link,self.editor)
@@ -214,6 +253,9 @@ class Ui_MainWindow(object):
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "T&ags:", None, QtGui.QApplication.UnicodeUTF8))
         self.guess.setText(QtGui.QApplication.translate("MainWindow", "&Guess Tags", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButton.setText(QtGui.QApplication.translate("MainWindow", "&Make Tiny", None, QtGui.QApplication.UnicodeUTF8))
+        self.clearSearch.setText(QtGui.QApplication.translate("MainWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.clearSearch.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+K", None, QtGui.QApplication.UnicodeUTF8))
+        self.findNext.setText(QtGui.QApplication.translate("MainWindow", "Find Next", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuInsert.setTitle(QtGui.QApplication.translate("MainWindow", "Insert", None, QtGui.QApplication.UnicodeUTF8))
         self.menuPost.setTitle(QtGui.QApplication.translate("MainWindow", "Post", None, QtGui.QApplication.UnicodeUTF8))
@@ -231,6 +273,9 @@ class Ui_MainWindow(object):
         self.actionClose.setText(QtGui.QApplication.translate("MainWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOpenomyTag.setText(QtGui.QApplication.translate("MainWindow", "Openomy Tag", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRST.setText(QtGui.QApplication.translate("MainWindow", "Restructured Text", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFind.setText(QtGui.QApplication.translate("MainWindow", "Find", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFindNext.setText(QtGui.QApplication.translate("MainWindow", "FindNext", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionTranslate.setText(QtGui.QApplication.translate("MainWindow", "Translate", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 

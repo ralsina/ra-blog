@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/menu_config.ui'
 #
-# Created: Fri Aug  3 19:57:27 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Mon Nov 19 18:32:13 2007
+#      by: PyQt4 UI code generator 4.3.1
 #
 # WARNING! All changes made in this file will be lost!
 

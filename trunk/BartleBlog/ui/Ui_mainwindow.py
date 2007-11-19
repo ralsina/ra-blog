@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Fri Aug  3 19:57:24 2007
-#      by: PyQt4 UI code generator 4.2
+# Created: Mon Nov 19 18:32:07 2007
+#      by: PyQt4 UI code generator 4.3.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -90,7 +90,7 @@ class Ui_MainWindow(object):
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(self.toolBar)
+        MainWindow.addToolBar(QtCore.Qt.ToolBarArea(4),self.toolBar)
 
         self.actionEditPost = QtGui.QAction(MainWindow)
         self.actionEditPost.setCheckable(False)
