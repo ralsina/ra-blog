@@ -5,7 +5,6 @@ import time
 
 from BartleBlog.ui.Ui_rsteditor import Ui_MainWindow
 from BartleBlog.ui.choose_tags import TagsDialog
-from BartleBlog.ui.translations import TranslationDialog
 import BartleBlog.backend.dbclasses as db
 from rsthighlight import rstHighlighter
 
@@ -24,7 +23,9 @@ class EditorWindow(QtGui.QMainWindow):
         for lang in db.Translation.select():
             self.langs.addItem(lang.name)
         self.ui.toolBar.addSeparator()
-        self.ui.toolBar.addWidget(self.langs)
+        self.langAction=self.ui.toolBar.addWidget(self.langs)
+        
+        print dir(self.langAction)
 
         QtCore.QObject.connect(self.ui.actionSave,
             QtCore.SIGNAL("triggered()"),
