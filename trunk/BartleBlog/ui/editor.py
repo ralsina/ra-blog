@@ -26,10 +26,6 @@ class EditorWindow(QtGui.QMainWindow):
         self.ui.toolBar.addSeparator()
         self.ui.toolBar.addWidget(self.langs)
 
-        QtCore.QObject.connect(self.ui.actionTranslate,
-            QtCore.SIGNAL("triggered()"),
-            self.translatePost)
-
         QtCore.QObject.connect(self.ui.actionSave,
             QtCore.SIGNAL("triggered()"),
             self.savePost)
@@ -63,13 +59,6 @@ class EditorWindow(QtGui.QMainWindow):
         if r:
             self.ui.tags.setText(self.d.currentCategories())
         del self.d
-
-    def translatePost(self):
-        self.tdlg=TranslationDialog(self)
-        res=self.tdlg.exec_()
-        if res:
-            # Start new editor for new translated post
-            pass
 
     def guessTags(self):
         self.ui.tags.setText(','.join(db.guessCategories(unicode(self.ui.editor.toPlainText())+unicode(self.ui.title.text()))))
