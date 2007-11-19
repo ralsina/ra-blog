@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.0.dtd">
 <!-- eric4 project file for project BartleBlog -->
-<!-- Saved: 2007-08-01, 09:07:59 -->
+<!-- Saved: 2007-08-15, 10:26:20 -->
 <!-- Copyright (C) 2007 Roberto Alsina, ralsina@kde.org -->
 <Project version="4.0">
   <ProgLanguage mixed="0">Python</ProgLanguage>
@@ -387,6 +387,14 @@
     <Source>
       <Name>delicious.py</Name>
     </Source>
+    <Source>
+      <Dir>rsteditor</Dir>
+      <Name>testeditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>rsteditor</Dir>
+      <Name>Ui_testwin.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -468,6 +476,10 @@
       <Dir>BartleBlog</Dir>
       <Dir>ui</Dir>
       <Name>technorati_config.ui</Name>
+    </Form>
+    <Form>
+      <Dir>rsteditor</Dir>
+      <Name>testwin.ui</Name>
     </Form>
   </Forms>
   <Translations>
@@ -733,9 +745,9 @@
   </Vcs>
   <FiletypeAssociations>
     <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
-    <FiletypeAssociation pattern="*.ui" type="FORMS" />
-    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
-    <FiletypeAssociation pattern="*.py" type="SOURCES" />
     <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
   </FiletypeAssociations>
 </Project>

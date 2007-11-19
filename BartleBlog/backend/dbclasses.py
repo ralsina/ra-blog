@@ -121,7 +121,13 @@ class Category(SQLObject):
             p=pageByPath(path)
             p.is_dirty=True
 
-
+class Text(SQLObject):
+    text=UnicodeCol()
+    teaser=fteaser
+    render=frender
+    rendered=UnicodeCol(default='')
+    lang=UnicodeCol(default="en")
+    
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
