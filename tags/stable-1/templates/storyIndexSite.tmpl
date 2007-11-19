@@ -1,0 +1,20 @@
+## -*- coding: utf-8 -*-
+<%inherit file="pageSite.tmpl" />
+
+<%def name="bodytitle()">
+</%def>
+
+
+<%def name="body()">
+% for post in storylist:
+  <div class="yui-u rounded postbox thinedge">
+    <a href="${macros.getUrlForDay(post.pubDate)}">
+      ${str(post.pubDate)}</a>
+        <h2><a href="${macros.absoluteUrl(post.myurl())}">
+        ${post.title}</a></h2>
+        ${post.teaser()}
+  </div>
+% endfor
+</%def>
+
+

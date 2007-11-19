@@ -1,0 +1,82 @@
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: serif;
+}
+
+p, dl, multicol {
+  line-height: 1.4;
+}
+
+ol {
+  margin-bottom: .3em;
+}
+
+li {
+  margin-bottom: .3em;
+}
+
+blockquote {
+ margin: 5% 0 5% 0;
+ padding: 1em;
+ background-color: #eeeeee;
+ quotes: "\201C" " \201D";
+ width: 90%;
+ }
+ blockquote:before { content: open-quote; font-weight: bold; }
+ blockquote:after { content: close-quote; font-weight: bold; }
+
+.flickr {
+    padding:4px;
+    border:1px 
+    solid #eeeeee;
+    margin: 0 auto 0 auto;
+    display: block;
+}
+
+
+.footer {
+    text-align: right;
+    font-size: 100%;
+    padding: 1em;
+    background-color: #eeeeee; 
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+.postbox {
+    margin-bottom: 1em;
+    overflow: auto;
+    color: #000000;
+    padding: 1em;
+    padding-left: 2em;
+}
+
+.thinedge {
+    border: solid;
+    border-width: 1px;
+    border-color:#eeeeee;
+}
+
+.sidebox{
+    margin-bottom: 1em;
+    padding:1em;
+}
+
+.footerbox {
+    font-size: 80%;
+    text-align: right;
+    padding: .7em;
+    margin-top: 1em;
+}
+
+/* These are for compatibilty with PyDS for my blog.
+   You could delete them if you don't need it */
+   
+.whiteboxsmall{
+    font-size: 80%;
+    text-align: left; 
+}

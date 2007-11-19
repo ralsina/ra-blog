@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" 
+   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/" 
+   xmlns:ent="http://www.purl.org/NET/ENT/1.0/" 
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<channel>
+<title>${title}</title>
+<link>${blog.basepath}</link>
+<description>${blog.description}</description>
+<language>${blog.language}</language>
+<copyright>${macros.copyright(rss=True)}</copyright>
+<lastBuildDate>${curDate.strftime('%a, %d %b %Y %H:%M:%S +0000')}</lastBuildDate>
+<generator>${blog.version}</generator>
+<managingEditor>${blog.author_email}</managingEditor>
+<webMaster>${blog.author_email}</webMaster>
+% for post in postlist:
+    <item>
+    <title>${post.title}</title>
+    % if post.link:
+        <link>${post.link}</link>
+    %endif
+    <description>${post.teaser()}...</description>
+    <guid>${macros.absoluteUrl(post.myurl())}</guid>
+    <pubDate>${post.pubDate.strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate>
+    </item>
+% endfor
+</channel>
+</rss>

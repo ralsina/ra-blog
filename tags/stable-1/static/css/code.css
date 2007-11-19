@@ -1,0 +1,14 @@
+div.code-block{
+  margin: 5% 0 5% 0 ;
+  background-color: #eeeeee;
+  padding: 0.5em;
+  overflow: auto;
+  font-family: "Courier New", Courier, monospace;
+  width: 90%;
+}
+
+/* The new Pygment highlighter */
+@import url(pygment/autumn.css)
+
+/* Only useful for my old posts in HTML */
+@import url(silvercity.css)
