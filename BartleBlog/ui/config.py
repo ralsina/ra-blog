@@ -10,6 +10,7 @@ from BartleBlog.ui.openomy_config import OpenomyConfigWidget
 from BartleBlog.ui.blog_config import BlogConfigWidget
 from BartleBlog.ui.menu_config import MenuConfigWidget
 from BartleBlog.ui.technorati_config import TechnoratiConfigWidget
+from BartleBlog.ui.translation_config import TranslationConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
     def __init__(self, blog,  page=None):
@@ -43,6 +44,9 @@ class ConfigWindow(QtGui.QDialog):
 
         QtGui.QListWidgetItem("Technorati",self.ui.list)
         self.widgets['technorati']=TechnoratiConfigWidget
+
+        QtGui.QListWidgetItem("Translations",self.ui.list)
+        self.widgets['translations']=TranslationConfigWidget
 
         QtCore.QObject.connect(self.ui.list,
             QtCore.SIGNAL("currentItemChanged( QListWidgetItem *, QListWidgetItem *)"),

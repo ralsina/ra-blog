@@ -121,7 +121,17 @@ class Category(SQLObject):
             p=pageByPath(path)
             p.is_dirty=True
 
+class Translation(SQLObject):
+    name=UnicodeCol()
 
+class TranslatedPost(SQLObject):
+    text=UnicodeCol()
+    teaser=fteaser
+    render=frender
+    rendered=UnicodeCol(default='')
+    lang=ForeignKey("Translation")
+    post=ForeignKey("Post")
+    
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
@@ -221,11 +231,11 @@ def initDB(name):
     connection_string='sqlite:'+db_fname
     connection=connectionForURI(connection_string)
     sqlhub.processConnection = connection
-
-    if not os.path.exists(db_fname):
-        Post.createTable()
-        PostPreview.createTable()
-        Story.createTable()
-        Category.createTable()
-        Page.createTable()
-        Chunk.createTable()
+    
+    for t in [ Translation, TranslatedPost, Post, PostPreview, Story, Category, Page, Chunk ]:
+        try:
+            t.createTable()
+        except dberrors.OperationalError:
+            pass
+        
+        

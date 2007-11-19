@@ -27,6 +27,7 @@
         <file>icons/preview.svg</file>
         <file>icons/redo.svg</file>
         <file>icons/scribe.png</file>
+        <file>icons/translate.svg</file>
         <file>icons/undo.svg</file>
         <file>icons/webexport.svg</file>
     </qresource>

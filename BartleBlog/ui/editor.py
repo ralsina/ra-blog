@@ -5,17 +5,23 @@ import time
 
 from BartleBlog.ui.Ui_rsteditor import Ui_MainWindow
 from BartleBlog.ui.choose_tags import TagsDialog
+from BartleBlog.ui.translations import TranslationDialog
 import BartleBlog.backend.dbclasses as db
 from rsthighlight import rstHighlighter
 
 class EditorWindow(QtGui.QMainWindow):
-    def __init__(self,post=None, previews=True):
+    def __init__(self,post=None, previews=True, lang=None):
         QtGui.QMainWindow.__init__(self)
 
         # Set up the UI from designer
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
         self.setPost(post)
+        self.lang=lang
+
+        QtCore.QObject.connect(self.ui.actionTranslate,
+            QtCore.SIGNAL("triggered()"),
+            self.translatePost)
 
         QtCore.QObject.connect(self.ui.actionSave,
             QtCore.SIGNAL("triggered()"),
@@ -50,6 +56,13 @@ class EditorWindow(QtGui.QMainWindow):
         if r:
             self.ui.tags.setText(self.d.currentCategories())
         del self.d
+
+    def translatePost(self):
+        self.tdlg=TranslationDialog(self)
+        res=self.tdlg.exec_()
+        if res:
+            # Start new editor for new translated post
+            pass
 
     def guessTags(self):
         self.ui.tags.setText(','.join(db.guessCategories(unicode(self.ui.editor.toPlainText())+unicode(self.ui.title.text()))))

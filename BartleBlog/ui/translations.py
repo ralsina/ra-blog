@@ -13,4 +13,7 @@ class TranslationDialog(QtGui.QDialog):
         # Set up the UI from designer
         self.ui=Ui_Dialog()
         self.ui.setupUi(self)
+        
+        for t in db.Translation.select():
+            self.ui.list.addItem(t.name)
 
