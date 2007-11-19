@@ -19,6 +19,13 @@ class EditorWindow(QtGui.QMainWindow):
         self.setPost(post)
         self.lang=lang
 
+        self.langs=QtGui.QComboBox(self)
+        self.langs.addItem("Default")
+        for lang in db.Translation.select():
+            self.langs.addItem(lang.name)
+        self.ui.toolBar.addSeparator()
+        self.ui.toolBar.addWidget(self.langs)
+
         QtCore.QObject.connect(self.ui.actionTranslate,
             QtCore.SIGNAL("triggered()"),
             self.translatePost)
