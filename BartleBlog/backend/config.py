@@ -17,6 +17,8 @@ def getValue(section,key,default=None):
         return default
 
 def setValue(section,key,value):
+    section=str(section)
+    key=str(key)
     section=section.lower()
     key=key.lower()
     value=JSON().encode(value)

@@ -197,6 +197,9 @@ class PostModel(QtCore.QAbstractItemModel):
         self.rootItem.appendChild(PostByDateItem(self.rootItem))
         self.rootItem.appendChild(StoriesItem(self.rootItem))
         self.rootItem.appendChild(ErrorItem(self.rootItem))
+        plist=Post.select(orderBy=Post.q.pubDate)[-10:]
+        for p in plist:
+            self.rootItem.appendChild(PostItem(p,self.rootItem))
         self.columns=["","Title"]
 
     def index (self,row,column,parentIndex):

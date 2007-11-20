@@ -21,11 +21,30 @@ class webBlog(Blog):
 class MyApplication(RegexApplication):
     blog=webBlog()
     urls = [
+        (r'^tr/([^/]*?)$', 'tr_page'),     
+        (r'^tr/([^/]*?)/([^/]*?)$', 'tr_page'),     
+        (r'^tr/([^/]*?)/([^/]*?)/([^/]*?)$', 'tr_page'),     
+        (r'^tr/([^/]*?)/([^/]*?)/([^/]*?)/([^/]*?)$', 'tr_page'),     
+        (r'^tr/([^/]*?)/([^/]*?)/([^/]*?)/([^/]*?)/([^/]*?)$', 'tr_page'),     
         (r'^(.*?)$', 'page'), 
-        (r'^(.*?)/(.*?)$', 'page'), 
-        (r'^(.*?)/(.*?)/(.*?)$', 'page'), 
-        (r'^(.*?)/(.*?)/(.*?)/(.*?)$', 'page')
     ]
+
+    def tr_page(self, *args):
+        lang=args[0]
+        print "ARGS: ", args
+        path='/'.join(args[1:])
+        page=db.pageByPath(path)
+        self.blog.renderPage(page, lang=lang)
+        path='/'.join(args)
+        fn=os.path.join(self.blog.dest_dir,'tr', path)
+        print "FN: ", fn
+        if os.path.isfile(fn):
+            resp=HttpResponse(codecs.open(fn).read())
+            os.unlink(fn)
+            return resp
+        else:
+            raise PageNotFound(path)
+
 
     def page(self, *args):
         path=''.join(args)

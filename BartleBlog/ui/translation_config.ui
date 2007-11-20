@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>537</width>
-    <height>431</height>
+    <height>546</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,63 +14,146 @@
   </property>
   <layout class="QVBoxLayout" >
    <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <widget class="QToolButton" name="new" >
-       <property name="toolTip" >
-        <string>New Translation</string>
-       </property>
+    <layout class="QGridLayout" >
+     <item row="0" column="0" >
+      <widget class="QLabel" name="label_3" >
        <property name="text" >
-        <string/>
-       </property>
-       <property name="icon" >
-        <iconset resource="../../resources/icons.qrc" >:/icons/icons/filenew.svg</iconset>
+        <string>Default Language Name:</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QToolButton" name="rename" >
-       <property name="toolTip" >
-        <string>Rename Translation</string>
-       </property>
+     <item row="0" column="1" >
+      <widget class="QLineEdit" name="defLangName" />
+     </item>
+     <item row="1" column="0" >
+      <widget class="QLabel" name="label_5" >
        <property name="text" >
-        <string>...</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="../../resources/icons.qrc" >:/icons/icons/edit.svg</iconset>
+        <string>Default Language Code:</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QToolButton" name="delete" >
-       <property name="toolTip" >
-        <string>Delete Translation</string>
-       </property>
-       <property name="text" >
-        <string>...</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="../../resources/icons.qrc" >:/icons/icons/delete.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
+     <item row="1" column="1" >
+      <widget class="QLineEdit" name="defLangCode" />
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QListWidget" name="list" />
+    <widget class="Line" name="line" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4" >
+     <property name="text" >
+      <string>Translations</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QListWidget" name="list" />
+     </item>
+     <item>
+      <layout class="QVBoxLayout" >
+       <item>
+        <layout class="QHBoxLayout" >
+         <item>
+          <widget class="QToolButton" name="new" >
+           <property name="toolTip" >
+            <string>New Translation</string>
+           </property>
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="icon" >
+            <iconset resource="../../resources/icons.qrc" >:/icons/icons/filenew.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="rename" >
+           <property name="toolTip" >
+            <string>Rename Translation</string>
+           </property>
+           <property name="text" >
+            <string>...</string>
+           </property>
+           <property name="icon" >
+            <iconset resource="../../resources/icons.qrc" >:/icons/icons/edit.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="delete" >
+           <property name="toolTip" >
+            <string>Delete Translation</string>
+           </property>
+           <property name="text" >
+            <string>...</string>
+           </property>
+           <property name="icon" >
+            <iconset resource="../../resources/icons.qrc" >:/icons/icons/delete.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" >
+         <item row="0" column="0" >
+          <widget class="QLabel" name="label" >
+           <property name="text" >
+            <string>Code:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" >
+          <widget class="QLineEdit" name="code" />
+         </item>
+         <item row="1" column="0" >
+          <widget class="QLabel" name="label_2" >
+           <property name="text" >
+            <string>Name:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" >
+          <widget class="QLineEdit" name="name" />
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>61</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
