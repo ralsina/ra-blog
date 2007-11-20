@@ -15,19 +15,23 @@ class EditorWindow(QtGui.QMainWindow):
         # Set up the UI from designer
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
-        self.setPost(post)
-        self.lang=lang
 
         self.langs=QtGui.QComboBox(self)
+        self.langs.setEnabled(False)
         self.langs.addItem("Default")
         for lang in db.Translation.select():
             self.langs.addItem(lang.name)
         self.ui.toolBar.addSeparator()
         self.ui.toolBar.addWidget(self.langs)
+
+        self.trPost=None
+        self.setPost(post)
+
+        self.setLang(lang)
         QtCore.QObject.connect(self.langs,
-            QtCore.SIGNAL("activated (int)"),
+            QtCore.SIGNAL("activated (QString)"),
             self.setLang)
-        
+
         QtCore.QObject.connect(self.ui.actionSave,
             QtCore.SIGNAL("triggered()"),
             self.savePost)
@@ -55,7 +59,22 @@ class EditorWindow(QtGui.QMainWindow):
         self.previewPost=None
 
     def setLang(self, lang):
-        pass
+        if not lang: # None is "default language"
+            return
+        
+        lang=str(lang)
+        print "setting lang to: ", lang
+        if lang=="Default":
+            self.lang=None
+            self.trPost=None
+        # Find the posts translation for this language
+        if self.post:
+            self.lang=lang
+            self.trPost=db.translationByLangNamePost(lang, self.post)
+            self.setPost(self.post)
+            print "SETLANG: ", self.lang, self.trPost
+        # There is no post set, so there can't be a translation
+        # This shouldn't happen
 
     def chooseTags(self):
         self.d=TagsDialog(self,self.ui.tags.text())
@@ -76,14 +95,25 @@ class EditorWindow(QtGui.QMainWindow):
         if not post:
             return
 
-        self.ui.title.setText(post.title)
+        print "TR:", post.translations()
+
+        self.langs.setEnabled(True)
+
+        # Maybe this is a translation
+        if self.trPost and self.lang:
+            self.ui.title.setText(self.trPost.title)
+            self.ui.editor.setPlainText(self.trPost.text)        
+        else: # Maybe not
+            self.ui.title.setText(post.title)
+            self.ui.editor.setPlainText(post.text)
+            
         self.ui.link.setText(post.link)
-        self.ui.editor.setPlainText(post.text)
         self.ui.tags.setText(','.join( [c.name for c in post.categories]))
         self.ui.actionRST.setChecked(post.structured)
 
     def savePost(self):
         if not self.post:
+            print "Saving new post"
             self.post=db.Post( postID="BB%s"%str(time.time()),
                             title=unicode(self.ui.title.text()),
                             link=unicode(self.ui.link.text()),
@@ -92,11 +122,20 @@ class EditorWindow(QtGui.QMainWindow):
             # Silly hack to have PostID be unique but not ugly
             self.post.postID='BB'+str(self.post.id)
         else:
-            self.post.title=unicode(self.ui.title.text())
+            print self.trPost ,  self.lang
+            if self.trPost and self.lang: #Translation
+                print "Saving translated post"
+                self.trPost.title=unicode(self.ui.title.text())
+                self.trPost.text=unicode(self.ui.editor.toPlainText())
+                self.trPost.structured=self.ui.actionRST.isChecked()
+                self.trPost.render()
+            else: # Default lang
+                print "Saving untranslated post"
+                self.post.title=unicode(self.ui.title.text())
+                self.post.text=unicode(self.ui.editor.toPlainText())
+                self.post.structured=self.ui.actionRST.isChecked()
+                self.post.render()
             self.post.link=str(self.ui.link.text())
-            self.post.text=unicode(self.ui.editor.toPlainText())
-            self.post.structured=self.ui.actionRST.isChecked()
-            self.post.render()
         t=unicode(self.ui.tags.text())
         if t:
             cats=[ db.Category.select(db.Category.q.name==c)[0] for c in \
@@ -105,7 +144,6 @@ class EditorWindow(QtGui.QMainWindow):
         self.post.render()
         self.post.setDirtyPages()
         self.emit(QtCore.SIGNAL('saved'))
-
 
     def preview(self):
         if self.previewPost:

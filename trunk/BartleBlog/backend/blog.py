@@ -56,7 +56,6 @@ class Blog:
         self.dest_dir=config.getValue('blog', 'folder', os.path.expanduser("~/.bartleblog/weblog"))
         if not os.path.isdir(self.dest_dir):
             os.mkdir(self.dest_dir)
-        self.language="en"
         
         self.version="Bartleblog 0.0"
 
@@ -65,11 +64,16 @@ class Blog:
         f=codecs.open(fname,"r","utf-8")
         return f.read()
 
-    def renderRSS(self,title,curDate,dname,fname,postlist):
+    def renderRSS(self,title,curDate,dname,fname,postlist,lang=None):
         template = self.lookup.get_template('feedRSS.tmpl')
+        if not lang:
+            langcode=config.getValue('blog', 'langcode', 'en')
+        else:
+            langcode=lang.code
+
         rss=template.render_unicode(title=title, curDate=curDate, 
                                     postlist=postlist, macros=self.macros, 
-                                    blog=self)
+                                    blog=self, langcode=langcode, lang=lang)
         if not os.path.exists(dname):
             os.makedirs(dname)
         if os.path.exists(fname):
@@ -81,6 +85,8 @@ class Blog:
         template = self.lookup.get_template(template)
         kwargs['macros']=self.macros
         kwargs['blog']=self
+        if not 'lang' in kwargs:
+            kwargs['lang']=None
         page=template.render_unicode(**kwargs)
         if not os.path.exists(dname):
             os.makedirs(dname)
@@ -89,6 +95,7 @@ class Blog:
         f=codecs.open(os.path.join(dname,fname),"w","utf-8")
         f.write(page)
         print 'saving: ', os.path.join(dname,fname)
+        
 
     def renderCategoryIndex(self):
         title='%s posts by topic'%self.blog_title
@@ -217,6 +224,9 @@ class Blog:
             curDate=postlist[0].pubDate
         else:
             curDate=datetime.datetime.today()
+            
+        # First the default lang
+        
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
         self.renderRSS(title,curDate,dname,'rss.xml',postlist)
@@ -228,6 +238,22 @@ class Blog:
                 curDate=curDate,
                 postlist=postlist
             )
+            
+        # Now the translations
+        for tr in db.Translation.select():
+            lang=tr
+            dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog")
+            self.renderRSS(title,curDate,dname,'rss.xml',postlist,lang=lang)
+            self.renderMakoPage(
+                    'blogSite.tmpl', 
+                    dname,
+                    'index.html',
+                    title=title,
+                    curDate=curDate,
+                    postlist=postlist, 
+                    lang=lang
+                )
+            
 
     def renderBlogDay(self,date):
         start=date.replace(hour=0,minute=0,second=0)
@@ -250,6 +276,20 @@ class Blog:
                 curDate=curDate,
                 postlist=postlist
             )
+
+        # Now the translations
+        for tr in db.Translation.select():
+            lang=tr
+            dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog/%d/%02d"%(date.year,date.month))
+            self.renderMakoPage(
+                    'blogSite.tmpl', 
+                    dname,
+                    fname,
+                    title=title,
+                    curDate=curDate,
+                    postlist=postlist, 
+                    lang=lang
+                )
         # Render tool hooks for days
         for hook in self.dayHooks:
             apply(hook,[date])
@@ -294,13 +334,13 @@ class Blog:
         for hook in self.yearHooks:
             apply(hook,[date])
 
-    def renderPage(self,page):
+    def renderPage(self, page, lang=None):
         try:
             print "rendering: ",page.path
             path=page.path.split('/')
             if path[0]=='categories':
                 if path[1]=='index.html':
-                    self.renderCategoryIndex()                
+                    self.renderCategoryIndex()
                 elif len(path)==2:
                     self.renderCategory(db.categoryByName(path[1].split('.')[0]))
                 else:
@@ -318,7 +358,7 @@ class Blog:
                     
             elif path[0]=='weblog':
                 if path[1]=='index.html':
-                    self.renderBlogIndex()                
+                    self.renderBlogIndex()
                 elif len(path)==3:
                     if path[2]=='index.html' and path[1].isdigit():
                         year=int(path[1])

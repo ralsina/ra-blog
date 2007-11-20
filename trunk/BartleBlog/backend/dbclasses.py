@@ -39,6 +39,34 @@ def pageByPath(path):
     else:
         p=Page(path=path)
     return p
+    
+def translationByLangNamePost(lang, post):
+    trl=Translation.select(Translation.q.name==lang)
+    if trl.count():
+        t=trl[0]
+        tpl=TranslatedPost.selectBy(lang=t, post=post)
+        if tpl.count():
+            return tpl[0]
+        return TranslatedPost(lang=t, post=post, text=post.text, 
+                              rendered=post.rendered, title=post.title, 
+                              structured=post.structured )
+    else:
+        print "Error no translation to %s created"%lang
+        return
+        
+def translationByLangCodePost(lang, post):
+    trl=Translation.select(Translation.q.code==lang)
+    if trl.count():
+        t=trl[0]
+        tpl=TranslatedPost.selectBy(lang=t, post=post)
+        if tpl.count():
+            return tpl[0]
+        return TranslatedPost(lang=t, post=post, text=post.text, 
+                              rendered=post.rendered, title=post.title, 
+                              structured=post.structured )
+    else:
+        print "Error no translation to %s created"%lang
+        return
 
 def fsetCategories(self,categories):
 
@@ -101,7 +129,6 @@ class Page(SQLObject):
     path=UnicodeCol(alternateID=True)
     is_dirty=BoolCol(default=True)
     
-
 class Category(SQLObject):
     name=UnicodeCol(alternateID=True)
     description=UnicodeCol()
@@ -123,14 +150,17 @@ class Category(SQLObject):
 
 class Translation(SQLObject):
     name=UnicodeCol()
+    code=UnicodeCol()
 
 class TranslatedPost(SQLObject):
-    text=UnicodeCol()
-    teaser=fteaser
-    render=frender
+    text=UnicodeCol(default='')
     rendered=UnicodeCol(default='')
+    title=UnicodeCol(default='')
     lang=ForeignKey("Translation")
     post=ForeignKey("Post")
+    structured=BoolCol(default=True)
+    teaser=fteaser
+    render=frender
     
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
@@ -149,7 +179,20 @@ class Post(SQLObject):
     pubDate=DateTimeCol(default=datetime.datetime.now())
     modDate=DateTimeCol(default=datetime.datetime.now())
 
-    def myurl(self):
+    def translated(self, lang):
+        if lang==None:
+            return self
+        return translationByLangCodePost(lang.code, self)
+        
+
+    def myurl(self, lang=None):
+        if lang:
+            return "tr/%s/weblog/%d/%02d/%02d.html#%s"%(lang.code,
+                                                        self.pubDate.year,
+                                                        self.pubDate.month,
+                                                        self.pubDate.day,
+                                                        self.postID)
+            
         return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
                                                 self.pubDate.month,
                                                 self.pubDate.day,
@@ -157,6 +200,8 @@ class Post(SQLObject):
     teaser=fteaser
     render=frender
     setCategories=fsetCategories
+    def translations(self):
+        return [ x.lang for x in TranslatedPost.selectBy(post=self)]
 
     def setDirtyPages(self):    
         '''Mark related pages as dirty'''
@@ -166,11 +211,12 @@ class Post(SQLObject):
         pages.append('weblog/%s/index.html'%post.pubDate.year)
         pages.append('weblog/%s/%s/index.html'%(post.pubDate.year,post.pubDate.month))
         pages.append('weblog/%s/%s/%s.html'%(post.pubDate.year,post.pubDate.month,post.pubDate.day))
+        pages.append('weblog/index.html')
+            
         for c in post.categories:
             pages.append('categories/%s.html'%c.name.lower())
         if len(post.categories)>0:
             pages.append('categories/index.html')            
-        pages.append('weblog/index.html')
         
         for path in pages:
             p=pageByPath(path)

@@ -44,6 +44,22 @@ class Macros:
         else:
             return ''
         
+    def translationsBar(self):
+        tl=db.Translation.select()
+        if tl.count():
+            s="Available in: "+"&nbsp;&bull;&nbsp;".join(['<a href="/tr/%s/weblog/index.html">%s</a>'%(t.code, t.name) for t in tl])            
+            s+="&nbsp;&bull;&nbsp;"+'<a href="/weblog/index.html">%s</a>'%config.getValue('blog', 'langname', 'English')
+            return s
+        return ""
+
+    def translationsBarForPost(self, post):
+        tl=post.translations()
+        if tl:
+            s="Available in: "+"&nbsp;&bull;&nbsp;".join(['<a href="%s">%s</a>'%(self.weblogPermaLink(post, t), t.name) for t in tl])            
+            s+="&nbsp;&bull;&nbsp;"+'<a href="%s">%s</a>'%(self.weblogPermaLink(post), config.getValue('blog', 'langname', 'English'))
+            return s
+        return ""
+        
     #################################################################################
     ### <head> manipulation
     #################################################################################
@@ -69,12 +85,16 @@ class Macros:
     ### General Macros
     #################################################################################
 
-    def weblogPermaLink(self,post):
+    def weblogPermaLink(self,post, lang=None):
         date=post.pubDate
-        return self.absoluteUrl("weblog/%s/%02d/%02d.html#%s"%(date.year,date.month,date.day,post.postID))
+        if lang==None:
+            return self.absoluteUrl("weblog/%s/%02d/%02d.html#%s"%(date.year,date.month,date.day,post.postID))
+        return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html#%s"%(lang.code,date.year,date.month,date.day,post.postID))
 
-    def getUrlForDay(self,date):
-        return self.absoluteUrl("weblog/%s/%02d/%02d.html"%(date.year,date.month,date.day))
+    def getUrlForDay(self,date, lang=None):
+        if lang==None:
+            return self.absoluteUrl("weblog/%s/%02d/%02d.html"%(date.year,date.month,date.day))
+        return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html"%(lang,date.year,date.month,date.day))
 
     def absoluteUrl(self,path):
         return self.blog.basepath+path
