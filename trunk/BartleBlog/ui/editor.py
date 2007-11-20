@@ -23,10 +23,11 @@ class EditorWindow(QtGui.QMainWindow):
         for lang in db.Translation.select():
             self.langs.addItem(lang.name)
         self.ui.toolBar.addSeparator()
-        self.langAction=self.ui.toolBar.addWidget(self.langs)
+        self.ui.toolBar.addWidget(self.langs)
+        QtCore.QObject.connect(self.langs,
+            QtCore.SIGNAL("activated (int)"),
+            self.setLang)
         
-        print dir(self.langAction)
-
         QtCore.QObject.connect(self.ui.actionSave,
             QtCore.SIGNAL("triggered()"),
             self.savePost)
@@ -52,6 +53,9 @@ class EditorWindow(QtGui.QMainWindow):
             
         #self.hl=rstHighlighter(self.ui.editor.document())
         self.previewPost=None
+
+    def setLang(self, lang):
+        pass
 
     def chooseTags(self):
         self.d=TagsDialog(self,self.ui.tags.text())

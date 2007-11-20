@@ -226,7 +226,6 @@
     <addaction name="actionSave" />
     <addaction name="actionPreview" />
     <addaction name="actionRST" />
-    <addaction name="actionTranslate" />
     <addaction name="separator" />
     <addaction name="actionClose" />
    </widget>
@@ -247,7 +246,6 @@
    <addaction name="actionSave" />
    <addaction name="actionPreview" />
    <addaction name="actionRST" />
-   <addaction name="actionTranslate" />
    <addaction name="separator" />
    <addaction name="actionCut" />
    <addaction name="actionCopy" />
@@ -385,14 +383,6 @@
    </property>
    <property name="text" >
     <string>FindNext</string>
-   </property>
-  </action>
-  <action name="actionTranslate" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/translate.svg</iconset>
-   </property>
-   <property name="text" >
-    <string>Translate</string>
    </property>
   </action>
  </widget>
