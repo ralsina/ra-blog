@@ -104,7 +104,8 @@ class MainWindow(QtGui.QMainWindow):
         except:
             QtGui.QMessageBox.warning(self, 'BartleBlog', 
             'Error starting bartleweb.py, previews will not be available.')
-            self.previewProcess=None
+            self.previewProcess=None            
+        self.editors=[]
             
     def showHelp(self):
         self.help=HelpWindow()
@@ -138,19 +139,21 @@ class MainWindow(QtGui.QMainWindow):
         self.blog.progress=None
 
     def edit(self):
-        self.editor=EditorWindow(self.curPost, previews=self.previewProcess)
-        QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
-        self.editor.show()
+        e=EditorWindow(self.curPost, previews=self.previewProcess)
+        QtCore.QObject.connect(e,QtCore.SIGNAL('saved'),self.init_tree)
+        e.show()
+        self.editors.append(e)
 
     def newPost(self):
-        self.editor=EditorWindow(previews=self.previewProcess)
-        QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
-        self.editor.show()
+        e=EditorWindow(previews=self.previewProcess)
+        QtCore.QObject.connect(e,QtCore.SIGNAL('saved'),self.init_tree)
+        e.show()
+        self.editors.append(e)
 
     def newStory(self):
-        self.editor=StoryEditorWindow(previews=self.previewProcess)
-        QtCore.QObject.connect(self.editor,QtCore.SIGNAL('saved'),self.init_tree)
-        self.editor.show()
+        e=StoryEditorWindow(previews=self.previewProcess)
+        QtCore.QObject.connect(e,QtCore.SIGNAL('saved'),self.init_tree)
+        self.editors.append(e)
 
     def configure(self, page=None):
         cfg=ConfigWindow(self.blog, page=None)

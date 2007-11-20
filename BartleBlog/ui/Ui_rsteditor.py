@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Mon Nov 19 18:32:08 2007
+# Created: Tue Nov 20 07:14:44 2007
 #      by: PyQt4 UI code generator 4.3.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -195,10 +195,6 @@ class Ui_MainWindow(object):
         self.actionFindNext = QtGui.QAction(MainWindow)
         self.actionFindNext.setIcon(QtGui.QIcon(":/icons/icons/next.svg"))
         self.actionFindNext.setObjectName("actionFindNext")
-
-        self.actionTranslate = QtGui.QAction(MainWindow)
-        self.actionTranslate.setIcon(QtGui.QIcon(":/icons/icons/translate.svg"))
-        self.actionTranslate.setObjectName("actionTranslate")
         self.menuInsert.addAction(self.actionFlickr_Image)
         self.menuInsert.addAction(self.actionOpenomy_File)
         self.menuEdit.addAction(self.actionCut)
@@ -216,7 +212,6 @@ class Ui_MainWindow(object):
         self.menuPost.addAction(self.actionSave)
         self.menuPost.addAction(self.actionPreview)
         self.menuPost.addAction(self.actionRST)
-        self.menuPost.addAction(self.actionTranslate)
         self.menuPost.addSeparator()
         self.menuPost.addAction(self.actionClose)
         self.menuBar.addAction(self.menuPost.menuAction())
@@ -224,7 +219,6 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionSave)
         self.toolBar.addAction(self.actionPreview)
         self.toolBar.addAction(self.actionRST)
-        self.toolBar.addAction(self.actionTranslate)
         self.toolBar.addSeparator()
         self.toolBar.addAction(self.actionCut)
         self.toolBar.addAction(self.actionCopy)
@@ -275,7 +269,6 @@ class Ui_MainWindow(object):
         self.actionRST.setText(QtGui.QApplication.translate("MainWindow", "Restructured Text", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFind.setText(QtGui.QApplication.translate("MainWindow", "Find", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFindNext.setText(QtGui.QApplication.translate("MainWindow", "FindNext", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionTranslate.setText(QtGui.QApplication.translate("MainWindow", "Translate", None, QtGui.QApplication.UnicodeUTF8))
 
 import icons_rc
 
