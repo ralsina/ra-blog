@@ -153,6 +153,7 @@ class MainWindow(QtGui.QMainWindow):
     def newStory(self):
         e=StoryEditorWindow(previews=self.previewProcess)
         QtCore.QObject.connect(e,QtCore.SIGNAL('saved'),self.init_tree)
+        e.show()
         self.editors.append(e)
 
     def configure(self, page=None):
