@@ -64,8 +64,10 @@ class Macros:
     ### <head> manipulation
     #################################################################################
 
+    def cleanHead(self):
+        self.head=[]
+
     def addHead(self,headers):
-        global head
         for h in headers:
             if not h in self.head:
                 self.head.append(h)

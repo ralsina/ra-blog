@@ -4,6 +4,7 @@
 <head> 
   <title>${title}</title>
   <%
+    macros.cleanHead()
     macros.addHead(macros.yahooGrids.head())
     macros.addHead(macros.yahooCalendar.head())
     macros.addHead(macros.haloScan.head())
