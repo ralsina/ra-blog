@@ -81,15 +81,25 @@ class Macros:
         '<link rel="stylesheet" type="text/css" href="%s">'%self.absoluteUrl('static/css/pygment/%s.css')%config.getValue('pygment','style','murphy')
         ]
 
+    def catRssHead(self, cat):
+        return ['<link rel="alternate" type="application/rss+xml" title="RSS for category %s" href="%s">'%(cat.name, self.absoluteUrl('categories/%s.xml'%cat.name.lower()))]
+
     #################################################################################
     ### General Macros
     #################################################################################
 
     def weblogPermaLink(self,post, lang=None):
         date=post.pubDate
-        if lang==None:
-            return self.absoluteUrl("weblog/%s/%02d/%02d.html#%s"%(date.year,date.month,date.day,post.postID))
-        return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html#%s"%(lang.code,date.year,date.month,date.day,post.postID))
+        if isinstance(post, db.Post):
+            if lang==None:
+                return self.absoluteUrl("weblog/%s/%02d/%02d.html#%s"%(date.year,date.month,date.day,post.postID))
+            return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html#%s"%(lang.code,date.year,date.month,date.day,post.postID))
+        elif isinstance(post, db.Story):
+            if lang==None:
+                return self.absoluteUrl("stories/%s.html"%(post.postID))
+            return self.absoluteUrl("tr/%s/stories/%s.html"%(lang.code,post.postID))
+        else:
+            raise("Hell")
 
     def getUrlForDay(self,date, lang=None):
         if lang==None:

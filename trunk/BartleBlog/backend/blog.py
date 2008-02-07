@@ -210,6 +210,19 @@ class Blog:
                 curDate=curDate,
                 story=story
                 )
+        # Now the translations
+        for tr in db.Translation.select():
+            lang=tr
+            dname=os.path.join(self.dest_dir,"tr",lang.code,"stories")
+            self.renderMakoPage(
+                    'storySite.tmpl', 
+                    dname,
+                    fname,
+                    title=title,
+                    curDate=curDate,
+                    story=story,
+                    lang=lang
+                )
         
     def renderStories(self):
         self.renderStoryIndex()

@@ -11,6 +11,9 @@
     macros.addHead(macros.feedBurner.rssHead())
     macros.addHead(macros.rstHead())
   %>
+  % if cat:
+    ${macros.addHead(macros.catRssHead(cat))}
+  % endif
   ${macros.insertHead()}
   ${macros.yahooCalendar.monthScriptTag(curDate)}
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

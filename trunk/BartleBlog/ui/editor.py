@@ -62,8 +62,7 @@ class EditorWindow(QtGui.QMainWindow):
         if not lang: # None is "default language"
             return
         
-        lang=str(lang)
-        print "setting lang to: ", lang
+        lang=unicode(lang)
         if lang=="Default":
             self.lang=None
             self.trPost=None
@@ -72,7 +71,6 @@ class EditorWindow(QtGui.QMainWindow):
             self.lang=lang
             self.trPost=db.translationByLangNamePost(lang, self.post)
             self.setPost(self.post)
-            print "SETLANG: ", self.lang, self.trPost
         # There is no post set, so there can't be a translation
         # This shouldn't happen
 
@@ -122,7 +120,6 @@ class EditorWindow(QtGui.QMainWindow):
             # Silly hack to have PostID be unique but not ugly
             self.post.postID='BB'+str(self.post.id)
         else:
-            print self.trPost ,  self.lang
             if self.trPost and self.lang: #Translation
                 print "Saving translated post"
                 self.trPost.title=unicode(self.ui.title.text())
