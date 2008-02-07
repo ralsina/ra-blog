@@ -41,13 +41,21 @@ def pageByPath(path):
     return p
     
 def translationByLangNamePost(lang, post):
+    
+    if isinstance (post, Post):
+        tclass=TranslatedPost
+    elif isinstance (post, Story):
+        tclass=TranslatedStory
+    else:
+        raise ("Hell")
+    
     trl=Translation.select(Translation.q.name==lang)
     if trl.count():
         t=trl[0]
-        tpl=TranslatedPost.selectBy(lang=t, post=post)
+        tpl=tclass.selectBy(lang=t, post=post)
         if tpl.count():
             return tpl[0]
-        return TranslatedPost(lang=t, post=post, text=post.text, 
+        return tclass (lang=t, post=post, text=post.text, 
                               rendered=post.rendered, title=post.title, 
                               structured=post.structured )
     else:
@@ -55,18 +63,25 @@ def translationByLangNamePost(lang, post):
         return
         
 def translationByLangCodePost(lang, post):
+    if isinstance (post, Post):
+        tclass=TranslatedPost
+    elif isinstance (post, Story):
+        tclass=TranslatedStory
+    else:
+        raise ("Hell")
     trl=Translation.select(Translation.q.code==lang)
     if trl.count():
         t=trl[0]
-        tpl=TranslatedPost.selectBy(lang=t, post=post)
+        tpl=tclass.selectBy(lang=t, post=post)
         if tpl.count():
             return tpl[0]
-        return TranslatedPost(lang=t, post=post, text=post.text, 
+        return tclass(lang=t, post=post, text=post.text, 
                               rendered=post.rendered, title=post.title, 
                               structured=post.structured )
     else:
         print "Error no translation to %s created"%lang
         return
+
 
 def fsetCategories(self,categories):
 
@@ -161,7 +176,7 @@ class TranslatedPost(SQLObject):
     structured=BoolCol(default=True)
     teaser=fteaser
     render=frender
-    
+
 class Post(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
@@ -225,6 +240,17 @@ class Post(SQLObject):
 class PostPreview(Post):
     categories=[]
 
+class TranslatedStory(SQLObject):
+    text=UnicodeCol(default='')
+    rendered=UnicodeCol(default='')
+    desc=UnicodeCol(default='')
+    title=UnicodeCol(default='')
+    lang=ForeignKey("Translation")
+    post=ForeignKey("Post")
+    structured=BoolCol(default=True)
+    teaser=fteaser
+    render=frender
+
 class Story(SQLObject):
     postID=UnicodeCol(alternateID=True)
     title=UnicodeCol()
@@ -237,13 +263,21 @@ class Story(SQLObject):
     is_dirty=IntCol(default=-1)
     categories=RelatedJoin('Category')
 #    pages=RelatedJoin('Page')
+    def translations(self):
+        return [ x.lang for x in TranslatedStory.selectBy(post=self)]
+    def translated(self, lang):
+        if lang==None:
+            return self
+        return translationByLangCodePost(lang.code, self)
 
     is_dirty=IntCol(default=-1)
 
     pubDate=DateTimeCol(default=datetime.datetime.now())
     modDate=DateTimeCol(default=datetime.datetime.now())
 
-    def myurl(self):
+    def myurl(self, lang=None):
+        if lang:
+            return "tr/%s/stories/%s.html"%(lang.code, self.postID)
         return "stories/%s.html"%self.postID
     def teaser(self):
         if  self.desc:
@@ -278,7 +312,7 @@ def initDB(name):
     connection=connectionForURI(connection_string)
     sqlhub.processConnection = connection
     
-    for t in [ Translation, TranslatedPost, Post, PostPreview, Story, Category, Page, Chunk ]:
+    for t in [ Translation, TranslatedPost, TranslatedStory, Post, PostPreview, Story, Category, Page, Chunk ]:
         try:
             t.createTable()
         except dberrors.OperationalError:
