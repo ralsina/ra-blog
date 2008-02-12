@@ -232,7 +232,7 @@ class Blog:
 
 
     def renderBlogIndex(self):
-        postlist=db.Post.select(orderBy='-pubDate')[:10]
+        postlist=db.Post.select(orderBy='-pubDate')
         if postlist.count():
             curDate=postlist[0].pubDate
         else:
@@ -249,7 +249,7 @@ class Blog:
                 'index.html',
                 title=title,
                 curDate=curDate,
-                postlist=postlist
+                postlist=postlist[:10]
             )
             
         # Now the translations
