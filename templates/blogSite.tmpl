@@ -34,13 +34,15 @@
     </div>
   </div>
   % endfor
-  <div class="postbox" style="text-align: center; padding:0;">
-    % if curPage > 0:
-      <a href="${pagTempl%(curPage-1)}"}>More recent posts</a>&nbsp;&nbsp;
-    % endif
-    % if curPage < numPages-1:
-      &nbsp;&nbsp;<a href="${pagTempl%(curPage+1)}"}>Older posts</a>
-    % endif
-  </div>
+  %if corPage:
+    <div class="postbox" style="text-align: center; padding:0;">
+      % if curPage > 0:
+        <a href="${pagTempl%(curPage-1)}"}>More recent posts</a>&nbsp;&nbsp;
+      % endif
+      % if curPage < numPages-1:
+        &nbsp;&nbsp;<a href="${pagTempl%(curPage+1)}"}>Older posts</a>
+      % endif
+    </div>
+  %endif
 </%def>
 
