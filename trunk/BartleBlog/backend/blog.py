@@ -230,7 +230,6 @@ class Blog:
             self.renderStory(story)
             if self.progress: self.progress.step()
 
-
     def renderBlogIndex(self):
         postlist=db.Post.select(orderBy='-pubDate')
         if postlist.count():
@@ -243,14 +242,30 @@ class Blog:
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
         self.renderRSS(title,curDate,dname,'rss.xml',postlist)
+        numPages=int(postlist.count()/10)
         self.renderMakoPage(
                 'blogSite.tmpl', 
                 dname,
                 'index.html',
                 title=title,
                 curDate=curDate,
-                postlist=postlist[:10]
+                postlist=postlist[:10],
+                curPage=0,
+                numPages=numPages,
+                pagTempl="index-%d.html"
             )
+	for i in range(0,numPages+1):
+          self.renderMakoPage(
+                  'blogSite.tmpl', 
+                  dname,
+                  'index-%d.html'%(i),
+                  title=title,
+                  curDate=curDate,
+                  postlist=postlist[i*10:i*10+10],
+                  curPage=i,
+                  numPages=numPages,
+                  pagTempl="index-%d.html"
+              )
             
         # Now the translations
         for tr in db.Translation.select():
