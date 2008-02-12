@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import os,sys,datetime,codecs
+import os,sys,datetime,codecs,re
 
 from mako.template import Template
 from mako.lookup import TemplateLookup
@@ -230,57 +230,94 @@ class Blog:
             self.renderStory(story)
             if self.progress: self.progress.step()
 
-    def renderBlogIndex(self):
+    def renderBlogIndexPage(self,pageNumber):
         postlist=db.Post.select(orderBy='-pubDate')
-        if postlist.count():
+        c=postlist.count()
+        if c<=pageNumber*10: # It would be an empty page
+          return
+        if c:
             curDate=postlist[0].pubDate
         else:
             curDate=datetime.datetime.today()
-            
         # First the default lang
-        
         title=self.blog_title
         dname=os.path.join(self.dest_dir,"weblog")
-        self.renderRSS(title,curDate,dname,'rss.xml',postlist)
         numPages=int(postlist.count()/10)
-        self.renderMakoPage(
-                'blogSite.tmpl', 
-                dname,
-                'index.html',
-                title=title,
-                curDate=curDate,
-                postlist=postlist[:10],
-                curPage=0,
-                numPages=numPages,
-                pagTempl="index-%d.html"
-            )
-	for i in range(0,numPages+1):
+        if pageNumber==0: #FIXME Extra page, this should be cleaner
           self.renderMakoPage(
                   'blogSite.tmpl', 
                   dname,
-                  'index-%d.html'%(i),
+                  'index.html',
                   title=title,
                   curDate=curDate,
-                  postlist=postlist[i*10:i*10+10],
-                  curPage=i,
+                  postlist=postlist[:10],
+                  curPage=0,
                   numPages=numPages,
-                  pagTempl="index-%d.html"
+                  pagTempl="weblog/index-%d.html"
               )
-            
+        self.renderMakoPage(
+                'blogSite.tmpl', 
+                dname,
+                'index-%d.html'%(pageNumber),
+                title=title,
+                curDate=curDate,
+                postlist=postlist[pageNumber*10:pageNumber*10+10],
+                curPage=pageNumber,
+                numPages=numPages,
+                pagTempl="weblog/index-%d.html"
+            )
+        # Now the translations
+        for tr in db.Translation.select():
+            lang=tr
+            dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog")
+            if pageNumber==0: #FIXME Extra page, this should be cleaner
+              self.renderMakoPage(
+                      'blogSite.tmpl', 
+                      dname,
+                      'index.html',
+                      title=title,
+                      curDate=curDate,
+                      postlist=postlist[:10],
+                      lang=lang,
+                      curPage=0,
+                      numPages=numPages,
+                      pagTempl="weblog/tr/%s/index-%%d.html"%lang.code
+                  )
+            self.renderMakoPage(
+                    'blogSite.tmpl', 
+                    dname,
+                    'index-%d.html'%(pageNumber),
+                    title=title,
+                    curDate=curDate,
+                    postlist=postlist[pageNumber*10:pageNumber*10+10], 
+                    lang=lang,
+                    curPage=pageNumber,
+                    numPages=numPages,
+                    pagTempl="weblog/tr/%s/index-%%d.html"%lang.code
+                )
+
+    def renderBlogIndex(self):
+        
+        title=self.blog_title
+        dname=os.path.join(self.dest_dir,"weblog")
+        postlist=db.Post.select(orderBy='-pubDate')
+        c=postlist.count()
+        if c:
+            curDate=postlist[0].pubDate
+        else:
+            curDate=datetime.datetime.today()
+        numPages=int(postlist.count()/10)
+
+        self.renderRSS(title,curDate,dname,'rss.xml',postlist)
+	for i in range(0,numPages+1):
+          self.renderBlogIndexPage(i)
         # Now the translations
         for tr in db.Translation.select():
             lang=tr
             dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog")
             self.renderRSS(title,curDate,dname,'rss.xml',postlist,lang=lang)
-            self.renderMakoPage(
-                    'blogSite.tmpl', 
-                    dname,
-                    'index.html',
-                    title=title,
-                    curDate=curDate,
-                    postlist=postlist, 
-                    lang=lang
-                )
+            for i in range(0,numPages+1):
+              self.renderBlogIndexPage(i)
             
 
     def renderBlogDay(self,date):
@@ -386,7 +423,10 @@ class Blog:
                     
             elif path[0]=='weblog':
                 if path[1]=='index.html':
-                    self.renderBlogIndex()
+                    self.renderBlogIndexPage(0)
+                elif path[1].startswith("index-"):
+                    pnum=re.split('([0-9]*)',path[1])[1]
+                    self.renderBlogIndexPage(int(pnum))
                 elif len(path)==3:
                     if path[2]=='index.html' and path[1].isdigit():
                         year=int(path[1])
