@@ -308,14 +308,14 @@ class Blog:
             curDate=datetime.datetime.today()
         numPages=int(postlist.count()/10)
 
-        self.renderRSS(title,curDate,dname,'rss.xml',postlist)
+        self.renderRSS(title,curDate,dname,'rss.xml',postlist[0:20])
 	for i in range(0,numPages+1):
           self.renderBlogIndexPage(i)
         # Now the translations
         for tr in db.Translation.select():
             lang=tr
             dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog")
-            self.renderRSS(title,curDate,dname,'rss.xml',postlist,lang=lang)
+            self.renderRSS(title,curDate,dname,'rss.xml',postlist[0:20],lang=lang)
             for i in range(0,numPages+1):
               self.renderBlogIndexPage(i)
             
