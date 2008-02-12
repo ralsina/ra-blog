@@ -3,7 +3,10 @@
 import docutils.core
 import docutils.parsers.rst
 import os,sys
-import elementtree.ElementTree as tree
+try:
+  import elementtree.ElementTree as tree
+except:
+  import xml.etree.ElementTree as tree
 from StringIO import StringIO
 from rst2html import rst2html
 from cgi import escape

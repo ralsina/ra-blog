@@ -2,7 +2,10 @@
 
 import urllib2,md5
 from StringIO import StringIO
-import elementtree.ElementTree as tree
+try:
+  import elementtree.ElementTree as tree
+except:
+  import xml.etree.ElementTree as tree
 import BartleBlog.backend.config as config
 
 appkey='1e31cb69be8d30070f7607b4f23d4f95'
