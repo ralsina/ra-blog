@@ -272,6 +272,7 @@ class Blog:
             lang=tr
             dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog")
             if pageNumber==0: #FIXME Extra page, this should be cleaner
+              self.renderRSS(title,curDate,dname,'rss.xml',postlist[0:20],lang=lang)
               self.renderMakoPage(
                       'blogSite.tmpl', 
                       dname,
