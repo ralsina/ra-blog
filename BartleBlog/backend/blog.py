@@ -244,6 +244,7 @@ class Blog:
         dname=os.path.join(self.dest_dir,"weblog")
         numPages=int(postlist.count()/10)
         if pageNumber==0: #FIXME Extra page, this should be cleaner
+          self.renderRSS(title,curDate,dname,'rss.xml',postlist[0:20])
           self.renderMakoPage(
                   'blogSite.tmpl', 
                   dname,
@@ -307,7 +308,7 @@ class Blog:
         else:
             curDate=datetime.datetime.today()
         numPages=int(postlist.count()/10)
-
+        
         self.renderRSS(title,curDate,dname,'rss.xml',postlist[0:20])
 	for i in range(0,numPages+1):
           self.renderBlogIndexPage(i)
