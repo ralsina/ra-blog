@@ -12,7 +12,11 @@ class AddThisTool:
 
     def bookmark(self,post):
         return '''
-<a href="http://www.addthis.com/bookmark.php" onclick="window.open('http://www.addthis.com/bookmark.php?wt=nw&pub=%s&url=%s&title=%s', 'addthis', 'scrollbars=yes,menubar=no,width=620,height=520,resizable=yes,toolbar=no,location=no,status=no,screenX=200,screenY=100,left=200,top=100'); return false;" title="Bookmark using any bookmark manager!" target="_blank"><img src="http://s3.addthis.com/button1-bm.gif" width="125" height="16" border="0" alt="AddThis Social Bookmark Button" /></a>
+
+<!-- AddThis Button BEGIN -->
+<script type="text/javascript">addthis_pub  = '%s';</script>
+<a href="http://www.addthis.com/bookmark.php" onMouseOver="return addthis_open(this, '', '%s', '%s')" onMouseOut="addthis_close()" onClick="return addthis_sendto()"><img src="http://s9.addthis.com/button1-share.gif" width="125" height="16" border="0" alt="" /></a><script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+<!-- AddThis Button END -->
 '''.replace('&','&amp;')%(self.user,urllib.quote(self.blog.macros.absoluteUrl(post.myurl())),post.title)
 
     def subscribe(self):
