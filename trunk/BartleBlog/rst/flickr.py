@@ -29,10 +29,8 @@ def htmlforphoto(photo,fname):
     owner=photo['owner']
     
     rsp = fapi.people_getInfo(api_key=flickrAPIKey,auth_token=token,user_id=owner)
-    try:
-      realname=rsp.person[0].realname[0].elementText
-    except:
-      realname=rsp.person[0].username[0].elementText
+    realname=rsp.person[0].realname[0].elementText
+    if not realname: realname=rsp.person[0].username[0].elementText
       
     photosurl=rsp.person[0].photosurl[0].elementText
     
