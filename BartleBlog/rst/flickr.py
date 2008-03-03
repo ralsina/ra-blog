@@ -22,17 +22,20 @@ def flickrset( name, arguments, options, content, lineno,
     """
     
     
-def htmlforphoto(photo,fname):
+def htmlforphotoid(id):
     token = fapi.getToken(browser="firefox")
-    id=photo['id']
-    secret=photo['secret']
-    owner=photo['owner']
     
-    rsp = fapi.people_getInfo(api_key=flickrAPIKey,auth_token=token,user_id=owner)
-    realname=rsp.person[0].realname[0].elementText
-    if not realname: realname=rsp.person[0].username[0].elementText
+    photo = fapi.photos_getInfo(api_key=flickrAPIKey,auth_token=token,photo_id=id) 
+    owner=photo.photo[0].owner[0]
+    secret=photo.photo[0]['secret']
+    
+    try:
+      realname=owner['realname']
+    except:
+      realname=owner['username']
       
-    photosurl=rsp.person[0].photosurl[0].elementText
+    photosurl=photo.photo[0].urls[0].url[0].elementText
+    fname=photo.photo[0].title[0].elementText
     
     rsp = fapi.photos_getInfo(api_key=flickrAPIKey,auth_token=token,photo_id=id,secret=secret)
 
@@ -55,6 +58,7 @@ def flickr( name, arguments, options, content, lineno,
 
         .. flickr:: title
            :user: username 
+           :id: NSID
 
     Where title is the title you used in flickr, and the optional username argument is
     what user owns the picture (if it's not you)
@@ -64,37 +68,43 @@ def flickr( name, arguments, options, content, lineno,
 
     token = fapi.getToken(browser="firefox")
     fname=' '.join(arguments)
-    if 'user' in options:
-      #First get the userid
+    if 'id' in options:
+      id=options['id'] 
+    else: 
+      if 'user' in options:
+        #First get the userid
+        try:
+          username=options['user']
+          rsp = fapi.people_findByUsername(api_key=flickrAPIKey,auth_token=token,username=username)
+          user=rsp.user[0]['nsid']
+        except AttributeError:
+          error = state_machine.reporter.error( "Can't find user called %s in Flickr"%username,
+                      docutils.nodes.literal_block(block_text, block_text), line=lineno )
+          return [error]
+        
+      else:
+        user='me'
+      rsp = fapi.photos_search(api_key=flickrAPIKey,auth_token=token,user_id=user,text=fname)
+
+      # Get the secret and ID of the photo
       try:
-        username=options['user']
-        rsp = fapi.people_findByUsername(api_key=flickrAPIKey,auth_token=token,username=username)
-        user=rsp.user[0]['nsid']
+          photo=rsp.photos[0].photo[0]
+          id=photo['id']
       except AttributeError:
-        error = state_machine.reporter.error( "Can't find user called %s in Flickr"%username,
-                    docutils.nodes.literal_block(block_text, block_text), line=lineno )
-        return [error]
-      
-    else:
-      user='me'
-    rsp = fapi.photos_search(api_key=flickrAPIKey,auth_token=token,user_id=user,text=fname)
+          error = state_machine.reporter.error( "Can't find image called %s in Flickr"% fname,
+                      docutils.nodes.literal_block(block_text, block_text), line=lineno )
+          return [error]
 
-    # Get the secret and ID of the photo
-    try:
-        photo=rsp.photos[0].photo[0]
-    except AttributeError:
-        error = state_machine.reporter.error( "Can't find image called %s in Flickr"% fname,
-                    docutils.nodes.literal_block(block_text, block_text), line=lineno )
-        return [error]
-
-    html=htmlforphoto(photo,fname)
+    html=htmlforphotoid(id)
 
     raw = docutils.nodes.raw('',html, format = 'html')
     return [raw]
 
-flickr.arguments = (1,1,1)
-flickr.options = {'name' : docutils.parsers.rst.directives.unchanged }
-flickr.options = {'user' : docutils.parsers.rst.directives.unchanged }
+flickr.arguments = (1,2,1)
+flickr.options = {'name' : docutils.parsers.rst.directives.unchanged, 
+                  'user' : docutils.parsers.rst.directives.unchanged,
+                  'id' : docutils.parsers.rst.directives.unchanged,
+                 }
 flickr.content = 1
 
 # Simply importing this module will make the directive available.
