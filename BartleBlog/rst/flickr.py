@@ -41,12 +41,12 @@ def htmlforphotoid(id):
 
     farm=rsp.photo[0]['farm']
     server=rsp.photo[0]['server']
-
-    url= 'http://www.flickr.com/photos/%s/%s'%(owner,id)
+    
     t_url='http://farm%s.static.flickr.com/%s/%s_%s_%s.jpg'%(
             farm,server,id,secret,'m')
 
-    html='<div class="center"><a href="%s"><img src="%s" class="flickr" alt="%s"></a><div class="footerbox">%s by <a href="%s">%s</a></div></div>'%(url,t_url,fname,fname,photosurl,realname)
+
+    html='<div class="center"><a href="%s"><img src="%s" class="flickr" alt="%s"></a><div class="footerbox">%s by <a href="%s">%s</a></div></div>'%(photosurl,t_url,fname,fname,photosurl,realname)
     return html
 
 def flickr( name, arguments, options, content, lineno,
