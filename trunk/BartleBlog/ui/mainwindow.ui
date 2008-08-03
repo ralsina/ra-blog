@@ -13,12 +13,20 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>57</y>
+     <width>686</width>
+     <height>477</height>
+    </rect>
+   </property>
    <layout class="QVBoxLayout" >
-    <property name="margin" >
-     <number>9</number>
-    </property>
     <property name="spacing" >
      <number>6</number>
+    </property>
+    <property name="margin" >
+     <number>9</number>
     </property>
     <item>
      <widget class="QSplitter" name="splitter" >
@@ -27,9 +35,7 @@
       </property>
       <widget class="QTreeView" name="tree" >
        <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>7</vsizetype>
+        <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
          <horstretch>1</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -46,9 +52,7 @@
       </widget>
       <widget class="PBrowser" name="viewer" >
        <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>13</hsizetype>
-         <vsizetype>13</vsizetype>
+        <sizepolicy vsizetype="Ignored" hsizetype="Ignored" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -72,7 +76,7 @@
      <x>0</x>
      <y>0</y>
      <width>686</width>
-     <height>29</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSettings" >
@@ -142,13 +146,33 @@
    <addaction name="menuBlog" />
    <addaction name="menuHelp" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>534</y>
+     <width>686</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QToolBar" name="toolBar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>27</y>
+     <width>686</width>
+     <height>30</height>
+    </rect>
+   </property>
    <property name="orientation" >
     <enum>Qt::Horizontal</enum>
    </property>
    <attribute name="toolBarArea" >
-    <number>4</number>
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak" >
+    <bool>false</bool>
    </attribute>
    <addaction name="actionNewPost" />
    <addaction name="actionEditPost" />
@@ -160,7 +184,8 @@
     <bool>false</bool>
    </property>
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/edit.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/edit.svg</normaloff>:/icons/icons/edit.svg</iconset>
    </property>
    <property name="text" >
     <string>Edit Post</string>
@@ -168,7 +193,8 @@
   </action>
   <action name="actionRender_Blog" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/webexport.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/webexport.svg</normaloff>:/icons/icons/webexport.svg</iconset>
    </property>
    <property name="text" >
     <string>Render Blog</string>
@@ -176,7 +202,8 @@
   </action>
   <action name="actionNewPost" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/filenew.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/filenew.svg</normaloff>:/icons/icons/filenew.svg</iconset>
    </property>
    <property name="text" >
     <string>New Post</string>
@@ -184,7 +211,8 @@
   </action>
   <action name="actionConfigure" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/configure.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/configure.svg</normaloff>:/icons/icons/configure.svg</iconset>
    </property>
    <property name="text" >
     <string>Configure BartleBlog</string>
@@ -212,7 +240,8 @@
   </action>
   <action name="actionDelete" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/delete.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/delete.svg</normaloff>:/icons/icons/delete.svg</iconset>
    </property>
    <property name="text" >
     <string>delete</string>
@@ -220,7 +249,8 @@
   </action>
   <action name="actionRender_Full_Blog" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/webexport.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/webexport.svg</normaloff>:/icons/icons/webexport.svg</iconset>
    </property>
    <property name="text" >
     <string>Render Full Blog</string>
@@ -233,7 +263,8 @@
   </action>
   <action name="actionNew_Story" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/filenew.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/filenew.svg</normaloff>:/icons/icons/filenew.svg</iconset>
    </property>
    <property name="text" >
     <string>New Story</string>
@@ -241,7 +272,8 @@
   </action>
   <action name="actionQuit" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/exit.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/exit.svg</normaloff>:/icons/icons/exit.svg</iconset>
    </property>
    <property name="text" >
     <string>Quit</string>
@@ -252,7 +284,8 @@
   </action>
   <action name="actionBartleBlog_Help" >
    <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/help.svg</iconset>
+    <iconset resource="../../resources/icons.qrc" >
+     <normaloff>:/icons/icons/help.svg</normaloff>:/icons/icons/help.svg</iconset>
    </property>
    <property name="text" >
     <string>BartleBlog Help</string>

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/help.ui'
+# Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/help.ui'
 #
-# Created: Mon Nov 19 18:32:15 2007
-#      by: PyQt4 UI code generator 4.3.1
+# Created: Sat Aug  2 12:37:08 2008
+#      by: PyQt4 UI code generator 4.4.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,54 +12,42 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,800,600).size()).expandedTo(MainWindow.minimumSizeHint()))
-
+        MainWindow.resize(800,600)
         self.centralWidget = QtGui.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
-
         self.hboxlayout = QtGui.QHBoxLayout(self.centralWidget)
         self.hboxlayout.setMargin(9)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
-
         self.splitter = QtGui.QSplitter(self.centralWidget)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
-
         self.layoutWidget = QtGui.QWidget(self.splitter)
         self.layoutWidget.setObjectName("layoutWidget")
-
         self.vboxlayout = QtGui.QVBoxLayout(self.layoutWidget)
         self.vboxlayout.setMargin(0)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
-
         self.label_2 = QtGui.QLabel(self.layoutWidget)
         self.label_2.setObjectName("label_2")
         self.vboxlayout.addWidget(self.label_2)
-
         self.hboxlayout1 = QtGui.QHBoxLayout()
         self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setSpacing(6)
         self.hboxlayout1.setObjectName("hboxlayout1")
-
         self.search = QtGui.QLineEdit(self.layoutWidget)
         self.search.setObjectName("search")
         self.hboxlayout1.addWidget(self.search)
-
         self.searchButton = QtGui.QToolButton(self.layoutWidget)
         self.searchButton.setObjectName("searchButton")
         self.hboxlayout1.addWidget(self.searchButton)
         self.vboxlayout.addLayout(self.hboxlayout1)
-
         self.label = QtGui.QLabel(self.layoutWidget)
         self.label.setObjectName("label")
         self.vboxlayout.addWidget(self.label)
-
         self.contents = QtGui.QTreeWidget(self.layoutWidget)
         self.contents.setObjectName("contents")
         self.vboxlayout.addWidget(self.contents)
-
         self.view = QtGui.QTextBrowser(self.splitter)
         self.view.setObjectName("view")
         self.hboxlayout.addWidget(self.splitter)
@@ -76,7 +64,6 @@ class Ui_MainWindow(object):
 
 import icons_rc
 
-
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
@@ -85,3 +72,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
