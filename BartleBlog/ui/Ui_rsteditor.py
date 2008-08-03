@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/rsteditor.ui'
+# Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/rsteditor.ui'
 #
-# Created: Tue Nov 20 07:14:44 2007
-#      by: PyQt4 UI code generator 4.3.1
+# Created: Sat Aug  2 12:37:04 2008
+#      by: PyQt4 UI code generator 4.4.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,52 +12,40 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,536,493).size()).expandedTo(MainWindow.minimumSizeHint()))
-
+        MainWindow.resize(536,493)
         self.centralWidget = QtGui.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
-
         self.vboxlayout = QtGui.QVBoxLayout(self.centralWidget)
         self.vboxlayout.setObjectName("vboxlayout")
-
         self.gridlayout = QtGui.QGridLayout()
         self.gridlayout.setMargin(0)
         self.gridlayout.setSpacing(6)
         self.gridlayout.setObjectName("gridlayout")
-
         self.title = QtGui.QLineEdit(self.centralWidget)
         self.title.setObjectName("title")
         self.gridlayout.addWidget(self.title,0,1,1,1)
-
         self.vboxlayout1 = QtGui.QVBoxLayout()
         self.vboxlayout1.setSpacing(6)
         self.vboxlayout1.setMargin(0)
         self.vboxlayout1.setObjectName("vboxlayout1")
-
         self.label = QtGui.QLabel(self.centralWidget)
         self.label.setObjectName("label")
         self.vboxlayout1.addWidget(self.label)
-
         self.label_4 = QtGui.QLabel(self.centralWidget)
         self.label_4.setObjectName("label_4")
         self.vboxlayout1.addWidget(self.label_4)
-
         self.label_2 = QtGui.QLabel(self.centralWidget)
         self.label_2.setObjectName("label_2")
         self.vboxlayout1.addWidget(self.label_2)
         self.gridlayout.addLayout(self.vboxlayout1,0,0,2,1)
-
         self.gridlayout1 = QtGui.QGridLayout()
         self.gridlayout1.setMargin(0)
         self.gridlayout1.setSpacing(6)
         self.gridlayout1.setObjectName("gridlayout1")
-
         self.guess = QtGui.QPushButton(self.centralWidget)
         self.guess.setObjectName("guess")
         self.gridlayout1.addWidget(self.guess,1,1,1,1)
-
         self.tags = QtGui.QPushButton(self.centralWidget)
-
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -65,135 +53,133 @@ class Ui_MainWindow(object):
         self.tags.setSizePolicy(sizePolicy)
         self.tags.setObjectName("tags")
         self.gridlayout1.addWidget(self.tags,1,0,1,1)
-
         self.pushButton = QtGui.QPushButton(self.centralWidget)
         self.pushButton.setObjectName("pushButton")
         self.gridlayout1.addWidget(self.pushButton,0,1,1,1)
-
         self.link = QtGui.QLineEdit(self.centralWidget)
         self.link.setObjectName("link")
         self.gridlayout1.addWidget(self.link,0,0,1,1)
         self.gridlayout.addLayout(self.gridlayout1,1,1,1,1)
         self.vboxlayout.addLayout(self.gridlayout)
-
         self.splitter = QtGui.QSplitter(self.centralWidget)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName("splitter")
-
         self.editor = QtGui.QTextEdit(self.splitter)
-
         font = QtGui.QFont()
         font.setFamily("Bitstream Vera Sans Mono")
         self.editor.setFont(font)
         self.editor.setAcceptRichText(False)
         self.editor.setObjectName("editor")
-
         self.layoutWidget = QtGui.QWidget(self.splitter)
         self.layoutWidget.setObjectName("layoutWidget")
-
         self.hboxlayout = QtGui.QHBoxLayout(self.layoutWidget)
         self.hboxlayout.setObjectName("hboxlayout")
-
         self.clearSearch = QtGui.QToolButton(self.layoutWidget)
-        self.clearSearch.setIcon(QtGui.QIcon(":/icons/icons/editclear.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/editclear.svg")
+        self.clearSearch.setIcon(icon)
         self.clearSearch.setObjectName("clearSearch")
         self.hboxlayout.addWidget(self.clearSearch)
-
         self.search = QtGui.QLineEdit(self.layoutWidget)
         self.search.setObjectName("search")
         self.hboxlayout.addWidget(self.search)
-
         self.findNext = QtGui.QPushButton(self.layoutWidget)
         self.findNext.setObjectName("findNext")
         self.hboxlayout.addWidget(self.findNext)
         self.vboxlayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralWidget)
-
         self.menuBar = QtGui.QMenuBar(MainWindow)
         self.menuBar.setGeometry(QtCore.QRect(0,0,536,31))
         self.menuBar.setObjectName("menuBar")
-
         self.menuEdit = QtGui.QMenu(self.menuBar)
         self.menuEdit.setObjectName("menuEdit")
-
         self.menuInsert = QtGui.QMenu(self.menuEdit)
         self.menuInsert.setObjectName("menuInsert")
-
         self.menuPost = QtGui.QMenu(self.menuBar)
         self.menuPost.setObjectName("menuPost")
         MainWindow.setMenuBar(self.menuBar)
-
         self.statusBar = QtGui.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
-
         self.toolBar = QtGui.QToolBar(MainWindow)
         self.toolBar.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
-
         self.actionPreview = QtGui.QAction(MainWindow)
-        self.actionPreview.setIcon(QtGui.QIcon(":/icons/icons/preview.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/preview.svg")
+        self.actionPreview.setIcon(icon)
         self.actionPreview.setObjectName("actionPreview")
-
         self.actionCut = QtGui.QAction(MainWindow)
-        self.actionCut.setIcon(QtGui.QIcon(":/icons/icons/editcut.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/editcut.svg")
+        self.actionCut.setIcon(icon)
         self.actionCut.setObjectName("actionCut")
-
         self.actionCopy = QtGui.QAction(MainWindow)
-        self.actionCopy.setIcon(QtGui.QIcon(":/icons/icons/editcopy.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/editcopy.svg")
+        self.actionCopy.setIcon(icon)
         self.actionCopy.setObjectName("actionCopy")
-
         self.actionPaste = QtGui.QAction(MainWindow)
-        self.actionPaste.setIcon(QtGui.QIcon(":/icons/icons/editpaste.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/editpaste.svg")
+        self.actionPaste.setIcon(icon)
         self.actionPaste.setObjectName("actionPaste")
-
         self.actionUndo = QtGui.QAction(MainWindow)
-        self.actionUndo.setIcon(QtGui.QIcon(":/icons/icons/undo.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/undo.svg")
+        self.actionUndo.setIcon(icon)
         self.actionUndo.setObjectName("actionUndo")
-
         self.actionRedo = QtGui.QAction(MainWindow)
-        self.actionRedo.setIcon(QtGui.QIcon(":/icons/icons/redo.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/redo.svg")
+        self.actionRedo.setIcon(icon)
         self.actionRedo.setObjectName("actionRedo")
-
         self.actionDelete = QtGui.QAction(MainWindow)
-        self.actionDelete.setIcon(QtGui.QIcon(":/icons/icons/delete.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/delete.svg")
+        self.actionDelete.setIcon(icon)
         self.actionDelete.setObjectName("actionDelete")
-
         self.actionSelect_All = QtGui.QAction(MainWindow)
         self.actionSelect_All.setObjectName("actionSelect_All")
-
         self.actionFlickr_Image = QtGui.QAction(MainWindow)
-        self.actionFlickr_Image.setIcon(QtGui.QIcon(":/icons/icons/camera.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/camera.svg")
+        self.actionFlickr_Image.setIcon(icon)
         self.actionFlickr_Image.setObjectName("actionFlickr_Image")
-
         self.actionOpenomy_File = QtGui.QAction(MainWindow)
-        self.actionOpenomy_File.setIcon(QtGui.QIcon(":/icons/icons/openomy.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/openomy.svg")
+        self.actionOpenomy_File.setIcon(icon)
         self.actionOpenomy_File.setObjectName("actionOpenomy_File")
-
         self.actionSave = QtGui.QAction(MainWindow)
-        self.actionSave.setIcon(QtGui.QIcon(":/icons/icons/filesave.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/filesave.svg")
+        self.actionSave.setIcon(icon)
         self.actionSave.setObjectName("actionSave")
-
         self.actionClose = QtGui.QAction(MainWindow)
-        self.actionClose.setIcon(QtGui.QIcon(":/icons/icons/fileclose.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/fileclose.svg")
+        self.actionClose.setIcon(icon)
         self.actionClose.setObjectName("actionClose")
-
         self.actionOpenomyTag = QtGui.QAction(MainWindow)
         self.actionOpenomyTag.setObjectName("actionOpenomyTag")
-
         self.actionRST = QtGui.QAction(MainWindow)
         self.actionRST.setCheckable(True)
         self.actionRST.setChecked(True)
-        self.actionRST.setIcon(QtGui.QIcon(":/icons/icons/fonts.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/fonts.svg")
+        self.actionRST.setIcon(icon)
         self.actionRST.setObjectName("actionRST")
-
         self.actionFind = QtGui.QAction(MainWindow)
-        self.actionFind.setIcon(QtGui.QIcon(":/icons/icons/find.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/find.svg")
+        self.actionFind.setIcon(icon)
         self.actionFind.setObjectName("actionFind")
-
         self.actionFindNext = QtGui.QAction(MainWindow)
-        self.actionFindNext.setIcon(QtGui.QIcon(":/icons/icons/next.svg"))
+        icon = QtGui.QIcon()
+        icon.addFile(":/icons/icons/next.svg")
+        self.actionFindNext.setIcon(icon)
         self.actionFindNext.setObjectName("actionFindNext")
         self.menuInsert.addAction(self.actionFlickr_Image)
         self.menuInsert.addAction(self.actionOpenomy_File)
@@ -272,7 +258,6 @@ class Ui_MainWindow(object):
 
 import icons_rc
 
-
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
@@ -281,3 +266,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

@@ -422,9 +422,10 @@ class Blog:
                         self.renderStory(s)
                 else:
                     raise 'BogusPage'
-                    
             elif path[0]=='weblog':
-                if path[1]=='index.html':
+		if len(path)==1:
+		  return
+                elif path[1]=='index.html':
                     self.renderBlogIndexPage(0)
                 elif path[1].startswith("index-"):
                     pnum=re.split('([0-9]*)',path[1])[1]

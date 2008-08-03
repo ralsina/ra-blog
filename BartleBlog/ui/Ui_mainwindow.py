@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/centos/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/mainwindow.ui'
+# Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Mon Nov 19 18:32:07 2007
-#      by: PyQt4 UI code generator 4.3.1
+# Created: Sat Aug  2 12:37:01 2008
+#      by: PyQt4 UI code generator 4.4.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,23 +12,19 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(QtCore.QSize(QtCore.QRect(0,0,686,558).size()).expandedTo(MainWindow.minimumSizeHint()))
-
+        MainWindow.resize(686,558)
         self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget.setGeometry(QtCore.QRect(0,57,686,477))
         self.centralwidget.setObjectName("centralwidget")
-
         self.vboxlayout = QtGui.QVBoxLayout(self.centralwidget)
-        self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
+        self.vboxlayout.setMargin(9)
         self.vboxlayout.setObjectName("vboxlayout")
-
         self.splitter = QtGui.QSplitter(self.centralwidget)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
-
         self.tree = QtGui.QTreeView(self.splitter)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tree.sizePolicy().hasHeightForWidth())
@@ -37,15 +33,12 @@ class Ui_MainWindow(object):
         self.tree.setAnimated(False)
         self.tree.setAllColumnsShowFocus(True)
         self.tree.setObjectName("tree")
-
         self.viewer = PBrowser(self.splitter)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(13),QtGui.QSizePolicy.Policy(13))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Ignored,QtGui.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.viewer.sizePolicy().hasHeightForWidth())
         self.viewer.setSizePolicy(sizePolicy)
-
         font = QtGui.QFont()
         font.setFamily("Bitstream Vera Sans")
         self.viewer.setFont(font)
@@ -53,95 +46,90 @@ class Ui_MainWindow(object):
         self.viewer.setObjectName("viewer")
         self.vboxlayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralwidget)
-
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0,0,686,29))
+        self.menubar.setGeometry(QtCore.QRect(0,0,686,27))
         self.menubar.setObjectName("menubar")
-
         self.menuSettings = QtGui.QMenu(self.menubar)
         self.menuSettings.setObjectName("menuSettings")
-
         self.menu_Post = QtGui.QMenu(self.menubar)
         self.menu_Post.setObjectName("menu_Post")
-
         self.menuBlog = QtGui.QMenu(self.menubar)
         self.menuBlog.setObjectName("menuBlog")
-
         self.menuRegenerate_HTML = QtGui.QMenu(self.menuBlog)
         self.menuRegenerate_HTML.setObjectName("menuRegenerate_HTML")
-
         self.menuRender_Pages = QtGui.QMenu(self.menuBlog)
         self.menuRender_Pages.setObjectName("menuRender_Pages")
-
         self.menu_File = QtGui.QMenu(self.menubar)
         self.menu_File.setObjectName("menu_File")
-
         self.menuImport = QtGui.QMenu(self.menu_File)
         self.menuImport.setObjectName("menuImport")
-
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
-
         self.statusbar = QtGui.QStatusBar(MainWindow)
+        self.statusbar.setGeometry(QtCore.QRect(0,534,686,24))
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
         self.toolBar = QtGui.QToolBar(MainWindow)
+        self.toolBar.setGeometry(QtCore.QRect(0,27,686,30))
         self.toolBar.setOrientation(QtCore.Qt.Horizontal)
         self.toolBar.setObjectName("toolBar")
-        MainWindow.addToolBar(QtCore.Qt.ToolBarArea(4),self.toolBar)
-
+        MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
         self.actionEditPost = QtGui.QAction(MainWindow)
         self.actionEditPost.setCheckable(False)
-        self.actionEditPost.setIcon(QtGui.QIcon(":/icons/icons/edit.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/edit.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionEditPost.setIcon(icon)
         self.actionEditPost.setObjectName("actionEditPost")
-
         self.actionRender_Blog = QtGui.QAction(MainWindow)
-        self.actionRender_Blog.setIcon(QtGui.QIcon(":/icons/icons/webexport.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/webexport.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionRender_Blog.setIcon(icon)
         self.actionRender_Blog.setObjectName("actionRender_Blog")
-
         self.actionNewPost = QtGui.QAction(MainWindow)
-        self.actionNewPost.setIcon(QtGui.QIcon(":/icons/icons/filenew.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/filenew.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionNewPost.setIcon(icon)
         self.actionNewPost.setObjectName("actionNewPost")
-
         self.actionConfigure = QtGui.QAction(MainWindow)
-        self.actionConfigure.setIcon(QtGui.QIcon(":/icons/icons/configure.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/configure.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionConfigure.setIcon(icon)
         self.actionConfigure.setObjectName("actionConfigure")
-
         self.actionImport_Advogato = QtGui.QAction(MainWindow)
         self.actionImport_Advogato.setObjectName("actionImport_Advogato")
-
         self.actionImport_PyDS = QtGui.QAction(MainWindow)
         self.actionImport_PyDS.setObjectName("actionImport_PyDS")
-
         self.actionRegenerateNeeded = QtGui.QAction(MainWindow)
         self.actionRegenerateNeeded.setObjectName("actionRegenerateNeeded")
-
         self.actionRegenerateAll = QtGui.QAction(MainWindow)
         self.actionRegenerateAll.setObjectName("actionRegenerateAll")
-
         self.actionDelete = QtGui.QAction(MainWindow)
-        self.actionDelete.setIcon(QtGui.QIcon(":/icons/icons/delete.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/delete.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionDelete.setIcon(icon)
         self.actionDelete.setObjectName("actionDelete")
-
         self.actionRender_Full_Blog = QtGui.QAction(MainWindow)
-        self.actionRender_Full_Blog.setIcon(QtGui.QIcon(":/icons/icons/webexport.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/webexport.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionRender_Full_Blog.setIcon(icon)
         self.actionRender_Full_Blog.setObjectName("actionRender_Full_Blog")
-
         self.actionAbout_BartleBlog = QtGui.QAction(MainWindow)
         self.actionAbout_BartleBlog.setObjectName("actionAbout_BartleBlog")
-
         self.actionNew_Story = QtGui.QAction(MainWindow)
-        self.actionNew_Story.setIcon(QtGui.QIcon(":/icons/icons/filenew.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/filenew.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionNew_Story.setIcon(icon)
         self.actionNew_Story.setObjectName("actionNew_Story")
-
         self.actionQuit = QtGui.QAction(MainWindow)
-        self.actionQuit.setIcon(QtGui.QIcon(":/icons/icons/exit.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/exit.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionQuit.setIcon(icon)
         self.actionQuit.setObjectName("actionQuit")
-
         self.actionBartleBlog_Help = QtGui.QAction(MainWindow)
-        self.actionBartleBlog_Help.setIcon(QtGui.QIcon(":/icons/icons/help.svg"))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/icons/help.svg"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        self.actionBartleBlog_Help.setIcon(icon)
         self.actionBartleBlog_Help.setObjectName("actionBartleBlog_Help")
         self.menuSettings.addAction(self.actionConfigure)
         self.menu_Post.addAction(self.actionEditPost)
@@ -207,7 +195,6 @@ class Ui_MainWindow(object):
 from pbrowser import PBrowser
 import icons_rc
 
-
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
@@ -216,3 +203,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

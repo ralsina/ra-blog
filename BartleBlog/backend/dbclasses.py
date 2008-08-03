@@ -115,7 +115,12 @@ def frender (self):
     if self.structured:
         # Since this is to be embedded on HTML pages, start at H2
         # instead of H1
-        html,code=rst.rst2html(self.text, settings_overrides= {'initial_header_level':2})
+        try:
+          html,code=rst.rst2html(self.text, settings_overrides= {'initial_header_level':2})
+        except:
+          print "ERROR rendering ",self.title
+          html=''
+          code=0 
         # FIXME notice RST errors
         self.rendered=html
         self.is_dirty=code
