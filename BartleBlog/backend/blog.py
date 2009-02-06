@@ -443,11 +443,13 @@ class Blog:
                         day=int(path[3].split('.')[0])
                         self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))            
                 else:
-                    raise 'BogusPage'
+		    pass
+                    #raise 'BogusPage'
             elif path[0]=='preview':
                 self.renderBlogPostPreview(path[1])
             else:
-                raise 'BogusPage'
+		pass
+                #raise 'BogusPage'
             page.is_dirty=False
         except 'BogusPage':
             print 'Bogus Page: ',page.path
