@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/mainwindow.ui'
 #
-# Created: Sat Aug  2 12:37:01 2008
+# Created: Sat Aug  2 23:24:35 2008
 #      by: PyQt4 UI code generator 4.4.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,12 +14,10 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(686,558)
         self.centralwidget = QtGui.QWidget(MainWindow)
-        self.centralwidget.setGeometry(QtCore.QRect(0,57,686,477))
+        self.centralwidget.setGeometry(QtCore.QRect(0,65,686,469))
         self.centralwidget.setObjectName("centralwidget")
-        self.vboxlayout = QtGui.QVBoxLayout(self.centralwidget)
-        self.vboxlayout.setSpacing(6)
-        self.vboxlayout.setMargin(9)
-        self.vboxlayout.setObjectName("vboxlayout")
+        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
+        self.verticalLayout.setObjectName("verticalLayout")
         self.splitter = QtGui.QSplitter(self.centralwidget)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
@@ -44,7 +42,7 @@ class Ui_MainWindow(object):
         self.viewer.setFont(font)
         self.viewer.setOpenExternalLinks(True)
         self.viewer.setObjectName("viewer")
-        self.vboxlayout.addWidget(self.splitter)
+        self.verticalLayout.addWidget(self.splitter)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0,0,686,27))
@@ -60,6 +58,7 @@ class Ui_MainWindow(object):
         self.menuRender_Pages = QtGui.QMenu(self.menuBlog)
         self.menuRender_Pages.setObjectName("menuRender_Pages")
         self.menu_File = QtGui.QMenu(self.menubar)
+        self.menu_File.setGeometry(QtCore.QRect(0,0,200,166))
         self.menu_File.setObjectName("menu_File")
         self.menuImport = QtGui.QMenu(self.menu_File)
         self.menuImport.setObjectName("menuImport")
@@ -71,8 +70,14 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.toolBar = QtGui.QToolBar(MainWindow)
-        self.toolBar.setGeometry(QtCore.QRect(0,27,686,30))
+        self.toolBar.setGeometry(QtCore.QRect(0,27,686,38))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.toolBar.sizePolicy().hasHeightForWidth())
+        self.toolBar.setSizePolicy(sizePolicy)
         self.toolBar.setOrientation(QtCore.Qt.Horizontal)
+        self.toolBar.setIconSize(QtCore.QSize(24,24))
         self.toolBar.setObjectName("toolBar")
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea,self.toolBar)
         self.actionEditPost = QtGui.QAction(MainWindow)
