@@ -12,6 +12,9 @@ import shutil
 from BartleBlog.util import slimmer
 import BartleBlog.backend.config as config
 
+import datetime
+import PyRSS2Gen
+
 class Blog:
     def __init__(self):
 
@@ -65,21 +68,44 @@ class Blog:
         return f.read()
 
     def renderRSS(self,title,curDate,dname,fname,postlist,lang=None):
-        template = self.lookup.get_template('feedRSS.tmpl')
-        if not lang:
-            langcode=config.getValue('blog', 'langcode', 'en')
-        else:
-            langcode=lang.code
+#        template = self.lookup.get_template('feedRSS.tmpl')
+#        if not lang:
+#            langcode=config.getValue('blog', 'langcode', 'en')
+#        else:
+#            langcode=lang.code
+#
+#        rss=template.render_unicode(title=title, curDate=curDate, 
+#                                    postlist=postlist, macros=self.macros, 
+#                                    blog=self, langcode=langcode, lang=lang)
+#        if not os.path.exists(dname):
+#            os.makedirs(dname)
+#        if os.path.exists(fname):
+#            os.unlink(fname)
 
-        rss=template.render_unicode(title=title, curDate=curDate, 
-                                    postlist=postlist, macros=self.macros, 
-                                    blog=self, langcode=langcode, lang=lang)
-        if not os.path.exists(dname):
-            os.makedirs(dname)
-        if os.path.exists(fname):
-            os.unlink(fname)
-        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
-        f.write(rss)
+        items=[]
+        for post in postlist:
+          tpost = post.translated(lang)
+          items.append(
+              PyRSS2Gen.RSSItem(
+                title = tpost.title, 
+                link  = getattr(tpost, 'link', None), 
+                description = tpost.rendered, 
+                guid = self.macros.absoluteUrl(post.myurl(lang)), 
+                pubDate = post.pubDate
+              )
+            )
+
+        rss = PyRSS2Gen.RSS2(
+                title = title, 
+                link  = self.basepath, 
+                description = self.description, 
+                lastBuildDate = curDate, 
+                items = items
+          )
+
+#        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
+        f=open(os.path.join(dname,fname),"w")
+        rss.write_xml(f)
 
     def renderMakoPage(self, template, dname, fname, **kwargs):
         template = self.lookup.get_template(template)
@@ -311,7 +337,7 @@ class Blog:
         numPages=int(postlist.count()/10)
         
         self.renderRSS(title,curDate,dname,'rss.xml',postlist[0:20])
-	for i in range(0,numPages+1):
+        for i in range(0,numPages+1):
           self.renderBlogIndexPage(i)
         # Now the translations
         for tr in db.Translation.select():
@@ -423,8 +449,8 @@ class Blog:
                 else:
                     raise 'BogusPage'
             elif path[0]=='weblog':
-		if len(path)==1:
-		  return
+                if len(path)==1:
+                    return
                 elif path[1]=='index.html':
                     self.renderBlogIndexPage(0)
                 elif path[1].startswith("index-"):
@@ -443,12 +469,12 @@ class Blog:
                         day=int(path[3].split('.')[0])
                         self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))            
                 else:
-		    pass
+                    pass
                     #raise 'BogusPage'
             elif path[0]=='preview':
                 self.renderBlogPostPreview(path[1])
             else:
-		pass
+                pass
                 #raise 'BogusPage'
             page.is_dirty=False
         except 'BogusPage':

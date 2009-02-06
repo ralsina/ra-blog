@@ -14,7 +14,6 @@ from PyQt4 import QtGui, QtCore
 import BartleBlog.backend.dbclasses as db
 from BartleBlog.backend.blog import Blog
 
-from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
 import BartleBlog.ui.Ui_about
 from BartleBlog.ui.config import ConfigWindow
 from BartleBlog.ui.editor import EditorWindow
@@ -25,6 +24,7 @@ import BartleBlog.backend.config as config
 import BartleBlog.backend.preview as preview
 
 from BartleBlog.ui.postmodel import *
+from BartleBlog.ui.Ui_mainwindow import Ui_MainWindow
 
 class MainWindow(QtGui.QMainWindow):
     def __init__(self):
