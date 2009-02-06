@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/technorati_config.ui'
 #
-# Created: Sat Aug  2 12:37:08 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:30 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(400,300)
+        Form.resize(400, 300)
         self.vboxlayout = QtGui.QVBoxLayout(Form)
         self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
@@ -23,7 +23,7 @@ class Ui_Form(object):
         self.username = QtGui.QLineEdit(Form)
         self.username.setObjectName("username")
         self.vboxlayout.addWidget(self.username)
-        spacerItem = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
 
         self.retranslateUi(Form)

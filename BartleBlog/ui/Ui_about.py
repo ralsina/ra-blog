@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/about.ui'
 #
-# Created: Sat Aug  2 12:37:06 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:28 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(341,373)
+        Dialog.resize(341, 373)
         self.vboxlayout = QtGui.QVBoxLayout(Dialog)
         self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
@@ -21,7 +21,7 @@ class Ui_Dialog(object):
         self.label_2.setObjectName("label_2")
         self.vboxlayout.addWidget(self.label_2)
         self.label = QtGui.QLabel(Dialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5), QtGui.QSizePolicy.Policy(5))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -35,7 +35,7 @@ class Ui_Dialog(object):
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
-        spacerItem = QtGui.QSpacerItem(71,31,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem = QtGui.QSpacerItem(71, 31, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.okButton = QtGui.QPushButton(Dialog)
         self.okButton.setObjectName("okButton")
@@ -43,7 +43,7 @@ class Ui_Dialog(object):
         self.vboxlayout.addLayout(self.hboxlayout)
 
         self.retranslateUi(Dialog)
-        QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),Dialog.accept)
+        QtCore.QObject.connect(self.okButton, QtCore.SIGNAL("clicked()"), Dialog.accept)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):

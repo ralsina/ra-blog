@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/flickr.ui'
 #
-# Created: Sat Aug  2 12:37:00 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:25 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(713,572)
+        Dialog.resize(713, 572)
         self.hboxlayout = QtGui.QHBoxLayout(Dialog)
         self.hboxlayout.setMargin(9)
         self.hboxlayout.setSpacing(6)
@@ -36,7 +36,7 @@ class Ui_Dialog(object):
         self.uploadBtn = QtGui.QPushButton(Dialog)
         self.uploadBtn.setObjectName("uploadBtn")
         self.vboxlayout.addWidget(self.uploadBtn)
-        spacerItem = QtGui.QSpacerItem(20,331,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(20, 331, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
         self.closeBtn = QtGui.QPushButton(Dialog)
         self.closeBtn.setObjectName("closeBtn")

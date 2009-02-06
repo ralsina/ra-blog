@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/main_config.ui'
 #
-# Created: Sat Aug  2 12:37:03 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:25 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(416,522)
+        Dialog.resize(416, 522)
         self.vboxlayout = QtGui.QVBoxLayout(Dialog)
         self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
@@ -21,12 +21,12 @@ class Ui_Dialog(object):
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
         self.list = QtGui.QListWidget(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(3),QtGui.QSizePolicy.Policy(7))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(3), QtGui.QSizePolicy.Policy(7))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.list.sizePolicy().hasHeightForWidth())
         self.list.setSizePolicy(sizePolicy)
-        self.list.setBaseSize(QtCore.QSize(150,0))
+        self.list.setBaseSize(QtCore.QSize(150, 0))
         self.list.setObjectName("list")
         self.layoutWidget = QtGui.QWidget(self.splitter)
         self.layoutWidget.setObjectName("layoutWidget")
@@ -35,12 +35,12 @@ class Ui_Dialog(object):
         self.vboxlayout1.setSpacing(0)
         self.vboxlayout1.setObjectName("vboxlayout1")
         self.frame = QtGui.QFrame(self.layoutWidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7), QtGui.QSizePolicy.Policy(7))
         sizePolicy.setHorizontalStretch(4)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy)
-        self.frame.setMinimumSize(QtCore.QSize(400,16))
+        self.frame.setMinimumSize(QtCore.QSize(400, 16))
         self.frame.setFrameShape(QtGui.QFrame.NoFrame)
         self.frame.setFrameShadow(QtGui.QFrame.Raised)
         self.frame.setObjectName("frame")
@@ -49,7 +49,7 @@ class Ui_Dialog(object):
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
-        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.pushButton = QtGui.QPushButton(self.layoutWidget)
         self.pushButton.setObjectName("pushButton")
@@ -58,7 +58,7 @@ class Ui_Dialog(object):
         self.vboxlayout.addWidget(self.splitter)
 
         self.retranslateUi(Dialog)
-        QtCore.QObject.connect(self.pushButton,QtCore.SIGNAL("clicked()"),Dialog.accept)
+        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL("clicked()"), Dialog.accept)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
