@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/import_advogato.ui'
 #
-# Created: Sat Aug  2 12:37:05 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:27 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(455,366)
+        Dialog.resize(455, 366)
         self.vboxlayout = QtGui.QVBoxLayout(Dialog)
         self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
@@ -27,34 +27,34 @@ class Ui_Dialog(object):
         self.prefix = QtGui.QLineEdit(Dialog)
         self.prefix.setMaxLength(8)
         self.prefix.setObjectName("prefix")
-        self.gridlayout.addWidget(self.prefix,2,1,1,1)
+        self.gridlayout.addWidget(self.prefix, 2, 1, 1, 1)
         self.user = QtGui.QLineEdit(Dialog)
         self.user.setObjectName("user")
-        self.gridlayout.addWidget(self.user,0,1,1,2)
+        self.gridlayout.addWidget(self.user, 0, 1, 1, 2)
         self.sameprefix = QtGui.QLabel(Dialog)
         self.sameprefix.setObjectName("sameprefix")
-        self.gridlayout.addWidget(self.sameprefix,2,2,1,1)
+        self.gridlayout.addWidget(self.sameprefix, 2, 2, 1, 1)
         self.password = QtGui.QLineEdit(Dialog)
         self.password.setObjectName("password")
-        self.gridlayout.addWidget(self.password,1,1,1,2)
+        self.gridlayout.addWidget(self.password, 1, 1, 1, 2)
         self.label_2 = QtGui.QLabel(Dialog)
         self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,2,0,1,1)
+        self.gridlayout.addWidget(self.label_2, 2, 0, 1, 1)
         self.overwrite = QtGui.QCheckBox(Dialog)
         self.overwrite.setObjectName("overwrite")
-        self.gridlayout.addWidget(self.overwrite,3,0,1,3)
+        self.gridlayout.addWidget(self.overwrite, 3, 0, 1, 3)
         self.label_3 = QtGui.QLabel(Dialog)
         self.label_3.setObjectName("label_3")
-        self.gridlayout.addWidget(self.label_3,0,0,1,1)
+        self.gridlayout.addWidget(self.label_3, 0, 0, 1, 1)
         self.label = QtGui.QLabel(Dialog)
         self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,1,0,1,1)
+        self.gridlayout.addWidget(self.label, 1, 0, 1, 1)
         self.vboxlayout.addLayout(self.gridlayout)
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
-        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.cancel = QtGui.QPushButton(Dialog)
         self.cancel.setObjectName("cancel")

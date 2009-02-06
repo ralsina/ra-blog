@@ -13,14 +13,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>65</y>
-     <width>686</width>
-     <height>469</height>
-    </rect>
-   </property>
    <layout class="QVBoxLayout" name="verticalLayout" >
     <item>
      <widget class="QSplitter" name="splitter" >
@@ -38,7 +30,7 @@
         <bool>false</bool>
        </property>
        <property name="animated" >
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="allColumnsShowFocus" >
         <bool>true</bool>
@@ -47,14 +39,9 @@
       <widget class="PBrowser" name="viewer" >
        <property name="sizePolicy" >
         <sizepolicy vsizetype="Ignored" hsizetype="Ignored" >
-         <horstretch>0</horstretch>
+         <horstretch>3</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
-       </property>
-       <property name="font" >
-        <font>
-         <family>Bitstream Vera Sans</family>
-        </font>
        </property>
        <property name="openExternalLinks" >
         <bool>true</bool>
@@ -70,7 +57,7 @@
      <x>0</x>
      <y>0</y>
      <width>686</width>
-     <height>27</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSettings" >
@@ -113,8 +100,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>200</width>
-      <height>166</height>
+      <width>100</width>
+      <height>148</height>
      </rect>
     </property>
     <property name="title" >
@@ -148,25 +135,8 @@
    <addaction name="menuBlog" />
    <addaction name="menuHelp" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>534</y>
-     <width>686</width>
-     <height>24</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar" />
   <widget class="QToolBar" name="toolBar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>27</y>
-     <width>686</width>
-     <height>38</height>
-    </rect>
-   </property>
    <property name="sizePolicy" >
     <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
      <horstretch>0</horstretch>

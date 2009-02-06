@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/blog_config.ui'
 #
-# Created: Sat Aug  2 12:37:08 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:29 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,8 +12,8 @@ from PyQt4 import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(400,637)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7),QtGui.QSizePolicy.Policy(7))
+        Form.resize(400, 637)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(7), QtGui.QSizePolicy.Policy(7))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
@@ -28,25 +28,25 @@ class Ui_Form(object):
         self.gridlayout.setObjectName("gridlayout")
         self.label = QtGui.QLabel(Form)
         self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,0,0,1,1)
+        self.gridlayout.addWidget(self.label, 0, 0, 1, 1)
         self.url = QtGui.QLineEdit(Form)
         self.url.setObjectName("url")
-        self.gridlayout.addWidget(self.url,1,1,1,1)
+        self.gridlayout.addWidget(self.url, 1, 1, 1, 1)
         self.author = QtGui.QLineEdit(Form)
         self.author.setObjectName("author")
-        self.gridlayout.addWidget(self.author,2,1,1,1)
+        self.gridlayout.addWidget(self.author, 2, 1, 1, 1)
         self.label_2 = QtGui.QLabel(Form)
         self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,1,0,1,1)
+        self.gridlayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.title = QtGui.QLineEdit(Form)
         self.title.setObjectName("title")
-        self.gridlayout.addWidget(self.title,0,1,1,1)
+        self.gridlayout.addWidget(self.title, 0, 1, 1, 1)
         self.label_6 = QtGui.QLabel(Form)
         self.label_6.setObjectName("label_6")
-        self.gridlayout.addWidget(self.label_6,4,0,1,1)
+        self.gridlayout.addWidget(self.label_6, 4, 0, 1, 1)
         self.label_3 = QtGui.QLabel(Form)
         self.label_3.setObjectName("label_3")
-        self.gridlayout.addWidget(self.label_3,2,0,1,1)
+        self.gridlayout.addWidget(self.label_3, 2, 0, 1, 1)
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
@@ -57,13 +57,13 @@ class Ui_Form(object):
         self.examine = QtGui.QPushButton(Form)
         self.examine.setObjectName("examine")
         self.hboxlayout.addWidget(self.examine)
-        self.gridlayout.addLayout(self.hboxlayout,4,1,1,1)
+        self.gridlayout.addLayout(self.hboxlayout, 4, 1, 1, 1)
         self.label_4 = QtGui.QLabel(Form)
         self.label_4.setObjectName("label_4")
-        self.gridlayout.addWidget(self.label_4,3,0,1,1)
+        self.gridlayout.addWidget(self.label_4, 3, 0, 1, 1)
         self.email = QtGui.QLineEdit(Form)
         self.email.setObjectName("email")
-        self.gridlayout.addWidget(self.email,3,1,1,1)
+        self.gridlayout.addWidget(self.email, 3, 1, 1, 1)
         self.vboxlayout.addLayout(self.gridlayout)
         self.vboxlayout1 = QtGui.QVBoxLayout()
         self.vboxlayout1.setMargin(0)
@@ -80,7 +80,7 @@ class Ui_Form(object):
         self.hboxlayout1.setMargin(0)
         self.hboxlayout1.setSpacing(6)
         self.hboxlayout1.setObjectName("hboxlayout1")
-        spacerItem = QtGui.QSpacerItem(40,20,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout1.addItem(spacerItem)
         self.save = QtGui.QPushButton(Form)
         self.save.setObjectName("save")
@@ -95,13 +95,13 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
-        Form.setTabOrder(self.title,self.url)
-        Form.setTabOrder(self.url,self.author)
-        Form.setTabOrder(self.author,self.email)
-        Form.setTabOrder(self.email,self.folder)
-        Form.setTabOrder(self.folder,self.description)
-        Form.setTabOrder(self.description,self.examine)
-        Form.setTabOrder(self.examine,self.save)
+        Form.setTabOrder(self.title, self.url)
+        Form.setTabOrder(self.url, self.author)
+        Form.setTabOrder(self.author, self.email)
+        Form.setTabOrder(self.email, self.folder)
+        Form.setTabOrder(self.folder, self.description)
+        Form.setTabOrder(self.description, self.examine)
+        Form.setTabOrder(self.examine, self.save)
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))

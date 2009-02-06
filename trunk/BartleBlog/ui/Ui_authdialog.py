@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/authdialog.ui'
 #
-# Created: Sat Aug  2 12:36:59 2008
-#      by: PyQt4 UI code generator 4.4.2
+# Created: Fri Feb  6 13:16:24 2009
+#      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,13 +12,13 @@ from PyQt4 import QtCore, QtGui
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(415,169)
+        Dialog.resize(415, 169)
         self.vboxlayout = QtGui.QVBoxLayout(Dialog)
         self.vboxlayout.setMargin(9)
         self.vboxlayout.setSpacing(6)
         self.vboxlayout.setObjectName("vboxlayout")
         self.message = QtGui.QLabel(Dialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5),QtGui.QSizePolicy.Policy(5))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Policy(5), QtGui.QSizePolicy.Policy(5))
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.message.sizePolicy().hasHeightForWidth())
@@ -31,25 +31,25 @@ class Ui_Dialog(object):
         self.gridlayout.setObjectName("gridlayout")
         self.label = QtGui.QLabel(Dialog)
         self.label.setObjectName("label")
-        self.gridlayout.addWidget(self.label,0,0,1,1)
+        self.gridlayout.addWidget(self.label, 0, 0, 1, 1)
         self.password = QtGui.QLineEdit(Dialog)
         self.password.setEchoMode(QtGui.QLineEdit.Password)
         self.password.setObjectName("password")
-        self.gridlayout.addWidget(self.password,1,1,1,1)
+        self.gridlayout.addWidget(self.password, 1, 1, 1, 1)
         self.user = QtGui.QLineEdit(Dialog)
         self.user.setObjectName("user")
-        self.gridlayout.addWidget(self.user,0,1,1,1)
+        self.gridlayout.addWidget(self.user, 0, 1, 1, 1)
         self.label_2 = QtGui.QLabel(Dialog)
         self.label_2.setObjectName("label_2")
-        self.gridlayout.addWidget(self.label_2,1,0,1,1)
+        self.gridlayout.addWidget(self.label_2, 1, 0, 1, 1)
         self.vboxlayout.addLayout(self.gridlayout)
-        spacerItem = QtGui.QSpacerItem(20,40,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout.addItem(spacerItem)
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setMargin(0)
         self.hboxlayout.setSpacing(6)
         self.hboxlayout.setObjectName("hboxlayout")
-        spacerItem1 = QtGui.QSpacerItem(131,31,QtGui.QSizePolicy.Expanding,QtGui.QSizePolicy.Minimum)
+        spacerItem1 = QtGui.QSpacerItem(131, 31, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem1)
         self.okButton = QtGui.QPushButton(Dialog)
         self.okButton.setObjectName("okButton")
@@ -60,12 +60,12 @@ class Ui_Dialog(object):
         self.vboxlayout.addLayout(self.hboxlayout)
 
         self.retranslateUi(Dialog)
-        QtCore.QObject.connect(self.okButton,QtCore.SIGNAL("clicked()"),Dialog.accept)
-        QtCore.QObject.connect(self.cancelButton,QtCore.SIGNAL("clicked()"),Dialog.reject)
+        QtCore.QObject.connect(self.okButton, QtCore.SIGNAL("clicked()"), Dialog.accept)
+        QtCore.QObject.connect(self.cancelButton, QtCore.SIGNAL("clicked()"), Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-        Dialog.setTabOrder(self.user,self.password)
-        Dialog.setTabOrder(self.password,self.okButton)
-        Dialog.setTabOrder(self.okButton,self.cancelButton)
+        Dialog.setTabOrder(self.user, self.password)
+        Dialog.setTabOrder(self.password, self.okButton)
+        Dialog.setTabOrder(self.okButton, self.cancelButton)
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QtGui.QApplication.translate("Dialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
