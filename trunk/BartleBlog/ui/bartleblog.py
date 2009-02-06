@@ -106,7 +106,11 @@ class MainWindow(QtGui.QMainWindow):
             'Error starting bartleweb.py, previews will not be available.')
             self.previewProcess=None            
         self.editors=[]
-            
+
+
+        self.show()
+        self.init_tree()
+
     def showHelp(self):
         self.help=HelpWindow()
         self.help.show()
@@ -208,8 +212,6 @@ class MainWindow(QtGui.QMainWindow):
 def main():
     app=QtGui.QApplication(sys.argv)
     window=MainWindow()
-    window.show()
-    window.init_tree()
     r=app.exec_()
     if window.previewProcess: window.previewProcess.stop()
     sys.exit(r)
@@ -233,5 +235,6 @@ def my_excepthook(exc_type, exc_value, exc_traceback):
 def install_handler():
     sys.excepthook = my_excepthook
 
-install_handler()
-main()
+if __name__ == "__main__":
+  install_handler()
+  main()
