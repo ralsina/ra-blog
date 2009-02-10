@@ -85,14 +85,17 @@ class Blog:
         items=[]
         for post in postlist:
           tpost = post.translated(lang)
+	  args= {
+                'title' : tpost.title, 
+                'link'  : getattr(tpost, 'link', None), 
+                'description' : tpost.rendered, 
+                'guid' : self.macros.absoluteUrl(post.myurl(lang)), 
+                'pubDate' : post.pubDate
+	  }
+	
+	  if not args['link']: del (args['link']) 
           items.append(
-              PyRSS2Gen.RSSItem(
-                title = tpost.title, 
-                link  = getattr(tpost, 'link', None), 
-                description = tpost.rendered, 
-                guid = self.macros.absoluteUrl(post.myurl(lang)), 
-                pubDate = post.pubDate
-              )
+              PyRSS2Gen.RSSItem(**args)
             )
 
         rss = PyRSS2Gen.RSS2(
