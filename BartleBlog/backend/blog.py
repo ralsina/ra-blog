@@ -152,7 +152,7 @@ class Blog:
         stlist=cat.stories
         stlist.reverse()
         curDate=datetime.datetime.today()
-        self.renderRSS(title,curDate,dname,catname+'.xml',postlist)
+	self.renderRSS(title,curDate,dname,catname+'.xml',postlist[:50])
         self.renderMakoPage(
                 'categorySite.tmpl',
                 dname,
