@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from docutils import nodes
 from docutils.parsers.rst import directives
 from pygments import highlight
@@ -9,7 +10,14 @@ city={
     'hypertext':'html'
 }
 
-pygments_formatter = HtmlFormatter(cssclass='code-block')
+# The default formatter
+INLINESTYLES = True
+DEFAULT = HtmlFormatter(noclasses=INLINESTYLES)
+
+# Add name -> formatter pairs for every variant you want to use
+VARIANTS = {
+    'linenos': HtmlFormatter(noclasses=INLINESTYLES, linenos=True),
+}
 
 def pygments_directive(name, arguments, options, content, lineno,
                        content_offset, block_text, state, state_machine):
@@ -28,10 +36,14 @@ def pygments_directive(name, arguments, options, content, lineno,
         print "No lexer found for "+lname
         # no lexer found - use the text one instead of an exception
         lexer = get_lexer_by_name('text')
-    parsed = highlight(u'\n'.join(content), lexer, pygments_formatter)
+    # take an arbitrary option if more than one is given
+    formatter = options and VARIANTS[options.keys()[0]] or DEFAULT
+    parsed = highlight(u'\n'.join(content), lexer, formatter)
     return [nodes.raw('', parsed, format='html')]
 pygments_directive.arguments = (1, 0, 1)
 pygments_directive.content = 1
+pygments_directive.options = dict([(key, directives.flag) for key in VARIANTS])
+
 directives.register_directive('sourcecode', pygments_directive)
 directives.register_directive('code-block', pygments_directive)
 
