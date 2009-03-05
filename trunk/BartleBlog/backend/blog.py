@@ -283,7 +283,7 @@ class Blog:
                   postlist=postlist[:10],
                   curPage=0,
                   numPages=numPages,
-                  pagTempl="weblog/index-%d.html"
+                  pagTempl="/weblog/index-%d.html"
               )
         self.renderMakoPage(
                 'blogSite.tmpl', 
@@ -294,7 +294,7 @@ class Blog:
                 postlist=postlist[pageNumber*10:pageNumber*10+10],
                 curPage=pageNumber,
                 numPages=numPages,
-                pagTempl="weblog/index-%d.html"
+                pagTempl="/weblog/index-%d.html"
             )
         # Now the translations
         for tr in db.Translation.select():
@@ -312,7 +312,7 @@ class Blog:
                       lang=lang,
                       curPage=0,
                       numPages=numPages,
-                      pagTempl="weblog/tr/%s/index-%%d.html"%lang.code
+                      pagTempl="/weblog/tr/%s/index-%%d.html"%lang.code
                   )
             self.renderMakoPage(
                     'blogSite.tmpl', 
@@ -324,7 +324,7 @@ class Blog:
                     lang=lang,
                     curPage=pageNumber,
                     numPages=numPages,
-                    pagTempl="weblog/tr/%s/index-%%d.html"%lang.code
+                    pagTempl="/weblog/tr/%s/index-%%d.html"%lang.code
                 )
 
     def renderBlogIndex(self):

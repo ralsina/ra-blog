@@ -10,7 +10,7 @@ class Talkr:
     def link(self,post):
         return u'''
             <a href='http://www.talkr.com/app/fetch.app?feed_id=%s&amp;perma_link=%s'>Listen to this post</a>
-            '''%(self.talkrFeedID,urllib.quote(post.myurl()))
+            '''%(self.talkrFeedID,urllib.quote(self.blog.macros.absoluteUrl(post.myurl())))
 
     def chiclet(self):
         return u'''
