@@ -50,9 +50,11 @@ class Blog:
         
     def loadConfig(self):
         self.blog_title=config.getValue('blog', 'title', 'My First Blog')
+        self.blog_subtitle=config.getValue('blog', 'subtitle', 'A Blog')
         self.basepath=config.getValue('blog', 'url', 'http://some.host/some_path/')
         if self.basepath[-1]<>'/':
             self.basepath+='/'
+        self.url=self.basepath
         self.author=config.getValue('blog', 'author', 'Joe Doe') 
         self.author_email=config.getValue('blog', 'email', 'joe@doe')
         self.description=config.getValue('blog', 'description', 'My Blog')
@@ -85,20 +87,20 @@ class Blog:
         items=[]
         for post in postlist:
           tpost = post.translated(lang)
-	  args= {
+          args= {
                 'title' : tpost.title, 
                 'link'  : getattr(tpost, 'link', None), 
                 'description' : tpost.rendered, 
                 'guid' : self.macros.absoluteUrl(post.myurl(lang)), 
                 'pubDate' : post.pubDate
-	  }
-	
-	  if not args['link']: del (args['link']) 
+          }
+  
+          if not args['link']: del (args['link']) 
           items.append(
               PyRSS2Gen.RSSItem(**args)
             )
 
-        rss = PyRSS2Gen.RSS2(
+          rss = PyRSS2Gen.RSS2(
                 title = title, 
                 link  = self.basepath, 
                 description = self.description, 
@@ -107,8 +109,8 @@ class Blog:
           )
 
 #        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
-        f=open(os.path.join(dname,fname),"w")
-        rss.write_xml(f)
+          f=open(os.path.join(dname,fname),"w")
+          rss.write_xml(f)
 
     def renderMakoPage(self, template, dname, fname, **kwargs):
         template = self.lookup.get_template(template)
@@ -152,7 +154,7 @@ class Blog:
         stlist=cat.stories
         stlist.reverse()
         curDate=datetime.datetime.today()
-	self.renderRSS(title,curDate,dname,catname+'.xml',postlist[:50])
+        self.renderRSS(title,curDate,dname,catname+'.xml',postlist[:50])
         self.renderMakoPage(
                 'categorySite.tmpl',
                 dname,

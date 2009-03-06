@@ -12,11 +12,11 @@ city={
 
 # The default formatter
 INLINESTYLES = True
-DEFAULT = HtmlFormatter(noclasses=INLINESTYLES)
+DEFAULT = HtmlFormatter(noclasses=INLINESTYLES, cssclass="code-block" )
 
 # Add name -> formatter pairs for every variant you want to use
 VARIANTS = {
-    'linenos': HtmlFormatter(noclasses=INLINESTYLES, linenos=True),
+    'linenos': HtmlFormatter(noclasses=INLINESTYLES, linenos="table", cssclass="code-block"),
 }
 
 def pygments_directive(name, arguments, options, content, lineno,

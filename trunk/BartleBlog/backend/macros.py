@@ -47,16 +47,19 @@ class Macros:
     def translationsBar(self):
         tl=db.Translation.select()
         if tl.count():
-            s="Available in: "+"&nbsp;&bull;&nbsp;".join(['<a href="/tr/%s/weblog/index.html">%s</a>'%(t.code, t.name) for t in tl])            
-            s+="&nbsp;&bull;&nbsp;"+'<a href="/weblog/index.html">%s</a>'%config.getValue('blog', 'langname', 'English')
+            s="""Available in: %s"""% \
+            """<span class="meta-sep">|</span>""".join(['<span><a href="%sweblog/index.html">%s</a></span>'%('/tr/'+t.code, t.name) for t in tl]+\
+              ['<span><a href="%sweblog/index.html">%s</a></span>'%('/',config.getValue('blog', 'langname', 'English' ))])  
             return s
         return ""
 
     def translationsBarForPost(self, post):
         tl=post.translations()
         if tl:
-            s="Available in: "+"&nbsp;&bull;&nbsp;".join(['<a href="%s">%s</a>'%(self.weblogPermaLink(post, t), t.name) for t in tl])            
-            s+="&nbsp;&bull;&nbsp;"+'<a href="%s">%s</a>'%(self.weblogPermaLink(post), config.getValue('blog', 'langname', 'English'))
+            ms="""<span class="meta-sep">|</span>"""
+            s="""Available in: %s"""% \
+            ms.join(['<span><a href="%s">%s</a></span>'%(self.weblogPermaLink(post, t), t.name) for t in tl]+\
+                ['<span><a href="%s">%s</a></span>'%(self.weblogPermaLink(post),config.getValue('blog', 'langname', 'English' ))])  
             return s
         return ""
         
