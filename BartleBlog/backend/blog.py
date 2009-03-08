@@ -9,11 +9,11 @@ import dbclasses as db
 from macros import Macros
 import shutil
 
-from BartleBlog.util import slimmer
+from BartleBlog.util import slimmer,PyRSS2Gen
 import BartleBlog.backend.config as config
 
 import datetime
-from util import PyRSS2Gen
+
 
 class Blog:
     def __init__(self):
