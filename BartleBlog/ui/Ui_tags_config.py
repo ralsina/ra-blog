@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/tags_config.ui'
 #
-# Created: Fri Feb  6 13:16:26 2009
+# Created: Sat Mar  7 23:38:58 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!

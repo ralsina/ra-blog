@@ -15,9 +15,9 @@ class HaloScan:
             id="STORY"+post.postID
         else:
             id=post.postID
-        return u'''
-            <a href="javascript:HaloScan('%s');">
-            <script type="text/javascript">postCount('%s');</script></a>'''%(id,id)
+        return u'''<a href="javascript:HaloScan('%s');" target="_self">
+                   <script type="text/javascript">postCount('%s');</script></a>
+                '''%(id,id)
 
     def trackback(self,post):
         if isinstance(post,db.Story):

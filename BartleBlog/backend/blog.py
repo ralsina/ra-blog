@@ -13,7 +13,7 @@ from BartleBlog.util import slimmer
 import BartleBlog.backend.config as config
 
 import datetime
-import PyRSS2Gen
+from util import PyRSS2Gen
 
 class Blog:
     def __init__(self):
