@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project BartleBlog -->
-<!-- Saved: 2009-03-07, 23:57:16 -->
+<!-- Saved: 2009-03-09, 14:36:18 -->
 <!-- Copyright (C) 2009 Roberto Alsina, ralsina@kde.org -->
 <Project version="4.6">
   <Language>en</Language>
@@ -93,6 +93,8 @@
     <Source>rsteditor/Ui_testwin.py</Source>
     <Source>BartleBlog/ui/Ui_translation_config.py</Source>
     <Source>BartleBlog/ui/translation_config.py</Source>
+    <Source>BartleBlog/util/PyRSS2Gen.py</Source>
+    <Source>BartleBlog/util/feedburner.py</Source>
   </Sources>
   <Forms>
     <Form>BartleBlog/ui/openomy_config.ui</Form>
@@ -114,6 +116,7 @@
     <Form>rsteditor/testwin.ui</Form>
     <Form>BartleBlog/ui/translation_config.ui</Form>
     <Form>BartleBlog/ui/newmainwindow.ui</Form>
+    <Form>BartleBlog/ui/feedburner_config.ui</Form>
   </Forms>
   <Translations>
   </Translations>

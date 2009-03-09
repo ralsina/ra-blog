@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/ralsina/Desktop/proyectos/bartleblog/trunk/BartleBlog/ui/blog_config.ui'
 #
-# Created: Sat Mar  7 23:39:00 2009
+# Created: Mon Mar  9 14:41:48 2009
 #      by: PyQt4 UI code generator 4.4.4
 #
 # WARNING! All changes made in this file will be lost!
