@@ -12,6 +12,10 @@ class Talkr:
             <a href='http://www.talkr.com/app/fetch.app?feed_id=%s&amp;perma_link=%s'>Listen to this post</a>
             '''%(self.talkrFeedID,urllib.quote(self.blog.macros.absoluteUrl(post.myurl())))
 
+    def url(self, post):
+        return u'http://www.talkr.com/app/fetch.app?feed_id=%s&amp;perma_link=%s'\
+        %(self.talkrFeedID,urllib.quote(self.blog.macros.absoluteUrl(post.myurl())))
+
     def chiclet(self):
         return u'''
             <a href='http://www.talkr.com/app/cast_pods.app?feed_id=%s'>
