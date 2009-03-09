@@ -11,6 +11,7 @@ from BartleBlog.ui.blog_config import BlogConfigWidget
 from BartleBlog.ui.menu_config import MenuConfigWidget
 from BartleBlog.ui.technorati_config import TechnoratiConfigWidget
 from BartleBlog.ui.translation_config import TranslationConfigWidget
+from BartleBlog.ui.feedburner_config import FeedBurnerConfigWidget
 
 class ConfigWindow(QtGui.QDialog):
     def __init__(self, blog,  page=None):
@@ -47,6 +48,9 @@ class ConfigWindow(QtGui.QDialog):
 
         QtGui.QListWidgetItem("Translations",self.ui.list)
         self.widgets['translations']=TranslationConfigWidget
+
+        QtGui.QListWidgetItem("FeedBurner",self.ui.list)
+        self.widgets['feedburner']=FeedBurnerConfigWidget
 
         QtCore.QObject.connect(self.ui.list,
             QtCore.SIGNAL("currentItemChanged( QListWidgetItem *, QListWidgetItem *)"),
