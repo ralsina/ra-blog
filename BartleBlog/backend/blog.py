@@ -95,9 +95,9 @@ class Blog:
                 'pubDate' : post.pubDate
           }
           if lang=='en':
-              items.append('enclosure' : PyRSS2Gen.Enclosure(self.macros.talkr.url(post),
+              args['enclosure' : PyRSS2Gen.Enclosure(self.macros.talkr.url(post),
                                                             0, 
-                                                            'audio/mpeg'))
+                                                            'audio/mpeg')]
   
           if not args['link']: del (args['link']) 
           items.append(
