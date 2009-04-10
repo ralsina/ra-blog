@@ -108,7 +108,6 @@ class MainWindow(QtGui.QMainWindow):
         self.editors=[]
 
 
-        self.show()
         self.init_tree()
 
     def showHelp(self):
@@ -212,6 +211,7 @@ class MainWindow(QtGui.QMainWindow):
 def main():
     app=QtGui.QApplication(sys.argv)
     window=MainWindow()
+    window.show()
     r=app.exec_()
     if window.previewProcess: window.previewProcess.stop()
     sys.exit(r)

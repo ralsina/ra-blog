@@ -48,8 +48,10 @@ class Macros:
         tl=db.Translation.select()
         if tl.count():
             s="""Available in: %s"""% \
-            """<span class="meta-sep">|</span>""".join(['<span><a href="%s/weblog/index.html">%s</a></span>'%('/tr/'+t.code, t.name) for t in tl]+\
-              ['<span><a href="%sweblog/index.html">%s</a></span>'%('',config.getValue('blog', 'langname', 'English' ))])  
+            """<span class="meta-sep">|</span>""".join(['<span><a href="%s/weblog/index.html">%s</a></span>'\
+                                                        %('/tr/'+t.code, t.name) for t in tl]+\
+              ['<span><a href="%sweblog/index.html">%s</a></span>'%\
+              ('/',config.getValue('blog', 'langname', 'English' ))])  
             return s
         return ""
 
