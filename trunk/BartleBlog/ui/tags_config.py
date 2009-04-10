@@ -78,7 +78,6 @@ class TagsConfigWidget(QtGui.QWidget):
             progress.show()
             i=0
             for match in matches:
-                print match.title
                 progress.setValue(i)
                 i+=1
                 QtCore.QCoreApplication.instance().processEvents()

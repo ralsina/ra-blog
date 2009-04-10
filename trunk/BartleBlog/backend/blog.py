@@ -118,11 +118,22 @@ class Blog:
           rss.write_xml(f)
 
     def renderMakoPage(self, template, dname, fname, **kwargs):
-        template = self.lookup.get_template(template)
         kwargs['macros']=self.macros
         kwargs['blog']=self
         if not 'lang' in kwargs:
             kwargs['lang']=None
+        if kwargs['lang'] and kwargs['lang']<>'en': # translated template
+          template_tr=template+"."+kwargs['lang'].code
+          try:
+            print "Got ", template_tr
+            template = self.lookup.get_template(template_tr)
+          except: # Maybe the translated template doesn't exist
+            print "Got ", template
+            template = self.lookup.get_template(template)
+        else:
+          print "Got ", template
+          template = self.lookup.get_template(template)
+          
         page=template.render_unicode(**kwargs)
         if not os.path.exists(dname):
             os.makedirs(dname)
