@@ -116,7 +116,7 @@ class Blog:
 #        f=codecs.open(os.path.join(dname,fname),"w","utf-8")
           f=open(os.path.join(dname,fname),"w")
           rss.write_xml(f)
-
+          
     def renderMakoPage(self, template, dname, fname, **kwargs):
         kwargs['macros']=self.macros
         kwargs['blog']=self
@@ -181,6 +181,9 @@ class Blog:
                 storylist=stlist, 
                 cat=cat
             )
+        # Now the translations
+        for tr in db.Translation.select():
+            self.renderRSS(title,curDate,dname,catname+'-'+tr.code+'.xml',postlist[:50],lang=tr)
         
     def renderBlogMonth(self,date):
         start=date.replace(day=1,hour=0,minute=0,second=0)
