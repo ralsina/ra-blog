@@ -103,7 +103,7 @@ class Macros:
         date=post.pubDate
         if isinstance(post, db.Post):
             if lang==None:
-                return self.absoluteUrl("weblog/%s/%02d/%02d.html#%s"%(date.year,date.month,date.day,post.postID))
+                return self.absoluteUrl(post.myurl())
             return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html#%s"%(lang.code,date.year,date.month,date.day,post.postID))
         elif isinstance(post, db.Story):
             if lang==None:
