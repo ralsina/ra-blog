@@ -207,16 +207,9 @@ class Post(SQLObject):
 
     def myurl(self, lang=None):
         if lang:
-            return "tr/%s/weblog/%d/%02d/%02d.html#%s"%(lang.code,
-                                                        self.pubDate.year,
-                                                        self.pubDate.month,
-                                                        self.pubDate.day,
-                                                        self.postID)
+            return "tr/%s/weblog/posts/%s.html"%(lang.code, self.postID)
             
-        return "weblog/%d/%02d/%02d.html#%s"%(self.pubDate.year,
-                                                self.pubDate.month,
-                                                self.pubDate.day,
-                                                self.postID)
+        return "weblog/posts/%s.html"%(self.postID)
     teaser=fteaser
     render=frender
     setCategories=fsetCategories
@@ -228,6 +221,7 @@ class Post(SQLObject):
     
         post=self
         pages=[]
+        pages.append("weblog/posts/%s.html"%(self.postID))
         pages.append('weblog/%s/index.html'%post.pubDate.year)
         pages.append('weblog/%s/%s/index.html'%(post.pubDate.year,post.pubDate.month))
         pages.append('weblog/%s/%s/%s.html'%(post.pubDate.year,post.pubDate.month,post.pubDate.day))
