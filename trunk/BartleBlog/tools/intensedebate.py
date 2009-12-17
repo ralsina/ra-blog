@@ -17,8 +17,8 @@ class IntenseDebate:
             id=post.postID
         return u'''<script>
         var idcomments_acct = '8b0e31fe7776bceaad63dfc5e9c78f1b';
-        var idcomments_post_id=%s;
-        var idcomments_post_url=%s;
+        var idcomments_post_id='%s';
+        var idcomments_post_url='%s';
         </script>
         <script type="text/javascript" src="http://www.intensedebate.com/js/genericLinkWrapperV2.js"></script>
         '''%(id,post.myurl())
