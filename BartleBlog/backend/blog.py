@@ -424,6 +424,17 @@ class Blog:
                             postlist=[post]
                             )
 
+    def renderOnePost(self,postfile):
+        postID=postfile[:-5]
+        post=db.postById(postID)
+        self.renderMakoPage('blogSite.tmpl',
+                            os.path.join(self.dest_dir,"weblog","posts"),
+                            postfile,
+                            title=post.title,
+                            curDate=post.pubDate,
+                            postlist=[post]
+                            )
+
     def renderBlogYear(self,year):
         # Yearly archive page
         start=datetime.datetime(year=year,day=1,month=1)
@@ -484,6 +495,8 @@ class Blog:
                     if path[2]=='index.html' and path[1].isdigit():
                         year=int(path[1])
                         self.renderBlogYear(year)
+                    elif path[1]=='posts':
+                        self.renderOnePost(path[2])
                 elif len(path)==4 and path[1].isdigit() and path[2].isdigit():
                     year=int(path[1])
                     month=int(path[2])
