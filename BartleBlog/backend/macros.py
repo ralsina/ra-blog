@@ -37,6 +37,7 @@ class Macros:
         self.talkr=BartleBlog.tools.talkr.factory(blog)
         self.delicious=BartleBlog.tools.delicious.factory(blog)
         self.mootools=BartleBlog.tools.mootools.factory(blog)
+        self.intensedebate=BartleBlog.tools.intensedebate.factory(blog)
 
     def chunk(self,name):
         s=db.Chunk.select(db.Chunk.q.name==name)
