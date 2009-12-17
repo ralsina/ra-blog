@@ -13,6 +13,7 @@ import BartleBlog.tools.technorati
 import BartleBlog.tools.yahoogrids
 import BartleBlog.tools.yahoocalendar
 import BartleBlog.tools.haloscan
+import BartleBlog.tools.intensedebate
 import BartleBlog.tools.statcounter
 import BartleBlog.tools.feedburner
 import BartleBlog.tools.talkr
