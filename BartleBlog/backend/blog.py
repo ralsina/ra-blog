@@ -427,7 +427,7 @@ class Blog:
     def renderOnePost(self,postfile):
         postID=postfile[:-5]
         post=db.postById(postID)
-        self.renderMakoPage('blogSite.tmpl',
+        self.renderMakoPage('onePostSite.tmpl',
                             os.path.join(self.dest_dir,"weblog","posts"),
                             postfile,
                             title=post.title,
