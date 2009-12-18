@@ -424,6 +424,8 @@ class Blog:
                             postlist=[post]
                             )
 
+
+
     def renderOnePost(self,postfile):
         postID=postfile[:-5]
         post=db.postById(postID)
@@ -434,6 +436,23 @@ class Blog:
                             curDate=post.pubDate,
                             postlist=[post]
                             )
+
+        # Now the translations
+        for tr in db.Translation.select():
+            lang=tr
+            dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog","posts")
+            self.renderMakoPage('onePostSite.tmpl',
+                                dname,
+                                postfile,
+                                title=post.title,
+                                curDate=post.pubDate,
+                                postlist=[post],
+                                lang=lang
+                                )
+        # Render tool hooks for days
+        for hook in self.dayHooks:
+            apply(hook,[date])
+
 
     def renderBlogYear(self,year):
         # Yearly archive page
