@@ -440,11 +440,12 @@ class Blog:
         # Now the translations
         for tr in db.Translation.select():
             lang=tr
+            tpost=post.translated(lang)
             dname=os.path.join(self.dest_dir,"tr",lang.code,"weblog","posts")
             self.renderMakoPage('onePostSite.tmpl',
                                 dname,
                                 postfile,
-                                title=post.title,
+                                title=tpost.title,
                                 curDate=post.pubDate,
                                 postlist=[post],
                                 lang=lang
@@ -564,14 +565,19 @@ class Blog:
         oldest=plist[0].pubDate
         newest=plist[-1].pubDate
 
+        print "Rendering posts"
+        for p in plist:
+            self.renderOnePost(p.postID+'.html')
+            
         if self.progress:
             self.progress.gotoStage(0)
+
+
             c=0
             for cat in db.Category.select():
                 c=c+len(cat.posts)+len(cat.stories)
             self.progress.setSteps(c)
         self.renderCategories()
-
 
         if self.progress:
             self.progress.gotoStage(1)
@@ -595,6 +601,8 @@ class Blog:
                         self.renderBlogDay(datetime.datetime(year=year,month=month,day=day))
                     except ValueError:
                         pass
+        
+                    
         if self.progress:
             self.progress.close()
 
