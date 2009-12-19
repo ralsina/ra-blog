@@ -11,7 +11,7 @@ class Disqus:
         return []
 
     def commentLink(self, post):
-        url=self.blog.macros.absoluteUrl("weblog/posts/%s.html"%post.postID)
+        url=self.blog.macros.absoluteUrl(post.myurl())
         return '<a href="%s#disqus_thread">Comments</a>'%url
 
     def commentCounter(self):
