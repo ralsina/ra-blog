@@ -7,6 +7,7 @@ from BartleBlog.ui.Ui_rsteditor import Ui_MainWindow
 from BartleBlog.ui.choose_tags import TagsDialog
 import BartleBlog.backend.dbclasses as db
 from rsthighlight import rstHighlighter
+import datetime
 
 class EditorWindow(QtGui.QMainWindow):
     def __init__(self,post=None, previews=True, lang=None):
@@ -110,13 +111,16 @@ class EditorWindow(QtGui.QMainWindow):
         self.ui.actionRST.setChecked(post.structured)
 
     def savePost(self):
+        # FIXME: make the TZ configurable
         if not self.post:
             print "Saving new post"
             self.post=db.Post( postID="BB%s"%str(time.time()),
                             title=unicode(self.ui.title.text()),
                             link=unicode(self.ui.link.text()),
                             text=unicode(self.ui.editor.toPlainText()), 
-                            structured=self.ui.actionRST.isChecked())
+                            structured=self.ui.actionRST.isChecked(),
+                            pubDate=datetime.datetime.utcnow(),
+                            modDate=datetime.datetime.utcnow())
             # Silly hack to have PostID be unique but not ugly
             self.post.postID='BB'+str(self.post.id)
         else:
@@ -131,7 +135,8 @@ class EditorWindow(QtGui.QMainWindow):
                 self.post.title=unicode(self.ui.title.text())
                 self.post.text=unicode(self.ui.editor.toPlainText())
                 self.post.structured=self.ui.actionRST.isChecked()
-                self.post.render()
+                self.post.render(),
+                self.post.modDate=datetime.datetime.utcnow()
             self.post.link=str(self.ui.link.text())
         t=unicode(self.ui.tags.text())
         if t:

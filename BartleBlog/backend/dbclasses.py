@@ -196,8 +196,8 @@ class Post(SQLObject):
 
     is_dirty=IntCol(default=-1)
 
-    pubDate=DateTimeCol(default=datetime.datetime.now())
-    modDate=DateTimeCol(default=datetime.datetime.now())
+    pubDate=DateTimeCol()
+    modDate=DateTimeCol()
 
     def translated(self, lang):
         if lang==None:
