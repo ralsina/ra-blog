@@ -17,7 +17,6 @@ import BartleBlog.tools.intensedebate
 import BartleBlog.tools.disqus
 import BartleBlog.tools.statcounter
 import BartleBlog.tools.feedburner
-import BartleBlog.tools.talkr
 import BartleBlog.tools.delicious
 import BartleBlog.tools.mootools
 
@@ -35,7 +34,6 @@ class Macros:
         self.haloScan=BartleBlog.tools.haloscan.factory(blog)
         self.statCounter=BartleBlog.tools.statcounter.factory(blog)
         self.feedBurner=BartleBlog.tools.feedburner.factory(blog)
-        self.talkr=BartleBlog.tools.talkr.factory(blog)
         self.delicious=BartleBlog.tools.delicious.factory(blog)
         self.mootools=BartleBlog.tools.mootools.factory(blog)
         self.intensedebate=BartleBlog.tools.intensedebate.factory(blog)
