@@ -113,7 +113,7 @@ class Macros:
     def getUrlForDay(self,date, lang=None):
         if lang==None:
             return self.absoluteUrl("weblog/%s/%02d/%02d.html"%(date.year,date.month,date.day))
-        return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html"%(lang,date.year,date.month,date.day))
+        return self.absoluteUrl("tr/%s/weblog/%s/%02d/%02d.html"%(lang.code,date.year,date.month,date.day))
 
     def absoluteUrl(self,path):
         return self.blog.basepath+path
