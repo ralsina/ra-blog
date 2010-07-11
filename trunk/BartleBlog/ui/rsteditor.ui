@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,383 +10,344 @@
     <height>493</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget" >
-   <layout class="QVBoxLayout" >
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout">
     <item>
-     <layout class="QGridLayout" >
-      <property name="leftMargin" >
+     <layout class="QGridLayout">
+      <property name="margin">
        <number>0</number>
       </property>
-      <property name="topMargin" >
-       <number>0</number>
-      </property>
-      <property name="rightMargin" >
-       <number>0</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>0</number>
-      </property>
-      <property name="horizontalSpacing" >
+      <property name="spacing">
        <number>6</number>
       </property>
-      <property name="verticalSpacing" >
-       <number>6</number>
-      </property>
-      <item row="0" column="1" >
-       <widget class="QLineEdit" name="title" />
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="title"/>
       </item>
-      <item rowspan="2" row="0" column="0" >
-       <layout class="QVBoxLayout" >
-        <property name="spacing" >
+      <item row="0" column="0" rowspan="2">
+       <layout class="QVBoxLayout">
+        <property name="spacing">
          <number>6</number>
         </property>
-        <property name="leftMargin" >
-         <number>0</number>
-        </property>
-        <property name="topMargin" >
-         <number>0</number>
-        </property>
-        <property name="rightMargin" >
-         <number>0</number>
-        </property>
-        <property name="bottomMargin" >
+        <property name="margin">
          <number>0</number>
         </property>
         <item>
-         <widget class="QLabel" name="label" >
-          <property name="text" >
+         <widget class="QLabel" name="label">
+          <property name="text">
            <string>&amp;Title</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>title</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_4" >
-          <property name="text" >
+         <widget class="QLabel" name="label_4">
+          <property name="text">
            <string>&amp;Link:</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>link</cstring>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2" >
-          <property name="text" >
+         <widget class="QLabel" name="label_2">
+          <property name="text">
            <string>T&amp;ags:</string>
           </property>
-          <property name="buddy" >
+          <property name="buddy">
            <cstring>tags</cstring>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="1" column="1" >
-       <layout class="QGridLayout" >
-        <property name="leftMargin" >
+      <item row="1" column="1">
+       <layout class="QGridLayout">
+        <property name="margin">
          <number>0</number>
         </property>
-        <property name="topMargin" >
-         <number>0</number>
-        </property>
-        <property name="rightMargin" >
-         <number>0</number>
-        </property>
-        <property name="bottomMargin" >
-         <number>0</number>
-        </property>
-        <property name="horizontalSpacing" >
+        <property name="spacing">
          <number>6</number>
         </property>
-        <property name="verticalSpacing" >
-         <number>6</number>
-        </property>
-        <item row="1" column="1" >
-         <widget class="QPushButton" name="guess" >
-          <property name="text" >
+        <item row="1" column="1">
+         <widget class="QPushButton" name="guess">
+          <property name="text">
            <string>&amp;Guess Tags</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="0" >
-         <widget class="QPushButton" name="tags" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+        <item row="1" column="0">
+         <widget class="QPushButton" name="tags">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text" >
+          <property name="text">
            <string/>
           </property>
          </widget>
         </item>
-        <item row="0" column="1" >
-         <widget class="QPushButton" name="pushButton" >
-          <property name="text" >
+        <item row="0" column="1">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
            <string>&amp;Make Tiny</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0" >
-         <widget class="QLineEdit" name="link" />
+        <item row="0" column="0">
+         <widget class="QLineEdit" name="link"/>
         </item>
        </layout>
       </item>
      </layout>
     </item>
     <item>
-     <widget class="QSplitter" name="splitter" >
-      <property name="orientation" >
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTextEdit" name="editor" >
-       <property name="font" >
+      <widget class="Editor" name="editor">
+       <property name="font">
         <font>
          <family>Bitstream Vera Sans Mono</family>
         </font>
        </property>
-       <property name="acceptRichText" >
+       <property name="acceptRichText">
         <bool>false</bool>
        </property>
-      </widget>
-      <widget class="QWidget" name="layoutWidget" >
-       <layout class="QHBoxLayout" >
-        <item>
-         <widget class="QToolButton" name="clearSearch" >
-          <property name="text" >
-           <string>...</string>
-          </property>
-          <property name="icon" >
-           <iconset resource="../../resources/icons.qrc" >:/icons/icons/editclear.svg</iconset>
-          </property>
-          <property name="shortcut" >
-           <string>Ctrl+K</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="search" />
-        </item>
-        <item>
-         <widget class="QPushButton" name="findNext" >
-          <property name="text" >
-           <string>Find Next</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
       </widget>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>536</width>
-     <height>31</height>
+     <height>24</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuEdit" >
-    <property name="title" >
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
      <string>Edit</string>
     </property>
-    <widget class="QMenu" name="menuInsert" >
-     <property name="title" >
+    <widget class="QMenu" name="menuInsert">
+     <property name="title">
       <string>Insert</string>
      </property>
-     <addaction name="actionFlickr_Image" />
-     <addaction name="actionOpenomy_File" />
+     <addaction name="actionFlickr_Image"/>
+     <addaction name="actionOpenomy_File"/>
     </widget>
-    <addaction name="actionCut" />
-    <addaction name="actionCopy" />
-    <addaction name="actionPaste" />
-    <addaction name="actionUndo" />
-    <addaction name="actionRedo" />
-    <addaction name="actionSelect_All" />
-    <addaction name="actionDelete" />
-    <addaction name="separator" />
-    <addaction name="actionFind" />
-    <addaction name="actionFindNext" />
-    <addaction name="separator" />
-    <addaction name="menuInsert" />
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="actionSelect_All"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionFind"/>
+    <addaction name="actionFindNext"/>
+    <addaction name="separator"/>
+    <addaction name="menuInsert"/>
    </widget>
-   <widget class="QMenu" name="menuPost" >
-    <property name="title" >
+   <widget class="QMenu" name="menuPost">
+    <property name="title">
      <string>Post</string>
     </property>
-    <addaction name="actionSave" />
-    <addaction name="actionPreview" />
-    <addaction name="actionRST" />
-    <addaction name="separator" />
-    <addaction name="actionClose" />
+    <addaction name="actionSave"/>
+    <addaction name="actionPreview"/>
+    <addaction name="actionRST"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
    </widget>
-   <addaction name="menuPost" />
-   <addaction name="menuEdit" />
+   <addaction name="menuPost"/>
+   <addaction name="menuEdit"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar" />
-  <widget class="QToolBar" name="toolBar" >
-   <property name="orientation" >
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <attribute name="toolBarArea" >
+   <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
-   <attribute name="toolBarBreak" >
+   <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSave" />
-   <addaction name="actionPreview" />
-   <addaction name="actionRST" />
-   <addaction name="separator" />
-   <addaction name="actionCut" />
-   <addaction name="actionCopy" />
-   <addaction name="actionPaste" />
-   <addaction name="separator" />
-   <addaction name="actionUndo" />
-   <addaction name="actionRedo" />
-   <addaction name="separator" />
-   <addaction name="actionFlickr_Image" />
-   <addaction name="actionOpenomy_File" />
+   <addaction name="actionSave"/>
+   <addaction name="actionPreview"/>
+   <addaction name="actionRST"/>
+   <addaction name="separator"/>
+   <addaction name="actionCut"/>
+   <addaction name="actionCopy"/>
+   <addaction name="actionPaste"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionFlickr_Image"/>
+   <addaction name="actionOpenomy_File"/>
   </widget>
-  <action name="actionPreview" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/preview.svg</iconset>
+  <action name="actionPreview">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/preview.svg</normaloff>:/icons/icons/preview.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Preview</string>
    </property>
   </action>
-  <action name="actionCut" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/editcut.svg</iconset>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/editcut.svg</normaloff>:/icons/icons/editcut.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Cut</string>
    </property>
   </action>
-  <action name="actionCopy" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/editcopy.svg</iconset>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/editcopy.svg</normaloff>:/icons/icons/editcopy.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Copy</string>
    </property>
   </action>
-  <action name="actionPaste" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/editpaste.svg</iconset>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/editpaste.svg</normaloff>:/icons/icons/editpaste.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Paste</string>
    </property>
   </action>
-  <action name="actionUndo" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/undo.svg</iconset>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/undo.svg</normaloff>:/icons/icons/undo.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Undo</string>
    </property>
   </action>
-  <action name="actionRedo" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/redo.svg</iconset>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/redo.svg</normaloff>:/icons/icons/redo.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Redo</string>
    </property>
   </action>
-  <action name="actionDelete" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/delete.svg</iconset>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/delete.svg</normaloff>:/icons/icons/delete.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Delete</string>
    </property>
   </action>
-  <action name="actionSelect_All" >
-   <property name="text" >
+  <action name="actionSelect_All">
+   <property name="text">
     <string>Select All</string>
    </property>
   </action>
-  <action name="actionFlickr_Image" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/camera.svg</iconset>
+  <action name="actionFlickr_Image">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/camera.svg</normaloff>:/icons/icons/camera.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Flickr Image</string>
    </property>
   </action>
-  <action name="actionOpenomy_File" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/openomy.svg</iconset>
+  <action name="actionOpenomy_File">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/openomy.svg</normaloff>:/icons/icons/openomy.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Openomy File</string>
    </property>
   </action>
-  <action name="actionSave" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/filesave.svg</iconset>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/filesave.svg</normaloff>:/icons/icons/filesave.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>save</string>
    </property>
   </action>
-  <action name="actionClose" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/fileclose.svg</iconset>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/fileclose.svg</normaloff>:/icons/icons/fileclose.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Close</string>
    </property>
   </action>
-  <action name="actionOpenomyTag" >
-   <property name="text" >
+  <action name="actionOpenomyTag">
+   <property name="text">
     <string>Openomy Tag</string>
    </property>
   </action>
-  <action name="actionRST" >
-   <property name="checkable" >
+  <action name="actionRST">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/fonts.svg</iconset>
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/fonts.svg</normaloff>:/icons/icons/fonts.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Restructured Text</string>
    </property>
   </action>
-  <action name="actionFind" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/find.svg</iconset>
+  <action name="actionFind">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/find.svg</normaloff>:/icons/icons/find.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Find</string>
    </property>
   </action>
-  <action name="actionFindNext" >
-   <property name="icon" >
-    <iconset resource="../../resources/icons.qrc" >:/icons/icons/next.svg</iconset>
+  <action name="actionFindNext">
+   <property name="icon">
+    <iconset resource="../../resources/icons.qrc">
+     <normaloff>:/icons/icons/next.svg</normaloff>:/icons/icons/next.svg</iconset>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>FindNext</string>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Editor</class>
+   <extends>QTextEdit</extends>
+   <header location="global">editorw</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>title</tabstop>
   <tabstop>link</tabstop>
@@ -393,24 +355,7 @@
   <tabstop>pushButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../../resources/icons.qrc" />
+  <include location="../../resources/icons.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>search</sender>
-   <signal>returnPressed()</signal>
-   <receiver>findNext</receiver>
-   <slot>animateClick()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>419</x>
-     <y>442</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>461</x>
-     <y>444</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
