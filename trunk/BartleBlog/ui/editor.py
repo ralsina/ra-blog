@@ -28,7 +28,7 @@ class EditorWindow(QtGui.QMainWindow):
         self.trPost=None
         self.setPost(post)
 
-        self.setLang(lang)
+        #self.setLang(lang)
         QtCore.QObject.connect(self.langs,
             QtCore.SIGNAL("activated (QString)"),
             self.setLang)
@@ -62,16 +62,22 @@ class EditorWindow(QtGui.QMainWindow):
     def setLang(self, lang):
         if not lang: # None is "default language"
             return
+        if isinstance(lang, QtCore.QString):
+            lang = unicode(lang)
+            if lang == 'Default':
+                lang=None
+                self.trPost=None
+                self.ui.editor.initDict(lang='en')
+            else:
+                lang=db.Translation.select(db.Translation.q.name==unicode(lang))[0]
+                self.ui.editor.initDict(lang=lang.code)
         
-        lang=unicode(lang)
-        if lang=="Default":
-            self.lang=None
-            self.trPost=None
         # Find the posts translation for this language
-        if self.post:
-            self.lang=lang
-            self.trPost=db.translationByLangNamePost(lang, self.post)
-            self.setPost(self.post)
+        if self.post and lang:
+            self.lang=lang.name
+            self.trPost=db.translationByLangNamePost(lang.name, self.post)
+        self.setPost(self.post)
+            
         # There is no post set, so there can't be a translation
         # This shouldn't happen
 
